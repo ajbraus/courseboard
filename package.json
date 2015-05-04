@@ -10,6 +10,10 @@
     "type": "git",
     "url": "https://github.com/Hitman666/MEAN_MVC_2ndTutorial.git"
   },
+  "engines": {
+      "node": "0.10.28",
+      "npm": "1.4.9"
+  } 
   "keywords": [
     "MEAN",
     "MVC"

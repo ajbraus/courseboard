@@ -37,7 +37,6 @@ app.set('view options', {
   layout: false
 });
 
-app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'client')));
 
 // app.use(passport.initialize());
