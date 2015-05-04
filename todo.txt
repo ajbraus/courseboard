@@ -5,6 +5,7 @@ sockets:
   separate rooms
 
 publish to heroku
+  mongo?
 
 Post Integration TESTS!
 
