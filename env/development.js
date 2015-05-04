@@ -1,4 +1,4 @@
-var port = process.env.PORT || 1337;
+var port = 1337;
 
 module.exports = {
   port: port,

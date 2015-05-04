@@ -1,6 +1,6 @@
-var port = process.env.PORT || 1337;
+var port = process.env.PORT;
 
 module.exports = {
   port: port,
-  db: ENV['MONGOLAB_URI']
+  db: process.env.MONGOLAB_URI
 };
