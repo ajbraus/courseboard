@@ -1,0 +1,18 @@
+br
+.col-lg-4.col-lg-offset-4.col-sm-6.col-sm-offset-3
+  form(ng-submit="publishPost()")
+    p
+      textarea.form-control(ng-model="post.body", placeholder="What is your question?", autofocus="true")
+    p
+      button.btn.btn-block.btn-primary(type="submit", ng-disabled="!post.body") Ask Your Question
+
+  ul.list-group
+    li.list-group-item.clearfix(ng-repeat="post in posts")
+      div.pull-left.voting-buttons.text-muted
+        i.icon.ion-arrow-up-b(ng-click="voteUp(post)")
+        br
+        small {{post.votes_count}}
+        br  
+        i.icon.ion-arrow-down-b(ng-click="voteDown(post)")
+      div {{post.body}}
+      

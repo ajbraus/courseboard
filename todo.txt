@@ -1,0 +1,28 @@
+sockets:
+  DONE create post
+  DONE vote up
+  DONE vote down
+  separate rooms
+
+publish to heroku
+
+Post Integration TESTS!
+
+Clone into queueue
+Queueue:
+  question create, index vote up, vote down, room
+  go live
+
+Finnegan:
+  make socket-based website Express, Mongodb, Socket-io
+  make finnegan
+  paragraphs > words
+
+upgrade to bcrypt with salt and hash passwords http://stackoverflow.com/questions/17201450/salt-and-hash-password-in-nodejs-w-crypto
+
+DONE Add Jade
+DONE add partials
+DONE npm install nodemon --save
+DONE add socket.io
+
+DONE angular route to templates
