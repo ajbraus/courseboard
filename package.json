@@ -12,8 +12,12 @@
   },
   "engines": {
       "node": "0.10.28",
-      "npm": "1.4.9"
-  }, 
+      "npm": "1.4.9",
+      "bower": "1.4.1"
+  },
+  "scripts": {
+      "postinstall": "./node_modules/bower/bin/bower install"
+  },
   "keywords": [
     "Event Moderation",
     "Questions"
