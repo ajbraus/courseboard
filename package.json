@@ -4,7 +4,8 @@
   "description": "Queues your questions.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "bower install" //&& grunt build
   },
   "repository": {
     "type": "git",
@@ -13,10 +14,8 @@
   "engines": {
       "node": "0.10.28",
       "npm": "2.9.0",
-      "bower": "1.4.1"
-  },
-  "scripts": {
-      "postinstall": "./node_modules/bower/bin/bower install"
+      "bower": "1.4.1",
+      "express": "4.12.3"
   },
   "keywords": [
     "Event Moderation",
