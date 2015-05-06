@@ -1,5 +1,5 @@
 {
-  "directory": "public/lib",
+  "directory": "public/vendor",
   "analytics": false,
   "timeout": 120000,
   "registry": {
