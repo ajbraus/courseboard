@@ -1,5 +1,5 @@
 deploy to heroku
-  add grunt
+  add grunt package.json "&& grunt build"
 
 connecting twice to sockets . . .
 
