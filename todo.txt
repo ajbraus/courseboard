@@ -5,8 +5,7 @@ sockets:
   separate rooms
     DONE start on room-index.jade
     DONE navigate to /:roomName
-    join or create room by roomName
-    subscribe to roomName socket
+    When arrive to room, join or create and join room by roomName
     publish question to roomName socket
     vote up and down to roomName socket
 

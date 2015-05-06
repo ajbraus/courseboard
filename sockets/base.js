@@ -11,6 +11,7 @@ module.exports = function (io) {
   io.on('connection', function (socket){
     console.log('a user connected so I rock');
 
+    socket.join("some room")
     // PUBLISH POST
     socket.on('publish.post', function (data) {
       console.log(data);
@@ -23,9 +24,11 @@ module.exports = function (io) {
         console.log('post saved')
         if (err) { 
           console.log(err);
+          // io('/my-namespace')
           return io.sockets.emit('error', post); 
         }
-        io.sockets.emit('broadcast.post', post);
+
+        io.sockets.in('some room').emit('broadcast.post', post);
       });
     });
 
