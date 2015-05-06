@@ -1,7 +1,7 @@
 {
   "name": "MEAN_MVC_2ndTutorial",
   "version": "1.0.0",
-  "description": "Code acompanying the [second blog post](https://hackhands.com/delving-node-js-express-web-framework/)",
+  "description": "Queues your questions.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,15 +15,11 @@
       "npm": "1.4.9"
   }, 
   "keywords": [
-    "MEAN",
-    "MVC"
+    "Event Moderation",
+    "Questions"
   ],
   "author": "Nikola Brežnjak <nikola.breznjak@gmail.com> (http://www.nikola-breznjak.com/)",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Hitman666/MEAN_MVC_2ndTutorial/issues"
-  },
-  "homepage": "https://github.com/Hitman666/MEAN_MVC_2ndTutorial",
   "dependencies": {
     "body-parser": "^1.12.3",
     "bower": "^1.4.1",

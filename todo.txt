@@ -1,11 +1,15 @@
-sockets:
-  on broadcast, only publish if room_name === room_name - not scalable! and every client is recieving every question across the whole system . . .
-
-publish to heroku
+deploy to heroku
+  add grunt/gulp
   static files not served
   connected to DB?
 
 Post Integration TESTS!
+
+emit when user joins room
+count users in room
+
+scale:
+  on broadcast, only publish if room_name === room_name - not scalable! and every client is recieving every question across the whole system . . .
 
 Add Ionic
 

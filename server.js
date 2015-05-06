@@ -18,9 +18,10 @@ var config = require('./config')
   , server = app.listen(config.port)
   , io = require('socket.io').listen(server);
 
+// app.use(express.static(__dirname + '/public'));
+app.use("/", express.static(path.join(__dirname, 'public')));
+
 require('./sockets/base')(io);
-// app.set('io', io);
-// app.set('server', server);
 
 app.use(flash());
 app.use(session({
@@ -40,16 +41,13 @@ app.set('view options', {
   layout: false
 });
 
-app.use(express.static("" + __dirname + '/public'));
-
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-// Resources
+// RESOURCES
 app.get('/', resources.index);
 app.get('/templates/:name', resources.templates);
 require('./resources/posts')(app);
-// app.route('/api/posts').post(create(io));
 
 // redirect all others to the index (HTML5 history)
 app.get('*', resources.index);
