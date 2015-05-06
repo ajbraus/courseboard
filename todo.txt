@@ -1,13 +1,5 @@
 sockets:
-  DONE create post
-  DONE vote up
-  DONE vote down
-  separate rooms
-    DONE start on room-index.jade
-    DONE navigate to /:roomName
-    When arrive to room, join or create and join room by roomName
-    publish question to roomName socket
-    vote up and down to roomName socket
+  on broadcast, only publish if room_name === room_name - not scalable! and every client is recieving every question across the whole system . . .
 
 publish to heroku
   static files not served
@@ -15,10 +7,8 @@ publish to heroku
 
 Post Integration TESTS!
 
-Clone into queueue
-Queueue:
-  question create, index vote up, vote down, room
-  go live
+Add Ionic
+
 
 Finnegan:
   make socket-based website Express, Mongodb, Socket-io
@@ -33,3 +23,12 @@ DONE npm install nodemon --save
 DONE add socket.io
 
 DONE angular route to templates
+
+DONE create post
+DONE vote up
+DONE vote down
+DONE separate rooms
+  DONE start on room-index.jade
+  DONE navigate to /:roomName
+  DONE limit post-index to see only questions in room
+  DONE send room_name with post

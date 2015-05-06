@@ -19,7 +19,7 @@ angular.module('myApp', ['ngResource',
       , controller: 'RoomIndexCtrl'
       })
 
-      .when('/:roomName', {
+      .when('/:room_name', {
         templateUrl: 'templates/post-index'
       , controller: 'PostIndexCtrl'
       })

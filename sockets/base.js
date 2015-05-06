@@ -10,14 +10,16 @@ module.exports = function (io) {
   // io.set('origins', '*localhost:1337');
   io.on('connection', function (socket){
     console.log('a user connected so I rock');
-
-    socket.join("some room")
+    // var room = "some room"
+    // socket.join(room, function () {
+    //   console.log("joined room " + room)
+    // })
     // PUBLISH POST
     socket.on('publish.post', function (data) {
       console.log(data);
       var post = new Post({
           body: data.body
-        , room_name: data.roomName
+        , room_name: data.room_name
       });
       console.log(post);
       post.save(function (err, post) {
@@ -28,7 +30,7 @@ module.exports = function (io) {
           return io.sockets.emit('error', post); 
         }
 
-        io.sockets.in('some room').emit('broadcast.post', post);
+        io.sockets.emit('broadcast.post', post);
       });
     });
 

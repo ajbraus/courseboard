@@ -6,25 +6,27 @@
 
 angular.module('myApp')
   .controller('PostIndexCtrl', function ($scope, Post, Socket, $routeParams) {
-    // SET ROOMNAME
-    $scope.roomName = "#" + $routeParams.roomName
+    // SET ROOM NAME
+    $scope.room_name = "#" + $routeParams.room_name
 
-    // JOIN OR CREATE ROOM BY ROOMNAME
-    // Socket.join($routeParams.roomName, function (){
-    //   console.log('joined ' + $routeParams.roomName)
+    // JOIN OR CREATE ROOM BY room_name
+    // Socket.join($routeParams.room_name, function (){
+    //   console.log('joined ' + $routeParams.room_name)
     // });
 
     // GET POSTS
-    $scope.posts = Post.query({ "roomName": $routeParams.roomName });
+    $scope.posts = Post.query({ "room_name": $routeParams.room_name });
 
-    $scope.post = { "roomName": $routeParams.roomName };
+    $scope.post = { "room_name": $routeParams.room_name };
 
     // PUBLISH POST
     $scope.$on('socket:broadcast.post', function (event, post) {
-      $scope.$apply(function() {
-        $scope.posts.unshift(post);
-        $scope.post.body = ''          
-      })
+      if (post.room_name == $routeParams.room_name) {
+        $scope.$apply(function() {
+          $scope.posts.unshift(post);
+          $scope.post.body = ''          
+        });
+      };
     });
 
     $scope.publishPost = function () {
