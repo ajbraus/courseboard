@@ -40,7 +40,7 @@ app.set('view options', {
   layout: false
 });
 
-app.use(express.static(__dirname + '/client'));
+app.use(express.static(__dirname + '/public'));
 
 // app.use(passport.initialize());
 // app.use(passport.session());
