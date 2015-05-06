@@ -12,7 +12,7 @@ html(lang="en", ng-app='myApp')
     link(rel='stylesheet', href='/css/style.css')
     link(rel='stylesheet', href='/lib/ionicons/css/ionicons.css')
       
-  body
+  body(ng-controller="MainCtrl")
     block body
 
   script(src='//code.jquery.com/jquery-1.9.1.js')
@@ -30,6 +30,7 @@ html(lang="en", ng-app='myApp')
   script(type="text/javascript", src='/interceptors.js')
   script(type="text/javascript", src='/controllers/mainCtrl.js')
   script(type="text/javascript", src='/controllers/postCtrls.js')
+  script(type="text/javascript", src='/controllers/roomCtrls.js')
   script(type="text/javascript", src='/filters.js')
   script(type="text/javascript", src='/directives.js')
 

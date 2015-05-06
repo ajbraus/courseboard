@@ -1,3 +1,7 @@
+/*
+ * SERVER.JS
+ */
+
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var config = require('./config')
@@ -14,10 +18,9 @@ var config = require('./config')
   , server = app.listen(config.port)
   , io = require('socket.io').listen(server);
 
-
 require('./sockets/base')(io);
-app.set('io', io);
-app.set('server', server);
+// app.set('io', io);
+// app.set('server', server);
 
 app.use(flash());
 app.use(session({
@@ -45,7 +48,7 @@ app.use('/', express.static(__dirname + '/client'));
 // Resources
 app.get('/', resources.index);
 app.get('/templates/:name', resources.templates);
-require('./resources/posts')(app, io);
+require('./resources/posts')(app);
 // app.route('/api/posts').post(create(io));
 
 // redirect all others to the index (HTML5 history)

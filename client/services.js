@@ -13,8 +13,14 @@ angular.module('myApp.services', [])
   })
 
   .factory('Socket', ['socketFactory', function (socketFactory) {
-    return socketFactory({
-      prefix: '',
-      ioSocket: io.connect('http://localhost:1337')
-    });
+    var socket = socketFactory();
+    // {
+        // ioSocket: io.connect('http://localhost:1337/')
+      // , prefix: ''
+    // }
+    
+    socket.forward('broadcast.post');
+    socket.forward('broadcast.vote_up');
+    socket.forward('broadcast.vote_down');
+    return socket
   }]);

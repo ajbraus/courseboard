@@ -5,37 +5,51 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('PostIndexCtrl', function ($scope, Post, Socket) {
-    $scope.post = {};
-    $scope.posts = Post.query();
+  .controller('PostIndexCtrl', function ($scope, Post, Socket, $routeParams) {
+    // SET ROOMNAME
+    $scope.roomName = "#" + $routeParams.roomName
 
-    Socket.on('post.published', function (post) {
-      $scope.posts.unshift(post);
-    });
+    // JOIN OR CREATE ROOM BY ROOMNAME
+    // Socket.join($routeParams.roomName, function (){
+    //   console.log('joined ' + $routeParams.roomName)
+    // });
 
-    Socket.on('post.voted_up', function (post) {
-      var post = _.findWhere($scope.posts, {_id: post._id});
-      post.votes_count = ++post.votes_count
-    });
+    // GET POSTS
+    $scope.posts = Post.query({ "roomName": $routeParams.roomName });
 
-    Socket.on('post.voted_down', function (post) {
-      var post = _.findWhere($scope.posts, {_id: post._id});
-      post.votes_count = --post.votes_count
+    $scope.post = { "roomName": $routeParams.roomName };
+
+    // PUBLISH POST
+    $scope.$on('socket:broadcast.post', function (event, post) {
+      $scope.$apply(function() {
+        $scope.posts.unshift(post);
+        $scope.post.body = ''          
+      })
     });
 
     $scope.publishPost = function () {
       console.log($scope.post)
-      Post.save({}, $scope.post, function (data) {
-        $scope.post.body = ''  
-      });
+      Socket.emit('publish.post', $scope.post);
     };
 
+    // VOTE UP
+    $scope.$on('socket:broadcast.vote_up', function (event, post) {
+      var post = _.findWhere($scope.posts, {_id: post._id});
+      post.votes_count = ++post.votes_count
+    });
+
     $scope.voteUp = function (post) {
-      Post.vote_up({ id: post._id })
+      console.log("voting up")
+      Socket.emit("vote_up.post", { id: post._id });
     }
 
+    $scope.$on('socket:broadcast.vote_down', function (event, post) {
+      var post = _.findWhere($scope.posts, {_id: post._id});
+      post.votes_count = --post.votes_count
+    });
+
     $scope.voteDown = function (post) {
-      Post.vote_down({ id: post._id })
+      Socket.emit("vote_down.post", { id: post._id });
     }
 
     // Socket.on('user:left', function (data) {

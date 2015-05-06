@@ -15,6 +15,11 @@ angular.module('myApp', ['ngResource',
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
+        templateUrl: 'templates/room-index'
+      , controller: 'RoomIndexCtrl'
+      })
+
+      .when('/:roomName', {
         templateUrl: 'templates/post-index'
       , controller: 'PostIndexCtrl'
       })
@@ -23,6 +28,7 @@ angular.module('myApp', ['ngResource',
         templateUrl: 'templates/login'
       , controller: 'PostIndexCtrl'
       })
+
       .when('/register', {
         templateUrl: 'templates/register'
       , controller: 'PostIndexCtrl'

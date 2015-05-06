@@ -1,5 +1,9 @@
 br
-.col-lg-4.col-lg-offset-4.col-sm-6.col-sm-offset-3
+.col-lg-2.col-lg-offset-2.col-sm-2.col-sm-offset-1.text-right
+  h4.text-muted {{roomName}}
+  p 
+    a(href="/") Leave Room
+.col-lg-4.col-sm-6
   form(ng-submit="publishPost()")
     p
       textarea.form-control(ng-model="post.body", placeholder="What is your question?", autofocus="true")

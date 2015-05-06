@@ -10,6 +10,7 @@ var PostSchema = new Schema({
   , updated_at  : { type: Date }
   , body        : { type: String, required: true, trim: true }
   , votes_count : { type: Number, required: true, default: 0 }
+  , room_name   : { type: String, required: true, trim: true }
   // , author: {}
 });
 

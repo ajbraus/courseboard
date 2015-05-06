@@ -5,6 +5,8 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.tagline = 'To the moon and back!';   
+  .controller('MainCtrl', function ($scope, $rootScope) {
+    // $rootScope.$on('enteredRoom', function(event, roomName) { 
+    //   $scope.roomName = roomName;
+    // });
   });

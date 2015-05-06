@@ -9,15 +9,13 @@ block body
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href="#") Queue&A
+      a.navbar-brand(href="/") Queue&A
 
     //- Collect the nav links, forms, and other content for toggling
     .collapse.navbar-collapse.navbar-ex1-collapse
-      ul.nav.navbar-nav
+      //- ul.nav.navbar-nav(ng-show="roomName")
         li
-          a(href="/") Change Rooms
-        li
-          a(href="#") #room
+          a(href="/") Leave Room
         //- li.dropdown
           a.dropdown-toggle(href="#" data-toggle="dropdown") Dropdown 
             b.caret

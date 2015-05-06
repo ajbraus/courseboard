@@ -3,9 +3,16 @@ sockets:
   DONE vote up
   DONE vote down
   separate rooms
+    DONE start on room-index.jade
+    DONE navigate to /:roomName
+    join or create room by roomName
+    subscribe to roomName socket
+    publish question to roomName socket
+    vote up and down to roomName socket
 
 publish to heroku
-  mongo?
+  static files not served
+  connected to DB?
 
 Post Integration TESTS!
 
