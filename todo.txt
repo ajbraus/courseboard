@@ -1,7 +1,7 @@
 deploy to heroku
-  add grunt/gulp
-  static files not served
-  connected to DB?
+  add grunt
+
+connecting twice to sockets . . .
 
 Post Integration TESTS!
 
@@ -11,7 +11,7 @@ count users in room
 scale:
   on broadcast, only publish if room_name === room_name - not scalable! and every client is recieving every question across the whole system . . .
 
-Add Ionic
+Make Ionic app gobble up that JSON and have socket.io
 
 
 Finnegan:
