@@ -11,7 +11,9 @@ angular.module('myApp', ['ngResource',
                          'myApp.directives', 
                          'myApp.interceptors'])
 
-  .constant('HOST', 'http://localhost:1337') //DEV
+  // .constant('HOST', 'http://localhost:1337') //DEV
+  .constant('HOST', 'http://questionqueue.herokuapp.com') //PRODUCTION
+
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
