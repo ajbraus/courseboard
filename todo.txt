@@ -1,5 +1,12 @@
 deploy to heroku
+  BOWER!!!!
   add grunt package.json "&& grunt build"
+
+    // "directory": "library",
+    // "registry": "http://bower.herokuapp.com",
+    // "proxy" : "http://user:pass@host:8080",
+    // "https-proxy" : "http://user:pass@host:8080",
+    // "strict-ssl": false,
 
 connecting twice to sockets . . .
 
