@@ -1,16 +1,16 @@
-deploy to heroku
-  BOWER!!!!
-  add grunt package.json "&& grunt build"
-
-    // "directory": "library",
-    // "registry": "http://bower.herokuapp.com",
-    // "proxy" : "http://user:pass@host:8080",
-    // "https-proxy" : "http://user:pass@host:8080",
-    // "strict-ssl": false,
-
-connecting twice to sockets . . .
-
 Post Integration TESTS!
+  vote only once -- (good test!)
+  style voting - highlight if you voted
+  downcase room hashtag
+
+subtemplate for the room posts
+  use angular-ui router
+
+deploy to AWS
+  http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_express.html
+  http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_console.html
+
+Make Ionic app gobble up that JSON and have socket.io
 
 emit when user joins room
 count users in room
@@ -18,7 +18,7 @@ count users in room
 scale:
   on broadcast, only publish if room_name === room_name - not scalable! and every client is recieving every question across the whole system . . .
 
-Make Ionic app gobble up that JSON and have socket.io
+add grunt package.json and include grunt files in git
 
 
 Finnegan:

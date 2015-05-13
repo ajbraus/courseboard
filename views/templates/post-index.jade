@@ -1,22 +1,16 @@
-br
-.col-lg-2.col-lg-offset-2.col-sm-2.col-sm-offset-1.text-right
-  h4.text-muted {{room_name}}
-  p 
-    a(href="/") Leave Room
-.col-lg-4.col-sm-6
-  form(ng-submit="publishPost()")
-    p
-      textarea.form-control(ng-model="post.body", placeholder="What is your question?", autofocus="true")
-    p
-      button.btn.btn-block.btn-primary(type="submit", ng-disabled="!post.body") Ask Your Question
+.clearfix.padding
+  h4.text-muted.pull-left#roomName {{room_name}}
+  a.pull-right(href="/") Exit
 
-  ul.list-group
-    li.list-group-item.clearfix(ng-repeat="post in posts")
-      div.pull-left.voting-buttons.text-muted
-        i.icon.ion-arrow-up-b(ng-click="voteUp(post)")
-        br
-        small {{post.votes_count}}
-        br  
-        i.icon.ion-arrow-down-b(ng-click="voteDown(post)")
-      div {{post.body}}
+form.event-name(ng-submit="publishPost()")
+  textarea(ng-model="post.body", placeholder="What is your question?", autofocus="true")
+  button.pull-right.ask-question.qq-btn(type="submit", ng-disabled="!post.body") Ask
+
+ul.list-group
+  li.list-group-item.clearfix(ng-repeat="post in posts")
+    div.pull-left.voting-buttons.text-muted
+      i.icon.ion-arrow-up-b.vote_up(ng-click="voteUp(post)")
+      small.vote_count {{post.votes_count}}
+      i.icon.ion-arrow-down-b.vote_down(ng-click="voteDown(post)")
+    div {{post.body}}
       

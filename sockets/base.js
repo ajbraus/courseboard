@@ -9,7 +9,7 @@ var Post = require('mongoose').model('Post');
 module.exports = function (io) {  
   // io.set('origins', '*localhost:1337');
   io.on('connection', function (socket){
-    console.log('a user connected so I rock');
+    console.log('A USER CONNECTED TO THE SOCKET');
     // var room = "some room"
     // socket.join(room, function () {
     //   console.log("joined room " + room)
