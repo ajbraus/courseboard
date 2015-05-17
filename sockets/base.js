@@ -19,7 +19,7 @@ module.exports = function (io) {
       console.log(data);
       var post = new Post({
           body: data.body
-        , room_name: data.room_name
+        , room_name: data.room_name.toLowerCase()
       });
       console.log(post);
       post.save(function (err, post) {
