@@ -4,8 +4,8 @@
   "timeout": 120000,
   "registry": {
     "search": [
-      "http://localhost:8000",
-      "https://bower.herokuapp.com"
+      "https://bower.herokuapp.com",
+      "http://localhost:8000"
     ]
   }
 }

@@ -97,3 +97,11 @@ textarea:focus, input:focus {
 .padding {
   padding:10px;
 }
+
+.voted_up {
+  color:#B4D2E7;
+}
+
+.voted_down {
+  color:#F59CA9;
+}
