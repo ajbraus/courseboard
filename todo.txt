@@ -1,8 +1,10 @@
 Post Integration TESTS!
-  track when users join or leave rooms and the # of users 
+  disable spacebar in room.name
+  
   make enter => exit button
   voted to -5 = destroy
   display questions created at with nice '1m' notation
+  track when users join or leave rooms and the # of users 
 
 add maxAge of 7200000 to cookie
 
