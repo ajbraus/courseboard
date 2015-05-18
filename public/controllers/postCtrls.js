@@ -6,6 +6,23 @@
 
 angular.module('myApp')
   .controller('PostIndexCtrl', function ($scope, Post, Socket, $routeParams, $cookies) {
+    $scope.order = '-created_at';
+    $scope.orderButton = "Newest"
+
+    $scope.switchOrder = function() {
+      if ($scope.order == '-created_at') {
+        console.log("vote_count")
+        $scope.order = '-votes_count';
+        $scope.orderButton = "Votes"
+      }  else {
+        console.log("created_at")
+        $scope.order = '-created_at'
+        $scope.orderButton = "Newest"
+      }
+    }
+    
+
+    $scope.room = { name: $routeParams.room_name };
     $scope.room_name = "#" + $routeParams.room_name
 
     // GET POSTS

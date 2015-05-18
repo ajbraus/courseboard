@@ -1,12 +1,32 @@
 html, body, .tall {height: 100%; min-height: 100%}
 
 .topbar {
-  text-align: center;
-  margin: 10px 0 10px 0;
+  margin: 10px auto;
+}
+
+a.brand {
+  color:black;
+  text-decoration: none;
+}
+
+a.brand:hover {
+  color:grey;
+  text-decoration: none;
+}
+
+.question {
+  height: 80px;
+  border-bottom:1px solid #eee;
 }
 
 textarea {   
   resize: none;
+  font-size: 16px;
+  height: 100%;
+  width: 74.5%;
+  border: none;
+  font-family: helvetica;
+  padding: 10px;
 }
 
 .main-container {
@@ -16,28 +36,30 @@ textarea {
   border-top:1px solid #eee;
   min-height:100%;
 }
+
 @media(max-width:767px){
-  .main-container {
-    width:320px;
+  .main-container, .topbar {
+    width:100%;
   }
 }
 @media(min-width:768px){
-  .main-container {
+  .main-container, .topbar {
     width:420px;
   }
 }
 @media(min-width:992px){
-  .main-container {
+  .main-container, .topbar {
     width:500px;
   }
 }
 @media(min-width:1200px){
-  .main-container {
+  .main-container, .topbar {
     width:600px;
   }
 }
 
 .event-name {
+  position: relative;
   height: 50px;
   border-bottom:1px solid #eee;
 }
@@ -52,18 +74,18 @@ textarea {
   color: white;
 }
 
-.event-name input, textarea {
+.event-name input {
   height: 100%;
-  width: 74.5%;
+  width: 68.5%;
   border:none;
   padding-left:8px;
   font-family: helvetica;
   font-size:20px;
 }
 
-.enter-room {
+.enter-room-btn {
   background:#eee;
-  color:darkgrey;
+  color:#505050;
 }
 
 .qq-btn {
@@ -71,8 +93,19 @@ textarea {
   padding:14px;
   width:15%;
   text-align: center;
-  font-size:16px;
+  font-size:20px;
   cursor: pointer;
+  border-radius: 0;
+}
+
+.ask-btn {
+  background:#477998;
+  color:white;
+}
+
+.ask-btn:hover {
+  color:white;
+  background: #78BC61;
 }
 
 textarea:focus, input:focus {
@@ -94,6 +127,12 @@ textarea:focus, input:focus {
   padding:10px;
 }
 
+.order-btn {
+  position: absolute;
+  right: -100px;
+  top: 132px;
+}
+
 .voting-buttons {
   margin-right:15px;
   font-size:170%;
@@ -101,7 +140,7 @@ textarea:focus, input:focus {
 
 .voting-buttons i {
   position: relative;
-  bottom: 6px;
+  bottom: 10px;
 }
 
 .voted_up {
@@ -113,9 +152,10 @@ textarea:focus, input:focus {
 }
 
 .vote_down, .vote_up {
-  height: 20px;
+  height: 10px;
 }
 
 .vote_down:hover, .vote_up:hover {
   cursor: pointer;
+  color:lightgrey;
 }

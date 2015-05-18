@@ -1,13 +1,19 @@
-.clearfix.padding
-  h4.text-muted.pull-left#roomName {{room_name}}
-  a.pull-right(href="/") Exit
+.event-name
+  .hash-tag.pull-left #
+  input.hash-input(ng-model="room.name", placeholder="QuestionQueue2015")
+  .pull-right.qq-btn.enter-room-btn#enterRoom(ng-click="enterRoom()") 
+    i.icon.ion-log-in
+  button.btn.btn-default.order-btn(ng-click="switchOrder()") 
+    i.icon.ion-stats-bars 
+    {{orderButton}}
 
-form.event-name(ng-submit="publishPost()")
+form.question(ng-submit="publishPost()")
   textarea(ng-model="post.body", placeholder="What is your question?", autofocus="true")
-  button.pull-right.ask-question.qq-btn(type="submit", ng-disabled="!post.body") Ask
+  button.pull-right.qq-btn.btn.ask-btn(type="submit", ng-disabled="!post.body")
+    i.icon.ion-edit
 
 ul.list-group
-  li.list-group-item.clearfix(ng-repeat="post in posts")
+  li.list-group-item.clearfix(ng-repeat="post in posts | orderBy: order")
     div.pull-left.voting-buttons.text-muted
       div.vote_up(ng-click="voteUp(post)" ng-class="{'voted_up' : alreadyVoted(post, 'up')}")
         i.icon.ion-arrow-up-b
@@ -15,4 +21,3 @@ ul.list-group
       div.vote_down(ng-click="voteDown(post)" ng-class="{'voted_down' : alreadyVoted(post, 'down')}")
         i.icon.ion-arrow-down-b
     div {{post.body}}
-      
