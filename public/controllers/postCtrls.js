@@ -5,7 +5,7 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('PostIndexCtrl', function ($scope, Post, Socket, $routeParams, $cookies) {
+  .controller('PostIndexCtrl', function ($scope, $rootScope, Post, Socket, $routeParams, $cookies, $location) {
     $scope.order = '-created_at';
     $scope.orderButton = "Newest"
 
@@ -31,6 +31,7 @@ angular.module('myApp')
     }
 
     // GET POSTS
+    console.log($routeParams.room_name)
     $scope.posts = Post.query({ "room_name": $routeParams.room_name });
 
     $scope.post = { "room_name": $routeParams.room_name };

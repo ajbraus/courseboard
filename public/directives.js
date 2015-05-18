@@ -5,6 +5,19 @@
 'use strict';
 
 angular.module('myApp.directives', ['myApp.services'])
+  .directive('ngSpace', function() {
+          return function(scope, element, attrs) {
+              element.bind("keydown keypress", function(event) {
+                  if(event.which === 32) {
+                          scope.$apply(function(){
+                                  scope.$eval(attrs.ngSpace);
+                          });
+                          
+                          event.preventDefault();
+                  }
+              });
+          };
+  })
   
   .directive('currentTime', function($timeout, $filter) {
     return {

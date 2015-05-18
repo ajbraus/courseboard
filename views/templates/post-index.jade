@@ -1,13 +1,14 @@
 .event-name
-  .hash-tag.pull-left #
-  input.hash-input#roomName(ng-model="room.name", placeholder="QuestionQueue2015")
-  .pull-right.qq-btn.enter-room-btn#enterRoom(ng-click="enterRoom()") 
-    i.icon.ion-log-in
+  form(ng-submit="enterRoom()")
+    .hash-tag.pull-left #
+    input.hash-input#roomName(ng-model="room.name", placeholder="QuestionQueue2015", ng-space)
+    button.pull-right.btn.qq-btn.enter-room-btn#enterRoom 
+      i.icon.ion-log-in
   .toggle-order Sorted by
     br
     button.btn.btn-default.btn-order(ng-click="switchOrder()") 
-      i.icon.ion-stats-bars 
-      {{orderButton}}
+      i.icon.ion-stats-bars
+      {{" " + orderButton}}
 
 form.question(ng-submit="publishPost()")
   textarea(ng-model="post.body", placeholder="What is your question?", autofocus="true")

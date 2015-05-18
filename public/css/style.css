@@ -64,6 +64,10 @@ textarea {
   border-bottom:1px solid #eee;
 }
 
+.event-name form {
+    height: 50px;
+}
+
 .event-name .hash-tag {
   height: 100%;
   width:50px;
@@ -75,7 +79,7 @@ textarea {
 }
 
 .event-name input {
-  height: 100%;
+  height: 98%;
   width: 68.5%;
   border:none;
   padding-left:8px;
