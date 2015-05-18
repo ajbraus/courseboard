@@ -23,4 +23,4 @@ ul.list-group
       small.vote_count {{post.votes_count}}
       div.vote_down(ng-click="voteDown(post)" ng-class="{'voted_down' : alreadyVoted(post, 'down')}")
         i.icon.ion-arrow-down-b
-    div {{post.body}}
+    div(ng-bind-html="post.body | linky:'_blank'")
