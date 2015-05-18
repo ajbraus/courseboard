@@ -16,7 +16,7 @@ form.question(ng-submit="publishPost()")
     i.icon.ion-edit
 
 ul.list-group
-  li.list-group-item.clearfix(ng-repeat="post in posts | orderBy: order")
+  li.list-group-item.clearfix(ng-repeat="post in posts | orderBy: order", ng-hide="post.votes_count <= -5")
     div.pull-left.voting-buttons.text-muted
       div.vote_up(ng-click="voteUp(post)" ng-class="{'voted_up' : alreadyVoted(post, 'up')}")
         i.icon.ion-arrow-up-b

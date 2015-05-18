@@ -1,11 +1,12 @@
 Post Integration TESTS!
-  display questions created at with nice '1m' notation  
+  display questions created at with nice '1m' notation    
   unify cookie and add maxAge of 7200000  
-  voted to -5 = destroy
   track when users join or leave rooms and the # of users 
 
 subtemplate for the room posts
   use angular-ui router
+
+when vote down -5 does it immediately disappear across all browsers?
 
 deploy to AWS
   http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_express.html
@@ -62,3 +63,6 @@ express cookie fetcher
 DONE allow links
 DONE make enter => exit button
 DONE disable spacebar in room.name
+DONE add ngTouch
+
+DONE voted to -5 = destroy
