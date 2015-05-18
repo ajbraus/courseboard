@@ -9,8 +9,9 @@ Post Integration TESTS!
   DONE downcase room hashtag
 
   DONE make SPA - collapse the two views
+  DONE sort by vote
+
   make enter => exit button
-  sort by vote
   voted to -5 = destroy
   display questions created at with nice '1m' notation
 

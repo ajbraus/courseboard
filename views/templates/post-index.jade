@@ -3,9 +3,11 @@
   input.hash-input(ng-model="room.name", placeholder="QuestionQueue2015")
   .pull-right.qq-btn.enter-room-btn#enterRoom(ng-click="enterRoom()") 
     i.icon.ion-log-in
-  button.btn.btn-default.order-btn(ng-click="switchOrder()") 
-    i.icon.ion-stats-bars 
-    {{orderButton}}
+  .toggle-order Sorted by
+    br
+    button.btn.btn-default.btn-order(ng-click="switchOrder()") 
+      i.icon.ion-stats-bars 
+      {{orderButton}}
 
 form.question(ng-submit="publishPost()")
   textarea(ng-model="post.body", placeholder="What is your question?", autofocus="true")

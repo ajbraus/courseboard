@@ -127,10 +127,14 @@ textarea:focus, input:focus {
   padding:10px;
 }
 
-.order-btn {
+.toggle-order {
   position: absolute;
   right: -100px;
   top: 132px;
+}
+
+.btn-order {
+  width:90px;
 }
 
 .voting-buttons {
