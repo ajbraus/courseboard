@@ -15,8 +15,8 @@ var config = require('./config')
   , flash = require('connect-flash')
   , session = require('express-session')
   , passport = require('./passport')
-  , cookieParser = require('cookie-parser')
-  , cookie = require('cookie')
+  // , cookieParser = require('cookie-parser')
+  // , cookie = require('cookie')
   , server = app.listen(config.port)
   , io = require('socket.io').listen(server);
 
@@ -32,7 +32,7 @@ app.use(session({
   secret: 'OurSuperSecretCookieSecret'
 }));
 
-app.use(cookieParser());
+// app.use(cookieParser());
 
 app.use(bodyParser.urlencoded({
   extended: true
