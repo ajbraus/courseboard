@@ -24,6 +24,11 @@ angular.module('myApp')
 
     $scope.room = { name: $routeParams.room_name };
     $scope.room_name = "#" + $routeParams.room_name
+    
+    $scope.enterRoom = function() {
+      $rootScope.$emit('enter.room', $scope.room.name);
+      $location.path("/" + $scope.room.name);
+    }
 
     // GET POSTS
     $scope.posts = Post.query({ "room_name": $routeParams.room_name });
