@@ -4,10 +4,6 @@ html, body, .tall {height: 100%; min-height: 100%}
   text-align: center;
   margin: 10px 0 10px 0;
 }
-.voting-buttons {
-  margin-right:15px;
-  font-size:170%;
-}
 
 textarea {   
   resize: none;
@@ -98,10 +94,28 @@ textarea:focus, input:focus {
   padding:10px;
 }
 
+.voting-buttons {
+  margin-right:15px;
+  font-size:170%;
+}
+
+.voting-buttons i {
+  position: relative;
+  bottom: 6px;
+}
+
 .voted_up {
   color:#B4D2E7;
 }
 
 .voted_down {
   color:#F59CA9;
+}
+
+.vote_down, .vote_up {
+  height: 20px;
+}
+
+.vote_down:hover, .vote_up:hover {
+  cursor: pointer;
 }

@@ -15,7 +15,7 @@ angular.module('myApp')
 
     // PUBLISH POST
     $scope.$on('socket:broadcast.post', function (event, post) {
-      if (post.room_name == $routeParams.room_name) {
+      if (post.room_name.toLowerCase() == $routeParams.room_name.toLowerCase()) {
         $scope.$apply(function() {
           $scope.posts.unshift(post);
           $scope.post.body = ''          

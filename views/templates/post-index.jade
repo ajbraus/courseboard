@@ -9,8 +9,10 @@ form.event-name(ng-submit="publishPost()")
 ul.list-group
   li.list-group-item.clearfix(ng-repeat="post in posts")
     div.pull-left.voting-buttons.text-muted
-      i.icon.ion-arrow-up-b.vote_up(ng-click="voteUp(post)" ng-class="{'voted_up' : alreadyVoted(post, 'up')}")
+      div.vote_up(ng-click="voteUp(post)" ng-class="{'voted_up' : alreadyVoted(post, 'up')}")
+        i.icon.ion-arrow-up-b
       small.vote_count {{post.votes_count}}
-      i.icon.ion-arrow-down-b.vote_down(ng-click="voteDown(post)" ng-class="{'voted_down' : alreadyVoted(post, 'down')}")
+      div.vote_down(ng-click="voteDown(post)" ng-class="{'voted_down' : alreadyVoted(post, 'down')}")
+        i.icon.ion-arrow-down-b
     div {{post.body}}
       

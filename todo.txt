@@ -5,9 +5,10 @@ Post Integration TESTS!
       DONE if post_id in vdp_id, do not allow another vote up
       DONE on socket:broadcast.vote_down
       DONE if already voted - vote up/down then vote up/down +/- 2 (update on server)
-      highlight if you voted
+      DONE highlight if you voted
       
-  downcase room hashtag
+  DONE downcase room hashtag
+  
   voted to -5 = destroy
   display questions created at with nice '1m' notation
 
