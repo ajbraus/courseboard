@@ -3,7 +3,7 @@ angular.module('myApp')
     $scope.room = { name: '' };
     
     $scope.enterRoom = function() {
-      $scope.$emit('enter.room', $scope.room.name);
+      $rootScope.$emit('enter.room', $scope.room.name);
       $location.path("/" + $scope.room.name);
     }
   });

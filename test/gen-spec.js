@@ -13,7 +13,7 @@ var enterRoom = function (roomName) {
 
 var newPost = function (text) {
   element(by.model('post.body')).sendKeys(text);
-  $('button').click();
+  $('#publishPost').click();
   browser.sleep(500);
 }
 
@@ -37,10 +37,19 @@ describe('Home Page', function() {
 
   it('should accept a room hashtag', function() {
     enterRoom("GeneralAssembly");
-    var roomName = element(by.id('roomName')).getText()
-    expect(roomName).toEqual('#GeneralAssembly');
-    expect(roomName).not.toEqual('#generalassembly');
+    element(by.id('roomName')).getAttribute('value')
+      .then(function(val) {
+        expect("#" + val).toEqual('#GeneralAssembly');
+      })
   });
+
+  // it('should increment the number of people in the room', function() {
+  //   enterRoom("GeneralAssembly");
+  //   element(by.binding('people_count')).getText()
+  //     .then(function(val) {
+  //       expect(parseInt(val)).toEqual(1)
+  //     });
+  // });
 
   it('should accept a new post', function() {
     enterRoom("GeneralAssembly");

@@ -1,22 +1,11 @@
 Post Integration TESTS!
-  vote only once -- (good test!)
-    vote_up / down
-      DONE add post_id to voted_up_posts cookie object
-      DONE if post_id in vdp_id, do not allow another vote up
-      DONE on socket:broadcast.vote_down
-      DONE if already voted - vote up/down then vote up/down +/- 2 (update on server)
-      DONE highlight if you voted
-  DONE downcase room hashtag
-
-  DONE make SPA - collapse the two views
-  DONE sort by vote
-
+  track when users join or leave rooms and the # of users 
   make enter => exit button
   voted to -5 = destroy
   display questions created at with nice '1m' notation
 
 add maxAge of 7200000 to cookie
-track when users join or leave rooms and the # of users 
+
 
 subtemplate for the room posts
   use angular-ui router
@@ -63,3 +52,15 @@ DONE separate rooms
 express cookie fetcher
   var vdp_ids = JSON.parse(req.cookies.voted_down_post_ids)
   console.log(vdp_ids.indexOf(2343) > -1);
+
+
+  vote only once -- (good test!)
+    vote_up / down
+      DONE add post_id to voted_up_posts cookie object
+      DONE if post_id in vdp_id, do not allow another vote up
+      DONE on socket:broadcast.vote_down
+      DONE if already voted - vote up/down then vote up/down +/- 2 (update on server)
+      DONE highlight if you voted
+  DONE downcase room hashtag
+  DONE make SPA - collapse the two views
+  DONE sort by vote
