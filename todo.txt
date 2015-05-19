@@ -1,7 +1,8 @@
-Post Integration TESTS!
-  display questions created at with nice '1m' notation    
+Post Integration TESTS!  
   unify cookie and add maxAge of 7200000  
   track when users join or leave rooms and the # of users 
+  Google Analytics
+  
 
 subtemplate for the room posts
   use angular-ui router
@@ -66,3 +67,4 @@ DONE disable spacebar in room.name
 DONE add ngTouch
 
 DONE voted to -5 = destroy
+DONE display questions created at with nice '1m' notation    

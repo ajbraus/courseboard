@@ -1,5 +1,7 @@
 .event-name
   .hash-tag.pull-left #
-  input.hash-input(ng-model="room.name", placeholder="QuestionQueue2015", ng-space)
+  input.hash-input(ng-model="room.name", placeholder="EnterRoomName", ng-space, autofocus)
   .pull-right.qq-btn.enter-room-btn#enterRoom(ng-click="enterRoom()")
     i.icon.ion-log-in
+div.how-it-works
+  | Hi, Welcome to Question Queue. Enter your #RoomName above to ask questions and vote.
