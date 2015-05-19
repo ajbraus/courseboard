@@ -1,8 +1,9 @@
 .event-name
-  .hash-tag.pull-left #
-  input.hash-input(ng-model="room.name", placeholder="EnterRoomName", ng-space, autofocus)
-  .pull-right.qq-btn.enter-room-btn#enterRoom(ng-click="enterRoom()")
-    i.icon.ion-log-in
+  form(ng-submit="enterRoom()")
+    a.hash-tag.pull-left(href="/") #
+    input.hash-input(ng-model="room.name", placeholder="EnterRoomName", ng-space, autofocus)
+    button.pull-right.btn.qq-btn.enter-room-btn#enterRoom(ng-click="enterRoom()")
+      i.icon.ion-log-in
 div.how-it-works
   | Hi, 
   b Welcome to Question Queue. 
