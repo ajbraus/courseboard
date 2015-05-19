@@ -175,3 +175,10 @@ textarea:focus, input:focus {
   color:grey;
   font-size:11px;
 }
+
+.how-it-works {
+  padding: 20px 45px;
+  background: #eee;
+  font-size: 15px;
+  margin:10px 10px;
+}
