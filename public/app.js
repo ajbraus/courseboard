@@ -10,12 +10,17 @@ angular.module('myApp', ['ngResource',
                          'ngTouch', 
                          'btford.socket-io',
                          'ngCookies',
+                         'angularMoment',
                          'myApp.services', 
                          'myApp.directives', 
                          'myApp.interceptors'])
 
-  // .constant('HOST', 'http://localhost:1337') //DEV
-  .constant('HOST', 'http://questionqueue.herokuapp.com') //PRODUCTION
+  .constant('HOST', 'http://localhost:1337') //DEV
+  // .constant('HOST', 'http://questionqueue.herokuapp.com') //PRODUCTION
+
+  // .run(function(amMoment) {
+  //   amMoment.changeLocale('de');
+  // })
 
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider

@@ -20,7 +20,9 @@ ul.list-group
     div.pull-left.voting-buttons.text-muted
       div.vote_up(ng-click="voteUp(post)" ng-class="{'voted_up' : alreadyVoted(post, 'up')}")
         i.icon.ion-arrow-up-b
-      small.vote_count {{post.votes_count}}
+      small.vote_count.small {{post.votes_count}}
       div.vote_down(ng-click="voteDown(post)" ng-class="{'voted_down' : alreadyVoted(post, 'down')}")
         i.icon.ion-arrow-down-b
     div(ng-bind-html="post.body | linky:'_blank'")
+    div.created-at asked  
+      span(am-time-ago="post.created_at")

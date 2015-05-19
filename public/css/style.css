@@ -167,3 +167,11 @@ textarea:focus, input:focus {
   cursor: pointer;
   color:lightgrey;
 }
+
+.created-at {
+  position: absolute;
+  bottom:5px;
+  right:10px;
+  color:grey;
+  font-size:11px;
+}

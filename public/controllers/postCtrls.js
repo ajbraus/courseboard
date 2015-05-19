@@ -31,7 +31,6 @@ angular.module('myApp')
     }
 
     // GET POSTS
-    console.log($routeParams.room_name)
     $scope.posts = Post.query({ "room_name": $routeParams.room_name });
 
     $scope.post = { "room_name": $routeParams.room_name };
