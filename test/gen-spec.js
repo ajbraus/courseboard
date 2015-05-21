@@ -65,6 +65,8 @@ describe('voting', function() {
   beforeEach(function() {
     browser.get('http://localhost:1337/');
     enterRoom("GeneralAssembly");
+    var text = 'Test Post ' + Math.random().toString();
+    newPost(text);
   });
 
   it('should allow voting up just once', function() {
@@ -86,6 +88,13 @@ describe('voting', function() {
       });
   });
 })
+
+// describe("sorting by newest or votes", function() {
+  //   beforeEach(function() {
+  //     browser.get('http://localhost:1337/');
+  //     enterRoom("GeneralAssembly");
+  //   });
+// });
 
 // describe("moderation", function() {
 //   beforeEach(function() {

@@ -39,8 +39,7 @@ angular.module('myApp')
     $scope.$on('socket:broadcast.post', function (event, post) {
       if (post.room_name.toLowerCase() == $routeParams.room_name.toLowerCase()) {
         $scope.$apply(function() {
-          $scope.posts.unshift(post);
-          $scope.post.body = ''          
+          $scope.posts.unshift(post);     
         });
       };
     });
@@ -56,6 +55,7 @@ angular.module('myApp')
     $scope.publishPost = function () {
       console.log($scope.post)
       Socket.emit('publish.post', $scope.post);
+      $scope.post.body = ''     
     };
 
 
