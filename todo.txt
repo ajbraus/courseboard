@@ -1,3 +1,14 @@
+Bug
+
+voting
+  you vote up
+  someone else down votes
+  you can up vote again
+vote more than once
+
+
+
+
 Post Integration TESTS!  
   unify cookie and add maxAge of 7200000  
   track when users join or leave rooms and the # of users

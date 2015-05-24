@@ -20,7 +20,6 @@ angular.module('myApp')
         $scope.orderButton = "Newest"
       }
     }
-    
 
     $scope.room = { name: $routeParams.room_name };
     $scope.room_name = "#" + $routeParams.room_name
@@ -85,21 +84,22 @@ angular.module('myApp')
         console.log($scope.vup_ids)
       } else {
         Socket.emit("vote_up.post", { id: post._id });
+
+        if ($scope.vdp_ids.indexOf(post._id) > -1) {
+          //remove from vote down ids
+          $scope.vdp_ids = _.without($scope.vdp_ids, post._id);
+          $cookies.vdp_ids = JSON.stringify($scope.vdp_ids);
+        } else {
+          // Add and save voted down ids to cookie
+          $scope.vup_ids.push(post._id)
+          $cookies.vup_ids = JSON.stringify($scope.vup_ids);
+        }
+
       }
     }
 
     $scope.$on('socket:broadcast.vote_up', function (event, post) {
       var post = _.findWhere($scope.posts, {_id: post._id});
-
-      if ($scope.vdp_ids.indexOf(post._id) > -1) {
-        //remove from vote down ids
-        $scope.vdp_ids = _.without($scope.vdp_ids, post._id);
-        $cookies.vdp_ids = JSON.stringify($scope.vdp_ids);
-      } else {
-        // Add and save voted down ids to cookie
-        $scope.vup_ids.push(post._id)
-        $cookies.vup_ids = JSON.stringify($scope.vup_ids);
-      }
       // INCREMENT VOTE_COUNT
       post.votes_count = ++post.votes_count
     });
@@ -110,20 +110,20 @@ angular.module('myApp')
         console.log($scope.vdp_ids)
       } else {
         Socket.emit("vote_down.post", { id: post._id });  
+        
+        if ($scope.vup_ids.indexOf(post._id) > -1) {
+          //remove from vote up ids
+          $scope.vup_ids = _.without($scope.vup_ids, post._id);
+          $cookies.vup_ids = JSON.stringify($scope.vup_ids);
+        } else {
+          $scope.vdp_ids.push(post._id)
+          $cookies.vdp_ids = JSON.stringify($scope.vdp_ids);
+        }
       }
     }
 
     $scope.$on('socket:broadcast.vote_down', function (event, post) {
       var post = _.findWhere($scope.posts, {_id: post._id});
-
-      if ($scope.vup_ids.indexOf(post._id) > -1) {
-        //remove from vote up ids
-        $scope.vup_ids = _.without($scope.vup_ids, post._id);
-        $cookies.vup_ids = JSON.stringify($scope.vup_ids);
-      } else {
-        $scope.vdp_ids.push(post._id)
-        $cookies.vdp_ids = JSON.stringify($scope.vdp_ids);
-      }
       // DECREMENT vote_count
       post.votes_count = --post.votes_count
     });

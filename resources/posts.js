@@ -8,6 +8,7 @@ module.exports = function(app) {
   // INDEX
   app.get('/api/room/:room_name/posts', function (req, res) {
     req.params.room_name = req.params.room_name.toLowerCase();
+    console.log(req.params);
     Post.find(req.params).sort('-created_at').exec(function(err, posts) {
       if (err) { return res.status(404).send(err) };
       res.status(200).json(posts); // return all nerds in JSON format
