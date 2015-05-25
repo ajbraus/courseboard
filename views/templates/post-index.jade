@@ -19,9 +19,9 @@ form.question(ng-submit="publishPost()")
 
 
 div.how-it-works(ng-show="posts.length === 0")
-  | Welcome to 
+  | You are now in  
   b \#{{room_name}}
-  |. Dont' be shy. There are no such thing as stupid questions
+  |. Get things started by asking the first question.
 ul.list-group
   li.list-group-item.clearfix(ng-repeat="post in posts | orderBy: order", ng-hide="post.votes_count <= -5")
     div.pull-left.voting-buttons.text-muted

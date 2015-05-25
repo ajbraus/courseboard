@@ -1,3 +1,8 @@
+teach users to use the app more
+  - what is it for
+  - how to vote
+  - features, sort by vote_count, etc
+
 track when users join or leave rooms and the # of users
   on $locationChangeStart - emit leaving.room, '/:room_name' - if listener is in room, decrement
   on $locationChangeSuccess - emit joining.room, '/:room_name' - if listener is in room, incrememnt
@@ -31,7 +36,7 @@ track when users join or leave rooms and the # of users
     });
 
 
-    
+
 track how many cookies your questions get per session
   track ids of questions client asks
   when they are voted up, give you a cookie, voted down, take a cookie away

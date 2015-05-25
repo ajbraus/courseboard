@@ -29,12 +29,16 @@ textarea {
   padding: 10px;
 }
 
-.main-container {
-  margin: 0 auto;
+.tall {
+  min-height: 100%;
+}
+.borders {
+  /*margin: 0 auto;*/
   border-left:1px solid #eee;
   border-right:1px solid #eee;  
   border-top:1px solid #eee;
   min-height:100%;
+  padding:0;
 }
 
 @media(max-width:767px){

@@ -1,5 +1,6 @@
 extends layout
 
 block body
-  .main-container
-    div(ng-view)
+  .container.tall
+    .row.tall
+      .borders.col-sm-6.col-sm-offset-3.col-lg-4.col-lg-offset-4(ng-view)
