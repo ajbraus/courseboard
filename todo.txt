@@ -1,8 +1,42 @@
-unify cookie and add maxAge of 7200000  
 track when users join or leave rooms and the # of users
+  on $locationChangeStart - emit leaving.room, '/:room_name' - if listener is in room, decrement
+  on $locationChangeSuccess - emit joining.room, '/:room_name' - if listener is in room, incrememnt
+  upon arriving in a room . . . how many people are there?
+    create Room model and track userCount there
 
-subtemplate for the room posts
-  use angular-ui router
+    $scope.$on('$locationChangeStart', function(event, next, current) {
+      if(current_user.is_logged_in){
+        var route_object = ($route.routes[$location.path()]).route_object; //This is how you get it
+        if(!(route_object.route_roles)){
+            event.preventDefault();
+        }
+      }
+    });
+
+    $scope.userCount = 0;
+    // USER ENTERS THE ROOM
+    $scope.$on('socket:broadcast.user_connected', function (event, data) {
+      console.log(data);
+      if (data == $scope.room.name) {
+        $scope.userCount = ++$scope.userCount;
+      }
+    });
+
+    // USER LEAVES THE ROOM
+    $scope.$on('socket:broadcast.user_disconnected', function (event, data) {
+      console.log(data);
+      if (data.room_name == $scope.room.name) {
+
+      }
+    });
+
+
+    
+track how many cookies your questions get per session
+  track ids of questions client asks
+  when they are voted up, give you a cookie, voted down, take a cookie away
+
+vote up/down flashes the question
 
 deploy to AWS
   http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_express.html
@@ -14,6 +48,20 @@ scale:
   on broadcast, only publish if room_name === room_name - not scalable! and every client is recieving every question across the whole system . . .
 
 add grunt package.json and include grunt files in git
+
+unify cookie and add maxAge of 7200000
+  upgrade angular to 1.4.x
+  if (!$cookies.questionCookie) {
+    var questionCookie = {
+      vup_ids: [],
+      vdp_ids: [] 
+    }
+    $cookies.putObject('questionCookie', $scope.questionCookie, {'expires': 7200000});
+  } else {
+    $scope.questionCookie = JSON.parse($cookies.questionCookie)
+  }
+
+  console.log(JSON.parse($cookies.questionCookie))
 
 
 Finnegan:

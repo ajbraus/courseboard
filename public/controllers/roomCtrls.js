@@ -1,9 +1,8 @@
 angular.module('myApp')
-  .controller('RoomIndexCtrl', function ($scope, $rootScope, Post, Socket, $routeParams, $location) {
-    $scope.room = { name: '' };
+  .controller('RoomIndexCtrl', function ($scope, $rootScope, $location) {
+    $scope.room_name = ''
     
     $scope.enterRoom = function() {
-      $rootScope.$emit('enter.room', $scope.room.name);
-      $location.path("/" + $scope.room.name);
+      $location.path("/" + $scope.room_name);
     }
   });

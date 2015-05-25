@@ -1,20 +1,27 @@
+.text-right {{user_count}}
 .event-name
   form(ng-submit="enterRoom()")
     a.hash-tag.pull-left(href="/") #
-    input.hash-input#roomName(ng-model="room.name", placeholder="EventName", ng-space)
+    input.hash-input#roomName(ng-model="room_name", placeholder="EventName", ng-space)
     button.pull-right.btn.qq-btn.enter-room-btn#enterRoom 
       i.icon.ion-log-in
-  .toggle-order Sorted by
+  small.toggle-order Sorted by
     br
-    button.btn.btn-default.btn-order(ng-click="switchOrder()") 
+    button.btn.btn-sm.btn-default.btn-order(ng-click="switchOrder()") 
       i.icon.ion-stats-bars 
       | {{" " + orderButton}}
+    //- {{userCount}}
 
 form.question(ng-submit="publishPost()")
   textarea(ng-model="post.body", placeholder="What is your question?", autofocus="true")
   button.pull-right.qq-btn.btn.ask-btn#publishPost(type="submit", ng-disabled="!post.body")
     i.icon.ion-edit
 
+
+div.how-it-works(ng-show="posts.length === 0")
+  | Welcome to 
+  b \#{{room_name}}
+  |. Dont' be shy. There are no such thing as stupid questions
 ul.list-group
   li.list-group-item.clearfix(ng-repeat="post in posts | orderBy: order", ng-hide="post.votes_count <= -5")
     div.pull-left.voting-buttons.text-muted

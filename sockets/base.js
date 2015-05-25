@@ -9,11 +9,18 @@ var Post = require('mongoose').model('Post');
 module.exports = function (io) {  
   // io.set('origins', '*localhost:1337');
   io.on('connection', function (socket){
-    console.log('A USER CONNECTED TO THE SOCKET');
+    console.log('user connected');
     // var room = "some room"
     // socket.join(room, function () {
     //   console.log("joined room " + room)
     // })
+
+    socket.on('join.room', function (data) {
+      console.log('user joined room');
+      console.log(data);
+      io.sockets.emit('broadcast.join_room', data)
+    });
+
     // PUBLISH POST
     socket.on('publish.post', function (data) {
       console.log(data);
@@ -57,8 +64,9 @@ module.exports = function (io) {
       });
     });
 
-    socket.on('disconnect', function(){
+    socket.on('disconnect', function (data) {
       console.log('user disconnected');
+      io.sockets.emit('broadcast.user_disconnected', data)
     });
   });
 }

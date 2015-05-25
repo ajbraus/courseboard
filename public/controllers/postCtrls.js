@@ -21,17 +21,14 @@ angular.module('myApp')
       }
     }
 
-    $scope.room = { name: $routeParams.room_name };
-    $scope.room_name = "#" + $routeParams.room_name
+    $scope.room_name = $routeParams.room_name
     
     $scope.enterRoom = function() {
-      $rootScope.$emit('enter.room', $scope.room.name);
-      $location.path("/" + $scope.room.name);
+      $location.path("/" + $scope.room_name);
     }
 
     // GET POSTS
     $scope.posts = Post.query({ "room_name": $routeParams.room_name });
-
     $scope.post = { "room_name": $routeParams.room_name };
 
     // PUBLISH POST
@@ -52,11 +49,10 @@ angular.module('myApp')
     }
 
     $scope.publishPost = function () {
-      console.log($scope.post)
+      // console.log($scope.post)
       Socket.emit('publish.post', $scope.post);
       $scope.post.body = ''     
     };
-
 
     if (!$cookies.vup_ids) {
       $scope.vup_ids = [];
@@ -128,25 +124,10 @@ angular.module('myApp')
       post.votes_count = --post.votes_count
     });
 
+    // NO VOTING WITHOUT COOKIES
     $scope.hasCookiesEnabled = true;
     if (!navigator.cookieEnabled) {
       alert("You must enable Cookies in order to vote on questions.")
       $scope.hasCookiesEnabled = false;
     }
-
-    // Socket.on('user:left', function (data) {
-    //   $scope.messages.push({
-    //     user: 'chatroom',
-    //     text: 'User ' + data.name + ' has left.'
-    //   });
-    //   var i, user;
-    //   for (i = 0; i < $scope.users.length; i++) {
-    //     user = $scope.users[i];
-    //     if (user === data.name) {
-    //       $scope.users.splice(i, 1);
-    //       break;
-    //     }
-    //   }
-    // });
-    
   });

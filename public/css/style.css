@@ -139,12 +139,12 @@ textarea:focus, input:focus {
 
 .toggle-order {
   position: absolute;
-  right: -100px;
-  top: 132px;
+  right: -90px;
+  top: 130px;
 }
 
 .btn-order {
-  width:90px;
+  width:75px;
 }
 
 .voting-buttons {
@@ -171,7 +171,7 @@ textarea:focus, input:focus {
 
 .vote_down:hover, .vote_up:hover {
   cursor: pointer;
-  color:lightgrey;
+  /*color:lightgrey;*/
 }
 
 .created-at {
@@ -183,7 +183,7 @@ textarea:focus, input:focus {
 }
 
 .how-it-works {
-  padding: 20px 45px;
+  padding: 20px 30px;
   background: #eee;
   font-size: 15px;
   margin:10px 10px;
