@@ -92,6 +92,11 @@ textarea {
   color:#505050;
 }
 
+.enter-room-btn i {
+  position: relative;
+  bottom: 4px;
+}
+
 .qq-btn {
   height: 100%;
   padding:14px;
@@ -121,10 +126,11 @@ textarea:focus, input:focus {
 }
 
 .list-group-item {
-  border-bottom:2px solid #eee;
-  border-top:none;
-  border-right:none;
-  border-left:none;
+  border-bottom: 1px solid #eee;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  margin-bottom: 1px;
 }
 
 .padding {

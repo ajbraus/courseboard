@@ -1,23 +1,8 @@
-Bug
-
-voting
-  you vote up
-  someone else down votes
-  you can up vote again
-vote more than once
-
-
-
-
-Post Integration TESTS!  
-  unify cookie and add maxAge of 7200000  
-  track when users join or leave rooms and the # of users
-  Google Analytics
+unify cookie and add maxAge of 7200000  
+track when users join or leave rooms and the # of users
 
 subtemplate for the room posts
   use angular-ui router
-
-when vote down -5 does it immediately disappear across all browsers?
 
 deploy to AWS
   http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_express.html
@@ -78,3 +63,5 @@ DONE add ngTouch
 
 DONE voted to -5 = destroy
 DONE display questions created at with nice '1m' notation    
+
+DONE Need cookies turned on . . .

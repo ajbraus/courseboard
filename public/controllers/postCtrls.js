@@ -110,7 +110,7 @@ angular.module('myApp')
         console.log($scope.vdp_ids)
       } else {
         Socket.emit("vote_down.post", { id: post._id });  
-        
+
         if ($scope.vup_ids.indexOf(post._id) > -1) {
           //remove from vote up ids
           $scope.vup_ids = _.without($scope.vup_ids, post._id);
@@ -128,6 +128,11 @@ angular.module('myApp')
       post.votes_count = --post.votes_count
     });
 
+    $scope.hasCookiesEnabled = true;
+    if (!navigator.cookieEnabled) {
+      alert("You must enable Cookies in order to vote on questions.")
+      $scope.hasCookiesEnabled = false;
+    }
 
     // Socket.on('user:left', function (data) {
     //   $scope.messages.push({
