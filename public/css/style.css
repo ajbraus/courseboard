@@ -33,33 +33,11 @@ textarea {
   min-height: 100%;
 }
 .borders {
-  /*margin: 0 auto;*/
   border-left:1px solid #eee;
   border-right:1px solid #eee;  
   border-top:1px solid #eee;
   min-height:100%;
   padding:0;
-}
-
-@media(max-width:767px){
-  .main-container, .topbar {
-    width:100%;
-  }
-}
-@media(min-width:768px){
-  .main-container, .topbar {
-    width:420px;
-  }
-}
-@media(min-width:992px){
-  .main-container, .topbar {
-    width:500px;
-  }
-}
-@media(min-width:1200px){
-  .main-container, .topbar {
-    width:600px;
-  }
 }
 
 .event-name {
