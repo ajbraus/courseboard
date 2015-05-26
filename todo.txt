@@ -1,3 +1,5 @@
+add comments with flags. If flagged, remove.
+
 teach users to use the app more
   - what is it for
   - how to vote
