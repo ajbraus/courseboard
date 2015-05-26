@@ -5,6 +5,13 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+var Comments = new Schema({
+    body        : { type: String, required: true }
+  , flagged     : { type: Boolean, default: false }
+  , created_at  : { type: Date }
+  , updated_at  : { type: Date }
+});
+
 var PostSchema = new Schema({
     created_at  : { type: Date }
   , updated_at  : { type: Date }
@@ -12,6 +19,7 @@ var PostSchema = new Schema({
   , votes_count : { type: Number, required: true, default: 0 }
   , room_name   : { type: String, required: true, trim: true }
   // , author: {}
+  , comments  : [Comments]
 });
 
 // PostSchema.virtual('fullname').get(function() {
