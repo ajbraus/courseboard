@@ -170,3 +170,7 @@ textarea:focus, input:focus {
   font-size: 15px;
   margin:10px 10px;
 }
+
+.indent {
+  margin-left:15px;
+}

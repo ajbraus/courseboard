@@ -2,7 +2,7 @@
 .event-name
   form(ng-submit="enterRoom()")
     a.hash-tag.pull-left(href="/") #
-    input.hash-input#roomName(ng-model="room_name", placeholder="EventName", ng-space)
+    input.hash-input(ng-model="room_name", placeholder="TypeYourEventCookie", ng-space)
     button.pull-right.btn.qq-btn.enter-room-btn#enterRoom 
       i.icon.ion-log-in
   small.toggle-order Sorted by
@@ -19,9 +19,10 @@ form.question(ng-submit="publishPost()")
 
 
 div.how-it-works(ng-show="posts.length === 0")
-  | You are now in  
-  b \#{{room_name}}
-  |. Get things started by asking the first question.
+  p You are now a participant in the EventCookie:  
+  p 
+    b \#{{room_name}}
+  p Ask questions and vote up the questions you want answered the most. 
 ul.list-group
   li.list-group-item.clearfix(ng-repeat="post in posts | orderBy: order", ng-hide="post.votes_count <= -5")
     div.pull-left.voting-buttons.text-muted

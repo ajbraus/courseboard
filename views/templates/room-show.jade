@@ -1,11 +1,28 @@
 .event-name
   form(ng-submit="enterRoom()")
     a.hash-tag.pull-left(href="/") #
-    input.hash-input(ng-model="room_name", placeholder="EventName", ng-space, autofocus)
+    input.hash-input(ng-model="room_name", placeholder="TypeYourEventCookie", ng-space, autofocus="true")
     button.pull-right.btn.qq-btn.enter-room-btn#enterRoom(ng-click="enterRoom()")
       i.icon.ion-log-in
 div.how-it-works
   | Hi, 
-  b Welcome to Question Queue. 
+  b Welcome to QuestionCookie.com. 
   br
-  | Enter your #EventName above to ask questions and vote on them.
+  | Enter your #EventCookie above to start asking questions and voting for the ones you want answered.
+
+.col-xs-12
+  h4 How to Enter an Event
+  p.indent 1. Enter the EventCookie above
+  p.indent 1. Start asking questions and voting
+  
+.col-xs-12
+  h4 How to Make an EventCookie
+  p.indent 1. Enter the EventCookie you'd like
+  p.indent 2. Share the EventCookie or the EventCookie url with participants
+  p.indent 3. Enjoy the free, automatic moderation!
+
+.col-xs-12
+  h4 Examples of EventCookie Names
+  blockquote #AWSConf2015
+  blockquote #RobertsonsAlgebra2015
+  blockquote #GoogleModeratorsReplacement2015
