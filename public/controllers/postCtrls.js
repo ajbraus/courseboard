@@ -6,6 +6,26 @@
 
 angular.module('myApp')
   .controller('PostIndexCtrl', function ($scope, $rootScope, Post, Socket, $routeParams, $cookies, $location) {
+    $scope.comment = {};
+    $scope.createComment = function(post_id) {
+      console.log(post_id)
+      $scope.comment.post_id = post_id
+      Socket.emit('publish.comment', $scope.comment);
+      $scope.comment.body = ''
+    };
+
+    // PUBLISH COMMENT
+    $scope.$on('socket:broadcast.comment', function (event, post) {
+      if (post.room_name.toLowerCase() == $routeParams.room_name.toLowerCase()) {
+        var comment = post.comments[post.comments.length - 1]
+        console.log(comment)
+        $scope.$apply(function() {
+          post = _.findWhere($scope.posts, {_id: post._id});
+          post.comments.unshift(comment);
+        });
+      };
+    });
+
     $scope.order = '-created_at';
     $scope.orderButton = "Newest"
 

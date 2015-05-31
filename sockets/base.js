@@ -3,6 +3,7 @@
  */
 
 var Post = require('mongoose').model('Post');
+var Comment = require('mongoose').model('Comment');
 
 'use strict';
 
@@ -21,6 +22,21 @@ module.exports = function (io) {
       io.sockets.emit('broadcast.join_room', data)
     });
 
+    socket.on('publish.comment', function (data) {
+      console.log(data)
+      Post.findById(data.post_id, function (err, post) {
+        var comment = new Comment({ body: data.body });
+        post.comments.push(comment);
+        post.save(function(err, post){
+          if(err) { 
+            console.log(err) 
+            return io.sockets.emit('error', comment); 
+          }
+          return io.sockets.emit('broadcast.comment', post);
+        })
+      })
+    });
+    
     // PUBLISH POST
     socket.on('publish.post', function (data) {
       console.log(data);

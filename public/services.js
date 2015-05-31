@@ -17,6 +17,7 @@ angular.module('myApp.services', [])
     // }
     socket.forward('broadcast.join_room')
     socket.forward('broadcast.post');
+    socket.forward('broadcast.comment');
     socket.forward('broadcast.vote_up');
     socket.forward('broadcast.vote_down');
     return socket

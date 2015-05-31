@@ -1,4 +1,6 @@
-add comments with flags. If flagged, remove.
+style comments a bit better
+make flagging remove comment (are you sure?)
+
 
 teach users to use the app more
   - what is it for

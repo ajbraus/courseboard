@@ -15,8 +15,8 @@ angular.module('myApp', ['ngResource',
                          'myApp.directives', 
                          'myApp.interceptors'])
 
-  // .constant('HOST', 'http://localhost:1337') //DEV
-  .constant('HOST', 'http://questionqueue.herokuapp.com') //PRODUCTION
+  .constant('HOST', 'http://localhost:1337') //DEV
+  // .constant('HOST', 'http://questionqueue.herokuapp.com') //PRODUCTION
 
   // .run(function(amMoment) {
   //   amMoment.changeLocale('de');

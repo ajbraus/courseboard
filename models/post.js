@@ -25,7 +25,7 @@ var PostSchema = new Schema({
   , body        : { type: String, required: true, trim: true }
   , votes_count : { type: Number, required: true, default: 0 }
   , room_name   : { type: String, required: true, trim: true }
-  , comments  : [Comments]
+  , comments  : [CommentSchema]
   // , author: {}
 });
 
@@ -86,3 +86,4 @@ PostSchema.pre('save', function(next){
 // });
 
 mongoose.model('Post', PostSchema);
+mongoose.model('Comment', CommentSchema);

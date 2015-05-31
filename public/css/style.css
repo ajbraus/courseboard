@@ -157,11 +157,10 @@ textarea:focus, input:focus {
 }
 
 .created-at {
-  position: absolute;
-  bottom:5px;
-  right:10px;
-  color:grey;
-  font-size:11px;
+  text-align: right;
+  color: grey;
+  font-size: 11px;
+  margin-top: 8px;
 }
 
 .how-it-works {
@@ -169,4 +168,8 @@ textarea:focus, input:focus {
   background: #eee;
   font-size: 15px;
   margin:10px 10px;
+}
+
+.margin-top {
+  margin-top:10px;
 }
