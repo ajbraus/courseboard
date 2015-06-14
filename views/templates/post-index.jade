@@ -1,51 +1,53 @@
-.text-right {{user_count}}
-.event-name
-  form(ng-submit="enterRoom()")
-    a.hash-tag.pull-left(href="/") #
-    input.hash-input#roomName(ng-model="room_name", placeholder="EventName", ng-space)
-    button.pull-right.btn.qq-btn.enter-room-btn#enterRoom 
-      i.icon.ion-log-in
-  small.toggle-order Sorted by
-    br
-    button.btn.btn-sm.btn-default.btn-order(ng-click="switchOrder()") 
-      i.icon.ion-stats-bars 
-      | {{" " + orderButton}}
-    //- {{userCount}}
+.container.tall
+  .row.tall
+    .borders.col-sm-6.col-sm-offset-3.col-lg-4.col-lg-offset-4
+      .text-right {{user_count}}
+      .event-name
+        form(ng-submit="enterRoom()")
+          a.hash-tag.pull-left(href="/") #
+          input.hash-input#roomName(ng-model="room_name", placeholder="EventName", ng-space)
+          button.pull-right.btn.qq-btn.enter-room-btn#enterRoom 
+            i.icon.ion-log-in
+        small.toggle-order Sorted by
+          br
+          button.btn.btn-sm.btn-default.btn-order(ng-click="switchOrder()") 
+            i.icon.ion-stats-bars 
+            | {{" " + orderButton}}
+          //- {{userCount}}
 
-form.question(ng-submit="publishPost()")
-  textarea(ng-model="post.body", placeholder="Ask a question...", autofocus="true")
-  button.pull-right.qq-btn.btn.ask-btn#publishPost(type="submit", ng-disabled="!post.body")
-    i.icon.ion-edit
+      form.question(ng-submit="publishPost()")
+        textarea(ng-model="post.body", placeholder="Ask a question...", autofocus="true")
+        button.pull-right.qq-btn.btn.ask-btn#publishPost(type="submit", ng-disabled="!post.body")
+          i.icon.ion-edit
 
-
-div.how-it-works(ng-show="posts.length === 0")
-  | You are now in  
-  b \#{{room_name}}
-  |. Get things started by asking the first question.
-ul.list-group
-  li.list-group-item.clearfix(ng-repeat="post in posts | orderBy: order", ng-hide="post.votes_count <= -5")
-    div.clearfix
-      div.pull-left.voting-buttons.text-muted
-        div.vote_up(ng-click="voteUp(post)" ng-class="{'voted_up' : alreadyVoted(post, 'up')}" ng-show="hasCookiesEnabled")
-          i.icon.ion-arrow-up-b
-        small.vote_count.small {{post.votes_count}}
-        div.vote_down(ng-click="voteDown(post)" ng-class="{'voted_down' : alreadyVoted(post, 'down')}" ng-show="hasCookiesEnabled")
-          i.icon.ion-arrow-down-b
-      div(ng-bind-html="post.body | linky:'_blank'")
-      div.created-at asked  
-        span(am-time-ago="post.created_at")
-        br
-        a.text-muted.small(href="#" ng-show="post.newComment" ng-click="post.newComment = false") hide comments
-        a.text-muted.small(href="#" ng-show="!post.newComment" ng-click="post.newComment = true")
-          ng-pluralize(count='post.comments.length', when="{'0': '0 comments', 'one': '1 comment', 'other': '{} comments'}")
-    form(ng-show="post.newComment" ng-submit="createComment(post._id)")
-      p.input-group.margin-top
-        input.form-control.input-sm(type='text', placeholder='Add a comment...' ng-model="post.comment.body" class="form-control")
-        span.input-group-btn
-          button.btn.btn-sm.btn-warning(type='submit')
-            i.icon.ion-reply
-      p(ng-repeat="comment in post.comments" )
-        small.text-muted(ng-bind-html="comment.body | linky:'_blank'")
-        //- todo add flag
+      div.how-it-works(ng-show="posts.length === 0")
+        | You are now in  
+        b \#{{room_name}}
+        |. Get things started by asking the first question.
+      ul.list-group
+        li.list-group-item.clearfix(ng-repeat="post in posts | orderBy: order", ng-hide="post.votes_count <= -5")
+          div.clearfix
+            div.pull-left.voting-buttons.text-muted
+              div.vote_up(ng-click="voteUp(post)" ng-class="{'voted_up' : alreadyVoted(post, 'up')}" ng-show="hasCookiesEnabled")
+                i.icon.ion-arrow-up-b
+              small.vote_count.small {{post.votes_count}}
+              div.vote_down(ng-click="voteDown(post)" ng-class="{'voted_down' : alreadyVoted(post, 'down')}" ng-show="hasCookiesEnabled")
+                i.icon.ion-arrow-down-b
+            div(ng-bind-html="post.body | linky:'_blank'")
+            div.created-at asked  
+              span(am-time-ago="post.created_at")
+              br
+              a.text-muted.small(href="#" ng-show="post.newComment" ng-click="post.newComment = false") hide comments
+              a.text-muted.small(href="#" ng-show="!post.newComment" ng-click="post.newComment = true")
+                ng-pluralize(count='post.comments.length', when="{'0': '0 comments', 'one': '1 comment', 'other': '{} comments'}")
+          form(ng-show="post.newComment" ng-submit="createComment(post._id)")
+            p.input-group.margin-top
+              input.form-control.input-sm(type='text', placeholder='Add a comment...' ng-model="post.comment.body" class="form-control")
+              span.input-group-btn
+                button.btn.btn-sm.btn-warning(type='submit')
+                  i.icon.ion-reply
+            p(ng-repeat="comment in post.comments" )
+              small.text-muted(ng-bind-html="comment.body | linky:'_blank'")
+              //- todo add flag
 
 

@@ -173,3 +173,7 @@ textarea:focus, input:focus {
 .margin-top {
   margin-top:10px;
 }
+
+.italic {
+  font-style: italic;
+}

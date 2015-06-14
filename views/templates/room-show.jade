@@ -1,11 +1,17 @@
-.event-name
-  form(ng-submit="enterRoom()")
-    a.hash-tag.pull-left(href="/") #
-    input.hash-input(ng-model="room_name", placeholder="EventName", ng-space, autofocus)
-    button.pull-right.btn.qq-btn.enter-room-btn#enterRoom(ng-click="enterRoom()")
-      i.icon.ion-log-in
-div.how-it-works
-  | Hi, 
-  b Welcome to Question Queue. 
-  br
-  | Enter your #EventName above to ask questions and vote on them.
+.jumbotron
+  .container
+    h1.text-center Crowd Question Moderation
+    h2.italic.text-center Simple and Free
+.container
+  .row
+    .col-sm-6.col-sm-offset-3
+      .event-name
+        form(ng-submit="enterRoom()")
+          a.hash-tag.pull-left(href="/") #
+          input.hash-input(ng-model="room_name", placeholder="EventName", ng-space, autofocus)
+          button.pull-right.btn.qq-btn.enter-room-btn#enterRoom(ng-click="enterRoom()")
+            i.icon.ion-log-in
+  .row
+    .col-sm-3
+    .col-sm-3
+    .col-sm-3
