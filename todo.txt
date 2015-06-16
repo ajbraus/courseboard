@@ -1,3 +1,5 @@
+make flagging remove comment (are you sure?)
+
 teach users to use the app more
   - what is it for
   - how to vote
@@ -118,3 +120,5 @@ DONE voted to -5 = destroy
 DONE display questions created at with nice '1m' notation    
 
 DONE Need cookies turned on . . .
+DONE style comments a bit better
+DONE make comments appear

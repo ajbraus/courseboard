@@ -1,28 +1,35 @@
-.event-name
-  form(ng-submit="enterRoom()")
-    a.hash-tag.pull-left(href="/") #
-    input.hash-input(ng-model="room_name", placeholder="TypeYourEventCookie", ng-space, autofocus="true")
-    button.pull-right.btn.qq-btn.enter-room-btn#enterRoom(ng-click="enterRoom()")
-      i.icon.ion-log-in
-div.how-it-works
-  | Hi, 
-  b Welcome to QuestionCookie.com. 
+.jumbotron
+  .container
+    h1.text-center Question Cookie
+    h2.text-center Free, Real-Time Question Moderation
+.container
+  .row
+    .col-sm-6.col-sm-offset-3
+      .event-name
+        form(ng-submit="enterRoom()")
+          a.hash-tag.pull-left(href="/") #
+          input.hash-input(ng-model="room_name", placeholder="EventName", ng-space, autofocus)
+          button.pull-right.btn.qq-btn.enter-room-btn#enterRoom(ng-click="enterRoom()")
+            i.icon.ion-log-in 
+        .text-center.margin-top 
+          i Enter an Event Name to Create or to Join a QuestionCookie Event
   br
-  | Enter your #EventCookie above to start asking questions and voting for the ones you want answered.
-
-.col-xs-12
-  h4 How to Enter an Event
-  p.indent 1. Enter the EventCookie above
-  p.indent 2. Start asking questions and voting
-  
-.col-xs-12
-  h4 How to Make an EventCookie
-  p.indent 1. Enter the EventCookie you'd like
-  p.indent 2. Share the EventCookie or the EventCookie url with participants
-  p.indent 3. Enjoy the free, automatic moderation!
-
-.col-xs-12
-  h4 Examples of EventCookie Names
-  blockquote #AWSConf2015
-  blockquote #RobertsonsAlgebra2015
-  blockquote #GoogleModeratorsReplacement2015
+  br
+  hr
+  br
+  .row
+    .col-sm-4
+      h3.text-center 
+        i.icon.ion-funnel
+        |  Moderating Questions
+      p.lead The most important questions are often not heard or answered. QuestionCookie lets the crowd source and vote on the best questions.
+    .col-sm-4
+      h3.text-center 
+        i.icon.ion-cash
+        |  Free and Easy to Use
+      p.lead Don't pay for another question moderation service. 1) Enter a unique event name above to start your question cookie. 2) Then share the URL with participants.
+    .col-sm-4
+      h3.text-center 
+        i.icon.ion-clock
+        |  Everything in Real Time
+      p.lead Questions and votes and comments all happen in real time across everyone who is participating. Start and share your QuestionCookie and the crowd does the rest.

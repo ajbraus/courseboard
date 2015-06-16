@@ -1,36 +1,53 @@
-.text-right {{user_count}}
-.event-name
-  form(ng-submit="enterRoom()")
-    a.hash-tag.pull-left(href="/") #
-    input.hash-input(ng-model="room_name", placeholder="TypeYourEventCookie", ng-space)
-    button.pull-right.btn.qq-btn.enter-room-btn#enterRoom 
-      i.icon.ion-log-in
-  small.toggle-order Sorted by
-    br
-    button.btn.btn-sm.btn-default.btn-order(ng-click="switchOrder()") 
-      i.icon.ion-stats-bars 
-      | {{" " + orderButton}}
-    //- {{userCount}}
+.container.tall
+  .row.tall
+    .borders.col-sm-6.col-sm-offset-3.col-lg-4.col-lg-offset-4
+      .text-right {{user_count}}
+      .event-name
+        form(ng-submit="enterRoom()")
+          a.hash-tag.pull-left(href="/") #
+          input.hash-input#roomName(ng-model="room_name", placeholder="EventName", ng-space)
+          button.pull-right.btn.qq-btn.enter-room-btn#enterRoom 
+            i.icon.ion-log-in
+        small.toggle-order Sorted by
+          br
+          button.btn.btn-sm.btn-default.btn-order(ng-click="switchOrder()") 
+            i.icon.ion-stats-bars 
+            | {{" " + orderButton}}
+          //- {{userCount}}
 
-form.question(ng-submit="publishPost()")
-  textarea(ng-model="post.body", placeholder="What is your question?", autofocus="true")
-  button.pull-right.qq-btn.btn.ask-btn#publishPost(type="submit", ng-disabled="!post.body")
-    i.icon.ion-edit
+      form.question(ng-submit="publishPost()")
+        textarea(ng-model="post.body", placeholder="Ask a question...", autofocus="true")
+        button.pull-right.qq-btn.btn.ask-btn#publishPost(type="submit", ng-disabled="!post.body")
+          i.icon.ion-edit
 
-
-div.how-it-works(ng-show="posts.length === 0")
-  p You are now a participant in the EventCookie:  
-  p 
-    b \#{{room_name}}
-  p Ask questions and vote up the questions you want answered the most. 
-ul.list-group
-  li.list-group-item.clearfix(ng-repeat="post in posts | orderBy: order", ng-hide="post.votes_count <= -5")
-    div.pull-left.voting-buttons.text-muted
-      div.vote_up(ng-click="voteUp(post)" ng-class="{'voted_up' : alreadyVoted(post, 'up')}" ng-show="hasCookiesEnabled")
-        i.icon.ion-arrow-up-b
-      small.vote_count.small {{post.votes_count}}
-      div.vote_down(ng-click="voteDown(post)" ng-class="{'voted_down' : alreadyVoted(post, 'down')}" ng-show="hasCookiesEnabled")
-        i.icon.ion-arrow-down-b
-    div(ng-bind-html="post.body | linky:'_blank'")
-    div.created-at asked  
-      span(am-time-ago="post.created_at")
+      div.how-it-works(ng-show="posts.length === 0")
+        | You are now in  
+        b \#{{room_name}}
+        |. Get things started by asking the first question.
+      ul.list-group
+        li.list-group-item.clearfix(ng-repeat="post in posts | orderBy: order", ng-hide="post.votes_count <= -5")
+          div.clearfix
+            div.pull-left.voting-buttons.text-muted
+              div.vote_up(ng-click="voteUp(post)" ng-class="{'voted_up' : alreadyVoted(post, 'up')}" ng-show="hasCookiesEnabled")
+                i.icon.ion-arrow-up-b
+              small.vote_count.small {{post.votes_count}}
+              div.vote_down(ng-click="voteDown(post)" ng-class="{'voted_down' : alreadyVoted(post, 'down')}" ng-show="hasCookiesEnabled")
+                i.icon.ion-arrow-down-b
+            div(ng-bind-html="post.body | linky:'_blank'")
+            div.created-at asked  
+              span(am-time-ago="post.created_at")
+              br
+              a.text-muted.small(href="#" ng-show="post.newComment" ng-click="post.newComment = false") hide comments
+              a.text-muted.small(href="#" ng-show="!post.newComment" ng-click="post.newComment = true")
+                ng-pluralize(count='post.comments.length', when="{'0': '0 comments', 'one': '1 comment', 'other': '{} comments'}")
+          .comments(ng-show="post.newComment")
+            p.comment(ng-repeat="comment in post.comments")
+              small.text-muted(ng-bind-html="comment.body | linky:'_blank'")
+              small.text-muted.xsmall.pull-right.relativets(am-time-ago="comment.created_at")
+              //- todo add flag       
+            form(ng-submit="createComment(post._id)")
+              p.input-group.margin-top
+                input.form-control.input-sm(type='text', placeholder='Add a comment...' ng-model="comment.body" class="form-control")
+                span.input-group-btn
+                  button.btn.btn-sm.btn-warning(type='submit')
+                    i.icon.ion-reply
