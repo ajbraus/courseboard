@@ -40,14 +40,15 @@
               a.text-muted.small(href="#" ng-show="post.newComment" ng-click="post.newComment = false") hide comments
               a.text-muted.small(href="#" ng-show="!post.newComment" ng-click="post.newComment = true")
                 ng-pluralize(count='post.comments.length', when="{'0': '0 comments', 'one': '1 comment', 'other': '{} comments'}")
-          form(ng-show="post.newComment" ng-submit="createComment(post._id)")
-            p.input-group.margin-top
-              input.form-control.input-sm(type='text', placeholder='Add a comment...' ng-model="post.comment.body" class="form-control")
-              span.input-group-btn
-                button.btn.btn-sm.btn-warning(type='submit')
-                  i.icon.ion-reply
-            p(ng-repeat="comment in post.comments" )
+          .comments(ng-show="post.newComment")
+            p.comment(ng-repeat="comment in post.comments")
               small.text-muted(ng-bind-html="comment.body | linky:'_blank'")
-              //- todo add flag
-
+              small.text-muted.xsmall.pull-right.relativets(am-time-ago="comment.created_at")
+              //- todo add flag       
+            form(ng-submit="createComment(post._id)")
+              p.input-group.margin-top
+                input.form-control.input-sm(type='text', placeholder='Add a comment...' ng-model="comment.body" class="form-control")
+                span.input-group-btn
+                  button.btn.btn-sm.btn-warning(type='submit')
+                    i.icon.ion-reply
 

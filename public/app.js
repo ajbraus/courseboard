@@ -13,10 +13,11 @@ angular.module('myApp', ['ngResource',
                          'angularMoment',
                          'myApp.services', 
                          'myApp.directives', 
-                         'myApp.interceptors'])
+                         'myApp.interceptors',
+                         'myApp.filters'])
 
-  .constant('HOST', 'http://localhost:1337') //DEV
-  // .constant('HOST', 'http://questionqueue.herokuapp.com') //PRODUCTION
+  // .constant('HOST', 'http://localhost:1337') //DEV
+  .constant('HOST', 'http://questionqueue.herokuapp.com') //PRODUCTION
 
   // .run(function(amMoment) {
   //   amMoment.changeLocale('de');

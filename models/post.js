@@ -25,7 +25,7 @@ var PostSchema = new Schema({
   , body        : { type: String, required: true, trim: true }
   , votes_count : { type: Number, required: true, default: 0 }
   , room_name   : { type: String, required: true, trim: true }
-  , comments  : [CommentSchema]
+  , comments    : [CommentSchema]
   // , author: {}
 });
 

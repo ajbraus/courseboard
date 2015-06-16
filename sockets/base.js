@@ -23,8 +23,10 @@ module.exports = function (io) {
     });
 
     socket.on('publish.comment', function (data) {
-      console.log(data)
+      console.log(data);
       Post.findById(data.post_id, function (err, post) {
+        console.log(post);
+        console.log(data.body)
         var comment = new Comment({ body: data.body });
         post.comments.push(comment);
         post.save(function(err, post){

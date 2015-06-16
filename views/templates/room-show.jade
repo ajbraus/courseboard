@@ -1,7 +1,7 @@
 .jumbotron
   .container
-    h1.text-center Crowd Question Moderation
-    h2.italic.text-center Simple and Free
+    h1.text-center Question Cookie
+    h2.text-center Free, Real-Time Question Moderation
 .container
   .row
     .col-sm-6.col-sm-offset-3
@@ -10,8 +10,28 @@
           a.hash-tag.pull-left(href="/") #
           input.hash-input(ng-model="room_name", placeholder="EventName", ng-space, autofocus)
           button.pull-right.btn.qq-btn.enter-room-btn#enterRoom(ng-click="enterRoom()")
-            i.icon.ion-log-in
+            i.icon.ion-log-in 
+        .text-center.margin-top 
+          i Enter an Event Name to Create or to Join a QuestionCookie Event
+  br
+  br
+  hr
+  br
   .row
-    .col-sm-3
-    .col-sm-3
-    .col-sm-3
+    .col-sm-4
+      h3.text-center 
+        i.icon.ion-funnel
+        |  Moderating Questions
+      p.lead The most important questions are often not heard or answered. QuestionCookie lets the crowd source and vote on the best questions.
+    .col-sm-4
+      h3.text-center 
+        i.icon.ion-cash
+        |  Free and Easy to Use
+      p.lead Don't pay for another question moderation service. 1) Enter a unique event name above to start your question cookie. 2) Then share the URL with participants.
+    .col-sm-4
+      h3.text-center 
+        i.icon.ion-clock
+        |  Everything in Real Time
+      p.lead Questions and votes and comments all happen in real time across everyone who is participating. Start and share your QuestionCookie and the crowd does the rest.
+
+

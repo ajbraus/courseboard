@@ -2,7 +2,7 @@
  * FILTERS
  */
 
-angular.module('myApp')
+angular.module('myApp.filters', [])
   // A simple relative timestamp filter
     .filter('relativets', function() {
       return function(value) {

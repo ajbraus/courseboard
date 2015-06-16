@@ -21,7 +21,7 @@ angular.module('myApp')
         console.log(comment)
         $scope.$apply(function() {
           post = _.findWhere($scope.posts, {_id: post._id});
-          post.comments.unshift(comment);
+          post.comments.push(comment);
         });
       };
     });
