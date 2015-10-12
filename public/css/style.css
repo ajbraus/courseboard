@@ -1,7 +1,20 @@
 html, body, .tall {height: 100%; min-height: 100%}
 
+.jumbotron {
+  background: rgb(255, 89, 89);
+  color:white;
+  -webkit-box-shadow: 0px 4px 41px -16px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 4px 41px -16px rgba(0,0,0,0.75);
+  box-shadow: 0px 4px 41px -16px rgba(0,0,0,0.75);
+  margin-bottom:60px;
+}
+
 .topbar {
   margin: 10px auto;
+}
+
+.lead {
+  font-size: 18px;
 }
 
 a.brand {
