@@ -43,3 +43,10 @@ nav.navbar.navbar-default
                   span.input-group-btn
                     button.btn.btn-sm.btn-warning(type='submit')
                       i.icon.ion-reply
+        small.toggle-order Sorted by
+          br
+          button.btn.btn-sm.btn-default.btn-order(ng-click="switchOrder()") 
+            i.icon.ion-stats-bars 
+            | {{" " + orderButton}}
+          //- {{userCount}}
+          

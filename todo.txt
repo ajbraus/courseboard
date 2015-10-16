@@ -1,3 +1,7 @@
+make it styled more like trello with questions filling in to the right
+if you have two comments open, newComment.text is in all input fields
+
+
 make flagging remove comment (are you sure?)
 
 teach users to use the app more
