@@ -7,11 +7,8 @@ nav.navbar.navbar-default
   .container
     .row.tall
       .borders.col-sm-6.col-sm-offset-3.col-lg-4.col-lg-offset-4
-        form.question(ng-submit="publishPost()")
+        form.question(ng-keyup="$event.keyCode == 13 && publishPost()" ng-submit="publishPost()")
           textarea(ng-model="post.body", placeholder="Ask a question...", autofocus="true")
-          button.pull-right.qq-btn.btn.ask-btn#publishPost(type="submit", ng-disabled="!post.body")
-            i.icon.ion-edit
-
         div.how-it-works(ng-show="posts.length === 0")
           | You are now in  
           b \#{{room_name}}
@@ -28,21 +25,20 @@ nav.navbar.navbar-default
               div(ng-bind-html="post.body | linky:'_blank'")
               div.created-at asked  
                 span(am-time-ago="post.created_at")
-                br
-                a.text-muted.small(href="#" ng-show="post.newComment" ng-click="post.newComment = false") hide comments
-                a.text-muted.small(href="#" ng-show="!post.newComment" ng-click="post.newComment = true")
-                  ng-pluralize(count='post.comments.length', when="{'0': '0 comments', 'one': '1 comment', 'other': '{} comments'}")
-            .comments(ng-show="post.newComment")
-              p.comment(ng-repeat="comment in post.comments")
-                small.text-muted(ng-bind-html="comment.body | linky:'_blank'")
-                small.text-muted.xsmall.pull-right.relativets(am-time-ago="comment.created_at")
-                //- todo add flag       
-              form(ng-submit="createComment(post._id)")
+            .margin-top
+              .text-right
+                a.text-muted.small(href="#" ng-show="post.newComment" ng-click="post.newComment = false") cancel comment
+                a.text-muted.small(href="#" ng-show="!post.newComment" ng-click="post.newComment = true") new comment
+              form(ng-submit="createComment(post)" ng-show="post.newComment")
                 p.input-group.margin-top
                   input.form-control.input-sm(type='text', placeholder='Add a comment...' ng-model="comment.body" class="form-control")
                   span.input-group-btn
                     button.btn.btn-sm.btn-warning(type='submit')
                       i.icon.ion-reply
+              p.comment(ng-repeat="comment in post.comments")
+                small.text-muted(ng-bind-html="comment.body | linky:'_blank'")
+                small.text-muted.xsmall.pull-right.relativets(am-time-ago="comment.created_at")
+                //- todo add flag       
         small.toggle-order Sorted by
           br
           button.btn.btn-sm.btn-default.btn-order(ng-click="switchOrder()") 

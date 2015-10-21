@@ -7,21 +7,22 @@
 angular.module('myApp')
   .controller('PostIndexCtrl', function ($scope, $rootScope, Post, Socket, $routeParams, $cookies, $location) {
     $scope.comment = {};
-    $scope.createComment = function(post_id) {
-      console.log(post_id)
-      $scope.comment.post_id = post_id
+    $scope.createComment = function(post) {
+      console.log(post)
+      $scope.comment.post_id = post._id
       Socket.emit('publish.comment', $scope.comment);
       $scope.comment.body = ''
+      post.newComment = false;
     };
 
     // PUBLISH COMMENT
     $scope.$on('socket:broadcast.comment', function (event, post) {
       if (post.room_name.toLowerCase() == $routeParams.room_name.toLowerCase()) {
-        var comment = post.comments[post.comments.length - 1]
+        var comment = post.comments[0]
         console.log(comment)
         $scope.$apply(function() {
           post = _.findWhere($scope.posts, {_id: post._id});
-          post.comments.push(comment);
+          post.comments.unshift(comment);
         });
       };
     });

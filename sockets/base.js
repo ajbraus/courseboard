@@ -28,8 +28,8 @@ module.exports = function (io) {
         console.log(post);
         console.log(data.body)
         var comment = new Comment({ body: data.body });
-        post.comments.push(comment);
-        post.save(function(err, post){
+        post.comments.unshift(comment);
+        post.save(function (err, post) {
           if(err) { 
             console.log(err) 
             return io.sockets.emit('error', comment); 

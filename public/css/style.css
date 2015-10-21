@@ -78,7 +78,7 @@ textarea {
   resize: none;
   font-size: 16px;
   height: 100%;
-  width: 74.5%;
+  width: 100%;
   border: none;
   font-family: helvetica;
   padding: 10px;
@@ -239,3 +239,4 @@ textarea:focus, input:focus {
   bottom: 0;
   right: 0;
 }
+
