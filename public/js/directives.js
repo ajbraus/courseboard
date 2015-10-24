@@ -3,7 +3,7 @@
 /* Directives */
 
 
-angular.module('myApp.directives', [])
+angular.module('zoinks.directives', [])
 	
 	.directive('appVersion', ['version', function(version) {
     return function(scope, elm, attrs) {

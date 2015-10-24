@@ -26,7 +26,7 @@ module.exports = function(app) {
     var zoink = new Zoink(req.body);
     zoink.save(function (err, zoink) {
       if (err) { return res.send(err) };
-      res.status(201); 
+      res.status(201).json(zoink); 
     });
   });
 
@@ -42,7 +42,7 @@ module.exports = function(app) {
   app.delete('/api/zoinks/:id', function (req, res) { 
     Zoink.findByIdAndRemove(req.params.id, function (err) {
       if (err) { return res.send(err) }
-      res.status(200);
+      res.status(204);
     });
   });
 }

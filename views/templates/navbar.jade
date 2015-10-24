@@ -1,5 +1,5 @@
 nav.navbar.navbar-default
-  .container-fluid
+  .container
     .navbar-header
       button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
         span.sr-only Toggle navigation
@@ -10,26 +10,20 @@ nav.navbar.navbar-default
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav
         li
-          a(ng-click='toggleSidenav()')
-            i.icon.ion-navicon(style='font-size:25px;')
-      a.navbar-btn.btn.btn-info(data-toggle='modal', data-target='#new-zoink') New Zoink
-      ul.nav.navbar-nav.navbar-right
-        li.dropdown
-          a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-            | Zoinks 
-            span.caret
-          ul.dropdown-menu
-            li(ng-repeat='zoink in zoinks')
-              a(href='#/zoinks/{{zoink._id}}') {{zoink.title}}
+          a WTF?
         li
           a Prices
-        li(ng-hide='loggedIn')
-          a(data-toggle='modal', data-target='#login-modal') Connect
-        li.dropdown
+        li
+          a Scooby Snack
+
+      
+      ul.nav.navbar-nav.navbar-right
+        a.navbar-btn.btn.btn-info(data-toggle='modal', data-target='#new-zoink') New Zoink
+        a.navbar-btn.btn.btn-info(data-toggle='modal', data-target='#login-modal', ng-hide='loggedIn') Login
+        li.dropdown(ng-show='loggedIn')
           a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-            span.status.good(ng-show='loggedIn') Hello! You are logged in.
-            span.status(ng-show='!loggedIn') Not logged in
-            span.status.error {{auth.error}}
+
+            span.status {{currentUser.email}}
             span.caret
           ul.dropdown-menu
             li
@@ -41,7 +35,13 @@ nav.navbar.navbar-default
             li.divider(role='separator')
             li
               a(ng-click='logout()') Logout
-
+        li.dropdown(ng-show='loggedIn')
+          a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+            | Zoinks 
+            span.caret
+          ul.dropdown-menu
+            li(ng-repeat='zoink in zoinks')
+              a(href='#/zoinks/{{zoink._id}}') {{zoink.title}}
 
 #login-modal.modal.fade(tabindex='-1', role='dialog')
   .modal-dialog.modal-sm
@@ -70,7 +70,7 @@ nav.navbar.navbar-default
         a.btn.btn-link(ng-click='signupMode = false', ng-show='signupMode') Login
         button.btn.btn-primary(type='submit', ng-cloak='', ng-show='signupMode', ng-click='createAccount()') Sign Up
 
-#new-zoink.modal.fade(ng-controller='NewZoinkCtrl', tabindex='-1', role='dialog', aria-labelledby='new-zoinkLabel')
+#new-zoink.modal.fade(tabindex='-1', role='dialog', aria-labelledby='new-zoinkLabel')
   .modal-dialog(role='document')
     .modal-content
       form(ng-submit='createZoink()')

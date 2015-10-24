@@ -1,11 +1,14 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('zoinks', ['myApp.filters', 
-                         'myApp.services', 
-                         'myApp.directives', 
-                         'myApp.controllers',
+angular.module('zoinks', ['zoinks.filters', 
+                         'zoinks.services', 
+                         'zoinks.directives', 
+                         'zoinks.controllers',
                          'ngResource',
+                         'ngTouch', 
+                         'btford.socket-io',
+                         'ngSanitize', 
                          'ngRoute'])
 
     .constant('HOST', 'http://localhost:1337') //DEV

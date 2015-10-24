@@ -19,7 +19,9 @@ html(lang="en", ng-app='zoinks')
     //- Latest compiled and minified CSS
     link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
     link(rel='stylesheet', href='//bootswatch.com/paper/bootstrap.min.css')
+    link(rel='stylesheet', href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')
     link(rel='stylesheet', href='/css/style.css')
+
     //- link(rel='stylesheet', href='/vendor/ionicons/css/ionicons.css')
 
   body(ng-controller="MainCtrl")
@@ -47,6 +49,4 @@ html(lang="en", ng-app='zoinks')
   script(type="text/javascript", src='/js/filters.js')
   script(type="text/javascript", src='/js/directives.js')
 
-  script(src='/socket.io/socket.io.js')
-  //- script.
-    var socket =  io.connect('http://localhost:1337/');
+  script(type='text/javascript', src='/socket.io/socket.io.js')

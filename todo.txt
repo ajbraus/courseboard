@@ -1,11 +1,18 @@
 DONE get to work
 DONE create zoink
-show zoink - new room
-add invites with sockets
+DONE add invites with sockets
+DONE prevent dup invites
+DONE remove invite
+DONE add messages with sockets
+remove messages
 
 auth with satelitizer
+create zoink under user
 rsvp with sockets
-add messages with sockets
+
+show zoink - new room
+
+
 
 make some element dark
 pretty title url

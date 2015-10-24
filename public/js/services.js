@@ -3,7 +3,25 @@
 
 /* Services */
 
-angular.module('myApp.services', [])
+angular.module('zoinks.services', [])
+
+  .factory('Zoink', function ($resource, HOST) {
+    return $resource(HOST + '/api/zoinks/:id', { id: '@id' }, {
+      update: { method: 'PUT' }
+    })
+  })
+
+  .factory('socket', ['socketFactory', function (socketFactory) {
+    var socket = socketFactory();
+    // socket.forward('join_room')
+    // socket.forward('leave_room')
+    socket.forward('addInvite');
+    socket.forward('rmInvite');
+    socket.forward('addMessage');
+    socket.forward('rmMessage');
+    return socket
+  }])
+
   .service("Auth", ['$rootScope', function($rootScope) {
     return {
       isLoggedIn: function() {
@@ -30,9 +48,14 @@ angular.module('myApp.services', [])
     }
   }])
 
-  .factory('Zoink', function ($resource, HOST) {
-    return $resource(HOST + '/api/zoinks/:id', { id: '@id' })
-  })
+  ;
+
+
+  // .factory('Invite', function ($resource, HOST) {
+  //   return $resource(HOST + '/api/zoinks/:zoinkId/invites/:id', { zoinkId: '@zoinkId', id: '@id' }, {
+  //     update: { method: 'PUT' }
+  //   })
+  // })
 
 
   // .service('Zoink', [function() {

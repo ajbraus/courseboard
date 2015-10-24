@@ -12,10 +12,10 @@ var config = require('./config')
   , bodyParser = require('body-parser')
   , flash = require('connect-flash')
   , session = require('express-session')
+  , server = app.listen(config.port)
   , io = require('socket.io').listen(server)
-  , mongoose  = require('mongoose')
-
-  , server = app.listen(config.port);
+  , mongoose  = require('mongoose');
+  
 
   mongoose.connect(config.db);
 

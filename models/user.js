@@ -10,10 +10,10 @@ function toLower (v) {
 var UserSchema = new Schema({
     created_at  : { type: Date }
   , updated_at  : { type: Date }
+  , username    : { type: String, required: true, unique: true, trim: true, set: toLower }
+  , email       : { type: String, required: true, unique: true, trim: true, set: toLower }
   , first       : { type: String, required: true, trim: true }
   , last        : { type: String, required: true, trim: true }
-  , email       : { type: String, required: true, unique: true, trim: true, set: toLower }
-  , username    : { type: String, required: true, unique: true, trim: true }
   , password    : String
   , provider: String
   , providerId: String
@@ -81,4 +81,6 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 //   creditCardNumber: { type: String, get: obfuscate }
 // });
 
-mongoose.model('User', UserSchema);
+var User = mongoose.model('User', UserSchema);
+
+module.exports = User;

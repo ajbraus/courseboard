@@ -9,7 +9,8 @@
         .card
           .card-header.clearfix
             h5.pull-left Volunteers Needed
-            a.pull-right.btn.btn-link(ng-click='toggleNewRequirement()', ng-hide='!rspved') Add
+            a.pull-right.btn.btn-link(ng-click='toggleNewRequirement()') Add
+            //-  ng-hide='!rspved'
           .card-body
             form(ng-submit='addRequirement()', ng-show='newRequirement')
               .form-group
@@ -19,7 +20,8 @@
         .card
           .card-header.clearfix
             h5.pull-left Cars
-            a.pull-right.btn.btn-link(ng-click='toggleNewCarpool()', ng-hide='!rspved') Add
+            a.pull-right.btn.btn-link(ng-click='toggleNewCarpool()') Add
+            //-  ng-hide='!rspved'
           .card-body
             form(ng-submit='addCarpool()', ng-show='newCarpool')
               .form-group
@@ -36,7 +38,8 @@
         .card
           .card-header.clearfix
             h5.pull-left How to Prepare
-            a.pull-right.btn.btn-link(ng-click='toggleNewTodo()', ng-hide='!rspved') Add
+            a.pull-right.btn.btn-link(ng-click='toggleNewTodo()') Add
+            //-  ng-hide='!rspved'
           .card-body
             form(ng-submit='addTodo()', ng-show='newTodo')
               .form-group
@@ -57,15 +60,20 @@
         .card
           .card-header.clearfix
             h5.pull-left Invites
-            a.pull-right.btn.btn-link(ng-click='toggleNewInvite()', ng-hide='!rspved') Add
+            a.pull-right.btn.btn-link(ng-click='toggleNewInvite()') Add
+            //-  ng-hide='!rspved'
           .card-body
             form(ng-submit='addInvite()', ng-show='newInvite')
               .form-group
-                input.form-control(type='email', required='', ng-model='invite', focus-me='{{newInvite}}')
+                input.form-control(type='email', required='', ng-model='invite.email', focus-me='{{newInvite}}')
             p.invite(ng-repeat='invite in zoink.invites | reverse') {{invite}}
+              .pull-right(ng-click="rmInvite(invite)") remove
 .col-sm-3.chat.box-shadow-left.whole-height
-  form
+  div(ng-repeat="message in zoink.messages")
+    {{message.content}}
+    .text-right(ng-click="rmMessage(message)") remove
+  form(ng-submit='addMessage()')
     .form-group
-      textarea.form-control(name='', id='')
+      textarea.form-control(name='', id='', ng-model='message.content' ng-keyup="$event.keyCode == 13 && addMessage()")
     .text-right
-      button.btn.btn-success.btn-sm Send
+      button.btn.btn-success.btn-sm(type='submit') Send

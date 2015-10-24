@@ -8,12 +8,48 @@ var Zoink = require('../models/zoink.js')
 
 module.exports = function (io) {  
   // io.set('origins', '*localhost:1337');
+  
   io.on('connection', function (socket){
     console.log('user connected');
-    // var room = "some room"
-    // socket.join(room, function () {
-    //   console.log("joined room " + room)
-    // })
+
+    // INVITES
+    socket.on('publish:addInvite', function (data) {
+      Zoink.findById(data.zoinkId, function(err, zoink) {
+        zoink.invites.push(data.email);
+        zoink.save();
+        socket.emit('addInvite', data.email)
+      })
+    })
+
+    socket.on('publish:rmInvite', function (data) {
+      Zoink.findById(data.zoinkId, function(err, zoink) {
+        var index = zoink.invites.indexOf(data.email);
+        zoink.invites.splice(index, 1);
+        zoink.save();
+        socket.emit('rmInvite', data)
+      })
+    })
+
+    // MESSAGES
+    socket.on('publish:addMessage', function (data) {
+      Zoink.findById(data.zoinkId, function(err, zoink) {
+        zoink.messages.push(data);
+        zoink.save();
+        socket.emit('addMessage', data)
+      })
+    })
+
+    socket.on('publish:rmMessage', function (data) {
+      Zoink.findById(data.zoinkId, function(err, zoink) {
+        var index = zoink.messages.indexOf(data.content);
+        zoink.messages.splice(index, 1);
+        zoink.save();
+        socket.emit('rmMessage', data.content)
+      })
+    })
+
+
+    // QUESTIONQUEUE
 
     socket.on('join.room', function (data) {
       console.log('user joined room');

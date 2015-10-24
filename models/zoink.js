@@ -21,10 +21,10 @@ var ZoinkSchema = new Schema({
   , endsAt      : Date
   , invites     : []
   , todos       : []
-  , messgages   : [MessageSchema]
+  , messages    : [MessageSchema]
   , carpools    : []
   , reqs        : []
-  // , user          : { type: Number, ref: 'User' }
+  , user        : { type: Number, ref: 'User' }
 });
 
 MessageSchema.pre('save', function(next){
