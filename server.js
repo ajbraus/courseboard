@@ -11,10 +11,8 @@ var config = require('./config')
   , db = require('./db')()
   , path = require('path')
   , bodyParser = require('body-parser')
-  , passport = require('passport')
   , flash = require('connect-flash')
   , session = require('express-session')
-  , passport = require('./passport')
   // , cookieParser = require('cookie-parser')
   // , cookie = require('cookie')
   , server = app.listen(config.port)
@@ -44,9 +42,6 @@ app.set('view engine', 'jade');
 app.set('view options', {
   layout: false
 });
-
-// app.use(passport.initialize());
-// app.use(passport.session());
 
 // RESOURCES
 app.get('/', resources.index);

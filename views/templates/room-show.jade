@@ -7,17 +7,16 @@
     .col-sm-6.col-sm-offset-3
       .event-name
         form(ng-submit="enterRoom()")
-          a.hash-tag.pull-left(href="/") #
           input.hash-input(ng-model="room_name", placeholder="EventName", ng-space, autofocus)
-          button.pull-right.btn.qq-btn.enter-room-btn#enterRoom(ng-click="enterRoom()")
+          button.pull-right.btn.qq-btn.hash-tag.enter-room-btn#enterRoom(ng-click="enterRoom()")
             i.icon.ion-log-in 
         .text-center.margin-top 
-          i Enter an Event Name to Create or to Join a QuestionCookie Event
+          i Enter an event name to create or to join a Question Cookie event
   br
   br
   br
   .text-center
-    a.btn.btn-default.btn-lg(href="/SampleCookie") See Sample Cookie
+    a.btn.btn-default.btn-lg(href="/SampleCookie") See Sample Question Cookie Event
   hr
   br
   .row

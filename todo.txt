@@ -1,8 +1,12 @@
+
+fix mobile responsive
+add footer
+
 improve SEO
 add sharing twitter and facebook sharing
 
-
-make flagging remove comment (are you sure?)
+make it styled more like trello with questions filling in to the right
+if you have two comments open, newComment.text is in all input fields
 
 teach users to use the app more
   - what is it for
