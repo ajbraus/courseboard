@@ -1,4 +1,5 @@
 extends layout
 
 block body
-  .tall(ng-view)
+	ng-include(src="'templates/navbar'")
+	div(ng-view)

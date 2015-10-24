@@ -1,132 +1,21 @@
+DONE get to work
+DONE create zoink
+show zoink - new room
+add invites with sockets
 
-fix mobile responsive
-add footer
+auth with satelitizer
+rsvp with sockets
+add messages with sockets
 
-improve SEO
-add sharing twitter and facebook sharing
+make some element dark
+pretty title url
 
-make it styled more like trello with questions filling in to the right
-if you have two comments open, newComment.text is in all input fields
+archive zoink
 
-teach users to use the app more
-  - what is it for
-  - how to vote
-  - features, sort by vote_count, etc
+set startsAt/endsat
 
-track when users join or leave rooms and the # of users
-  on $locationChangeStart - emit leaving.room, '/:room_name' - if listener is in room, decrement
-  on $locationChangeSuccess - emit joining.room, '/:room_name' - if listener is in room, incrememnt
-  upon arriving in a room . . . how many people are there?
-    create Room model and track userCount there
+push to heroku
 
-    $scope.$on('$locationChangeStart', function(event, next, current) {
-      if(current_user.is_logged_in){
-        var route_object = ($route.routes[$location.path()]).route_object; //This is how you get it
-        if(!(route_object.route_roles)){
-            event.preventDefault();
-        }
-      }
-    });
+add todos with sockets
+add images/instagram #
 
-    $scope.userCount = 0;
-    // USER ENTERS THE ROOM
-    $scope.$on('socket:broadcast.user_connected', function (event, data) {
-      console.log(data);
-      if (data == $scope.room.name) {
-        $scope.userCount = ++$scope.userCount;
-      }
-    });
-
-    // USER LEAVES THE ROOM
-    $scope.$on('socket:broadcast.user_disconnected', function (event, data) {
-      console.log(data);
-      if (data.room_name == $scope.room.name) {
-
-      }
-    });
-
-
-
-track how many cookies your questions get per session
-  track ids of questions client asks
-  when they are voted up, give you a cookie, voted down, take a cookie away
-
-vote up/down flashes the question
-
-deploy to AWS
-  http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_express.html
-  http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_console.html
-
-Make Ionic app gobble up that JSON and have socket.io
-
-scale:
-  on broadcast, only publish if room_name === room_name - not scalable! and every client is recieving every question across the whole system . . .
-
-add grunt package.json and include grunt files in git
-
-unify cookie and add maxAge of 7200000
-  upgrade angular to 1.4.x
-  if (!$cookies.questionCookie) {
-    var questionCookie = {
-      vup_ids: [],
-      vdp_ids: [] 
-    }
-    $cookies.putObject('questionCookie', $scope.questionCookie, {'expires': 7200000});
-  } else {
-    $scope.questionCookie = JSON.parse($cookies.questionCookie)
-  }
-
-  console.log(JSON.parse($cookies.questionCookie))
-
-
-Finnegan:
-  make socket-based website Express, Mongodb, Socket-io
-  make finnegan
-  paragraphs > words
-
-upgrade to bcrypt with salt and hash passwords http://stackoverflow.com/questions/17201450/salt-and-hash-password-in-nodejs-w-crypto
-
-DONE Add Jade
-DONE add partials
-DONE npm install nodemon --save
-DONE add socket.io
-
-DONE angular route to templates
-
-DONE create post
-DONE vote up
-DONE vote down
-DONE separate rooms
-  DONE start on room-index.jade
-  DONE navigate to /:roomName
-  DONE limit post-index to see only questions in room
-  DONE send room_name with post
-
-
-express cookie fetcher
-  var vdp_ids = JSON.parse(req.cookies.voted_down_post_ids)
-  console.log(vdp_ids.indexOf(2343) > -1);
-
-
-  vote only once -- (good test!)
-    vote_up / down
-      DONE add post_id to voted_up_posts cookie object
-      DONE if post_id in vdp_id, do not allow another vote up
-      DONE on socket:broadcast.vote_down
-      DONE if already voted - vote up/down then vote up/down +/- 2 (update on server)
-      DONE highlight if you voted
-  DONE downcase room hashtag
-  DONE make SPA - collapse the two views
-  DONE sort by vote
-
-DONE allow links
-DONE make enter => exit button
-DONE disable spacebar in room.name
-DONE add ngTouch
-
-DONE voted to -5 = destroy
-DONE display questions created at with nice '1m' notation    
-
-DONE Need cookies turned on . . .
-DONE style comments a bit better
-DONE make comments appear

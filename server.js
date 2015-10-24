@@ -8,15 +8,16 @@ var config = require('./config')
   , express = require('express')
   , app = express()
   , resources = require('./resources')
-  , db = require('./db')()
   , path = require('path')
   , bodyParser = require('body-parser')
   , flash = require('connect-flash')
   , session = require('express-session')
-  // , cookieParser = require('cookie-parser')
-  // , cookie = require('cookie')
-  , server = app.listen(config.port)
-  , io = require('socket.io').listen(server);
+  , io = require('socket.io').listen(server)
+  , mongoose  = require('mongoose')
+
+  , server = app.listen(config.port);
+
+  mongoose.connect(config.db);
 
 // app.use(express.static(__dirname + '/public'));
 app.use("/", express.static(path.join(__dirname, 'public')));
@@ -29,8 +30,6 @@ app.use(session({
   resave: true,
   secret: 'OurSuperSecretCookieSecret'
 }));
-
-// app.use(cookieParser());
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -46,7 +45,7 @@ app.set('view options', {
 // RESOURCES
 app.get('/', resources.index);
 app.get('/templates/:name', resources.templates);
-require('./resources/posts')(app);
+require('./resources/zoinks')(app);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', resources.index);

@@ -1,0 +1,71 @@
+.col-sm-9.box-shadow-left.whole-height.main.no-padding
+  .col-sm-10.col-sm-offset-1
+    h4 {{zoink.title}} 
+      small.text-muted.small at 
+        a(href='http://maps.google.com/?q={{zoink.location}}', target='_blank') {{zoink.location}}
+    h5 {{zoink.startsAt}} - {{zoink.endsAt}}
+    .row
+      .col-sm-6
+        .card
+          .card-header.clearfix
+            h5.pull-left Volunteers Needed
+            a.pull-right.btn.btn-link(ng-click='toggleNewRequirement()', ng-hide='!rspved') Add
+          .card-body
+            form(ng-submit='addRequirement()', ng-show='newRequirement')
+              .form-group
+                input.form-control(type='text', ng-model='requirement.body', focus-me='{{newRequirement}}')
+            .list-group
+              .list-group-item(ng-repeat='r in zoink.requirements') {{r.body}}
+        .card
+          .card-header.clearfix
+            h5.pull-left Cars
+            a.pull-right.btn.btn-link(ng-click='toggleNewCarpool()', ng-hide='!rspved') Add
+          .card-body
+            form(ng-submit='addCarpool()', ng-show='newCarpool')
+              .form-group
+                input.form-control(type='text', ng-model='carpool.name', focus-me='{{newCarpool}}')
+            .list-group
+              .list-group-item(ng-repeat='carpool in zoink.carpools')
+                .clearfix
+                  .pull-left
+                    | {{carpool.name}}
+                  .pull-right
+                    a.margin-sides.btn.btn-sm.btn-default.pull-right(ng-click='joinCarpool(carpool)')
+                      i.icon.ion-plus-circled.big
+                    img.img-responsive.img-circle.pull-right.margin-sides(ng-repeat='passenger in carpool.passengers', ng-src='{{passenger.picUrl}}', width='40px')
+        .card
+          .card-header.clearfix
+            h5.pull-left How to Prepare
+            a.pull-right.btn.btn-link(ng-click='toggleNewTodo()', ng-hide='!rspved') Add
+          .card-body
+            form(ng-submit='addTodo()', ng-show='newTodo')
+              .form-group
+                input.form-control(type='text', ng-model='todo', focus-me='{{newTodo}}')
+            .list-group
+              .list-group-item(ng-repeat='todo in zoink.todos') {{todo}}
+      .col-sm-6
+        .card
+          .card-header.clearfix
+            h5.pull-left RSVPs
+            a.btn.btn-primary.pull-right(ng-click='rsvp()', ng-disabled='rsvped || !invited') RSVP
+          .card-body
+            .media(ng-repeat='rsvp in zoink.rsvps')
+              .media-left
+                img.media-object.img-circle(ng-src='{{rsvp.picUrl}}', width='40px', alt='{{rsvp.name}}')
+              .media-body
+                h5.media-heading {{rsvp.name}}
+        .card
+          .card-header.clearfix
+            h5.pull-left Invites
+            a.pull-right.btn.btn-link(ng-click='toggleNewInvite()', ng-hide='!rspved') Add
+          .card-body
+            form(ng-submit='addInvite()', ng-show='newInvite')
+              .form-group
+                input.form-control(type='email', required='', ng-model='invite', focus-me='{{newInvite}}')
+            p.invite(ng-repeat='invite in zoink.invites | reverse') {{invite}}
+.col-sm-3.chat.box-shadow-left.whole-height
+  form
+    .form-group
+      textarea.form-control(name='', id='')
+    .text-right
+      button.btn.btn-success.btn-sm Send

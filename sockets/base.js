@@ -2,8 +2,7 @@
  * SOCKETS BASE.JS
  */
 
-var Post = require('mongoose').model('Post');
-var Comment = require('mongoose').model('Comment');
+var Zoink = require('../models/zoink.js')
 
 'use strict';
 
@@ -24,7 +23,7 @@ module.exports = function (io) {
 
     socket.on('publish.comment', function (data) {
       console.log(data);
-      Post.findById(data.post_id, function (err, post) {
+      Zoink.findById(data.post_id, function (err, post) {
         console.log(post);
         console.log(data.body)
         var comment = new Comment({ body: data.body });
@@ -42,7 +41,7 @@ module.exports = function (io) {
     // PUBLISH POST
     socket.on('publish.post', function (data) {
       console.log(data);
-      var post = new Post({
+      var post = new Zoink({
           body: data.body
         , room_name: data.room_name.toLowerCase()
       });
@@ -61,7 +60,7 @@ module.exports = function (io) {
 
     // VOTE UP
     socket.on('vote_up.post', function (data) {
-      Post.findByIdAndUpdate(data.id, { $inc: { votes_count: 1 } } , function (err, post) {
+      Zoink.findByIdAndUpdate(data.id, { $inc: { votes_count: 1 } } , function (err, post) {
         console.log(post)
         if (err) { 
           console.log(err);
@@ -72,7 +71,7 @@ module.exports = function (io) {
     });
 
     socket.on('vote_down.post', function (data) {
-      Post.findByIdAndUpdate(data.id, { $inc: { votes_count: -1 } } , function (err, post) {
+      Zoink.findByIdAndUpdate(data.id, { $inc: { votes_count: -1 } } , function (err, post) {
         console.log(post)
         if (err) { 
           console.log(err);

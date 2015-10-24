@@ -26,15 +26,6 @@ UserSchema.virtual('fullname').get(function() {
   return this.first + ' ' + this.last;
 });
 
-// BEFORE/AFTER FILTER
-// UserSchema.pre('save', function(next) {
-// if (something) {
-// next()
-// } else {
-// next(new Error('No can do, sir!'));
-// }
-// });
-
 UserSchema.pre('save', function(next){
   // SET CREATED_AT AND UPDATED_AT
   now = new Date();
