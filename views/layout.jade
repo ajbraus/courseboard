@@ -2,20 +2,18 @@ doctype html
 html(lang="en", ng-app='zoinks')
   head
     meta(charset='utf8')
-    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1")
     base(href='/')
     title Zoinks | Collaborative Event Planning Tool
-    meta(name="description" content="QuestionCookie.com is a free service for event planners and educators to automatically moderate question in real time. No sign up necessary, just enter a cookie to create or find your questions.")
-    meta(name="keywords" content="Moderate, Questions, Google Moderator")
+    meta(name="description" content="Zoinks helps you easily plan camping trips, picnics, potlucks and other collaborative events with your friends.")
+    meta(name="keywords" content="Camping, Event Planning, Friends")
     
-    meta(property="og:title" content="Free Real-Time Question Moderating")
-    meta(property="og:url" content="http://www.questioncookie.com")
+    meta(property="og:title" content="More Fun with Friends")
+    meta(property="og:url" content="http://www.zoinksapp.com")
     meta(property="og:type" content="website")
     //- meta(property="og:image" content="")
-    meta(property="og:description" content="QuestionCookie.com is a free service for event planners and educators to automatically moderate question in real time. No sign up necessary, just enter a cookie to create or find your questions.")
+    meta(property="og:description" content="Zoinks helps you easily plan camping trips, picnics, potlucks and other collaborative events with your friends.")
 
-
-    
     //- Latest compiled and minified CSS
     link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
     link(rel='stylesheet', href='//bootswatch.com/paper/bootstrap.min.css')
@@ -27,11 +25,10 @@ html(lang="en", ng-app='zoinks')
   body(ng-controller="MainCtrl")
     block body
 
-  script(src='//code.jquery.com/jquery-1.9.1.js')
-  script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-  script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
-  script(src='//code.jquery.com/ui/1.10.3/jquery-ui.js')
-
+  script(type="text/javascript", src='//code.jquery.com/jquery-1.9.1.js')
+  script(type="text/javascript", src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+  script(type="text/javascript", src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
+  script(type="text/javascript", src='//code.jquery.com/ui/1.10.3/jquery-ui.js')
 
   script(type="text/javascript", src='/vendor/angular/angular.js')
   script(type="text/javascript", src='/vendor/angular-resource/angular-resource.js')

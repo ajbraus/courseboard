@@ -4,25 +4,35 @@ DONE add invites with sockets
 DONE prevent dup invites
 DONE remove invite
 DONE add messages with sockets
-remove messages
+make each zoink a room
+remove messages - buggy with sockets
+make messages inset
 
 auth with satelitizer
 create zoink under user
 rsvp with sockets
 
-show zoink - new room
-
-
-
-make some element dark
-pretty title url
-
-archive zoink
+add users to messages
 
 set startsAt/endsat
 
-push to heroku
+add todos
+add requirements
+	claim requirements
+add carpools
+	rspv to carpools
+add costs
+	square up users to costs
 
-add todos with sockets
+archive zoink
+pretty title url
+
+MVP
+
+make ionic app (angular 2?)
+
+
+
+icebox:
+
 add images/instagram #
-

@@ -1,14 +1,14 @@
 .col-sm-9.box-shadow-left.whole-height.main.no-padding
-  .col-sm-10.col-sm-offset-1
+  .container-fluid
     h4 {{zoink.title}} 
       small.text-muted.small at 
         a(href='http://maps.google.com/?q={{zoink.location}}', target='_blank') {{zoink.location}}
     h5 {{zoink.startsAt}} - {{zoink.endsAt}}
     .row
-      .col-sm-6
+      .col-sm-7
         .card
           .card-header.clearfix
-            h5.pull-left Volunteers Needed
+            h5.pull-left Pitch In
             a.pull-right.btn.btn-link(ng-click='toggleNewRequirement()') Add
             //-  ng-hide='!rspved'
           .card-body
@@ -19,7 +19,7 @@
               .list-group-item(ng-repeat='r in zoink.requirements') {{r.body}}
         .card
           .card-header.clearfix
-            h5.pull-left Cars
+            h5.pull-left Shared Rides
             a.pull-right.btn.btn-link(ng-click='toggleNewCarpool()') Add
             //-  ng-hide='!rspved'
           .card-body
@@ -37,7 +37,18 @@
                     img.img-responsive.img-circle.pull-right.margin-sides(ng-repeat='passenger in carpool.passengers', ng-src='{{passenger.picUrl}}', width='40px')
         .card
           .card-header.clearfix
-            h5.pull-left How to Prepare
+            h5.pull-left Group Purchases
+            a.pull-right.btn.btn-link(ng-click='toggleNewPurchase()') Add
+            //-  ng-hide='!rspved'
+          .card-body
+            form(ng-submit='addPurchase()', ng-show='newPurchase')
+              .form-group
+                input.form-control(type='text', ng-model='purchase', focus-me='{{newTodo}}')
+            .list-group
+              .list-group-item(ng-repeat='purchase in zoink.purchases') {{purchase}}
+        .card
+          .card-header.clearfix
+            h5.pull-left How to Prepare & What to Bring
             a.pull-right.btn.btn-link(ng-click='toggleNewTodo()') Add
             //-  ng-hide='!rspved'
           .card-body
@@ -46,7 +57,7 @@
                 input.form-control(type='text', ng-model='todo', focus-me='{{newTodo}}')
             .list-group
               .list-group-item(ng-repeat='todo in zoink.todos') {{todo}}
-      .col-sm-6
+      .col-sm-5
         .card
           .card-header.clearfix
             h5.pull-left RSVPs

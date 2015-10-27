@@ -11,8 +11,8 @@ angular.module('zoinks', ['zoinks.filters',
                          'ngSanitize', 
                          'ngRoute'])
 
-    // .constant('HOST', 'http://localhost:1337') //DEV
-    .constant('HOST', 'http://zoinksapp.herokuapp.com') //PRODUCTION
+    .constant('HOST', 'http://localhost:1337') //DEV
+    // .constant('HOST', 'http://zoinksapp.herokuapp.com') //PRODUCTION
 
     .config(['$routeProvider', function($routeProvider) {
        $routeProvider.when('/', {

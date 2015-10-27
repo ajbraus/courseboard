@@ -22,6 +22,7 @@ var ZoinkSchema = new Schema({
   , invites     : []
   , todos       : []
   , messages    : [MessageSchema]
+  , purchases   : []
   , carpools    : []
   , reqs        : []
   , user        : { type: Number, ref: 'User' }

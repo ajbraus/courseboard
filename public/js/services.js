@@ -5,11 +5,11 @@
 
 angular.module('zoinks.services', [])
 
-  .factory('Zoink', function ($resource, HOST) {
+  .factory('Zoink', ['$resource', 'HOST', function ($resource, HOST) {
     return $resource(HOST + '/api/zoinks/:id', { id: '@id' }, {
       update: { method: 'PUT' }
     })
-  })
+  }])
 
   .factory('socket', ['socketFactory', function (socketFactory) {
     var socket = socketFactory();
@@ -49,14 +49,6 @@ angular.module('zoinks.services', [])
   }])
 
   ;
-
-
-  // .factory('Invite', function ($resource, HOST) {
-  //   return $resource(HOST + '/api/zoinks/:zoinkId/invites/:id', { zoinkId: '@zoinkId', id: '@id' }, {
-  //     update: { method: 'PUT' }
-  //   })
-  // })
-
 
   // .service('Zoink', [function() {
   //   var users = [

@@ -1,47 +1,46 @@
 nav.navbar.navbar-default
-  .container
-    .navbar-header
-      button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand(href='#/') Zoinks
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      ul.nav.navbar-nav
-        li
-          a WTF?
-        li
-          a Prices
-        li
-          a Scooby Snack
+  .navbar-header
+    button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
+      span.sr-only Toggle navigation
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    a.navbar-brand(href='#/') Zoinks
+  #bs-example-navbar-collapse-1.collapse.navbar-collapse
+    ul.nav.navbar-nav
+      li
+        a WTF?
+      li
+        a Prices
+      li
+        a Scooby Snack
 
-      
-      ul.nav.navbar-nav.navbar-right
-        a.navbar-btn.btn.btn-info(data-toggle='modal', data-target='#new-zoink') New Zoink
-        a.navbar-btn.btn.btn-info(data-toggle='modal', data-target='#login-modal', ng-hide='loggedIn') Login
-        li.dropdown(ng-show='loggedIn')
-          a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+    
+    ul.nav.navbar-nav.navbar-right
+      a.navbar-btn.btn.btn-info(data-toggle='modal', data-target='#new-zoink') New Zoink
+      a.navbar-btn.btn.btn-info(data-toggle='modal', data-target='#login-modal', ng-hide='loggedIn') Login
+      li.dropdown(ng-show='loggedIn')
+        a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
 
-            span.status {{currentUser.email}}
-            span.caret
-          ul.dropdown-menu
-            li
-              a(href='#') Action
-            li
-              a(href='#') Another action
-            li
-              a(href='#') Something else here
-            li.divider(role='separator')
-            li
-              a(ng-click='logout()') Logout
-        li.dropdown(ng-show='loggedIn')
-          a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-            | Zoinks 
-            span.caret
-          ul.dropdown-menu
-            li(ng-repeat='zoink in zoinks')
-              a(href='#/zoinks/{{zoink._id}}') {{zoink.title}}
+          span.status {{currentUser.email}}
+          span.caret
+        ul.dropdown-menu
+          li
+            a(href='#') Action
+          li
+            a(href='#') Another action
+          li
+            a(href='#') Something else here
+          li.divider(role='separator')
+          li
+            a(ng-click='logout()') Logout
+      li.dropdown
+        a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+          | Zoinks 
+          span.caret
+        ul.dropdown-menu
+          li(ng-repeat='zoink in zoinks')
+            a(href='#/zoinks/{{zoink._id}}') {{zoink.title}}
 
 #login-modal.modal.fade(tabindex='-1', role='dialog')
   .modal-dialog.modal-sm

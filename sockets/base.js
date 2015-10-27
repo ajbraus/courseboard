@@ -12,12 +12,45 @@ module.exports = function (io) {
   io.on('connection', function (socket){
     console.log('user connected');
 
+
+    // JOINING AND LEAVING ZOINK
+    function getClientCount(roomName) {
+      var room = io.sockets.adapter.rooms[roomName]; 
+      if (room) {
+        return Object.keys(room).length;  
+      } else {
+        return 0;
+      }
+    }
+    
+    // PUBLISH JOINING ROOM
+    socket.on('publish.join_room', function (data) {
+      console.log('user joined room', data.zoinkId);
+      socket.join(data.zoinkId);
+
+      var clientsCount = getClientCount(data.zoinkId)
+      //GET ROOM USER COUNT SOCKET.IO >=1.3.5
+      
+      io.sockets.in(data.roomName).emit('broadcast.join_room', clientsCount)
+    });
+
+    // PUBLISH LEAVING ROOM
+    socket.on('publish.leave_room', function (data) {
+      console.log('user left room ', data.zoinkId);
+      socket.leave(data.zoinkId);
+
+      var clientsCount = getClientCount(data.zoinkId)
+
+      io.sockets.in(data.roomName).emit('broadcast.leave_room', clientsCount)
+    });
+
+
     // INVITES
     socket.on('publish:addInvite', function (data) {
       Zoink.findById(data.zoinkId, function(err, zoink) {
         zoink.invites.push(data.email);
         zoink.save();
-        socket.emit('addInvite', data.email)
+        io.sockets.in(data.zoinkId).emit('addInvite', data.email)
       })
     })
 
@@ -26,7 +59,7 @@ module.exports = function (io) {
         var index = zoink.invites.indexOf(data.email);
         zoink.invites.splice(index, 1);
         zoink.save();
-        socket.emit('rmInvite', data)
+        io.sockets.in(data.zoinkId).emit('rmInvite', data)
       })
     })
 
@@ -35,7 +68,7 @@ module.exports = function (io) {
       Zoink.findById(data.zoinkId, function(err, zoink) {
         zoink.messages.push(data);
         zoink.save();
-        socket.emit('addMessage', data)
+        io.sockets.in(data.zoinkId).emit('addMessage', data)
       })
     })
 
@@ -44,7 +77,7 @@ module.exports = function (io) {
         var index = zoink.messages.indexOf(data.content);
         zoink.messages.splice(index, 1);
         zoink.save();
-        socket.emit('rmMessage', data.content)
+        io.sockets.in(data.zoinkId).emit('rmMessage', data.content)
       })
     })
 
@@ -54,7 +87,7 @@ module.exports = function (io) {
     socket.on('join.room', function (data) {
       console.log('user joined room');
       console.log(data);
-      io.sockets.emit('broadcast.join_room', data)
+      io.sockets.in(data.zoinkId).emit('broadcast.join_room', data)
     });
 
     socket.on('publish.comment', function (data) {
@@ -67,9 +100,9 @@ module.exports = function (io) {
         post.save(function (err, post) {
           if(err) { 
             console.log(err) 
-            return io.sockets.emit('error', comment); 
+            return io.sockets.in(data.zoinkId).emit('error', comment); 
           }
-          return io.sockets.emit('broadcast.comment', post);
+          return io.sockets.in(data.zoinkId).emit('broadcast.comment', post);
         })
       })
     });
@@ -87,10 +120,10 @@ module.exports = function (io) {
         if (err) { 
           console.log(err);
           // io('/my-namespace')
-          return io.sockets.emit('error', post); 
+          return io.sockets.in(data.zoinkId).emit('error', post); 
         }
 
-        io.sockets.emit('broadcast.post', post);
+        io.sockets.in(data.zoinkId).emit('broadcast.post', post);
       });
     });
 
@@ -100,9 +133,9 @@ module.exports = function (io) {
         console.log(post)
         if (err) { 
           console.log(err);
-          return io.sockets.emit('error', post); 
+          return io.sockets.in(data.zoinkId).emit('error', post); 
         }
-        io.sockets.emit('broadcast.vote_up', post);
+        io.sockets.in(data.zoinkId).emit('broadcast.vote_up', post);
       });
     });
 
@@ -111,15 +144,15 @@ module.exports = function (io) {
         console.log(post)
         if (err) { 
           console.log(err);
-          return io.sockets.emit('error', post); 
+          return io.sockets.in(data.zoinkId).emit('error', post); 
         }
-        io.sockets.emit('broadcast.vote_down', post);
+        io.sockets.in(data.zoinkId).emit('broadcast.vote_down', post);
       });
     });
 
     socket.on('disconnect', function (data) {
       console.log('user disconnected');
-      io.sockets.emit('broadcast.user_disconnected', data)
+      io.sockets.in(data.zoinkId).emit('broadcast.user_disconnected', data)
     });
   });
 }
