@@ -1,7 +1,7 @@
 /*
  * SERVER.JS
  */
-
+ 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var config = require('./config')
@@ -12,6 +12,8 @@ var config = require('./config')
   , bodyParser = require('body-parser')
   , flash = require('connect-flash')
   , session = require('express-session')
+  , cors = require('cors')
+  , logger = require('morgan')
   , server = app.listen(config.port)
   , io = require('socket.io').listen(server)
   , mongoose  = require('mongoose');
@@ -19,10 +21,12 @@ var config = require('./config')
 
   mongoose.connect(config.db);
 
-// app.use(express.static(__dirname + '/public'));
-app.use("/", express.static(path.join(__dirname, 'public')));
+  // app.use(express.static(__dirname + '/public'));
+  app.use("/", express.static(path.join(__dirname, 'public')));
+  app.use(cors());
+  app.use(logger('dev'));
 
-require('./sockets/base')(io);
+  require('./sockets/base')(io);
 
 app.use(flash());
 app.use(session({
@@ -46,6 +50,7 @@ app.set('view options', {
 app.get('/', resources.index);
 app.get('/templates/:name', resources.templates);
 require('./resources/zoinks')(app);
+require('./resources/users')(app);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', resources.index);

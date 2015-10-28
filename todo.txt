@@ -31,7 +31,7 @@ MVP
 
 make ionic app (angular 2?)
 
-
+like zoinks: div(class="fb-like", data-share="true", data-width="450", data-show-faces="true")
 
 icebox:
 

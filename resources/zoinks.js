@@ -25,7 +25,7 @@ module.exports = function(app) {
   app.post('/api/zoinks', function (req, res) {
     var zoink = new Zoink(req.body);
     zoink.save(function (err, zoink) {
-      if (err) { return res.send(err) };
+      if (err) { return res.status(200).send(err) };
       res.status(201).json(zoink); 
     });
   });

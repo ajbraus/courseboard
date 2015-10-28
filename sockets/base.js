@@ -24,24 +24,24 @@ module.exports = function (io) {
     }
     
     // PUBLISH JOINING ROOM
-    socket.on('publish.join_room', function (data) {
-      console.log('user joined room', data.zoinkId);
-      socket.join(data.zoinkId);
+    socket.on('publish:joinRoom', function (data) {
+      console.log('user joined room', data._id);
+      socket.join(data._id);
 
-      var clientsCount = getClientCount(data.zoinkId)
+      var clientsCount = getClientCount(data._id)
       //GET ROOM USER COUNT SOCKET.IO >=1.3.5
-      
-      io.sockets.in(data.roomName).emit('broadcast.join_room', clientsCount)
+      console.log(clientsCount)
+      io.sockets.in(data._id).emit('joinRoom', clientsCount)
     });
 
     // PUBLISH LEAVING ROOM
-    socket.on('publish.leave_room', function (data) {
-      console.log('user left room ', data.zoinkId);
-      socket.leave(data.zoinkId);
+    socket.on('publish:leaveRoom', function (data) {
+      console.log('user left room ', data._id);
+      socket.leave(data._id);
 
-      var clientsCount = getClientCount(data.zoinkId)
+      var clientsCount = getClientCount(data._id)
 
-      io.sockets.in(data.roomName).emit('broadcast.leave_room', clientsCount)
+      io.sockets.in(data._id).emit('leaveRoom', clientsCount)
     });
 
 
@@ -49,8 +49,10 @@ module.exports = function (io) {
     socket.on('publish:addInvite', function (data) {
       Zoink.findById(data.zoinkId, function(err, zoink) {
         zoink.invites.push(data.email);
-        zoink.save();
-        io.sockets.in(data.zoinkId).emit('addInvite', data.email)
+        zoink.save(function(err) {
+          console.log(err)
+          io.sockets.in(data.zoinkId).emit('addInvite', data.email)
+        });
       })
     })
 
@@ -90,7 +92,7 @@ module.exports = function (io) {
       io.sockets.in(data.zoinkId).emit('broadcast.join_room', data)
     });
 
-    socket.on('publish.comment', function (data) {
+    socket.on('publish:comment', function (data) {
       console.log(data);
       Zoink.findById(data.post_id, function (err, post) {
         console.log(post);
@@ -108,7 +110,7 @@ module.exports = function (io) {
     });
     
     // PUBLISH POST
-    socket.on('publish.post', function (data) {
+    socket.on('publish:post', function (data) {
       console.log(data);
       var post = new Zoink({
           body: data.body

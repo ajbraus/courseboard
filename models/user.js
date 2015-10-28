@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    crypto = require('crypto'),
+    bcrypt = require('bcryptjs'),
     Schema = mongoose.Schema;
 
 // GETTER
@@ -14,6 +14,8 @@ var UserSchema = new Schema({
   , email       : { type: String, required: true, unique: true, trim: true, set: toLower }
   , first       : { type: String, required: true, trim: true }
   , last        : { type: String, required: true, trim: true }
+  , facebook: String
+  , google: String
   , password    : String
   , provider: String
   , providerId: String
@@ -37,17 +39,25 @@ UserSchema.pre('save', function(next){
 
   // ENCRYPT PASSWORD
   if (this.password) {
-    var md5 = crypto.createHash('md5');
-    this.password = md5.update(this.password).digest('hex');
+    var user = this;
+    if (!user.isModified('password')) {
+      return next();
+    }
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(user.password, salt, function(err, hash) {
+        user.password = hash;
+        next();
+      });
+    });
   }
   next();
 });
 
-UserSchema.methods.authenticate = function(password) {
-  var md5 = crypto.createHash('md5');
-  md5 = md5.update(password).digest('hex');
 
-  return this.password === md5;
+UserSchema.methods.comparePassword = function(password, done) {
+  bcrypt.compare(password, this.password, function(err, isMatch) {
+    done(err, isMatch);
+  });
 };
 
 UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {

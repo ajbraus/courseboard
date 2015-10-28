@@ -23,6 +23,22 @@ html(lang="en", ng-app='zoinks')
     //- link(rel='stylesheet', href='/vendor/ionicons/css/ionicons.css')
 
   body(ng-controller="MainCtrl")
+    script.
+      window.fbAsyncInit = function() {
+      FB.init({
+      appId      : '1184762851540712',
+      xfbml      : true,
+      version    : 'v2.5'
+      });
+      };
+      (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+      
     block body
 
   script(type="text/javascript", src='//code.jquery.com/jquery-1.9.1.js')
@@ -40,6 +56,7 @@ html(lang="en", ng-app='zoinks')
   script(type="text/javascript", src='/vendor/moment/moment.js')
   script(type="text/javascript", src='/vendor/angular-moment/angular-moment.js')
   script(type="text/javascript", src='/vendor/lodash/lodash.min.js')
+  script(type="text/javascript", src='/vendor/satellizer/satellizer.min.js')
   script(type="text/javascript", src='/js/app.js')
   script(type="text/javascript", src='/js/services.js')
   script(type="text/javascript", src='/js/controllers.js')

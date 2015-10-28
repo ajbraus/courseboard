@@ -13,8 +13,8 @@ angular.module('zoinks.services', [])
 
   .factory('socket', ['socketFactory', function (socketFactory) {
     var socket = socketFactory();
-    // socket.forward('join_room')
-    // socket.forward('leave_room')
+    socket.forward('joinRoom')
+    socket.forward('leaveRoom')
     socket.forward('addInvite');
     socket.forward('rmInvite');
     socket.forward('addMessage');
@@ -22,30 +22,15 @@ angular.module('zoinks.services', [])
     return socket
   }])
 
-  .service("Auth", ['$rootScope', function($rootScope) {
+  .service("Auth", ['$rootScope', '$http', function($rootScope, $http) {
     return {
-      isLoggedIn: function() {
-        if (false) {
-          console.log("User " + authData.uid + " is logged in with " + authData.provider)
-          return authData
-        } else {
-          console.log("User is logged out");
-          return false
-        }
+      currentUser: function() {
+        return $http.get('/api/me');
       },
-      assertValidLoginAttempt: function(user) {
-         if(!user.email) {
-            return 'Please enter an email address';
-         }
-         else if(!user.password) {
-            return 'Please enter a password';
-         }
-         else if(user.signupMode && (user.password !== user.confirm) ) {
-            return 'Passwords do not match';
-         }
-         return true
+      updateCurrentUser: function(profileData) {
+        return $http.put('/api/me', profileData);
       }
-    }
+    };
   }])
 
   ;

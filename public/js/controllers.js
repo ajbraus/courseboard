@@ -3,13 +3,14 @@
 /* Controllers */
 
 angular.module('zoinks.controllers', [])
-  .controller('MainCtrl', ['$scope', '$rootScope', '$location', 'Auth', 'Zoink',  function($scope, $rootScope, $location, Auth, Zoink) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$location', 'Auth', 'Zoink', '$auth',  function($scope, $rootScope, $location, Auth, Zoink, $auth) {
     // ZOINKS
     $scope.zoinks = Zoink.query();
 
     // NEW ZOINK
     $scope.zoink = {};
-    var currentUser = Auth.isLoggedIn();
+    var currentUser = Auth.currentUser();
+    console.log(currentUser)
 
     $scope.createZoink = function() {
       console.log('hello')
@@ -24,69 +25,71 @@ angular.module('zoinks.controllers', [])
     $scope.signupMode = false;
     $scope.user = {};
 
-    Auth.isLoggedIn();
+    $scope.isAuthenticated = function() {
+      return $auth.isAuthenticated();
+    };
+
+    $scope.loggedIn = $scope.isAuthenticated();
 
     $rootScope.$on('loggedIn', function() {
       $scope.loggedIn = true;
-    })
+    });
 
-    $scope.login = function() {
-       $scope.err = null;
-       console.log('logging in')
-
-       if (Auth.assertValidLoginAttempt($scope.user)) {
-          ref.authWithPassword($scope.user, function(error, authData) {
-            if (error) { 
-              $scope.err = Auth.handleAuthError(error);
-            } else {
-              $rootScope.$broadcast('loggedIn');
-              $scope.$apply(function() {
-                $('#login-modal').modal('hide');
-              });
-            }
-          });
-       }
+    $scope.signup = function() {
+      $auth.signup($scope.user)
+        .then(function(response) {
+          $auth.setToken(response);
+          $location.path('/');
+          // toastr.info('You have successfully created a new account and have been signed-in');
+        })
+        .catch(function(response) {
+          // toastr.error(response.data.message);
+        });
     };
 
-    $scope.createAccount = function() {
-      $scope.err = Auth.assertValidLoginAttempt($scope.user);
-
-      if (!$scope.err) {
-        ref.createUser({
-          email: $scope.user.email,
-          password: $scope.user.password
-        }, function(error, userData) {
-          if (error) {
-            $scope.err = Auth.handleAuthError(error);
-          } else {
-            console.log("Successfully created user account with uid:", userData.uid);
-            ref.authWithPassword({
-              email: $scope.user.email,
-              password: $scope.user.password
-            }, function(error, authData) {
-              Auth.isLoggedIn(authData);
-              $scope.$apply(function() {
-                $('#login-modal').modal('hide');
-              });
-            })
-          }
+    $scope.login = function() {
+      $auth.login($scope.user)
+        .then(function() {
+          // toastr.success('You have successfully signed in');
+          $rootScope.$broadcast('loggedIn');
+          $scope.$apply(function() {
+            $('#login-modal').modal('hide');
+          });
+        })
+        .catch(function(response) {
+          // toastr.error(response.data.message, response.status);
         });
-      }
+    };
+
+    $scope.authenticate = function(provider) {
+      $auth.authenticate(provider)
+        .then(function() {
+          // toastr.success('You have successfully signed in with ' + provider);
+          $location.path('/');
+        })
+        .catch(function(response) {
+          // toastr.error(response.data.message);
+        });
     };
 
     $scope.logout = function() {
-       ref.unauth();
-       $scope.loggedIn = false
+      $auth.logout()
+        .then(function() {
+          // toastr.info('You have been logged out');
+          $location.path('/');
+        });
     };
-
-    $scope.toggleSidenav = function() {
-       $scope.$broadcast('toggleSidenav');
-    }
   }])
 
   .controller('ZoinkShowCtrl', ['$scope', '$routeParams', 'Zoink', 'Auth', 'socket', function($scope, $routeParams, Zoink, Auth, socket) {
-    $scope.zoink = Zoink.get({ id: $routeParams.id });
+    Zoink.get({ id: $routeParams.id }, function(data) {
+      $scope.zoink = data
+      socket.emit('publish:joinRoom', $scope.zoink);
+    });
 
+    $scope.$on('socket:joinRoom', function (event, clientsCount) {
+      $scope.clientsCount = clientsCount;
+    })
 
     // INVITES
 

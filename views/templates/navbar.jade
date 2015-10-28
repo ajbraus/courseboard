@@ -53,6 +53,8 @@ nav.navbar.navbar-default
           span(ng-show='signupMode') Register
       .modal-body
         .alert.alert-danger(ng-show='err') {{err}}
+        button(ng-click="authenticate('facebook')") Sign in with Facebook
+        button(ng-click="authenticate('google')") Sign in with Google
         form
           .form-group
             label(for='') Email
