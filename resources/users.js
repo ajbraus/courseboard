@@ -33,7 +33,7 @@ module.exports = function(app) {
     var payload = {
       sub: user._id,
       iat: moment().unix(),
-      exp: moment().add(5, 'seconds').unix()
+      exp: moment().add(14, 'days').unix()
     };
     console.log(jwt.encode(payload, config.TOKEN_SECRET));
     return jwt.encode(payload, config.TOKEN_SECRET);
@@ -78,7 +78,7 @@ module.exports = function(app) {
         return res.status(409).send({ message: 'Email is already taken' });
       }
       var user = new User({
-        displayName: req.body.displayName,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password
       });

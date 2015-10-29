@@ -4,7 +4,6 @@
 angular.module('zoinks', ['zoinks.filters', 
                          'zoinks.services', 
                          'zoinks.directives', 
-                         'zoinks.controllers',
                          'ngResource',
                          'ngTouch', 
                          'btford.socket-io',
@@ -32,7 +31,7 @@ angular.module('zoinks', ['zoinks.filters',
         clientId: '1184762851540712'
       });
       $authProvider.google({
-        clientId: 'Google Client ID'
+        clientId: '1018771082011-nrcc6ejmh0n2coh166fdmncch5dnhj9q.apps.googleusercontent.com'
       });
 
       // Facebook

@@ -4,11 +4,17 @@ DONE add invites with sockets
 DONE prevent dup invites
 DONE remove invite
 DONE add messages with sockets
-make each zoink a room
+DONE make each zoink a room
+auth with satelitizer
+  DONE Facebook
+  DONE Google
+  Email
+Associate new zoink with creator
+  rsvp creator
+
 remove messages - buggy with sockets
 make messages inset
 
-auth with satelitizer
 create zoink under user
 rsvp with sockets
 
