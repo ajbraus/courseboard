@@ -10,11 +10,12 @@ module.exports = function (io) {
   // io.set('origins', '*localhost:1337');
   
   io.on('connection', function (socket){
-    console.log('user connected');
-
-
+    // console.log('user connected');
+    
     // JOINING AND LEAVING ZOINK
+    
     function getClientCount(roomName) {
+      //GET ROOM USER COUNT SOCKET.IO >=1.3.5
       var room = io.sockets.adapter.rooms[roomName]; 
       if (room) {
         return Object.keys(room).length;  
@@ -25,12 +26,11 @@ module.exports = function (io) {
     
     // PUBLISH JOINING ROOM
     socket.on('publish:joinRoom', function (data) {
-      console.log('user joined room', data._id);
+      // console.log('user joined room', data._id);
       socket.join(data._id);
 
       var clientsCount = getClientCount(data._id)
-      //GET ROOM USER COUNT SOCKET.IO >=1.3.5
-      console.log(clientsCount)
+      
       io.sockets.in(data._id).emit('joinRoom', clientsCount)
     });
 
@@ -153,7 +153,7 @@ module.exports = function (io) {
     });
 
     socket.on('disconnect', function (data) {
-      console.log('user disconnected');
+      // console.log('user disconnected');
       io.sockets.in(data.zoinkId).emit('broadcast.user_disconnected', data)
     });
   });

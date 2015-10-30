@@ -26,6 +26,7 @@ angular.module('zoinks', ['zoinks.filters',
 
       $routeProvider.otherwise({redirectTo: '/'});
     }])
+    
     .config(function($authProvider) {
       $authProvider.facebook({
         clientId: '1184762851540712'

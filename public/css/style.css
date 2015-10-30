@@ -10,6 +10,15 @@
 .jumbotron {
   padding:100px 0 130px 0;
 }
+
+.navbar-right {
+    margin-right: 0;
+}
+
+.btn-toolbar{
+  display: inline-block;
+}​
+
 a{
     cursor: pointer;
 }

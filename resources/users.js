@@ -4,49 +4,20 @@ var User = require('../models/user.js')
   , jwt = require('jwt-simple')
   , request = require('request')
   , config = require('../config.js')
-  , moment = require('moment');
+  , moment = require('moment')
+  , auth = require('./auth'); 
 
 module.exports = function(app) {
 
-  function ensureAuthenticated(req, res, next) {
-    if (!req.headers.authorization) {
-      return res.status(401).send({ message: 'Please make sure your request has an Authorization header' });
-    }
-    var token = req.headers.authorization.split(' ')[1];
-
-    var payload = null;
-    try {
-      payload = jwt.decode(token, config.TOKEN_SECRET);
-    }
-    catch (err) {
-      return res.status(401).send({ message: err.message });
-    }
-
-    if (payload.exp <= moment().unix()) {
-      return res.status(401).send({ message: 'Token has expired' });
-    }
-    req.user = payload.sub;
-    next();
-  }
-
-  function createJWT(user) {
-    var payload = {
-      sub: user._id,
-      iat: moment().unix(),
-      exp: moment().add(14, 'days').unix()
-    };
-    console.log(jwt.encode(payload, config.TOKEN_SECRET));
-    return jwt.encode(payload, config.TOKEN_SECRET);
-  }
-
-  app.get('/api/me', ensureAuthenticated, function(req, res) {
-    User.findById(req.user, function(err, user) {
+  app.get('/api/me', auth.ensureAuthenticated, function(req, res) {
+    User.findById(req.userId, function(err, user) {
+      console.log(user)
       res.send(user);
     });
   });
 
-  app.put('/api/me', ensureAuthenticated, function(req, res) {
-    User.findById(req.user, function(err, user) {
+  app.put('/api/me', auth.ensureAuthenticated, function(req, res) {
+    User.findById(req.userId, function(err, user) {
       if (!user) {
         return res.status(400).send({ message: 'User not found' });
       }
@@ -67,7 +38,7 @@ module.exports = function(app) {
         if (!isMatch) {
           return res.status(401).send({ message: 'Wrong email and/or password' });
         }
-        res.send({ token: createJWT(user) });
+        res.send({ token: auth.createJWT(user) });
       });
     });
   });
@@ -83,7 +54,7 @@ module.exports = function(app) {
         password: req.body.password
       });
       user.save(function() {
-        res.send({ token: createJWT(user) });
+        res.send({ token: auth.createJWT(user) });
       });
     });
   });
@@ -125,7 +96,7 @@ module.exports = function(app) {
               user.picture = user.picture || 'https://graph.facebook.com/v2.3/' + profile.id + '/picture?type=large';
               user.displayName = user.displayName || profile.name;
               user.save(function() {
-                var token = createJWT(user);
+                var token = auth.createJWT(user);
                 res.send({ token: token });
               });
             });
@@ -134,15 +105,19 @@ module.exports = function(app) {
           // Step 3b. Create a new user account or return an existing one.
           User.findOne({ facebook: profile.id }, function(err, existingUser) {
             if (existingUser) {
-              var token = createJWT(existingUser);
+              var token = auth.createJWT(existingUser);
               return res.send({ token: token });
             }
             var user = new User();
             user.facebook = profile.id;
+            user.email = profile.email;
             user.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
             user.username = profile.name[0];
-            user.save(function() {
-              var token = createJWT(user);
+            user.first = profile.first_name;
+            user.last = profile.last_name;
+            user.save(function (err) {
+              if (err) { return res.status(400).send({ message: "there was an err: " + err})}
+              var token = auth.createJWT(user);
               res.send({ token: token });
             });
           });
@@ -188,7 +163,7 @@ module.exports = function(app) {
               user.picture = user.picture || profile.picture.replace('sz=50', 'sz=200');
               user.displayName = user.displayName || profile.name;
               user.save(function() {
-                var token = createJWT(user);
+                var token = auth.createJWT(user);
                 res.send({ token: token });
               });
             });
@@ -197,14 +172,14 @@ module.exports = function(app) {
           // Step 3b. Create a new user account or return an existing one.
           User.findOne({ google: profile.sub }, function(err, existingUser) {
             if (existingUser) {
-              return res.send({ token: createJWT(existingUser) });
+              return res.send({ token: auth.createJWT(existingUser) });
             }
             var user = new User();
             user.google = profile.sub;
             user.picture = profile.picture.replace('sz=50', 'sz=200');
             user.displayName = profile.name;
             user.save(function(err) {
-              var token = createJWT(user);
+              var token = auth.createJWT(user);
               res.send({ token: token });
             });
           });

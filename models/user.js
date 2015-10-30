@@ -8,20 +8,16 @@ function toLower (v) {
 }
 
 var UserSchema = new Schema({
-    created_at  : { type: Date }
-  , updated_at  : { type: Date }
-  , username    : { type: String, required: true, unique: true, trim: true, set: toLower }
-  , email       : { type: String, required: true, unique: true, trim: true, set: toLower }
-  , first       : { type: String, required: true, trim: true }
-  , last        : { type: String, required: true, trim: true }
-  , facebook: String
-  , google: String
-  , password    : String
-  , provider: String
-  , providerId: String
-  , providerData: {}
-  , todos: {}
-
+    created_at    : { type: Date }
+  , updated_at    : { type: Date }
+  , first         : { type: String, required: true, trim: true }
+  , last          : { type: String, required: true, trim: true }
+  , picture       : { type: String, required: true }
+  , username      : { type: String, required: true, unique: true, trim: true, set: toLower }
+  , email         : { type: String, required: true, unique: true, trim: true, set: toLower }
+  , password      : { type: String, trip: true, select: false }
+  , facebook      : String
+  , google        : String
 })
 
 UserSchema.virtual('fullname').get(function() {

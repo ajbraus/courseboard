@@ -9,8 +9,6 @@ angular.module('zoinks')
 
     // NEW ZOINK
     $scope.zoink = {};
-    var currentUser = Auth.currentUser();
-    console.log(currentUser)
 
     $scope.createZoink = function() {
       console.log('hello')
@@ -26,7 +24,7 @@ angular.module('zoinks')
     $scope.user = {};
 
     $scope.isAuthenticated = function() {
-      console.log($auth.isAuthenticated())
+      console.log("loggedin?: ", $auth.isAuthenticated())
       return $auth.isAuthenticated();
     };
 
@@ -35,6 +33,7 @@ angular.module('zoinks')
     $rootScope.$on('loggedIn', function() {
       $scope.loggedIn = true;
     });
+    console.log(Auth.currentUser())
 
     $scope.signup = function() {
       $auth.signup($scope.user)

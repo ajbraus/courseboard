@@ -7,43 +7,45 @@ var mongoose = require('mongoose'),
 
 var MessageSchema = new Schema({
     content     : { type: String, required: true }
-  , author      : {}
-  , created_at  : { type: Date }
-  , updated_at  : { type: Date }
+  , authorName  : { type: String, required: true }
+  , authorPic   : { type: String, required: true }
+  , createdAt   : { type: Date }
+  , updatedAt   : { type: Date }
 });
 
 var ZoinkSchema = new Schema({
-    created_at  : { type: Date }
-  , updated_at  : { type: Date }
+    user        : { type : Schema.Types.ObjectId, ref : 'User' }
+  , createdAt   : { type: Date }
+  , updatedAt   : { type: Date }
   , title       : { type: String, required: true, trim: true }
   , location    : String
   , startsAt    : Date
   , endsAt      : Date
   , invites     : []
+  , rsvps       : [{ type : Schema.Types.ObjectId, ref : 'User' }]
   , todos       : []
   , messages    : [MessageSchema]
   , purchases   : []
   , carpools    : []
   , reqs        : []
-  , user        : { type: Number, ref: 'User' }
 });
 
 MessageSchema.pre('save', function(next){
-  // SET CREATED_AT AND UPDATED_AT
+  // SET createdAt AND updatedAt
   now = new Date();
-  this.updated_at = now;
-  if ( !this.created_at ) {
-    this.created_at = now;
+  this.updatedAt = now;
+  if ( !this.createdAt ) {
+    this.createdAt = now;
   }
   next();
 });
 
 ZoinkSchema.pre('save', function(next){
-  // SET CREATED_AT AND UPDATED_AT
+  // SET createdAt AND updatedAt
   now = new Date();
-  this.updated_at = now;
-  if ( !this.created_at ) {
-    this.created_at = now;
+  this.updatedAt = now;
+  if ( !this.createdAt ) {
+    this.createdAt = now;
   }
   next();
 });
