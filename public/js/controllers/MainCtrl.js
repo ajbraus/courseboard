@@ -40,7 +40,10 @@ angular.module('zoinks')
       $auth.signup($scope.user)
         .then(function(response) {
           $auth.setToken(response);
-          $location.path('/');
+          $rootScope.$broadcast('loggedIn');
+          $scope.$apply(function() {
+            $('#login-modal').modal('hide');
+          });
           // toastr.info('You have successfully created a new account and have been signed-in');
         })
         .catch(function(response) {
@@ -52,6 +55,7 @@ angular.module('zoinks')
       $auth.login($scope.user)
         .then(function() {
           // toastr.success('You have successfully signed in');
+          $auth.setToken(response);
           $rootScope.$broadcast('loggedIn');
           $scope.$apply(function() {
             $('#login-modal').modal('hide');
@@ -78,6 +82,7 @@ angular.module('zoinks')
       $auth.logout()
         .then(function() {
           // toastr.info('You have been logged out');
+          $auth.removeToken();
           $scope.loggedIn = $scope.isAuthenticated();
         });
     };
