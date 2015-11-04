@@ -22,17 +22,6 @@ angular.module('zoinks.services', [])
     return socket
   }])
 
-  .service("Auth", ['$rootScope', '$http', function($rootScope, $http) {
-    return {
-      currentUser: function() {
-        return $http.get('/api/me');
-      },
-      updateCurrentUser: function(profileData) {
-        return $http.put('/api/me', profileData);
-      }
-    };
-  }])
-
   ;
 
   // .service('Zoink', [function() {

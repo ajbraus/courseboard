@@ -36,6 +36,7 @@
     "express": "^4.10.7",
     "express-logger": "0.0.3",
     "express-ls-routes": "^1.0.2",
+    "express-mailer": "^0.3.0",
     "express-partials": "^0.3.0",
     "express-path": "^0.3.8",
     "express-session": "^1.11.1",

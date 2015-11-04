@@ -6,21 +6,26 @@ DONE remove invite
 DONE add messages with sockets
 DONE make each zoink a room
 
-auth with satelitizer
-  Email
-  Facebook
-  Google
-    fix user creation in google auth
-    make sure saving picture
-  make it so facebook and google add together on to email login
-  	not setting password with fb or google auth
-  auth error handling - overall better error handling 
-  
+auth with satellizer
+  DONE Email
+  DONE Facebook
+  DONE Google
+
+login with email not working
+
+solution for profile pic when signing up with email
+linking fb or g+
+go to settings form after authenticating
+auth error handling - overall better error handling 
+
 DONE Associate new zoink with creator
   DONE rsvp creator
 
 allow to rsvp if invited
 rsvp with sockets
+
+improve email templates - include variables
+  welcome 
 
 1. create zoink
 2. invite test user

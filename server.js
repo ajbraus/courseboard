@@ -16,8 +16,8 @@ var config = require('./config')
   , logger = require('morgan')
   , server = app.listen(config.port)
   , io = require('socket.io').listen(server)
-  , mongoose  = require('mongoose');
-  
+  , mongoose  = require('mongoose')
+  , mailer = require('express-mailer');
 
 mongoose.connect(config.db);
 // app.use(express.static(__dirname + '/public'));
@@ -30,13 +30,25 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+mailer.extend(app, {
+  from: 'no-reply@zoinksapp.com',
+  host: 'smtp.gmail.com', // hostname 
+  secureConnection: true, // use SSL 
+  port: 465, // port for secure SMTP 
+  transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts 
+  auth: {
+    user: 'zoinksapp@gmail.com',
+    pass: config.emailpass
+  }
+});
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.set('view options', {
   layout: false
 });
 
-require('./sockets/base')(io);
+require('./sockets/base')(io, app);
 
 // RESOURCES
 app.get('/', resources.index);

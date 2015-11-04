@@ -3,11 +3,12 @@
  */
 
 var Zoink = require('../models/zoink.js')
+var config = require('../config') 
 
 'use strict';
 
-module.exports = function (io) {  
-  // io.set('origins', '*localhost:1337');
+module.exports = function (io, app) {  
+  // io.set('forigins', '*localhost:1337');
   
   io.on('connection', function (socket){
     // console.log('user connected');
@@ -50,7 +51,16 @@ module.exports = function (io) {
       Zoink.findById(data.zoinkId, function(err, zoink) {
         zoink.invites.push(data.email);
         zoink.save(function(err) {
-          console.log(err)
+          
+          // SEND INVITE EMAIL
+          app.mailer.send('emails/new-invite', {
+            to: data.email, // REQUIRED. This can be a comma delimited string just like a normal email to field.  
+            subject: 'Zoinks! A New Invite', // REQUIRED. 
+            zoink: zoink  // All additional properties are also passed to the template as local variables. 
+          }, function (err) {
+            if (err) { console.log(err); return }
+          });
+
           io.sockets.in(data.zoinkId).emit('addInvite', data.email)
         });
       })

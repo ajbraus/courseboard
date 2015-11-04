@@ -15,12 +15,12 @@ var MessageSchema = new Schema({
 
 var ZoinkSchema = new Schema({
     user        : { type : Schema.Types.ObjectId, ref : 'User' }
-  , createdAt   : { type: Date }
-  , updatedAt   : { type: Date }
-  , title       : { type: String, required: true, trim: true }
+  , createdAt   : Date
+  , updatedAt   : Date
   , location    : String
   , startsAt    : Date
   , endsAt      : Date
+  , title       : { type: String, required: true, trim: true }
   , invites     : []
   , rsvps       : [{ type : Schema.Types.ObjectId, ref : 'User' }]
   , todos       : []

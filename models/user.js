@@ -10,10 +10,10 @@ function toLower (v) {
 var UserSchema = new Schema({
     created_at    : { type: Date }
   , updated_at    : { type: Date }
-  , first         : { type: String, required: true, trim: true }
-  , last          : { type: String, required: true, trim: true }
+  , first         : { type: String, trim: true }
+  , last          : { type: String, trim: true }
   , picture       : { type: String, required: true }
-  , username      : { type: String, required: true, unique: true, trim: true, set: toLower }
+  , displayName   : { type: String, required: true, unique: true, trim: true, set: toLower }
   , email         : { type: String, required: true, unique: true, trim: true, set: toLower }
   , password      : { type: String, trip: true, select: false }
   , facebook      : String
@@ -56,19 +56,19 @@ UserSchema.methods.comparePassword = function(password, done) {
   });
 };
 
-UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
+UserSchema.statics.findUniqueUsername = function(displayName, suffix, callback) {
   var _this = this;
-  var possibleUsername = username + (suffix || '');
+  var possibleUsername = displayName + (suffix || '');
 
   _this.findOne(
-    {username: possibleUsername},
+    {displayName: possibleUsername},
     function(err, user) {
       if (!err) {
         if (!user) {
           callback(possibleUsername);
         }
         else {
-          return _this.findUniqueUsername(username, (suffix || 0) + 1, callback);
+          return _this.findUniqueUsername(displayName, (suffix || 0) + 1, callback);
         }
       }
       else {

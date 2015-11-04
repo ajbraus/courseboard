@@ -49,11 +49,22 @@ module.exports = function(app) {
         return res.status(409).send({ message: 'Email is already taken' });
       }
       var user = new User({
-        username: req.body.username,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        displayName: req.body.displayName,
+        picture: "http://placehold.it/50x50"
       });
-      user.save(function() {
+      user.save(function(err) {
+        if (err) { return res.status(400).send({err: err}) }
+
+        // SEND WELCOME EMAIL
+        app.mailer.send('emails/welcome', {
+          to: user.email,
+          subject: 'Welcome to Zoinks!'
+        }, function (err) {
+          if (err) { console.log(err); return }
+        });
+
         res.send({ token: auth.createJWT(user) });
       });
     });
@@ -80,21 +91,30 @@ module.exports = function(app) {
         if (response.statusCode !== 200) {
           return res.status(500).send({ message: profile.error.message });
         }
-        console.log(profile);
+
+        // if token present (logged in already)
         if (req.headers.authorization) {
+          // look up user with facebook profile
           User.findOne({ facebook: profile.id }, function(err, existingUser) {
             if (existingUser) {
+              // if user found, refresh the token with this user and send it back
               return res.status(409).send({ message: 'There is already a Facebook account that belongs to you' });
-            }
+            } // else use the token to find the user by their id
             var token = req.headers.authorization.split(' ')[1];
             var payload = jwt.decode(token, config.TOKEN_SECRET);
+            
+            console.log("payload:", payload.sub);
             User.findById(payload.sub, function(err, user) {
+              // user does not exist from token id 
               if (!user) {
-                return res.status(400).send({ message: 'User not found' });
+                // try to find the 
+                if (!user) { return res.status(400).send({ message: 'User not found' }) };
               }
               user.facebook = profile.id;
               user.picture = user.picture || 'https://graph.facebook.com/v2.3/' + profile.id + '/picture?type=large';
               user.displayName = user.displayName || profile.name;
+              user.first = profile.first_name;
+              user.last = profile.last_name;
               user.save(function() {
                 var token = auth.createJWT(user);
                 res.send({ token: token });
@@ -112,7 +132,7 @@ module.exports = function(app) {
             user.facebook = profile.id;
             user.email = profile.email;
             user.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
-            user.username = profile.name[0];
+            user.displayName = profile.name[0];
             user.first = profile.first_name;
             user.last = profile.last_name;
             user.save(function (err) {
@@ -141,14 +161,16 @@ module.exports = function(app) {
     request.post(accessTokenUrl, { json: true, form: params }, function(err, response, token) {
       var accessToken = token.access_token;
       var headers = { Authorization: 'Bearer ' + accessToken };
-
+      console.log("accessToken", accessToken);
       // Step 2. Retrieve profile information about the current user.
       request.get({ url: peopleApiUrl, headers: headers, json: true }, function(err, response, profile) {
+        console.log("profile:", profile)
         if (profile.error) {
           return res.status(500).send({message: profile.error.message});
         }
         // Step 3a. Link user accounts.
         if (req.headers.authorization) {
+          console.log('linking google account')
           User.findOne({ google: profile.sub }, function(err, existingUser) {
             if (existingUser) {
               return res.status(409).send({ message: 'There is already a Google account that belongs to you' });
@@ -174,11 +196,16 @@ module.exports = function(app) {
             if (existingUser) {
               return res.send({ token: auth.createJWT(existingUser) });
             }
+            console.log('creating new user from google profile')
             var user = new User();
             user.google = profile.sub;
+            user.first = profile.given_name;
+            user.last = profile.family_name;
             user.picture = profile.picture.replace('sz=50', 'sz=200');
             user.displayName = profile.name;
+            user.email = profile.email;
             user.save(function(err) {
+              console.log('err:', err);
               var token = auth.createJWT(user);
               res.send({ token: token });
             });

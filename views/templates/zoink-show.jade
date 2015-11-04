@@ -3,7 +3,11 @@
     h4 {{zoink.title}} 
       small.text-muted.small at 
         a(href='http://maps.google.com/?q={{zoink.location}}', target='_blank') {{zoink.location}}
-    h5 {{zoink.startsAt}} - {{zoink.endsAt}}
+    b Starts At 
+    {{zoink.startsAt | date:'EEE MMM d, h:mma'}}
+    br
+    b Ends At 
+    {{zoink.endsAt | date:'EEE MMM d, h:mma'}}
     .row
       .col-sm-7
         .card
@@ -65,7 +69,7 @@
           .card-body
             .media(ng-repeat='rsvp in zoink.rsvps')
               .media-left
-                img.media-object.img-circle(ng-src='{{rsvp.picUrl}}', width='40px', alt='{{rsvp.name}}')
+                img.media-object.img-circle(ng-src='{{rsvp.picture}}', width='40px', alt='{{rsvp.name}}')
               .media-body
                 h5.media-heading {{rsvp.first}}
         .card
@@ -77,12 +81,17 @@
             form(ng-submit='addInvite()', ng-show='newInvite')
               .form-group
                 input.form-control(type='email', required='', ng-model='invite.email', focus-me='{{newInvite}}')
-            p.invite(ng-repeat='invite in zoink.invites | reverse') {{invite}}
-              .pull-right(ng-click="rmInvite(invite)") remove
+            .invite(ng-repeat='invite in zoink.invites | reverse')
+              .pull-left {{invite}}
+              .pull-right(ng-click="rmInvite(invite)")
+                .btn.btn-sm.btn-default
+                  i.icon.ion-eject.large
 .col-sm-3.chat.box-shadow-left.whole-height
   div(ng-repeat="message in zoink.messages")
     {{message.content}}
-    .text-right(ng-click="rmMessage(message)") remove
+    .text-right(ng-click="rmMessage(message)") 
+      .btn.btn-sm.btn-default
+        i.icon.ion-eject.large
   form(ng-submit='addMessage()')
     .form-group
       textarea.form-control(name='', id='', ng-model='message.content' ng-keyup="$event.keyCode == 13 && addMessage()")

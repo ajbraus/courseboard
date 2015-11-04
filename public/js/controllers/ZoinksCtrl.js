@@ -3,7 +3,7 @@
 /* ZOINKS Controllers */
 
 angular.module('zoinks')
-  .controller('ZoinkShowCtrl', ['$scope', '$routeParams', 'Zoink', 'Auth', 'socket', function($scope, $routeParams, Zoink, Auth, socket) {
+  .controller('ZoinkShowCtrl', ['$scope', '$routeParams', 'Zoink', 'socket', function($scope, $routeParams, Zoink, socket) {
     Zoink.get({ id: $routeParams.id }, function(data) {
       $scope.zoink = data
       socket.emit('publish:joinRoom', $scope.zoink);

@@ -9,7 +9,9 @@ angular.module('zoinks', ['zoinks.filters',
                          'btford.socket-io',
                          'ngSanitize', 
                          'ngRoute',
-                         'satellizer'])
+                         'satellizer',
+                         'ui.bootstrap.datetimepicker' //https://github.com/dalelotts/angular-bootstrap-datetimepicker
+                         ])
 
     .constant('HOST', 'http://localhost:1337') //DEV
     // .constant('HOST', 'http://zoinksapp.herokuapp.com') //PRODUCTION

@@ -90,6 +90,7 @@ a:hover {
 }
 .card-header {
   border-bottom:1px solid #eee;
+  margin-bottom: 6px;
 }
 
 .list-group {

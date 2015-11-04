@@ -3,9 +3,8 @@
 /* MAIN Controller */
 
 angular.module('zoinks')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$location', 'Auth', 'Zoink', '$auth',  function($scope, $rootScope, $location, Auth, Zoink, $auth) {
-    // ZOINKS
-    $scope.zoinks = Zoink.query();
+  .controller('MainCtrl', ['$scope', '$rootScope', '$location', 'Zoink', '$auth', '$http',  function($scope, $rootScope, $location, Zoink, $auth, $http) {
+
 
     // NEW ZOINK
     $scope.zoink = {};
@@ -24,25 +23,29 @@ angular.module('zoinks')
     $scope.user = {};
 
     $scope.isAuthenticated = function() {
-      console.log("loggedin?: ", $auth.isAuthenticated())
-      return $auth.isAuthenticated();
+      $http.get('/api/me').then(function (data) {
+        if (!!data.data) {
+          $scope.currentUser = data.data;  
+          $scope.zoinks = Zoink.query();
+        } else {
+          $auth.removeToken(); 
+        }
+      }, function (data) {
+        $auth.removeToken(); 
+        $location.path('/');
+      });
     };
 
-    $scope.loggedIn = $scope.isAuthenticated();
-
-    $rootScope.$on('loggedIn', function() {
-      $scope.loggedIn = true;
-    });
-    console.log(Auth.currentUser())
+    $scope.isAuthenticated();
 
     $scope.signup = function() {
       $auth.signup($scope.user)
         .then(function(response) {
+          console.log(response)
           $auth.setToken(response);
-          $rootScope.$broadcast('loggedIn');
-          $scope.$apply(function() {
-            $('#login-modal').modal('hide');
-          });
+          $('#login-modal').modal('hide');
+          $scope.isAuthenticated();
+          $scope.user = {};
           // toastr.info('You have successfully created a new account and have been signed-in');
         })
         .catch(function(response) {
@@ -52,13 +55,12 @@ angular.module('zoinks')
 
     $scope.login = function() {
       $auth.login($scope.user)
-        .then(function() {
+        .then(function(respone) {
           // toastr.success('You have successfully signed in');
-          $auth.setToken(response);
-          $rootScope.$broadcast('loggedIn');
-          $scope.$apply(function() {
-            $('#login-modal').modal('hide');
-          });
+          $auth.setToken(response.data.token);
+          $('#login-modal').modal('hide');
+          $scope.isAuthenticated();
+          $scope.user = {};
         })
         .catch(function(response) {
           // toastr.error(response.data.message, response.status);
@@ -70,10 +72,10 @@ angular.module('zoinks')
         .then(function() {
           // toastr.success('You have successfully signed in with ' + provider);
           $('#login-modal').modal('hide');
-          $scope.loggedIn = $scope.isAuthenticated();
+          $scope.isAuthenticated();
         })
         .catch(function(response) {
-          // toastr.error(response.data.message);
+          console.log(response)
         });
     };
 
@@ -82,7 +84,8 @@ angular.module('zoinks')
         .then(function() {
           // toastr.info('You have been logged out');
           $auth.removeToken();
-          $scope.loggedIn = $scope.isAuthenticated();
+          $scope.currentUser = null;
+          $location.path('/')
         });
     };
   }]);

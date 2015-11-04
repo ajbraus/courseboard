@@ -29,6 +29,7 @@ module.exports = function(app) {
     var zoink = new Zoink(req.body);
     zoink.user = req.userId;
     User.findById(req.userId, function (err, user) {
+      console.log('hell')
       console.log(user)
       if (err) { return console.log(err) }
       zoink.rsvps.push(user);
