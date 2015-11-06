@@ -6,23 +6,19 @@ DONE remove invite
 DONE add messages with sockets
 DONE make each zoink a room
 
-auth with satellizer
-  DONE Email
-  DONE Facebook
-  DONE Google
+allow to rsvp if invited
+rsvp with sockets
 
-login with email not working
+auth 
+  login with email not working
+  solution for profile pic when signing up with email
+  linking fb or g+
+  go to profile/settings form after authenticating
 
-solution for profile pic when signing up with email
-linking fb or g+
-go to settings form after authenticating
 auth error handling - overall better error handling 
 
 DONE Associate new zoink with creator
   DONE rsvp creator
-
-allow to rsvp if invited
-rsvp with sockets
 
 improve email templates - include variables
   welcome 
@@ -47,6 +43,8 @@ add carpools
 	rspv to carpools
 add costs
 	square up users to costs
+
+if invite is a user, swap in the user invite and include name in email.
 
 archive zoink
 pretty title url

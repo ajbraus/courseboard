@@ -21,7 +21,9 @@ var ZoinkSchema = new Schema({
   , startsAt    : Date
   , endsAt      : Date
   , title       : { type: String, required: true, trim: true }
+  , desc        : String
   , invites     : []
+  , userInvites : [{ type : Schema.Types.ObjectId, ref : 'User' }]
   , rsvps       : [{ type : Schema.Types.ObjectId, ref : 'User' }]
   , todos       : []
   , messages    : [MessageSchema]

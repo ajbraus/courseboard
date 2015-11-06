@@ -16,7 +16,7 @@ module.exports = function(app) {
   })
   
   // SHOW
-  app.get('/api/zoinks/:id', auth.ensureAuthenticated, function (req, res) {
+  app.get('/api/zoinks/:id', function (req, res) {
     Zoink.findById(req.params.id).populate('rsvps').exec(function(err, zoink) {
       if (err) { return res.send(err) };
       console.log(zoink)
