@@ -5,9 +5,13 @@ DONE prevent dup invites
 DONE remove invite
 DONE add messages with sockets
 DONE make each zoink a room
+DONE login not working
 
 allow to rsvp if invited
 rsvp with sockets
+
+confirm for reject injection, and confirm for rsvp and unrsvp
+allow private or unlisted event (rsvp without being in invite list)
 
 auth 
   login with email not working

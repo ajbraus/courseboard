@@ -3,10 +3,16 @@
 /* ZOINKS Controllers */
 
 angular.module('zoinks')
-  .controller('ZoinkShowCtrl', ['$scope', '$routeParams', 'Zoink', 'socket', function($scope, $routeParams, Zoink, socket) {
+  .controller('ZoinkShowCtrl', ['$scope', '$routeParams', 'Zoink', 'socket', '$auth', 'Auth', function($scope, $routeParams, Zoink, socket, $auth, Auth) {
+    var currentUser = Auth.currentUser()
+
     Zoink.get({ id: $routeParams.id }, function(data) {
       $scope.zoink = data
       socket.emit('publish:joinRoom', $scope.zoink);
+
+      debugger
+      $scope.rsvped = currentUser._id.indexOf(_.pluck($scope.zoink.rsvps, '_id')) > -1
+      $scope.invited = currentUser.email.indexOf($scope.zoink.invites) > -1
     });
 
     $scope.$on('socket:joinRoom', function (event, clientsCount) {
@@ -88,12 +94,49 @@ angular.module('zoinks')
       // };
     });
 
+    // RSVP
 
-    // RSVP TO ZOINK
+    // RSVP IN
     $scope.rsvp = function() {
-      socket.emit('publish.rsvp')
+      var rsvp = { zoinkId: $routeParams.id, user: currentUser }
+      socket.emit('publish:addRsvp', rsvp)
     }
 
+    $scope.$on('socket:addRsvp', function (event, user) {
+      console.log('Rsvp Added')
+      $scope.$apply(function() {
+        // ADD TO RSVPS
+        $scope.zoink.rsvps.push(user);
+
+        // REMOVE FROM INVITES (if in invites)
+        var index = $scope.zoink.invites.indexOf(user.email);
+        if (index > -1) {
+          $scope.zoink.invites.splice(index, 1);
+        }
+        
+        $scope.rsvped = true;
+      });
+    });
+
+    // RSVP OUT
+    $scope.unrsvp = function() {
+      var rsvp = { zoinkId: $routeParams.id, user: currentUser }
+      socket.emit('publish:rmRsvp', rsvp) 
+    }
+
+    $scope.$on('socket:rmRsvp', function (event, user) {
+      console.log('Rsvp Removed')
+      $scope.$apply(function() {
+        // ADD BACK TO INVITES
+        $scope.zoink.invites.push(user.email);
+
+        // REMOVE FROM RSVPS
+        var index = user._id.indexOf(_.pluck($scope.zoink.rsvps, '_id'));
+        $scope.zoink.rsvps.splice(index, 1);
+
+        $scope.rsvped = false;
+      });
+    });
     
     // CARPOOLS
 

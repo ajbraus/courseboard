@@ -29,6 +29,9 @@ module.exports = {
 	createJWT: function(user) {
 	  var payload = {
 	    sub: user._id,
+	    email: user.email,
+	    picture: user.picture,
+	    displayName: user.displayName,
 	    iat: moment().unix(),
 	    exp: moment().add(14, 'days').unix()
 	  };

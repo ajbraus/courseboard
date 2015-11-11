@@ -11,6 +11,21 @@ angular.module('zoinks.services', [])
     })
   }])
 
+  .factory('Auth', ['$auth', function ($auth) {
+    return {
+      currentUser: function() {
+        var user = $auth.getPayload();
+        var currentUser = {
+          _id: user.sub,
+          email: user.email,
+          picture: user.picture,
+          displayName: user.displayName
+        }
+        return currentUser;
+      }
+    }
+  }])
+
   .factory('socket', ['socketFactory', function (socketFactory) {
     var socket = socketFactory();
     socket.forward('joinRoom')
@@ -19,8 +34,15 @@ angular.module('zoinks.services', [])
     socket.forward('rmInvite');
     socket.forward('addMessage');
     socket.forward('rmMessage');
+    socket.forward('addRsvp');
+    socket.forward('rmRsvp');
+
     return socket
   }])
+
+  // .factory('_', ['$window', function($window) {
+  //   return $window._; // assumes underscore has already been loaded on the page
+  // }]);
 
   ;
 

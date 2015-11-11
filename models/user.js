@@ -15,7 +15,7 @@ var UserSchema = new Schema({
   , picture       : { type: String, required: true }
   , displayName   : { type: String, required: true, unique: true, trim: true, set: toLower }
   , email         : { type: String, required: true, unique: true, trim: true, set: toLower }
-  , password      : { type: String, trip: true, select: false }
+  , password      : { type: String, select: false }
   , facebook      : String
   , google        : String
 })
@@ -31,22 +31,18 @@ UserSchema.pre('save', function(next){
   if ( !this.created_at ) {
     this.created_at = now;
   }
-  next();
 
   // ENCRYPT PASSWORD
-  if (this.password) {
-    var user = this;
-    if (!user.isModified('password')) {
-      return next();
-    }
-    bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash(user.password, salt, function(err, hash) {
-        user.password = hash;
-        next();
-      });
-    });
+  var user = this;
+  if (!user.isModified('password')) {
+    return next();
   }
-  next();
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(user.password, salt, function(err, hash) {
+      user.password = hash;
+      next();
+    });
+  });
 });
 
 

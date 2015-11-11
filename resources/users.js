@@ -32,11 +32,12 @@ module.exports = function(app) {
   app.post('/auth/login', function(req, res) {
     User.findOne({ email: req.body.email }, '+password', function(err, user) {
       if (!user) {
-        return res.status(401).send({ message: 'Wrong email and/or password' });
+        return res.status(401).send({ message: 'Wrong email or password' });
       }
       user.comparePassword(req.body.password, function(err, isMatch) {
+        console.log(isMatch)
         if (!isMatch) {
-          return res.status(401).send({ message: 'Wrong email and/or password' });
+          return res.status(401).send({ message: 'Wrong email or password' });
         }
         res.send({ token: auth.createJWT(user) });
       });

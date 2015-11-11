@@ -93,6 +93,38 @@ module.exports = function (io, app) {
       })
     })
 
+    // RSVPS
+    socket.on('publish:addRsvp', function (data) {
+      console.log(data)
+      Zoink.findById(data.zoinkId, function(err, zoink) {
+        zoink.rsvps.push(data.user._id);
+
+        var index = data.user.email.indexOf(zoink.invites)
+        zoink.invites.splice(index, 1)
+
+        zoink.save();
+
+        // TODO email host
+
+        io.sockets.in(data.zoinkId).emit('addRsvp', data.user)
+      })
+    })
+
+    socket.on('publish:rmRsvp', function (data) {
+      Zoink.findById(data.zoinkId, function(err, zoink) {
+        var index = data.user._id.indexOf(zoink.rsvps);
+        zoink.rsvps.splice(index, 1);
+
+        zoink.invites.push(data.user.email);
+
+        zoink.save();
+
+        // TODO email host
+
+        io.sockets.in(data.zoinkId).emit('rmRsvp', data.user)
+      })
+    })
+
 
     // QUESTIONQUEUE
 

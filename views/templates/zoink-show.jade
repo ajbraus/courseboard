@@ -65,13 +65,14 @@
         .card
           .card-header.clearfix
             h5.pull-left RSVPs
-            a.btn.btn-primary.pull-right(ng-click='rsvp()', ng-disabled='rsvped || !invited') RSVP
+            a.btn.btn-primary.pull-right(ng-click='rsvp()', ng-disabled='rsvped || !invited' ng-hide="rsvped") RSVP
+            //- a.btn.btn-danger.pull-right(ng-click='unrsvp()', ng-show="rsvped") UnRSVP
           .card-body
             .media(ng-repeat='rsvp in zoink.rsvps')
               .media-left
                 img.media-object.img-circle(ng-src='{{rsvp.picture}}', width='40px', alt='{{rsvp.name}}')
               .media-body
-                h5.media-heading {{rsvp.first}}
+                h5.media-heading {{rsvp.first || "You"}}
         .card
           .card-header.clearfix
             h5.pull-left Invites
@@ -81,7 +82,7 @@
             form(ng-submit='addInvite()', ng-show='newInvite')
               .form-group
                 input.form-control(type='email', required='', ng-model='invite.email', focus-me='{{newInvite}}')
-            .invite(ng-repeat='invite in zoink.invites | reverse')
+            .invite.clearfix(ng-repeat='invite in zoink.invites | reverse')
               .pull-left {{invite}}
               .pull-right(ng-click="rmInvite(invite)")
                 .btn.btn-sm.btn-default
