@@ -169,10 +169,19 @@ angular.module('zoinks')
       $scope.newRequirement = !$scope.newRequirement;
     }
     $scope.addRequirement = function() {
-      $scope.zoink.requirements.unshift($scope.requirement)
-      $scope.newRequirement = false;
-      $scope.requirement = {};
-    }
+      var reqs = { zoinkId: $routeParams.id, reqs: $scope.requirement };
+      socket.emit('publish:addReq', reqs);
+      $scope.requirement = [];
+    };
+
+    $scope.$on('socket:addReq', function (event, req) {
+      console.log('Req Added')
+      $scope.$apply(function() {
+        // ADD TO REQS
+        $scope.zoink.reqs.push(req.reqs);
+        console.log('updated reqs on zoink', $scope.zoink);
+      });
+    });
 
     // TODOS
     $scope.toggleNewTodo = function() {
