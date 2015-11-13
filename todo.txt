@@ -7,38 +7,46 @@ DONE add messages with sockets
 DONE make each zoink a room
 DONE login not working
 
-allow to rsvp if invited
-rsvp with sockets
-
-confirm for reject injection, and confirm for rsvp and unrsvp
-allow private or unlisted event (rsvp without being in invite list)
-
-auth 
-  login with email not working
-  solution for profile pic when signing up with email
-  linking fb or g+
-  go to profile/settings form after authenticating
-
-auth error handling - overall better error handling 
+DONE allow to rsvp if invited
+DONE rsvp with sockets
+DONE unrsvp adds you back to invited
+DONE replace HOST with $window.location.host
+DONE When adding zoink make zoinks dropdown appear
 
 DONE Associate new zoink with creator
   DONE rsvp creator
 
-improve email templates - include variables
-  welcome 
+DONE set startsAt/endsat
+DONE allow private or unlisted event (rsvp without being in invite list)
 
+go to profile/settings form after authenticating 
+  - add image
+
+hide emails from invites
+hide env variables
+Only allow RSVPED people to add things
+Only logged in people can message
+
+auth 
+  solution for profile pic when signing up with email - 7 colored pictures of crazy chipmunks
+  linking fb or g+
+  auth error handling - overall better error handling 
+
+confirm or reject rsvp and unrsvp
+hide flake out button in gear in RSVP
+
+Test
 1. create zoink
 2. invite test user
 3. sign up with test user
 4. rsvp as test user
 
-update dom if invited/rsvpd
-
-remove messages - buggy with sockets
-add users to messages
-make messages inset
-
-set startsAt/endsat
+MESSAGES
+  persist messages
+  add users to messages
+  relativelits for when said
+  remove messages - buggy with sockets
+  make messages inset
 
 add todos
 add requirements

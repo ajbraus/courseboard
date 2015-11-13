@@ -1,4 +1,4 @@
-.col-sm-9.box-shadow-left.whole-height.main.no-padding
+.col-sm-8.box-shadow-left.whole-height.main.no-padding
   .container-fluid
     h4 {{zoink.title}} 
       small.text-muted.small at 
@@ -9,7 +9,7 @@
     b Ends At 
     {{zoink.endsAt | date:'EEE MMM d, h:mma'}}
     .row
-      .col-sm-7
+      .col-sm-8
         .card
           .card-header.clearfix
             h5.pull-left Pitch In
@@ -61,12 +61,12 @@
                 input.form-control(type='text', ng-model='todo', focus-me='{{newTodo}}')
             .list-group
               .list-group-item(ng-repeat='todo in zoink.todos') {{todo}}
-      .col-sm-5
+      .col-sm-4
         .card
           .card-header.clearfix
             h5.pull-left RSVPs
-            a.btn.btn-primary.pull-right(ng-click='rsvp()', ng-disabled='rsvped || !invited' ng-hide="rsvped") RSVP
-            //- a.btn.btn-danger.pull-right(ng-click='unrsvp()', ng-show="rsvped") UnRSVP
+            a.btn.btn-primary.pull-right(ng-click='rsvp()', ng-disabled='rsvped || (zoink.inviteOnly && !invited)' ng-hide="rsvped") RSVP
+            a.btn.btn-danger.pull-right(ng-click='unrsvp()', ng-show="rsvped") Flake Out
           .card-body
             .media(ng-repeat='rsvp in zoink.rsvps')
               .media-left
@@ -81,13 +81,14 @@
           .card-body
             form(ng-submit='addInvite()', ng-show='newInvite')
               .form-group
-                input.form-control(type='email', required='', ng-model='invite.email', focus-me='{{newInvite}}')
+                input.form-control(type='text', required='', placeholder="Name", ng-model='invite.name', focus-me='{{newInvite}}')
+              .form-group
+                input.form-control(type='email', required='', ng-model='invite.email')
             .invite.clearfix(ng-repeat='invite in zoink.invites | reverse')
-              .pull-left {{invite}}
-              .pull-right(ng-click="rmInvite(invite)")
-                .btn.btn-sm.btn-default
-                  i.icon.ion-eject.large
-.col-sm-3.chat.box-shadow-left.whole-height
+              .pull-left {{invite.name}}
+              a.text-muted.pull-right(ng-click="rmInvite(invite)" href="")
+                i.icon.ion-eject.large
+.col-sm-4.chat.box-shadow-left.whole-height
   div(ng-repeat="message in zoink.messages")
     {{message.content}}
     .text-right(ng-click="rmMessage(message)") 

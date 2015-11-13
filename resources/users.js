@@ -5,7 +5,8 @@ var User = require('../models/user.js')
   , request = require('request')
   , config = require('../config.js')
   , moment = require('moment')
-  , auth = require('./auth'); 
+  , auth = require('./auth')
+  , Zoink = require('../models/zoink.js')
 
 module.exports = function(app) {
 

@@ -3,18 +3,19 @@
 /* MAIN Controller */
 
 angular.module('zoinks')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$location', 'Zoink', '$auth', '$http',  function($scope, $rootScope, $location, Zoink, $auth, $http) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$location', 'Zoink', '$auth', '$http', 'Invite',  function($scope, $rootScope, $location, Zoink, $auth, $http, Invite) {
 
 
     // NEW ZOINK
     $scope.zoink = {};
-
+    
     $scope.createZoink = function() {
       console.log('hello')
       var zoink = new Zoink($scope.zoink)
       zoink.$save(function(zoink) {
         $location.path('/zoinks/' + zoink._id)
         $('#new-zoink').modal('hide');
+        $scope.zoinks = Zoink.query();
       });
     }
 
@@ -27,6 +28,7 @@ angular.module('zoinks')
         if (!!data.data) {
           $scope.currentUser = data.data;  
           $scope.zoinks = Zoink.query();
+          $scope.invites = Invite.query();
         } else {
           $auth.removeToken(); 
         }

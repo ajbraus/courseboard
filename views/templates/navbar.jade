@@ -5,20 +5,23 @@ nav.navbar.navbar-default
       span.icon-bar
       span.icon-bar
       span.icon-bar
-    a.navbar-brand(href='#/') Zoinks
+    a.navbar-brand(href='/') Zoinks
+    ul.nav.navbar-nav.navbar-left
+      li
+        a(href="/") How it Works
+      li
+        a(href="/") Pricing
   #bs-example-navbar-collapse-1.collapse.navbar-collapse
     ul.nav.navbar-nav.navbar-right
       li.dropdown(ng-show='currentUser')
         a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-          span.status {{currentUser.displayName}}
+          span.status Me
           span.caret
         ul.dropdown-menu
           li
-            a(href='#') Action
+            a(href='/profile') Profile
           li
-            a(href='#') Another action
-          li
-            a(href='#') Something else here
+            a(href='/settings') Settings
           li.divider(role='separator')
           li
             a(ng-click='logout()') Logout
@@ -26,15 +29,16 @@ nav.navbar.navbar-default
       a.navbar-btn.btn.btn-info(data-toggle='modal', data-target='#new-zoink', ng-show='currentUser') New Zoink
       a.navbar-btn.btn.btn-info(data-toggle='modal', data-target='#login-modal', ng-hide='currentUser') Get Started
     ul.nav.navbar-nav.navbar-right
-      li
-        a(href="#/") Prices
-      li.dropdown(ng-show="currentUser")
+      li.dropdown(ng-show="currentUser && (zoinks.length > 0 || invites.length > 0)")
         a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
           | Zoinks 
           span.caret
         ul.dropdown-menu
+          li(ng-repeat='invite in invites')
+            a(href="/zoinks/{{invite._id}}") {{invite.title}}
+          li.divider(ng-show="invites.length < 1")
           li(ng-repeat='zoink in zoinks')
-            a(href='#/zoinks/{{zoink._id}}') {{zoink.title}}
+            a(href='/zoinks/{{zoink._id}}') {{zoink.title}}
 
 #login-modal.modal.fade(tabindex='-1', role='dialog')
   .modal-dialog.modal-sm
@@ -64,7 +68,7 @@ nav.navbar.navbar-default
         button.btn.btn-info(type='submit', ng-cloak='', ng-show='signupMode', ng-click='signup()') Sign Up
 
 #new-zoink.modal.fade(tabindex='-1', role='dialog', aria-labelledby='new-zoinkLabel')
-  .modal-dialog(role='document')
+  .modal-dialog.modal-sm(role='document')
     .modal-content
       form(ng-submit='createZoink()')
         .modal-body
@@ -74,26 +78,30 @@ nav.navbar.navbar-default
           .form-group
             label(for='') Location
             input.form-control(type='text', ng-model='zoink.location')
-          .row
-            .form-group.col-xs-6
-              label(for='') Starts At
-              .dropdown
-                a#starts-at.dropdown-toggle(role='button', data-toggle='dropdown')
-                  .input-group
-                    input.form-control(type='text', data-ng-model="zoink.startsAt")
-                    span.input-group-addon
-                      i.glyphicon.glyphicon-calendar
-                ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
-                  datetimepicker(data-ng-model='zoink.startsAt', data-datetimepicker-config="{ dropdownSelector: '#starts-at', minuteStep: 30 }")
-            .form-group.col-xs-6
-              label(for='') Ends At
-              a#ends-at.dropdown-toggle(role='button', data-toggle='dropdown')
+          .form-group
+            label(for='') Starts At
+            .dropdown
+              a#starts-at.dropdown-toggle(role='button', data-toggle='dropdown')
                 .input-group
-                  input.form-control(type='text', data-ng-model="zoink.endsAt")
+                  input.form-control(type='text', data-ng-model="zoink.startsAt")
                   span.input-group-addon
                     i.glyphicon.glyphicon-calendar
               ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
-                datetimepicker(data-ng-model='zoink.endsAt', data-datetimepicker-config="{ dropdownSelector: '#ends-at', minuteStep: 30 }")
+                datetimepicker(data-ng-model='zoink.startsAt', data-datetimepicker-config="{ dropdownSelector: '#starts-at', minuteStep: 30 }")
+          .form-group
+            label(for='') Ends At
+            a#ends-at.dropdown-toggle(role='button', data-toggle='dropdown')
+              .input-group
+                input.form-control(type='text', data-ng-model="zoink.endsAt")
+                span.input-group-addon
+                  i.glyphicon.glyphicon-calendar
+            ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
+              datetimepicker(data-ng-model='zoink.endsAt', data-datetimepicker-config="{ dropdownSelector: '#ends-at', minuteStep: 30 }")
+          .form-group
+            label
+              input(type="checkbox", name="agree" ng-model="zoink.inviteOnly")
+              | Invite Only
+
 
         .modal-footer
           button.btn.btn-default(type='button', data-dismiss='modal') Close

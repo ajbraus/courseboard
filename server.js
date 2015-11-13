@@ -60,6 +60,6 @@ require('./resources/users')(app);
 app.get('*', resources.index);
 
 module.exports = server;
-// console.log(process.env.NODE_ENV  + ' server running at http://localhost:' + config.port);
+console.log('server running at http://localhost:' + config.port);
 
 

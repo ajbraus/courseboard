@@ -5,10 +5,14 @@
 
 angular.module('zoinks.services', [])
 
-  .factory('Zoink', ['$resource', 'HOST', function ($resource, HOST) {
-    return $resource(HOST + '/api/zoinks/:id', { id: '@id' }, {
+  .factory('Zoink', ['$resource', '$window', function ($resource, $window) {
+    return $resource($window.location.origin + '/api/zoinks/:id', { id: '@id' }, {
       update: { method: 'PUT' }
     })
+  }])
+
+  .factory('Invite', ['$resource', '$window', function ($resource, $window) {
+    return $resource($window.location.origin + '/api/invites/:id', { id: '@id' })
   }])
 
   .factory('Auth', ['$auth', function ($auth) {
