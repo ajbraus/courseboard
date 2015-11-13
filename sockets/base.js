@@ -49,29 +49,29 @@ module.exports = function (io, app) {
     // INVITES
     socket.on('publish:addInvite', function (data) {
       Zoink.findById(data.zoinkId, function(err, zoink) {
-        zoink.invites.push(data.email);
+        var invite = { name: data.name, email: data.email };
+        zoink.invites.push(invite);
         zoink.save(function(err) {
-          
           // SEND INVITE EMAIL
           app.mailer.send('emails/new-invite', {
             to: data.email, // REQUIRED. This can be a comma delimited string just like a normal email to field.  
             subject: 'Zoinks! A New Invite', // REQUIRED. 
-            zoink: zoink  // All additional properties are also passed to the template as local variables. 
+            zoink: zoink,  // All additional properties are also passed to the template as local variables. 
+            userName: data.name
           }, function (err) {
             if (err) { console.log(err); return }
           });
 
-          io.sockets.in(data.zoinkId).emit('addInvite', data.email)
+          io.sockets.in(data.zoinkId).emit('addInvite', data)
         });
       })
     })
 
     socket.on('publish:rmInvite', function (data) {
       Zoink.findById(data.zoinkId, function(err, zoink) {
-        var index = zoink.invites.indexOf(data.email);
-        zoink.invites.splice(index, 1);
+        zoink.invites.id(data.invite._id).remove();
         zoink.save();
-        io.sockets.in(data.zoinkId).emit('rmInvite', data)
+        io.sockets.in(data.zoinkId).emit('rmInvite', data.invite)
       })
     })
 

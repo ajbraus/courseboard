@@ -15,11 +15,11 @@
     margin-right: 0;
 }
 
-.btn-toolbar{
+.btn-toolbar {
   display: inline-block;
 }​
 
-a{
+a {
     cursor: pointer;
 }
 
@@ -51,8 +51,9 @@ a:hover {
 .navbar {
   margin:0;
   border-radius: 0px;
-  -webkit-box-shadow: 0 1px 7px rgba(0,0,0,0.6);
-          box-shadow: 0 1px 7px rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 0px 7px rgba(0,0,0,0.6);
+     -moz-box-shadow: 0 0px 7px rgba(0,0,0,0.6);
+          box-shadow: 0 0px 7px rgba(0,0,0,0.6);
 }
 .dark-sidebar {
   background: #353839;
@@ -77,6 +78,10 @@ a:hover {
 .chat {
   background-color: white;
   padding-top:10px;
+  -webkit-box-shadow: 5px 6px 18px -12px black inset;
+     -moz-box-shadow: 5px 6px 18px -12px black inset;
+          box-shadow: 5px 6px 18px -12px black inset;
+
 }
 .card {
   position: relative;

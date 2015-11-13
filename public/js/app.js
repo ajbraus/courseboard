@@ -13,20 +13,24 @@ angular.module('zoinks', ['zoinks.filters',
                          'ui.bootstrap.datetimepicker' //https://github.com/dalelotts/angular-bootstrap-datetimepicker
                          ])
 
-    .constant('HOST', 'http://localhost:1337') //DEV
-    // .constant('HOST', 'http://zoinksapp.herokuapp.com') //PRODUCTION
-
-    .config(['$routeProvider', function($routeProvider) {
+    .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
       $routeProvider.when('/', {
         templateUrl: 'templates/splash'
       });
-
+      
       $routeProvider.when('/zoinks/:id', {
         templateUrl: 'templates/zoink-show',
         controller: 'ZoinkShowCtrl'
       });
 
+      $routeProvider.when('/profile', {
+        templateUrl: 'templates/profile',
+        controller: 'ProfileCtrl'
+      });
+
       $routeProvider.otherwise({redirectTo: '/'});
+
+      $locationProvider.html5Mode(true);
     }])
     
     .config(function($authProvider) {

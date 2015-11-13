@@ -7,14 +7,23 @@ var Zoink = require('../models/zoink.js')
   , auth = require('./auth');
 
 module.exports = function(app) {
-  // INDEX
+  
+  // USER'S ZOINKS & RSVPS
   app.get('/api/zoinks', auth.ensureAuthenticated, function (req, res) {
-    Zoink.find({ user: req.userId }).sort('-created_at').exec(function(err, zoinks) {
+    Zoink.find({ $or: [{ user: req.userId }, { rsvps: req.userId }] }).sort('-created_at').exec(function(err, zoinks) {
       if (err) { return res.send(err) };
       res.status(200).json(zoinks); // return all nerds in JSON format
     });
-  })
-  
+  });
+
+  // USER's INVITES
+  app.get('/api/invites', auth.ensureAuthenticated, function(req, res) {
+    Zoink.find({ invites: req.userEmail }, function(err, zoinks) {
+      console.log(zoinks)
+      res.send(zoinks);
+    });
+  });
+
   // SHOW
   app.get('/api/zoinks/:id', function (req, res) {
     Zoink.findById(req.params.id).populate('rsvps').exec(function(err, zoink) {

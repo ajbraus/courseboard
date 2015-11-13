@@ -4,15 +4,16 @@
 
 angular.module('zoinks')
   .controller('ZoinkShowCtrl', ['$scope', '$routeParams', 'Zoink', 'socket', '$auth', 'Auth', function($scope, $routeParams, Zoink, socket, $auth, Auth) {
-    var currentUser = Auth.currentUser()
+    if ($auth.isAuthenticated()) {
+      var currentUser = Auth.currentUser()
+    }
 
     Zoink.get({ id: $routeParams.id }, function(data) {
       $scope.zoink = data
       socket.emit('publish:joinRoom', $scope.zoink);
 
-      debugger
-      $scope.rsvped = currentUser._id.indexOf(_.pluck($scope.zoink.rsvps, '_id')) > -1
-      $scope.invited = currentUser.email.indexOf($scope.zoink.invites) > -1
+      $scope.rsvped = _.includes(_.pluck($scope.zoink.rsvps, '_id'), currentUser._id);
+      $scope.invited = _.includes($scope.zoink.invites, currentUser.email);
     });
 
     $scope.$on('socket:joinRoom', function (event, clientsCount) {
@@ -26,11 +27,12 @@ angular.module('zoinks')
       $scope.newInvite = !$scope.newInvite;
     }
 
-    $scope.invite = {zoinkId: $routeParams.id}
+    $scope.invite = { zoinkId: $routeParams.id }
     $scope.addInvite = function() {
-      if (($scope.zoink.invites.indexOf($scope.invite.email) == -1)) {
+      var invites = _.map($scope.zoink.invites, 'email');
+      if (!_.includes(invites, $scope.invite.email)) {
         socket.emit('publish:addInvite', $scope.invite)
-        $scope.invite.email = '';
+        $scope.invite = { zoinkId: $routeParams.id }
         $scope.toggleNewInvite();
       } else {
         alert($scope.invite.email + " is already invited.")
@@ -38,26 +40,23 @@ angular.module('zoinks')
     }
 
     $scope.$on('socket:addInvite', function (event, invite) {
-      // if (invite.zoinkId == $scope.zoink._id) {
-        $scope.$apply(function() {
-          $scope.zoink.invites.push(invite);
-        });
-      // };
+      $scope.$apply(function() {
+        $scope.zoink.invites.push(invite);
+      });
     });
 
     // REMOVE INVITE
-    $scope.rmInvite = function(email) {
-      var invite = { zoinkId: $routeParams.id, email: email }
+    $scope.rmInvite = function(invite) {
+      var invite = { zoinkId: $routeParams.id, invite: invite }
       socket.emit('publish:rmInvite', invite)
     }
 
     $scope.$on('socket:rmInvite', function (event, invite) {
-      // if (invite.zoinkId == $scope.zoink._id) {
-        $scope.$apply(function() {
-          var index = $scope.zoink.invites.indexOf(invite);
-          $scope.zoink.invites.splice(index, 1);
-        });
-      // };
+      $scope.$apply(function() {
+        _.remove($scope.zoink.invites, function(el) {
+          el._id == invite._id
+        })
+      });
     });
 
     
@@ -98,14 +97,15 @@ angular.module('zoinks')
 
     // RSVP IN
     $scope.rsvp = function() {
-      var rsvp = { zoinkId: $routeParams.id, user: currentUser }
-      socket.emit('publish:addRsvp', rsvp)
+      var rsvp = { zoinkId: $routeParams.id, user: currentUser };
+      socket.emit('publish:addRsvp', rsvp);
     }
 
     $scope.$on('socket:addRsvp', function (event, user) {
       console.log('Rsvp Added')
       $scope.$apply(function() {
         // ADD TO RSVPS
+        console.log(user)
         $scope.zoink.rsvps.push(user);
 
         // REMOVE FROM INVITES (if in invites)
@@ -115,6 +115,7 @@ angular.module('zoinks')
         }
         
         $scope.rsvped = true;
+        $scope.invited = false;
       });
     });
 
@@ -135,6 +136,7 @@ angular.module('zoinks')
         $scope.zoink.rsvps.splice(index, 1);
 
         $scope.rsvped = false;
+        $scope.invited = true;
       });
     });
     
