@@ -125,6 +125,34 @@ module.exports = function (io, app) {
       })
     })
 
+    // REQS
+    socket.on('publish:addReq', function (data) {
+      console.log(data);
+      Zoink.findById(data.zoinkId, function(err, zoink) {
+        zoink.reqs.push(data.reqs);
+        console.log(zoink);
+
+        zoink.save();
+
+        io.sockets.in(data.zoinkId).emit('addReq', data);
+      });
+    });
+
+    socket.on('publish:rmReq', function (data) {
+      Zoink.findById(data.zoinkId, function(err, zoink) {
+        var index = data.user._id.indexOf(zoink.reqs);
+        zoink.reqs.splice(index, 1);
+
+        // zoink.invites.push(data.user.email);
+
+        zoink.save();
+
+        // TODO email host
+
+        io.sockets.in(data.zoinkId).emit('rmReq', data.user);
+      });
+    });
+
 
     // QUESTIONQUEUE
 

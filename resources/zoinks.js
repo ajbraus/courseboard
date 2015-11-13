@@ -27,6 +27,7 @@ module.exports = function(app) {
   //CREATE
   app.post('/api/zoinks', auth.ensureAuthenticated, function (req, res) {
     var zoink = new Zoink(req.body);
+    console.log('new zoink', zoink);
     zoink.user = req.userId;
     User.findById(req.userId, function (err, user) {
       console.log('hell')
