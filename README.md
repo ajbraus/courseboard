@@ -1,8 +1,13 @@
-QuestionQueue
-====================
+# MEAN Auth Seed
 
-Imagine a speaker speaking in front of 200 people. Everyone can ask questions on QuestionQueue and vote on the questions they want answered. The speaker then can answer the highest voted questions.
+## What's inside
 
-This is a MongoDB, Angular, Node, Express, Socket.io project.
+1. Express, Mongo, Node, Angular 1.4
+2. JWT token authentication (from Satellizer)
 
-![](http://www.nikola-breznjak.com/blog/wp-content/uploads/2014/11/allTheThingsInJustOneJsFile.jpg)
+## How to Get Started
+
+1. fork and clone this repo
+2. run `npm install`
+3. run `nodemon`
+
