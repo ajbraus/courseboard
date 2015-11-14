@@ -2,22 +2,8 @@
 
 /* MAIN Controller */
 
-angular.module('zoinks')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$location', 'Zoink', '$auth', '$http', 'Invite',  function($scope, $rootScope, $location, Zoink, $auth, $http, Invite) {
-
-
-    // NEW ZOINK
-    $scope.zoink = {};
-    
-    $scope.createZoink = function() {
-      console.log('hello')
-      var zoink = new Zoink($scope.zoink)
-      zoink.$save(function(zoink) {
-        $location.path('/zoinks/' + zoink._id)
-        $('#new-zoink').modal('hide');
-        $scope.zoinks = Zoink.query();
-      });
-    }
+angular.module('basic-auth')
+  .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http',  function($scope, $rootScope, $location, $auth, $http) {
 
     // LOGIN/REGISTER
     $scope.signupMode = false;
@@ -26,14 +12,12 @@ angular.module('zoinks')
     $scope.isAuthenticated = function() {
       $http.get('/api/me').then(function (data) {
         if (!!data.data) {
-          $scope.currentUser = data.data;  
-          $scope.zoinks = Zoink.query();
-          $scope.invites = Invite.query();
+          $scope.currentUser = data.data;
         } else {
-          $auth.removeToken(); 
+          $auth.removeToken();
         }
       }, function (data) {
-        $auth.removeToken(); 
+        $auth.removeToken();
         $location.path('/');
       });
     };

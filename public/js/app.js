@@ -1,26 +1,16 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('zoinks', ['zoinks.filters', 
-                         'zoinks.services', 
-                         'zoinks.directives', 
-                         'ngResource',
-                         'ngTouch', 
-                         'btford.socket-io',
-                         'ngSanitize', 
+angular.module('basic-auth', [
+                         'basic-auth.services',
                          'ngRoute',
+                         'ngResource',
                          'satellizer',
-                         'ui.bootstrap.datetimepicker' //https://github.com/dalelotts/angular-bootstrap-datetimepicker
                          ])
 
     .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
       $routeProvider.when('/', {
         templateUrl: 'templates/splash'
-      });
-      
-      $routeProvider.when('/zoinks/:id', {
-        templateUrl: 'templates/zoink-show',
-        controller: 'ZoinkShowCtrl'
       });
 
       $routeProvider.when('/profile', {
@@ -32,7 +22,7 @@ angular.module('zoinks', ['zoinks.filters',
 
       $locationProvider.html5Mode(true);
     }])
-    
+
     .config(function($authProvider) {
       $authProvider.facebook({
         clientId: '1184762851540712'

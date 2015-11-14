@@ -6,7 +6,6 @@ var User = require('../models/user.js')
   , config = require('../config.js')
   , moment = require('moment')
   , auth = require('./auth')
-  , Zoink = require('../models/zoink.js')
 
 module.exports = function(app) {
 
@@ -59,14 +58,6 @@ module.exports = function(app) {
       user.save(function(err) {
         if (err) { return res.status(400).send({err: err}) }
 
-        // SEND WELCOME EMAIL
-        app.mailer.send('emails/welcome', {
-          to: user.email,
-          subject: 'Welcome to Zoinks!'
-        }, function (err) {
-          if (err) { console.log(err); return }
-        });
-
         res.send({ token: auth.createJWT(user) });
       });
     });
@@ -104,12 +95,12 @@ module.exports = function(app) {
             } // else use the token to find the user by their id
             var token = req.headers.authorization.split(' ')[1];
             var payload = jwt.decode(token, config.TOKEN_SECRET);
-            
+
             console.log("payload:", payload.sub);
             User.findById(payload.sub, function(err, user) {
-              // user does not exist from token id 
+              // user does not exist from token id
               if (!user) {
-                // try to find the 
+                // try to find the
                 if (!user) { return res.status(400).send({ message: 'User not found' }) };
               }
               user.facebook = profile.id;
