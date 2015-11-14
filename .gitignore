@@ -28,3 +28,5 @@ node_modules
 # public/vendor
 
 *.DS_Store
+
+env/development.js

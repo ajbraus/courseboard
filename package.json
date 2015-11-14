@@ -1,7 +1,7 @@
 {
-  "name": "MEAN_MVC_2ndTutorial",
+  "name": "basic-auth",
   "version": "1.0.0",
-  "description": "Queues your questions.",
+  "description": "Auth skeleton for MEAN stack.",
   "main": "server.js",
   "scripts": {
     "test": "mocha",
