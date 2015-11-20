@@ -32,31 +32,28 @@ angular.module('basic-auth')
           $('#login-modal').modal('hide');
           $scope.isAuthenticated();
           $scope.user = {};
-          // toastr.info('You have successfully created a new account and have been signed-in');
         })
         .catch(function(response) {
-          // toastr.error(response.data.message);
+          console.log(response)
         });
     };
 
     $scope.login = function() {
       $auth.login($scope.user)
         .then(function(respone) {
-          // toastr.success('You have successfully signed in');
           $auth.setToken(response.data.token);
           $('#login-modal').modal('hide');
           $scope.isAuthenticated();
           $scope.user = {};
         })
         .catch(function(response) {
-          // toastr.error(response.data.message, response.status);
+          console.log(response)
         });
     };
 
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider)
         .then(function() {
-          // toastr.success('You have successfully signed in with ' + provider);
           $('#login-modal').modal('hide');
           $scope.isAuthenticated();
         })
@@ -68,7 +65,6 @@ angular.module('basic-auth')
     $scope.logout = function() {
       $auth.logout()
         .then(function() {
-          // toastr.info('You have been logged out');
           $auth.removeToken();
           $scope.currentUser = null;
           $location.path('/')

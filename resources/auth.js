@@ -31,13 +31,10 @@ module.exports = {
 	  var payload = {
 	    sub: user._id,
 	    email: user.email,
-	    name: user.fullname,
-	    picture: user.picture,
-	    displayName: user.displayName,
+	    fullname: user.fullname,
 	    iat: moment().unix(),
 	    exp: moment().add(14, 'days').unix()
 	  };
-	  console.log(jwt.encode(payload, config.TOKEN_SECRET));
 	  return jwt.encode(payload, config.TOKEN_SECRET);
 	}
 }

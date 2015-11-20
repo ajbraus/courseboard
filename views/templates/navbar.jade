@@ -6,11 +6,6 @@ nav.navbar.navbar-default
       span.icon-bar
       span.icon-bar
     a.navbar-brand(href='/') MEAN Auth
-    ul.nav.navbar-nav.navbar-left
-      li
-        a(href="/") How it Works
-      li
-        a(href="/") Why MEAN stack?
   #bs-example-navbar-collapse-1.collapse.navbar-collapse
     ul.nav.navbar-nav.navbar-right
       li.dropdown(ng-show='currentUser')
@@ -34,9 +29,6 @@ nav.navbar.navbar-default
     .modal-content
       .modal-body
         .alert.alert-danger(ng-show='err') {{err}}
-        button.btn.btn-block.btn-info(ng-click="authenticate('facebook')") Login with Facebook
-        button.btn.btn-block.btn-info(ng-click="authenticate('google')") Login with Google
-        br
         form
           .form-group
             label(for='') Email
@@ -47,9 +39,6 @@ nav.navbar.navbar-default
           .form-group(ng-show='signupMode')
             label(for='') Confirm Password
             input.form-control(type='password', ng-model='user.confirm')
-          .form-group(ng-show='signupMode')
-            label(for='') Username
-            input.form-control(type='text', ng-model='user.displayName')
       .modal-footer
         a.btn.btn-link(ng-click='signupMode = true', ng-hide='signupMode') Sign Up
         button.btn.btn-info(type='submit', ng-hide='signupMode', ng-click='login()') Log In
