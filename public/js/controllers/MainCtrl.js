@@ -40,7 +40,7 @@ angular.module('basic-auth')
 
     $scope.login = function() {
       $auth.login($scope.user)
-        .then(function(respone) {
+        .then(function(response) {
           $auth.setToken(response.data.token);
           $('#login-modal').modal('hide');
           $scope.isAuthenticated();
