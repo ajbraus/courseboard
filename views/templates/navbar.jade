@@ -5,9 +5,37 @@ nav.navbar.navbar-default
       span.icon-bar
       span.icon-bar
       span.icon-bar
-    a.navbar-brand(href='/') MEAN Auth
+    a.navbar-brand(href='/') GA/QA
   #bs-example-navbar-collapse-1.collapse.navbar-collapse
     ul.nav.navbar-nav.navbar-right
+      li.dropdown(ng-show='!currentUser')
+        a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
+          | Login
+        .dropdown-menu.dropdown-form
+          form
+            .form-group
+              label(for='') Email
+              input.form-control(type='text', ng-model='user.email')
+            .form-group
+              label(for='') Password
+              input.form-control(type='password', ng-model='user.password')
+            button.btn.btn-info(type='submit', ng-click='login()') Log In
+      li.dropdown(ng-show='!currentUser')
+        a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
+          | Sign Up
+        .dropdown-menu.dropdown-form(style='padding:17px;')
+          form
+            .form-group
+              label(for='') Email
+              input.form-control(type='text', ng-model='user.email')
+            .form-group
+              label(for='') Password
+              input.form-control(type='password', ng-model='user.password')
+            .form-group
+              label(for='') Confirm Password
+              input.form-control(type='password', ng-model='user.confirm')
+            button.btn.btn-info(type='submit', ng-click='signup()') Sign Up
+
       li.dropdown(ng-show='currentUser')
         a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
           span.status Me
@@ -20,27 +48,3 @@ nav.navbar.navbar-default
           li.divider(role='separator')
           li
             a(ng-click='logout()') Logout
-    .nav.navbar-nav.navbar-right
-      a.navbar-btn.btn.btn-info(data-toggle='modal', data-target='#login-modal', ng-hide='currentUser') Get Started
-
-
-#login-modal.modal.fade(tabindex='-1', role='dialog')
-  .modal-dialog.modal-sm
-    .modal-content
-      .modal-body
-        .alert.alert-danger(ng-show='err') {{err}}
-        form
-          .form-group
-            label(for='') Email
-            input.form-control(type='text', ng-model='user.email')
-          .form-group
-            label(for='') Password
-            input.form-control(type='password', ng-model='user.password')
-          .form-group(ng-show='signupMode')
-            label(for='') Confirm Password
-            input.form-control(type='password', ng-model='user.confirm')
-      .modal-footer
-        a.btn.btn-link(ng-click='signupMode = true', ng-hide='signupMode') Sign Up
-        button.btn.btn-info(type='submit', ng-hide='signupMode', ng-click='login()') Log In
-        a.btn.btn-link(ng-click='signupMode = false', ng-show='signupMode') Login
-        button.btn.btn-info(type='submit', ng-cloak='', ng-show='signupMode', ng-click='signup()') Sign Up

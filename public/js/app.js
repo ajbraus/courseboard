@@ -10,7 +10,8 @@ angular.module('basic-auth', [
 
     .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
       $routeProvider.when('/', {
-        templateUrl: 'templates/splash'
+        templateUrl: 'templates/questions-index',
+        controller: 'QuestionsIndexCtrl'
       });
 
       $routeProvider.when('/profile', {

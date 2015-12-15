@@ -10,13 +10,13 @@ angular.module('basic-auth')
     $scope.user = {};
 
     $scope.isAuthenticated = function() {
-      $http.get('/api/me').then(function (data) {
-        if (!!data.data) {
-          $scope.currentUser = data.data;
+      $http.get('/api/me').then(function (response) {
+        if (!!response.data) {
+          $scope.currentUser = response.data;
         } else {
           $auth.removeToken();
         }
-      }, function (data) {
+      }, function (response) {
         $auth.removeToken();
         $location.path('/');
       });

@@ -39,6 +39,10 @@ app.set('view options', {
 app.get('/', resources.index);
 app.get('/templates/:name', resources.templates);
 require('./resources/users')(app);
+require('./resources/questions')(app);
+require('./resources/answers')(app);
+require('./resources/comments')(app);
+require('./resources/votes')(app);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', resources.index);

@@ -185,3 +185,8 @@ fieldset {
 .big {
   font-size:150%;
 }
+
+.dropdown-form {
+  padding: 17px;
+  width: 300px;
+}

@@ -28,3 +28,4 @@ node_modules
 public/vendor
 
 .DS_Store
+todo.txt

@@ -4,6 +4,11 @@
 /* Services */
 
 angular.module('basic-auth.services', [])
+  .factory('Question', ['$resource', '$window', function ($resource, $window) {
+    return $resource($window.location.origin + '/api/questions/:id', { id: '@id' }, {
+      update: { method: 'PUT' }
+    });
+  }])
 
   .factory('Auth', ['$auth', function ($auth) {
     return {
