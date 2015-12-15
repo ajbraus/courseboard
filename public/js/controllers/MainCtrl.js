@@ -50,18 +50,7 @@ angular.module('basic-auth')
           console.log(response)
         });
     };
-
-    $scope.authenticate = function(provider) {
-      $auth.authenticate(provider)
-        .then(function() {
-          $('#login-modal').modal('hide');
-          $scope.isAuthenticated();
-        })
-        .catch(function(response) {
-          console.log(response)
-        });
-    };
-
+    
     $scope.logout = function() {
       $auth.logout()
         .then(function() {
