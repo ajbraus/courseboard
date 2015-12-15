@@ -6,6 +6,8 @@
     "angular-resource": "~1.4.7",
     "bootstrap": "latest",
     "satellizer": "~0.12.5",
-    "Ionicons": "ionicons#~2.0.1"
+    "Ionicons": "ionicons#~2.0.1",
+    "angular-route": "~1.4.8",
+    "angular-moment": "~0.10.3"
   }
 }
