@@ -8,6 +8,7 @@
     "angular-moment": "~0.10.3",
     "bootstrap": "latest",
     "satellizer": "~0.12.5",
-    "Ionicons": "ionicons#~2.0.1"
+    "Ionicons": "ionicons#~2.0.1",
+    "angular-markdown-directive": "~0.3.1"
   }
 }

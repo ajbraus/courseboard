@@ -5,8 +5,8 @@ var AnswerSchema = new Schema({
     created_at    : { type: Date }
   , updated_at    : { type: Date }
   , body          : { type: String, required: true }
-  , comments      : [{ type: Number, ref: 'Comment' }]
-  , votes         : [{ type: Number, ref: 'User' }]
+  , comments      : [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
+  , votes         : [{ type: Schema.Types.ObjectId, ref: 'User' }]
 })
 
 AnswerSchema.pre('save', function(next){

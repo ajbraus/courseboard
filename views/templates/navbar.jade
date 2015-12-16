@@ -35,10 +35,9 @@ nav.navbar.navbar-default
               label(for='') Confirm Password
               input.form-control(type='password', ng-model='user.confirm')
             button.btn.btn-info(type='submit', ng-click='signup()') Sign Up
-
       li.dropdown(ng-show='currentUser')
         a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-          span.status Me
+          span.status Profile 
           span.caret
         ul.dropdown-menu
           li
@@ -48,3 +47,12 @@ nav.navbar.navbar-default
           li.divider(role='separator')
           li
             a(ng-click='logout()') Logout
+
+.container(ng-show='currentUser')
+  .text-right
+    .btn-group
+      .btn.btn-sm Questions 
+      .btn.btn-sm Tags 
+      a.btn.btn-sm(href="/questions/new") Ask a Question 
+
+br

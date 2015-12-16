@@ -6,12 +6,23 @@ angular.module('basic-auth', [
                          'ngRoute',
                          'ngResource',
                          'satellizer',
+                         'btford.markdown'
                          ])
 
     .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
       $routeProvider.when('/', {
         templateUrl: 'templates/questions-index',
         controller: 'QuestionsIndexCtrl'
+      });
+
+      $routeProvider.when('/questions/new', {
+        templateUrl: 'templates/questions-new',
+        controller: 'QuestionsNewCtrl'
+      });
+
+      $routeProvider.when('/questions/:id', {
+        templateUrl: 'templates/questions-show',
+        controller: 'QuestionsShowCtrl'
       });
 
       $routeProvider.when('/profile', {
