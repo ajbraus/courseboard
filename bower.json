@@ -1,6 +1,9 @@
 {
   "name": "basic-auth",
   "version": "1.0.0",
+  "resolutions": {
+    "angular": "1.4.7"
+  },
   "dependencies": {
     "angular": "latest",
     "angular-resource": "~1.4.7",
