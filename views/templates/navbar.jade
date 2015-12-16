@@ -6,7 +6,12 @@ nav.navbar.navbar-default
       span.icon-bar
       span.icon-bar
     a.navbar-brand(href='/') GA/QA
-  #bs-example-navbar-collapse-1.collapse.navbar-collapse
+  .collapse.navbar-collapse
+    form.navbar-form.navbar-left(role='search')
+      .form-group
+        input.form-control(type='text', placeholder='')      
+        button.btn.btn-sm.btn-default(type='submit')
+          i.icon.ion-search
     ul.nav.navbar-nav.navbar-right
       li.dropdown(ng-show='!currentUser')
         a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
