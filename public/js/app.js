@@ -6,7 +6,7 @@ angular.module('basic-auth', [
                          'ngRoute',
                          'ngResource',
                          'satellizer',
-                         'btford.markdown'
+                         'hc.marked'
                          ])
 
     .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
@@ -25,6 +25,11 @@ angular.module('basic-auth', [
         controller: 'QuestionsShowCtrl'
       });
 
+      $routeProvider.when('/edit/questions/:id', {
+        templateUrl: 'templates/questions-new',
+        controller: 'QuestionsEditCtrl'
+      });
+
       $routeProvider.when('/profile', {
         templateUrl: 'templates/profile',
         controller: 'ProfileCtrl'
@@ -33,4 +38,18 @@ angular.module('basic-auth', [
       $routeProvider.otherwise({redirectTo: '/'});
 
       $locationProvider.html5Mode(true);
+    }])
+
+    .config(['markedProvider', function (markedProvider) {
+      markedProvider.setOptions({
+        gfm: true,
+        tables: true,
+        highlight: function (code, lang) {
+          if (lang) {
+            return hljs.highlight(lang, code, true).value;
+          } else {
+            return hljs.highlightAuto(code).value;
+          }
+        }
+      });
     }]);

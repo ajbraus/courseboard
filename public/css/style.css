@@ -7,6 +7,20 @@
 }
 */
 
+pre {
+  display: block;
+  padding: 11px;
+  margin: inherit;
+  font-size: 120%;
+  line-height: 1.846;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: inherit;
+  background-color: inherit;
+  border: inherit;
+  border-radius: inherit;
+  font-family: inherit;
+}
 .jumbotron {
   padding:100px 0 130px 0;
 }
@@ -188,4 +202,10 @@ fieldset {
 .dropdown-form {
   padding: 17px;
   width: 300px;
+}
+
+.border {
+  border: 1px solid #efefef;
+  padding:10px;
+  background:#eee;
 }

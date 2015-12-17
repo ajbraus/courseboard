@@ -6,8 +6,13 @@
         input.form-control(type="text" ng-model="question.title")
       .form-group
         textarea.form-control(rows="10" ng-model="question.body")
-      .text-right
-        button(type="submit") Post Question
+      hr
+      div.border(marked="question.body")
+      br
+      br
+      div
+        button.btn.btn-primary(type="submit") Save Question
+        a.btn.btn-link(href="/questions/{{question._id}}" ng-show="editQuestion") cancel
   .col-sm-4.col-md-3
     br
     .panel.panel-danger

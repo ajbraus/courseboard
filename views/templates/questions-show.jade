@@ -1,7 +1,17 @@
 .row
-  .col-sm-8.col-sm-offset-1.col-lg-7
+  .col-sm-9.col-lg-8
     h3 {{question.title}}
     hr
-    div(btf-markdown="question.body")
+    div(marked="question.body")
+    a(href="/edit/questions/{{question._id}}" ng-show="isCurrentUsersQuestion") edit
+    hr
+    form(ng-submit="createAnswer()")
+      .form-group
+        textarea.form-control(rows="5" ng-model="answer.body")
+      hr
+      div
+        button.btn.btn-sm.btn-primary(type='submit') Post Answer
+    div(ng-repeat="answer in question.answers")
+      section {{answer.body}}
   .col-sm-3
     .lead Related Questions

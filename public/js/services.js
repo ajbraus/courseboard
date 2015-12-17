@@ -10,6 +10,12 @@ angular.module('basic-auth.services', [])
     });
   }])
 
+  .factory('Answer', ['$resource', '$window', function ($resource, $window) {
+    return $resource($window.location.origin + '/api/questions/:questionId/answers/:id', { questionid: '@questionId', id: '@id' }, {
+      update: { method: 'PUT' }
+    });
+  }])
+
   .factory('Auth', ['$auth', function ($auth) {
     return {
       currentUser: function() {

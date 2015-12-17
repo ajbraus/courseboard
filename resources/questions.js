@@ -19,7 +19,7 @@ module.exports = function(app) {
 
   // QUESTIONS SHOW
   app.get('/api/questions/:id', function (req, res) {
-    Question.findById(req.params.id).exec(function (err, question) {
+    Question.findById(req.params.id).populate('answers').exec(function (err, question) {
       if (err) { return res.send(err) }
 
       res.send(question);
@@ -38,6 +38,16 @@ module.exports = function(app) {
   });
 
   // QUESTIONS UPDATE
+  app.put('/api/questions/:id', auth.ensureAuthenticated, function (req, res) { 
+    req.body.user = req.userId;
+
+    Question.findByIdAndUpdate(req.params.id, req.body, function (err, question) {
+      if (err) { return res.send(err) }
+
+      res.send(question);
+    });
+  });
+
   // QUESTIONS DELETE
 
 }

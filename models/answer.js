@@ -2,11 +2,13 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var AnswerSchema = new Schema({
-    created_at    : { type: Date }
-  , updated_at    : { type: Date }
+    created_at    : Date
+  , updated_at    : Date 
   , body          : { type: String, required: true }
+  , user          : { type: Schema.Types.ObjectId, ref: 'User' }
   , comments      : [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
   , votes         : [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  , isBest        : Boolean
 })
 
 AnswerSchema.pre('save', function(next){
