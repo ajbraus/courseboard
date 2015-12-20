@@ -18,7 +18,7 @@ module.exports = function(app) {
 
   // QUESTIONS SHOW
   app.get('/api/questions/:id', auth.ensureAuthenticated, function (req, res) {
-    Question.findById(req.params.id).populate('comments').exec(function (err, question) {
+    Question.findById(req.params.id).populate('comments, user').exec(function (err, question) {
       if (err) { return res.send(err) }
 
       res.send(question);

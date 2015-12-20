@@ -42,15 +42,16 @@ module.exports = function(app) {
     })
   });
 
-  // ANSWERS GET
+  // ANSWERS INDEX
   app.get('/api/questions/:questionId/answers/', auth.ensureAuthenticated, function (req, res) {
-    Answer.find({ question: req.params.questionId }).populate('comments').exec(function (err, answers) {
+    Answer.find({ question: req.params.questionId }).populate('comments, user').exec(function (err, answers) {
       if (err) { return res.send(err) }
 
       res.send(answers);
     })
   });
 
+  // ANSWERS DESTROY
   app.delete('/api/questions/:questionId/answers/:id', auth.ensureAuthenticated, function (req, res) {
     Question.findById(req.params.questionId).exec(function (err, question) {
       question.comments.pull({ _id: req.params.id })
@@ -58,6 +59,5 @@ module.exports = function(app) {
         res.send("Successfully removed answer");
       })
     })
-    
   })
 }

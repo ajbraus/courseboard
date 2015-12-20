@@ -25,6 +25,12 @@ pre {
   padding:100px 0 130px 0;
 }
 
+section {
+  min-height: 100px;
+  padding:10px;
+  margin-top:20px;
+}
+
 .navbar-right {
     margin-right: 0;
 }

@@ -1,17 +1,27 @@
 .row
-  .col-sm-9.col-lg-8
+  .col-sm-8.col-md-7.col-md-offset-1
     h3 {{question.title}}
-    hr
     div(marked="question.body")
-    a(href="/edit/questions/{{question._id}}" ng-show="isCurrentUsersQuestion") edit
+    .text-right
+      .text-muted Asked by {{question.user.username}} 
+      a(href="/edit/questions/{{question._id}}" ng-show="isCurrentUsersQuestion") improve question
+    
     hr
+    h5 Post an Answer
     form(ng-submit="createAnswer()")
       .form-group
         textarea.form-control(rows="5" ng-model="answer.body")
-      hr
-      div
-        button.btn.btn-sm.btn-primary(type='submit') Post Answer
+      button.btn.btn-sm.btn-primary(type='submit') Post Answer
+    hr
+    h5 Answers
     div(ng-repeat="answer in answers")
-      section {{answer.body}}
-  .col-sm-3
-    .lead Related Questions
+      section 
+        {{answer.body}}
+        .text-right.text-muted
+          | Answered by {{answer.user.username}}
+
+  .col-sm-4.col-md-3
+    | Related Questions
+    .list-group
+      a.list-group-item(href="/questions/{{a._id}}" ng-repeat="q in questions")
+        {{q.title}}

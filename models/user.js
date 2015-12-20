@@ -11,11 +11,11 @@ var UserSchema = new Schema({
     created_at    : { type: Date }
   , updated_at    : { type: Date }
   , email         : { type: String, required: true, unique: true, trim: true, set: toLower }
-  , password      : { type: String, select: false, trim: true, set: toLower }
+  , password      : { type: String, select: false, trim: true }
   , first         : { type: String, trim: true }
   , last          : { type: String, trim: true }
   , location      : { type: String, trim: true }
-  , username      : { type: String, trim: true }
+  , username      : { type: String, trim: true, set: toLower }
 })
 
 UserSchema.virtual('fullname').get(function() {

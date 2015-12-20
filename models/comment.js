@@ -6,6 +6,7 @@ var CommentSchema = new Schema({
   , updated_at    : { type: Date }
   , user          : { type: Schema.Types.ObjectId, ref: 'User' }
   , type          : { type: String, required: true }
+  , parent        : { type: Schema.Types.ObjectId, required: true}
   , body          : { type: String, required: true }
 })
 

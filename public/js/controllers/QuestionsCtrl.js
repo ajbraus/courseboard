@@ -13,10 +13,12 @@ angular.module('basic-auth')
       $scope.question = question;
 
       $scope.isCurrentUsersQuestion = false;
-      if ($scope.question.user == $auth.getPayload().sub) {
+      if ($scope.question.user._id == $auth.getPayload().sub) {
         $scope.isCurrentUsersQuestion = true;
       }
     });
+
+    $scope.questions = Question.query();
 
     $scope.answers = Answer.query({ questionId: $routeParams.id })
 

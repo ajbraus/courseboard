@@ -7,11 +7,11 @@ nav.navbar.navbar-default
       span.icon-bar
     a.navbar-brand(href='/') GA/QA
   .collapse.navbar-collapse
-    form.navbar-form.navbar-left(role='search')
-      .form-group
-        input.form-control(type='text', placeholder='')      
-        button.btn.btn-sm.btn-default(type='submit')
-          i.icon.ion-search
+    //- form.navbar-form.navbar-right(role='search')
+    //-   .form-group
+    //-     input.form-control(type='text', placeholder='')      
+    //-     button.btn.btn-sm.btn-default(type='submit')
+    //-       i.icon.ion-search
     ul.nav.navbar-nav.navbar-right
       li.dropdown(ng-show='!currentUser')
         a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
@@ -27,7 +27,7 @@ nav.navbar.navbar-default
             button.btn.btn-info(type='submit', ng-click='login()') Log In
       li.dropdown(ng-show='!currentUser')
         a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
-          | Sign Up
+          | Request Access
         .dropdown-menu.dropdown-form(style='padding:17px;')
           form
             .form-group
@@ -64,7 +64,7 @@ nav.navbar.navbar-default
             button.btn.btn-info(type='submit', ng-click='signup()') Sign Up
       li.dropdown(ng-show='currentUser')
         a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-          span.status Profile 
+          span.status {{currentUser.username}}
           span.caret
         ul.dropdown-menu
           li
@@ -76,10 +76,11 @@ nav.navbar.navbar-default
             a(ng-click='logout()') Logout
 
 .container(ng-show='currentUser')
-  .text-right
-    .btn-group
-      a.btn.btn-sm(href="/") Questions 
-      .btn.btn-sm Tags 
-      a.btn.btn-sm(href="/questions/new") Ask a Question 
+  .row
+    .col-sm-12.col-md-10.text-right
+      .btn-group
+        a.btn.btn-sm.btn-default(href="/") Questions 
+        //- .btn.btn-sm.btn-default Tags 
+        a.btn.btn-sm.btn-default(href="/questions/new") Ask a Question 
 
 br

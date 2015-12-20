@@ -1,11 +1,14 @@
 .row
-  .col-sm-8.col-md-6.col-md-offset-1
+  .col-sm-8.col-md-7.col-md-offset-1
     form(ng-submit="createQuestion()")
       .form-group
-        label Title
-        input.form-control(type="text" ng-model="question.title")
+        label Title*
+        .text-muted Include your tools and problem
+        input.form-control(type="text" ng-model="question.title" placeholder="Title")
       .form-group
-        textarea.form-control(rows="10" ng-model="question.body")
+        label Details* 
+        .text-muted Include Your goal, What you've already tried, and Relevant sample code
+        textarea.form-control(rows="10" ng-model="question.body" placeholder="(accepts markdown)")
       hr
       div.border(marked="question.body")
       br
@@ -21,5 +24,22 @@
       .panel-body Panel content
     .panel.panel-danger
       .panel-heading
-        h3.panel-title Panel title
-      .panel-body Panel content
+        h3.panel-title Markdown CheatSheet
+      .panel-body 
+        b Headers
+        p ### => h3 
+        
+        b Typography
+        p **Bold**
+        p _italic_ or *italic* 
+  
+        b HTML Tags
+        p
+
+        b Code
+        p
+          ```js
+          br
+          var aDude = "Cowboy";
+          br
+          ```
