@@ -47,10 +47,7 @@ module.exports = function(app) {
       if (existingUser) {
         return res.status(409).send({ message: 'Email is already taken' });
       }
-      var user = new User({
-        email: req.body.email,
-        password: req.body.password
-      });
+      var user = new User(req.body);
       user.save(function(err) {
         if (err) { return res.status(400).send({err: err}) }
 

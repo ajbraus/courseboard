@@ -18,17 +18,48 @@ angular.module('basic-auth')
       }
     });
 
+    $scope.answers = Answer.query({ questionId: $routeParams.id })
+
     $scope.createAnswer = function() {
       var answer = new Answer($scope.answer);
       answer.$save({ questionId: $scope.question._id }).then(
         function (response) {
-          $scope.question.answers.push(response);
+          console.log(response)
+          $scope.answers.push(response);
+          $scope.answer = {};
         }, 
         function (response) {
           console.log(response)
         }
       );
     }
+
+    $scope.createQuestionComment = function() {
+      $scope.comment.type = "question";
+      var comment = new Comment($scope.comment);
+      comment.$save({ parentId: $scope.question._id }).then(
+        function (response) {
+          $scope.question.comments.push(response);
+        },
+        function (response) {
+          console.log(response)
+        }
+      );
+    }
+
+    $scope.createAnswerComment = function(answer) {
+      $scope.comment.type = "answer";
+      var comment = new Comment($scope.comment);
+      comment.$save({ parentId: $scope.answer._id }).then(
+        function (response) {
+          $scope.answer.comments.push(response);
+        },
+        function (response) {
+          console.log(response)
+        }
+      );
+    }
+
   }])
 
   .controller('QuestionsEditCtrl', ['$scope', '$http', '$location', '$routeParams', '$auth', 'Auth', 'Question', function($scope, $http, $location, $routeParams, $auth, Auth, Question) {

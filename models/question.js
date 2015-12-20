@@ -4,10 +4,12 @@ var mongoose = require('mongoose'),
 var QuestionSchema = new Schema({
     created_at    : { type: Date }
   , updated_at    : { type: Date }
-  , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true}
   , title         : { type: String, required: true }
   , body          : { type: String, required: true }
+  , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true}
   , answers       : [{ type: Schema.Types.ObjectId, ref: 'Answer' }]
+  
+  , tags          : []
   , comments      : [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
   , votes         : [{ type: Schema.Types.ObjectId, ref: 'User' }]
 })

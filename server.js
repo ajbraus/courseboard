@@ -16,9 +16,9 @@ var config = require('./config')
   , logger = require('morgan')
   , server = app.listen(config.port)
   , mongoose  = require('mongoose')
+  , mailer = require('express-mailer');
 
 mongoose.connect(config.db);
-// app.use(express.static(__dirname + '/public'));
 app.use("/", express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(logger('dev'));
@@ -28,8 +28,19 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+mailer.extend(app, {
+  from: 'GA/QA', 
+  host: 'smtp.gmail.com', // hostname 
+  secureConnection: true, // use SSL 
+  port: 465, // port for secure SMTP 
+  transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts 
+  auth: {
+    user: 'generalassemblyquestions@gmail.com',
+    pass: process.env.EMAIL_SECRET
+  }
+});
+
 app.set('views', path.join(__dirname, 'views'));
-// TODO: translate to EJS
 app.set('view engine', 'jade');
 app.set('view options', {
   layout: false

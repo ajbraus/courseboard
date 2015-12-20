@@ -7,9 +7,8 @@ var User = require('../models/user.js')
   , config = require('../config.js')
 
 module.exports = function(app) {
-  // , auth.ensureAuthenticated,
   // QUESTIONS INDEX
-  app.get('/api/questions', function (req, res) {
+  app.get('/api/questions', auth.ensureAuthenticated, function (req, res) {
     Question.find().exec(function (err, questions) {
       if (err) { return res.send(err) }
 
@@ -18,8 +17,8 @@ module.exports = function(app) {
   });
 
   // QUESTIONS SHOW
-  app.get('/api/questions/:id', function (req, res) {
-    Question.findById(req.params.id).populate('answers').exec(function (err, question) {
+  app.get('/api/questions/:id', auth.ensureAuthenticated, function (req, res) {
+    Question.findById(req.params.id).populate('comments').exec(function (err, question) {
       if (err) { return res.send(err) }
 
       res.send(question);
@@ -49,5 +48,12 @@ module.exports = function(app) {
   });
 
   // QUESTIONS DELETE
+  app.delete('/api/questions/:id', auth.ensureAuthenticated, function (req, res) {
+    Question.findByIdAndRemove(req.params.id).exec(function (err) {
+      if (err) { return res.send(err) }
+
+      res.send("Successfully removed question")
+    })
+  })
 
 }

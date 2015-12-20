@@ -4,6 +4,8 @@ var mongoose = require('mongoose'),
 var CommentSchema = new Schema({
     created_at    : { type: Date }
   , updated_at    : { type: Date }
+  , user          : { type: Schema.Types.ObjectId, ref: 'User' }
+  , type          : { type: String, required: true }
   , body          : { type: String, required: true }
 })
 

@@ -6,7 +6,6 @@ angular.module('basic-auth')
   .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http',  function($scope, $rootScope, $location, $auth, $http) {
 
     // LOGIN/REGISTER
-    $scope.signupMode = false;
     $scope.user = {};
 
     $scope.isAuthenticated = function() {
@@ -29,7 +28,6 @@ angular.module('basic-auth')
         .then(function(response) {
           console.log(response)
           $auth.setToken(response);
-          $('#login-modal').modal('hide');
           $scope.isAuthenticated();
           $scope.user = {};
         })
@@ -42,7 +40,6 @@ angular.module('basic-auth')
       $auth.login($scope.user)
         .then(function(response) {
           $auth.setToken(response.data.token);
-          $('#login-modal').modal('hide');
           $scope.isAuthenticated();
           $scope.user = {};
         })

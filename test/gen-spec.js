@@ -32,7 +32,7 @@ describe('Home Page', function() {
   });
 
   it('should have the correct title', function() {
-    expect(browser.getTitle()).toEqual('Question Queue');
+    expect(browser.getTitle()).toEqual('GA/QA');
   });
 
   it('should accept a room hashtag', function() {

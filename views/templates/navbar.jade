@@ -20,7 +20,7 @@ nav.navbar.navbar-default
           form
             .form-group
               label(for='') Email
-              input.form-control(type='text', ng-model='user.email')
+              input.form-control(type='email', ng-model='user.email')
             .form-group
               label(for='') Password
               input.form-control(type='password', ng-model='user.password')
@@ -31,14 +31,36 @@ nav.navbar.navbar-default
         .dropdown-menu.dropdown-form(style='padding:17px;')
           form
             .form-group
+              label(for='') First Name
+              input.form-control(type='text', ng-model='user.first')
+            .form-group
+              label(for='') Last Name
+              input.form-control(type='text', ng-model='user.last')
+            .form-group
+              label(for='') Username
+              input.form-control(type='text', ng-model='user.username')
+            .form-group
+              label(for='') Location
+              select.form-control(type='text', ng-model='user.location')            
+                option(selected) San Francisco
+                option() New York
+                option() Los Angeles
+                option() Chicago
+                option() London
+                option() Sydney
+                option() Singapore
+                option() Hong Kong
+                option() Austin
+            .form-group
               label(for='') Email
-              input.form-control(type='text', ng-model='user.email')
+              input.form-control(type='email', ng-model='user.email')
             .form-group
               label(for='') Password
               input.form-control(type='password', ng-model='user.password')
             .form-group
               label(for='') Confirm Password
               input.form-control(type='password', ng-model='user.confirm')
+
             button.btn.btn-info(type='submit', ng-click='signup()') Sign Up
       li.dropdown(ng-show='currentUser')
         a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
@@ -56,7 +78,7 @@ nav.navbar.navbar-default
 .container(ng-show='currentUser')
   .text-right
     .btn-group
-      .btn.btn-sm Questions 
+      a.btn.btn-sm(href="/") Questions 
       .btn.btn-sm Tags 
       a.btn.btn-sm(href="/questions/new") Ask a Question 
 

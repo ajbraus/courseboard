@@ -12,8 +12,8 @@
     "url": "https://github.com/mtvillwock/MEAN-auth.git"
   },
   "devDependencies": {
-    "mocha": "^2.2.4",
-    "chai": "^2.3.0"
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
   },
   "engines": {
     "node": "0.10.28",
@@ -26,6 +26,7 @@
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.12.3",
     "bower": "^1.4.1",
+    "chai": "^3.4.1",
     "connect-flash": "^0.1.1",
     "cors": "^2.7.1",
     "dotenv": "^1.2.0",
@@ -41,6 +42,7 @@
     "json3": "^3.3.2",
     "jwt-simple": "^0.3.1",
     "logger": "0.0.1",
+    "mocha": "^2.3.4",
     "moment": "^2.10.6",
     "mongoose": "^4.1.10",
     "morgan": "^1.6.1",

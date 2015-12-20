@@ -13,11 +13,38 @@ html(lang="en", ng-app='basic-auth')
     link(rel='stylesheet', href='/vendor/ionicons/css/ionicons.min.css')
     
     link(rel='stylesheet', href='/vendor/highlightjs/styles/monokai.css')
-
+  
+    link(rel='stylesheet', href='/css/footer.css')
     link(rel='stylesheet', href='/css/style.css')
 
   body(ng-controller="MainCtrl")
     block body
+
+    br
+    br
+    br
+    br
+    section.footer
+      .container
+        .row
+          .col-lg-4.col-md-4.col-sm-4
+            .footer_dv
+              h4 Services
+              ul
+                li.line_rv
+                  a(href='/') Contact Us
+          .col-lg-4.col-md-4.col-sm-4
+            .footer_dv
+              h4 Services
+              ul
+                li
+                  a(href='/') Come Visit Us
+          .col-lg-4.col-md-4.col-sm-4
+            .footer_dv
+              h4 Contact us
+              p Customer Support
+              p Call Us 
+                br
 
   script(type="text/javascript", src='/vendor/jquery/dist/jquery.min.js')
   script(type="text/javascript", src='/vendor/bootstrap/dist/js/bootstrap.min.js')

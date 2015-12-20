@@ -24,6 +24,7 @@ module.exports = {
 	  
 	  req.userEmail = payload.email;
 	  req.userId = payload.sub;
+	  req.userFullName = payload.fullname;
 	  next();
 	},
 
