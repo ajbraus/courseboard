@@ -12,11 +12,11 @@ module.exports = function(app) {
     req.body.user = req.userId;
 
     Question.findById(req.params.questionId).exec(function (err, question) {
-      if (err) { return res.send(err) }
+      if (err) { return res.status(400).send({ message: err }) }
 
       req.body.question = question._id;
       Answer.create(req.body, function (err, answer) {
-        if (err) { return res.send(err) }
+        if (err) { return res.status(400).send({ message: err }) }
 
         question.answers.push(answer);
         question.save();
@@ -45,7 +45,7 @@ module.exports = function(app) {
   // ANSWERS INDEX
   app.get('/api/questions/:questionId/answers/', auth.ensureAuthenticated, function (req, res) {
     Answer.find({ question: req.params.questionId }).populate('comments, user').exec(function (err, answers) {
-      if (err) { return res.send(err) }
+      if (err) { return res.status(400).send({ message: err }) }
 
       res.send(answers);
     })
@@ -54,8 +54,12 @@ module.exports = function(app) {
   // ANSWERS DESTROY
   app.delete('/api/questions/:questionId/answers/:id', auth.ensureAuthenticated, function (req, res) {
     Question.findById(req.params.questionId).exec(function (err, question) {
+      if (err) { return res.status(400).send({ message: err }) }
+
       question.comments.pull({ _id: req.params.id })
       Answer.findByIdandRemove(req.params.id, function (err) {
+        if (err) { return res.status(400).send({ message: err }) }
+          
         res.send("Successfully removed answer");
       })
     })

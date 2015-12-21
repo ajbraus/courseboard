@@ -8,14 +8,20 @@ function toLower (v) {
 }
 
 var UserSchema = new Schema({
-    created_at    : { type: Date }
-  , updated_at    : { type: Date }
-  , email         : { type: String, required: true, unique: true, trim: true, set: toLower }
-  , password      : { type: String, select: false, trim: true }
-  , first         : { type: String, trim: true }
-  , last          : { type: String, trim: true }
-  , location      : { type: String, trim: true }
-  , username      : { type: String, trim: true, set: toLower }
+    created_at         : { type: Date }
+  , updated_at         : { type: Date }
+  , email              : { type: String, required: true, select:false, unique: true, trim: true, set: toLower }
+  , password           : { type: String, select: false, trim: true }
+  , first              : { type: String, trim: true }
+  , last               : { type: String, trim: true }
+  , location           : { type: String, trim: true }
+  , username           : { type: String, trim: true, set: toLower }
+  , type               : { type: String, trim: true } // Student, TA, DIR, Instructor, Staff, Grad
+  , rep                : { type: Number, default: 0 }
+  , admin              : { type: Boolean, default: false }
+  , confirmedAt        : { type: Date }
+  , resetPasswordToken : String
+  , resetPasswordExp   : Date
 })
 
 UserSchema.virtual('fullname').get(function() {

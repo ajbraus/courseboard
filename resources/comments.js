@@ -11,7 +11,7 @@ module.exports = function(app) {
   app.post('/api/parent/:parentId/comments', auth.ensureAuthenticated, function (req, res) { 
     req.body.parent = req.params.parentId;
     Comment.create(req.body).exec(function (err, comment) {
-      if (err) { return res.send(err) }
+      if (err) { return res.status(400).send({ message: err }) }
 
       if (comment.type == "question") {
         Question.findById(req.params.parentId).exec(function (err, question) {

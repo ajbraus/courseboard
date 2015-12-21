@@ -8,7 +8,6 @@ angular.module('basic-auth')
   }])
 
   .controller('QuestionsShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', 'Question', 'Answer', function($scope, $http, $routeParams, $auth, Auth, Question, Answer) {
-    console.log($routeParams.id)
     Question.get({ id: $routeParams.id }, function (question) {
       $scope.question = question;
 
@@ -36,37 +35,38 @@ angular.module('basic-auth')
       );
     }
 
-    $scope.createQuestionComment = function() {
-      $scope.comment.type = "question";
-      var comment = new Comment($scope.comment);
-      comment.$save({ parentId: $scope.question._id }).then(
-        function (response) {
-          $scope.question.comments.push(response);
-        },
-        function (response) {
-          console.log(response)
-        }
-      );
-    }
+    // $scope.createQuestionComment = function() {
+    //   $scope.comment.type = "question";
+    //   var comment = new Comment($scope.comment);
+    //   comment.$save({ parentId: $scope.question._id }).then(
+    //     function (response) {
+    //       $scope.question.comments.push(response);
+    //     },
+    //     function (response) {
+    //       console.log(response)
+    //     }
+    //   );
+    // }
 
-    $scope.createAnswerComment = function(answer) {
-      $scope.comment.type = "answer";
-      var comment = new Comment($scope.comment);
-      comment.$save({ parentId: $scope.answer._id }).then(
-        function (response) {
-          $scope.answer.comments.push(response);
-        },
-        function (response) {
-          console.log(response)
-        }
-      );
-    }
+    // $scope.createAnswerComment = function(answer) {
+    //   $scope.comment.type = "answer";
+    //   var comment = new Comment($scope.comment);
+    //   comment.$save({ parentId: $scope.answer._id }).then(
+    //     function (response) {
+    //       $scope.answer.comments.push(response);
+    //     },
+    //     function (response) {
+    //       console.log(response)
+    //     }
+    //   );
+    // }
 
   }])
 
   .controller('QuestionsEditCtrl', ['$scope', '$http', '$location', '$routeParams', '$auth', 'Auth', 'Question', function($scope, $http, $location, $routeParams, $auth, Auth, Question) {
     $scope.editQuestion = true;
     $scope.question = Question.get({ id: $routeParams.id });
+    
     $scope.createQuestion = function() {
       var question = new Question($scope.question);
       question.$update({id: question._id}).then(

@@ -10,7 +10,7 @@ module.exports = function(app) {
   // QUESTIONS INDEX
   app.get('/api/questions', auth.ensureAuthenticated, function (req, res) {
     Question.find().exec(function (err, questions) {
-      if (err) { return res.send(err) }
+      if (err) { return res.status(400).send({ message: err }) }
 
       res.send(questions);
     });
@@ -19,7 +19,7 @@ module.exports = function(app) {
   // QUESTIONS SHOW
   app.get('/api/questions/:id', auth.ensureAuthenticated, function (req, res) {
     Question.findById(req.params.id).populate('comments, user').exec(function (err, question) {
-      if (err) { return res.send(err) }
+      if (err) { return res.status(400).send({ message: err }) }
 
       res.send(question);
     });
@@ -30,7 +30,7 @@ module.exports = function(app) {
     req.body.user = req.userId;
 
     Question.create(req.body, function (err, question) {
-      if (err) { return res.send(err) }
+      if (err) { return res.status(400).send({ message: err }) }
 
       res.send(question);
     });
@@ -41,7 +41,7 @@ module.exports = function(app) {
     req.body.user = req.userId;
 
     Question.findByIdAndUpdate(req.params.id, req.body, function (err, question) {
-      if (err) { return res.send(err) }
+      if (err) { return res.status(400).send({ message: err }) }
 
       res.send(question);
     });
@@ -50,7 +50,7 @@ module.exports = function(app) {
   // QUESTIONS DELETE
   app.delete('/api/questions/:id', auth.ensureAuthenticated, function (req, res) {
     Question.findByIdAndRemove(req.params.id).exec(function (err) {
-      if (err) { return res.send(err) }
+      if (err) { return res.status(400).send({ message: err }) }
 
       res.send("Successfully removed question")
     })

@@ -209,3 +209,7 @@ fieldset {
   padding:10px;
   background:#eee;
 }
+
+.link-text {
+  color:#337ab7 !important;
+}

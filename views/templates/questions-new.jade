@@ -15,7 +15,7 @@
       br
       div
         button.btn.btn-primary(type="submit") Save Question
-        a.btn.btn-link(href="/questions/{{question._id}}" ng-show="editQuestion") cancel
+        a.btn.btn-link(href="/#questions/{{question._id}}" ng-show="editQuestion") cancel
   .col-sm-4.col-md-3
     br
     .panel.panel-danger
@@ -40,6 +40,6 @@
         p
           ```js
           br
-          var aDude = "Cowboy";
+          | var aDude = "Cowboy";
           br
           ```

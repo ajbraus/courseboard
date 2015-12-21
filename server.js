@@ -49,14 +49,17 @@ app.set('view options', {
 // RESOURCES
 app.get('/', resources.index);
 app.get('/templates/:name', resources.templates);
+
 require('./resources/users')(app);
+require('./resources/admin')(app);
 require('./resources/questions')(app);
 require('./resources/answers')(app);
 require('./resources/comments')(app);
 require('./resources/votes')(app);
 
+
 // redirect all others to the index (HTML5 history)
-app.get('*', resources.index);
+app.get('/*', resources.index);
 
 module.exports = server;
 console.log('server running at http://localhost:' + config.port);

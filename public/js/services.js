@@ -16,11 +16,11 @@ angular.module('basic-auth.services', [])
     });
   }])
 
-  .factory('Comment', ['$resource', '$window', function ($resource, $window) {
-    return $resource($window.location.origin + '/api/parent/:parentId/comments/:id', { parentId: '@parentId', id: '@id' }, {
-      update: { method: 'PUT' }
-    });
-  }])
+  // .factory('Comment', ['$resource', '$window', function ($resource, $window) {
+  //   return $resource($window.location.origin + '/api/parent/:parentId/comments/:id', { parentId: '@parentId', id: '@id' }, {
+  //     update: { method: 'PUT' }
+  //   });
+  // }])
 
   .factory('Auth', ['$auth', function ($auth) {
     return {

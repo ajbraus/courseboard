@@ -1,0 +1,6 @@
+.row
+  h3 Unconfirmed Users
+  ul.list-group
+    li.clearfix.list-group-item(ng-repeat="user in unconfirmedUsers")
+      {{user.username}}
+      .pull-right.btn.btn-primary(ng-click="confirmUser(user, $index)") Confirm

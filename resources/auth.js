@@ -4,6 +4,26 @@ var jwt = require('jwt-simple')
   , User = require('../models/user.js');
 
 module.exports = {
+	generateResetPasswordToken: function() {
+		var token = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 9; i++ )
+        token += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return token;
+	},
+
+	ensureAdmin: function(req, res, next) {
+		User.findById(req.userId).select('admin').exec(function (err, user) {
+		  if (user.admin) {
+		  	next();
+		  } else {
+		  	return res.status(401).send({ message: 'Unauthorized' });
+		  }
+		});
+	},
+
 	ensureAuthenticated: function(req, res, next) {
 	  if (!req.headers.authorization) {
 	    return res.status(401).send({ message: 'Please make sure your request has an Authorization header' });
@@ -33,6 +53,7 @@ module.exports = {
 	    sub: user._id,
 	    email: user.email,
 	    fullname: user.fullname,
+	    admin: user.admin,
 	    iat: moment().unix(),
 	    exp: moment().add(14, 'days').unix()
 	  };

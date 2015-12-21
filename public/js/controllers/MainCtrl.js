@@ -12,6 +12,7 @@ angular.module('basic-auth')
       $http.get('/api/me').then(function (response) {
         if (!!response.data) {
           $scope.currentUser = response.data;
+          $scope.currentUser.admin = $auth.getPayload().admin
         } else {
           $auth.removeToken();
         }
@@ -25,13 +26,12 @@ angular.module('basic-auth')
 
     $scope.signup = function() {
       $auth.signup($scope.user)
-        .then(function(response) {
-          console.log(response)
-          $auth.setToken(response);
-          $scope.isAuthenticated();
+        .then(function (response) {
+          console.log(response);
+          $('.dropdown.open .dropdown-toggle').dropdown('toggle');
           $scope.user = {};
         })
-        .catch(function(response) {
+        .catch(function (response) {
           console.log(response)
         });
     };
@@ -39,6 +39,7 @@ angular.module('basic-auth')
     $scope.login = function() {
       $auth.login($scope.user)
         .then(function(response) {
+          $('.dropdown.open .dropdown-toggle').dropdown('toggle');
           $auth.setToken(response.data.token);
           $scope.isAuthenticated();
           $scope.user = {};
