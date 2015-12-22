@@ -17,7 +17,7 @@ var UserSchema = new Schema({
   , location           : { type: String, trim: true }
   , username           : { type: String, trim: true, set: toLower }
   , type               : String // Student, TA, DIR, Instructor, Staff, Grad
-  , rep                : { type: Number, default: 0 }
+  , rep                : { type: Number, default: 25 }
   , admin              : { type: Boolean, default: false }
   , confirmedAt        : { type: Date }
   , resetPasswordToken : String

@@ -3,6 +3,7 @@ var User = require('../models/user.js')
   , Question = require('../models/question.js')
   , Answer = require('../models/answer.js')
   , Comment = require('../models/comment.js')
+  , reputation = require('./reputation.js')
   , auth = require('./auth.js')
   , config = require('../config.js')
 
@@ -32,6 +33,9 @@ module.exports = function(app) {
     Question.create(req.body, function (err, question) {
       if (err) { return res.status(400).send({ message: err }) }
 
+      // GIVE REP TO THE QUESTIONER
+      reputation.newValue('add', 'new-question', req.userId);
+
       res.send(question);
     });
   });
@@ -51,6 +55,9 @@ module.exports = function(app) {
   app.delete('/api/questions/:id', auth.ensureAuthenticated, function (req, res) {
     Question.findByIdAndRemove(req.params.id).exec(function (err) {
       if (err) { return res.status(400).send({ message: err }) }
+
+      // REMOVE REP FROM THE QUESTIONER
+      reputation.newValue('remove', 'new-question', userId);
 
       res.send("Successfully removed question")
     })

@@ -28,6 +28,9 @@ angular.module('basic-auth')
           console.log(response)
           $scope.answers.push(response);
           $scope.answer = {};
+
+          // ADDING REPUTATION
+          $rootScope.currentUser.rep = $rootScope.currentUser.rep + 10
         }, 
         function (response) {
           console.log(response)
@@ -80,13 +83,16 @@ angular.module('basic-auth')
     }
   }])
 
-  .controller('QuestionsNewCtrl', ['$scope', '$http', '$auth', 'Auth', 'Question', '$location', function($scope, $http, $auth, Auth, Question, $location) {
+  .controller('QuestionsNewCtrl', ['$scope', '$rootScope', '$http', '$auth', 'Auth', 'Question', '$location', function($scope, $rootScope, $http, $auth, Auth, Question, $location) {
     $scope.question = {};
 
     $scope.createQuestion = function() {
     	var question = new Question($scope.question);
     	question.$save().then(
     		function (response) {
+          // ADDING REPUTATION
+          $rootScope.currentUser.rep = $rootScope.currentUser.rep + 5
+
     			$location.path('/questions/' + response._id)
     		}, 
     		function (response) {

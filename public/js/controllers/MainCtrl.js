@@ -11,8 +11,8 @@ angular.module('basic-auth')
     $scope.isAuthenticated = function() {
       $http.get('/api/me').then(function (response) {
         if (!!response.data) {
-          $scope.currentUser = response.data;
-          $scope.currentUser.admin = $auth.getPayload().admin
+          $rootScope.currentUser = response.data;
+          $rootScope.currentUser.admin = $auth.getPayload().admin
         } else {
           $auth.removeToken();
         }
@@ -53,7 +53,7 @@ angular.module('basic-auth')
       $auth.logout()
         .then(function() {
           $auth.removeToken();
-          $scope.currentUser = null;
+          $rootScope.currentUser = null;
           $location.path('/')
         });
     };
