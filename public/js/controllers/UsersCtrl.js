@@ -7,6 +7,36 @@ angular.module('basic-auth')
     $http.get('/api/me').then(function(response) {
       $scope.user = response.data;
     });
+
+    $http.get('/api/users/' + $auth.getPayload().sub + '/questions')
+      .then(function (response) {
+        $scope.questions = response.data;
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
+
+  }])
+
+  .controller('UsersShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', function($scope, $http, $routeParams, $auth, Auth) {
+
+    $http.get('/api/users/' + $routeParams.id)
+      .then(function (response) {
+        $scope.user = response.data;
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
+
+
+    $http.get('/api/users/' + $routeParams.id + '/questions')
+      .then(function (response) {
+        console.log(response);
+        $scope.questions = response.data;
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
   }])
 
   .controller('SettingsCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {

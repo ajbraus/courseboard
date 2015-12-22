@@ -4,6 +4,7 @@
     div(marked="question.body")
     .text-right.text-muted Asked by 
       a(href="/users/{{question.user._id}}") {{question.user.username}} 
+      br
       a(href="/edit/questions/{{question._id}}" ng-show="isCurrentUsersQuestion") improve question
     
     hr

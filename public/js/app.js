@@ -34,7 +34,7 @@ angular.module('basic-auth', [
       // USERS & PROFILE
       $routeProvider.when('/users/:id', {
         templateUrl: 'templates/profile',
-        controller: 'UsersShowCtl'
+        controller: 'UsersShowCtrl'
       });
 
       $routeProvider.when('/profile', {
