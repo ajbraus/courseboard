@@ -7,12 +7,12 @@
     .col-sm-6
       .page-header Questions
       .list-group(ng-repeat="question in questions")
-        a.list-group-item(href="/#questions/{{question._id}}") {{question.title}}
+        a.list-group-item(href="/questions/{{question._id}}") {{question.title}}
     //- .col-sm-6
     //-   .page-header Answers
     //-   .list-group(ng-repeat="answer in answers")
-    //-     a.list-group-item(href="/#questions/{{answer.question}}") {{answer.question.title}}
+    //-     a.list-group-item(href="/questions/{{answer.question}}") {{answer.question.title}}
     //- .col-sm-6
     //-   .page-header Comments
     //-   .list-group(ng-repeat="comment in comments")
-    //-     a.list-group-item(href="/#questions/{{comment.parent}}") {{comment.question.title}}
+    //-     a.list-group-item(href="/questions/{{comment.parent}}") {{comment.question.title}}

@@ -25,7 +25,7 @@ nav.navbar.navbar-default
               label(for='') Password
               input.form-control(type='password', ng-model='user.password')
             .text-right
-              a.btn.btn-link.link-text(href="/#password/new") Forgot Password 
+              a.btn.btn-link.link-text(href="/password-new") Forgot Password 
               button.btn.btn-danger(type='submit', ng-click='login()') Log In
 
       li.dropdown(ng-show='!currentUser')
@@ -64,10 +64,10 @@ nav.navbar.navbar-default
               label(for='') Confirm Password
               input.form-control(type='password', ng-model='user.confirm')
             .text-right
-              a.btn.btn-link.link-text(href="/#password/new") Forgot Password 
+              a.btn.btn-link.link-text(href="/password-new") Forgot Password 
               button.btn.btn-danger(type='submit', ng-click='signup()') Sign Up
       li
-        a(href="/#profile") {{currentUser.username}}
+        a(href="/profile") {{currentUser.username}}
       li.dropdown(ng-show='currentUser')
         a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
           span.caret
@@ -84,8 +84,8 @@ nav.navbar.navbar-default
   .row
     .col-sm-12.col-md-10.text-right
       .btn-group
-        a.btn.btn-sm.btn-default(href="/#") Questions 
+        a.btn.btn-sm.btn-default(href="/") Questions 
         //- .btn.btn-sm.btn-default Tags 
-        a.btn.btn-sm.btn-default(href="/#questions/new") Ask a Question 
+        a.btn.btn-sm.btn-default(href="/questions/new") Ask a Question 
 
 br

@@ -97,14 +97,17 @@ module.exports = function(app) {
       });
     })
     
-  })
+  });
 
   app.put('/auth/passwords/edit/:token', function (req, res) {
+    // Find user by token
     User.findOne({ resetPasswordToken: req.params.token }).where('resetPasswordExpires').gt(Date.now()).exec(function (err, user) {
       if (!user) {
         return res.status(409).send({ message: 'Token is not valid' });
       }
+      // Set New password
       user.password = req.body.password;
+      // Remove token
       user.resetPasswordToken = undefined;
       user.resetPasswordExpires = undefined;
 
@@ -114,8 +117,6 @@ module.exports = function(app) {
         res.send({ message: "Password successfully reset" })
       });
     })
-    // Find user by token
-    // Remove token
-    // Set New password
   })
+
 }

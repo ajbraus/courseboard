@@ -1,0 +1,79 @@
+Searching 17 files for "href="/#"
+
+/Users/Penelope/dev/ga-qa/views/emails/new-answer.jade:
+    6      p #{answerer} posted a new answer on your question:
+    7      p 
+    8:       a(href="/#questions/#{question._id}") #{question.title}
+    9      
+
+/Users/Penelope/dev/ga-qa/views/templates/home-loggedin.jade:
+    3    .col-sm-8.col-md-7.col-md-offset-1
+    4      .list-group
+    5:       a.list-group-item(href="/#questions/{{question._id}}" ng-repeat="question in questions")
+    6          h5 {{question.title}}
+    7    .col-sm-4.col-md-3
+
+/Users/Penelope/dev/ga-qa/views/templates/navbar.jade:
+   26                input.form-control(type='password', ng-model='user.password')
+   27              .text-right
+   28:               a.btn.btn-link.link-text(href="/#password/new") Forgot Password 
+   29                button.btn.btn-danger(type='submit', ng-click='login()') Log In
+   30  
+   ..
+   65                input.form-control(type='password', ng-model='user.confirm')
+   66              .text-right
+   67:               a.btn.btn-link.link-text(href="/#password/new") Forgot Password 
+   68                button.btn.btn-danger(type='submit', ng-click='signup()') Sign Up
+   69        li
+   70:         a(href="/#profile") {{currentUser.username}}
+   71        li.dropdown(ng-show='currentUser')
+   72          a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+   ..
+   85      .col-sm-12.col-md-10.text-right
+   86        .btn-group
+   87:         a.btn.btn-sm.btn-default(href="/#") Questions 
+   88          //- .btn.btn-sm.btn-default Tags 
+   89:         a.btn.btn-sm.btn-default(href="/#questions/new") Ask a Question 
+   90  
+   91  br
+
+/Users/Penelope/dev/ga-qa/views/templates/profile.jade:
+    8        .page-header Questions
+    9        .list-group(ng-repeat="question in questions")
+   10:         a.list-group-item(href="/#questions/{{question._id}}") {{question.title}}
+   11      //- .col-sm-6
+   12      //-   .page-header Answers
+   13      //-   .list-group(ng-repeat="answer in answers")
+   14:     //-     a.list-group-item(href="/#questions/{{answer.question}}") {{answer.question.title}}
+   15      //- .col-sm-6
+   16      //-   .page-header Comments
+   17      //-   .list-group(ng-repeat="comment in comments")
+   18:     //-     a.list-group-item(href="/#questions/{{comment.parent}}") {{comment.question.title}}
+
+/Users/Penelope/dev/ga-qa/views/templates/questions-new.jade:
+   16        div
+   17          button.btn.btn-primary(type="submit") Save Question
+   18:         a.btn.btn-link(href="/#questions/{{question._id}}" ng-show="editQuestion") cancel
+   19    .col-sm-4.col-md-3
+   20      br
+
+/Users/Penelope/dev/ga-qa/views/templates/questions-show.jade:
+    4      div(marked="question.body")
+    5      .text-right.text-muted Asked by 
+    6:       a(href="/#users/{{question.user._id}}") {{question.user.username}} 
+    7:       a(href="/#edit/questions/{{question._id}}" ng-show="isCurrentUsersQuestion") improve question
+    8      
+    9      hr
+   ..
+   20          .text-right.text-muted
+   21            | Answered by 
+   22:           a(href="/#users/{{answer.user._id}}") {{answer.user.username}}
+   23  
+   24    .col-sm-4.col-md-3
+   25      | Related Questions
+   26      .list-group
+   27:       a.list-group-item(href="/#questions/{{a._id}}" ng-repeat="q in questions")
+   28          {{q.title}}
+   29  
+
+15 matches across 6 files

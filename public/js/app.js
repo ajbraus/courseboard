@@ -49,12 +49,12 @@ angular.module('basic-auth', [
       });
 
       // PASSWORD
-      $routeProvider.when('/password/new', {
+      $routeProvider.when('/password-new', {
         templateUrl: 'templates/password-new',
         controller: 'PasswordNewCtrl'
       });
 
-      $routeProvider.when('/password/edit', {
+      $routeProvider.when('/password-edit', {
         templateUrl: 'templates/password-edit',
         controller: 'PasswordEditCtrl'
       });
@@ -63,10 +63,10 @@ angular.module('basic-auth', [
 
       // $locationProvider.html5Mode(true);
 
-      // $locationProvider.html5Mode({
-      //   enabled: true,
-      //   requireBase: false
-      // });
+      $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+      });
     }])
 
     .config(['markedProvider', function (markedProvider) {

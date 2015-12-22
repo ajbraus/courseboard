@@ -3,8 +3,8 @@
     h3 {{question.title}}
     div(marked="question.body")
     .text-right.text-muted Asked by 
-      a(href="/#users/{{question.user._id}}") {{question.user.username}} 
-      a(href="/#edit/questions/{{question._id}}" ng-show="isCurrentUsersQuestion") improve question
+      a(href="/users/{{question.user._id}}") {{question.user.username}} 
+      a(href="/edit/questions/{{question._id}}" ng-show="isCurrentUsersQuestion") improve question
     
     hr
     h5 Post an Answer
@@ -19,10 +19,10 @@
         {{answer.body}}
         .text-right.text-muted
           | Answered by 
-          a(href="/#users/{{answer.user._id}}") {{answer.user.username}}
+          a(href="/users/{{answer.user._id}}") {{answer.user.username}}
 
   .col-sm-4.col-md-3
     | Related Questions
     .list-group
-      a.list-group-item(href="/#questions/{{a._id}}" ng-repeat="q in questions")
+      a.list-group-item(href="/questions/{{a._id}}" ng-repeat="q in questions")
         {{q.title}}

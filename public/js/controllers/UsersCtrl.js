@@ -30,7 +30,8 @@ angular.module('basic-auth')
     }
   }])
 
-  .controller('PasswordEditCtrl', ['$scope', '$http', '$auth', 'Auth', '$routeParams', function($scope, $http, $auth, Auth, $routeParams) {
+  .controller('PasswordEditCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+    console.log('in password edit ctrl')
     // $http.put('/auth/passwords/edit/' + $routeParams.token)
     //   .then(function (response) {
     //     console.log(response);
