@@ -42,6 +42,11 @@ angular.module('basic-auth', [
         controller: 'ProfileCtrl'
       });
 
+      $routeProvider.when('/settings', {
+        templateUrl: 'templates/settings',
+        controller: 'SettingsCtrl'
+      });
+
       // ADMIN
       $routeProvider.when('/admin', {
         templateUrl: 'templates/admin',

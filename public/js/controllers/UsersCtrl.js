@@ -8,6 +8,24 @@ angular.module('basic-auth')
       $scope.user = response.data;
     });
   }])
+
+  .controller('SettingsCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
+    $http.get('/api/me').then(function(response) {
+      $scope.user = response.data;
+    });
+
+    $scope.updateUser = function() {
+      $http.put('/api/me', $scope.user)
+        .then(function (response) {
+          console.log(response)
+          $location.path('/profile')
+        })
+        .catch(function (response) {
+          console.log(response)
+        })
+    }
+  }])
+
   .controller('UsersShowCtrl', ['$scope', '$http', '$auth', 'Auth', '$routeParams', function($scope, $http, $auth, Auth, $routeParams) {
     $http.get('/api/users/' + $routeParams.id).then(function(response) {
       $scope.user = response.data;

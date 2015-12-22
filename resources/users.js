@@ -16,17 +16,25 @@ module.exports = function(app) {
   });
 
   app.get('/api/me', auth.ensureAuthenticated, function (req, res) {
-    User.findById(req.userId, function (err, user) {
+    User.findById(req.userId, '+email', function (err, user) {
       res.send(user);
     });
   });
 
   app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
+    console.log(req.body)
     User.findById(req.userId, function (err, user) {
       if (!user) {
         return res.status(400).send({ message: 'User not found' });
       }
+      
       user.email = req.body.email || user.email;
+      user.type = req.body.type  || user.type;
+      user.first = req.body.first || user.first;
+      user.last = req.body.last || user.last;
+      user.username = req.body.username || user.username;
+      user.location = req.body.location || user.location;
+
       user.save(function(err) {
         res.status(200).end();
       });

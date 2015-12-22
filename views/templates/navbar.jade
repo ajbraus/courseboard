@@ -43,8 +43,17 @@ nav.navbar.navbar-default
               label(for='') Username
               input.form-control(type='text', ng-model='user.username')
             .form-group
+              label Account Type
+              select.form-control(ng-model='user.type')            
+                option() Student
+                option() Graduate
+                option() TA
+                option() DIR
+                option() Instructor
+                option() Staff
+            .form-group
               label(for='') Location
-              select.form-control(type='text', ng-model='user.location')            
+              select.form-control(ng-model='user.location')            
                 option(selected) San Francisco
                 option() New York
                 option() Los Angeles

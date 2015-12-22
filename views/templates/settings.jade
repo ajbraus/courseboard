@@ -1,0 +1,41 @@
+.container
+  .row
+    .col-md-4.col-md-offset-4.col-sm-6.col-sm-offset-3
+      legend Account Settings
+      form(ng-submit="updateUser()")
+        .form-group
+          label First Name
+          input.form-control(ng-model="user.first")
+        .form-group
+          label Last Name
+          input.form-control(ng-model="user.last")
+        .form-group
+          label Username
+          input.form-control(ng-model="user.username")
+        .form-group
+          label Account Type
+          select.form-control(ng-model='user.type')            
+            option() Student
+            option() Graduate
+            option() TA
+            option() DIR
+            option() Instructor
+            option() Staff
+        .form-group
+          label(for='') Location
+          select.form-control(type='text', ng-model='user.location')            
+            option() San Francisco
+            option() New York
+            option() Los Angeles
+            option() Chicago
+            option() London
+            option() Sydney
+            option() Singapore
+            option() Hong Kong
+            option() Austin
+        .form-group
+          label(for='') Email
+          input.form-control(type='email', ng-model='user.email')
+        .text-right
+          a.btn.btn-link.link-text(href="/profile") Cancel
+          button.btn.btn-danger(type="submit") Update Account
