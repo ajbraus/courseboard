@@ -40,6 +40,12 @@ mailer.extend(app, {
   }
 });
 
+if (process.env.NODE_ENV === 'production') {
+  app.locals.baseUrl = 'http://localhost:1337'
+} else {
+  app.locals.baseUrl = 'https://gaqa.herokuapp.com'
+}
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.set('view options', {
