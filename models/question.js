@@ -9,10 +9,12 @@ var QuestionSchema = new Schema({
   , body          : { type: String, required: true }
   , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true}
   , answers       : [{ type: Schema.Types.ObjectId, ref: 'Answer' }]
+  , votes         : [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  , impressions   : [{ type: Schema.Types.ObjectId, ref: 'User' }]
   
   , tags          : []
   , comments      : [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
-  , votes         : [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  
 })
 
 QuestionSchema.pre('save', function(next){

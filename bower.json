@@ -17,6 +17,7 @@
     "highlightjs": "~9.0.0",
     "angular-sanitize": "~1.4.8",
     "moment": "~2.10.6",
-    "angular-bootstrap": "~0.14.3"
+    "angular-bootstrap": "~0.14.3",
+    "animate.css": "~3.5.0"
   }
 }

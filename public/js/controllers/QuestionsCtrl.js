@@ -27,7 +27,38 @@ angular.module('basic-auth')
       if ($scope.question.user._id == $auth.getPayload().sub) {
         $scope.isCurrentUsersQuestion = true;
       }
+      $scope.question.hasVoted = $scope.question.votes.indexOf($rootScope.currentUser._id) >= 0;
     });
+
+    $scope.voteQuestionUp = function() {
+      if (!$scope.question.hasVoted) {
+        $http.post('/api/questions/' + $scope.question._id + '/vote-up')
+          .then(function (response) {
+            $scope.question.votes.push($rootScope.currentUser._id);
+            $scope.question.hasVoted = true;
+
+            console.log(response)
+          })
+          .catch(function (response) {
+            console.log(response.data.message)
+          })
+      }
+    }
+
+    // $scope.voteAnswerUp = function() {
+    //   if (!$scope.question.hasVoted) {
+    //     $http.post('/api/questions/' + $scope.question._id + '/vote-up')
+    //       .then(function (response) {
+    //         $scope.question.votes.push($rootScope.currentUser._id);
+    //         $scope.question.hasVoted = true;
+
+    //         console.log(response)
+    //       })
+    //       .catch(function (response) {
+    //         console.log(response.data.message)
+    //       })
+    //   }
+    // }
 
     $scope.questions = Question.query();
 
@@ -95,7 +126,7 @@ angular.module('basic-auth')
     }
   }])
 
-  .controller('QuestionsNewCtrl', ['$scope', '$rootScope', '$http', '$auth', 'Auth', 'Question', '$location', function($scope, $rootScope, $http, $auth, Auth, Question, $location) {
+  .controller('QuestionsNewCtrl', ['$scope', '$rootScope', '$auth', 'Auth', 'Question', '$location', function($scope, $rootScope, $auth, Auth, Question, $location) {
     $scope.question = {};
 
     $scope.createQuestion = function() {

@@ -27,7 +27,7 @@ module.exports = function(app) {
 
   // USER PROFILE QUESTIONS INDEX
   app.get('/api/users/:id/questions', auth.ensureAuthenticated, function (req, res) {
-    Question.find({ user: req.params.id }).exec(function (err, questions) {
+    Question.find({ user: req.params.id }).sort('-createdAt').exec(function (err, questions) {
       if (err) { return res.status(400).send({ message: err }) }
 
       res.send(questions);
@@ -36,7 +36,7 @@ module.exports = function(app) {
 
   // USER PROFILE ANSWERS INDEX
   app.get('/api/users/:id/answers', auth.ensureAuthenticated, function (req, res) {
-    Answer.find({ user: req.params.id }).populate('question').exec(function (err, answers) {
+    Answer.find({ user: req.params.id }).sort('-createdAt').populate('question').exec(function (err, answers) {
       if (err) { return res.status(400).send({ message: err }) }
 
       res.send(answers);

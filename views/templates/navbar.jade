@@ -75,7 +75,7 @@ nav.navbar.navbar-default
             .text-right
               a.btn.btn-link.link-text(href="/password-new") Forgot Password 
               button.btn.btn-danger(type='submit', ng-click='signup()') Sign Up
-      li
+      li(ng-show='currentUser')
         a(href="/profile") {{currentUser.username}} - {{currentUser.rep}}
       li.dropdown(ng-show='currentUser')
         a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')

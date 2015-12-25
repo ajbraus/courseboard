@@ -217,3 +217,36 @@ fieldset {
 .white {
   color:white;
 }
+
+.pagination {
+  margin: 5px 0;
+}
+
+.voting {
+    font-size: 30px;
+}
+
+.voted {
+  color: #f0005e;
+}
+
+.not-voted {
+  cursor:pointer;
+}
+
+.not-voted:hover {
+  color: #f0005e; 
+}
+
+.stats {
+  font-size: 18px;
+  margin:7px;
+}
+
+.stats .col-xs-4 {
+  padding: 0;
+}
+
+.stats small {
+  font-size: 66%;
+}

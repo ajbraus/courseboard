@@ -1,17 +1,17 @@
 .row
   .col-sm-12.col-md-10.col-md-offset-1
-    h3.page-header
+    h1.page-header
       {{user.first}} {{user.last}} 
-    b {{user.type}}
+    b A GA {{user.type}} in {{user.location}}
     .row
       .col-sm-6
-        .page-header Asked Questions
-        .list-group(ng-repeat="question in questions")
-          a.list-group-item(href="/questions/{{question._id}}") {{question.title}}
+        .page-header Asked {{questions.length}} Questions
+        .list-group
+          a.list-group-item(href="/questions/{{question._id}}" ng-repeat="question in questions") {{question.title}}
       .col-sm-6
-        .page-header Answered Questions
-        .list-group(ng-repeat="answer in answers")
-          a.list-group-item(href="/questions/{{answer.question._id}}") {{answer.question.title}}
+        .page-header Answered {{answers.length}} Questions
+        .list-group
+          a.list-group-item(href="/questions/{{answer.question._id}}" ng-repeat="answer in answers") {{answer.question.title}}
       //- .col-sm-6
       //-   .page-header Comments
       //-   .list-group(ng-repeat="comment in comments")

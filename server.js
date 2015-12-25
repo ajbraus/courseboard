@@ -22,7 +22,7 @@ var config = require('./config')
 mongoose.connect(config.db);
 mongoosePaginate.paginate.options = { 
     lean:  true,
-    limit: 15
+    limit: 12
 };
 
 app.use("/", express.static(path.join(__dirname, 'public')));

@@ -1,15 +1,37 @@
 //- HOME LOGGED IN
 .row
   .col-sm-8.col-md-7.col-md-offset-1
+
+    //- PAGINATION
+    uib-pagination(total-items="questions.total" direction-links="false" ng-model="questions.page" ng-change="pageChanged()")
+  
+    //- QUESTIONS
     .list-group
       .list-group-item(ng-repeat="question in questions.docs")
-        h5 #[a(href="/questions/{{question._id}}") {{question.title}}]
-        small
-          .text-right.text-muted
-            | asked #[span(am-time-ago="question.createdAt")]
-            |  by #[a(href="/users/{{question.user._id}}") {{question.user.username}}]
-
-    uib-pagination(total-items="questions.total" direction-links="false" ng-model="questions.page" ng-change="pageChanged()")
+        .row
+          .col-xs-3
+            .row.stats.text-center
+              .col-xs-4
+                {{question.votes.length}}
+                br
+                small.hidden-xs.text-muted votes
+              .col-xs-4
+                {{question.answers.length}}
+                br
+                small.hidden-xs.text-muted answers
+              .col-xs-4
+                {{question.impressions}}
+                br
+                small.hidden-xs.text-muted views
+          .col-xs-9
+            h4 #[a(href="/questions/{{question._id}}") {{question.title}}]
+            .row
+              .col-xs-12
+                small
+                  .text-right.text-muted
+                    | asked #[span(am-time-ago="question.createdAt")]
+                    |  by #[a(href="/users/{{question.user._id}}") {{question.user.username}}]
+  //- SIDEBAR
   .col-sm-4.col-md-3
     .well 
       h5 Welcome!

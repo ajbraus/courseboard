@@ -9,9 +9,10 @@ var User = require('../models/user.js')
 
 
 module.exports = function(app) {
-  // QUESTIONS INDEX
+  // QUESTIONS INDEX 
   app.get('/api/questions', auth.ensureAuthenticated, function (req, res) {
-    Question.paginate({}, { page: req.query.pages, populate: 'user' }).then(function (result) {
+    // RECENT QUESTIONS
+    Question.paginate({}, { sort:'-createdAt', page: req.query.pages, populate: 'user' }).then(function (result) {
       // if (err) { return res.status(400).send({ message: err }) }
       res.send(result);
     });
@@ -22,6 +23,9 @@ module.exports = function(app) {
     Question.findById(req.params.id).populate('comments, user').exec(function (err, question) {
       if (err) { return res.status(400).send({ message: err }) }
 
+      question.impressions = question.impressions + 1;
+      question.save();
+
       res.send(question);
     });
   });
@@ -29,6 +33,7 @@ module.exports = function(app) {
   // QUESTIONS CREATE
   app.post('/api/questions', auth.ensureAuthenticated, function (req, res) { 
     req.body.user = req.userId;
+    req.body.votes = [req.userId]; // already vote for own answer
 
     Question.create(req.body, function (err, question) {
       if (err) { return res.status(400).send({ message: err }) }

@@ -1,26 +1,32 @@
 .row
   .col-sm-8.col-md-7.col-md-offset-1
-    h3 {{question.title}}
-    div(marked="question.body")
-    .text-right.text-muted Asked by 
-      a(href="/users/{{question.user._id}}") {{question.user.username}} 
-      br
-      a(href="/edit/questions/{{question._id}}" ng-show="isCurrentUsersQuestion") improve question
-    
-    hr
-    h5 Post an Answer
-    form(ng-submit="createAnswer()")
-      .form-group
-        textarea.form-control(rows="5" ng-model="answer.body")
-      button.btn.btn-sm.btn-primary(type='submit') Post Answer
-    hr
-    h5 Answers
-    div(ng-repeat="answer in answers")
-      section 
-        {{answer.body}}
-        .text-right.text-muted
-          | Answered by 
-          a(href="/users/{{answer.user._id}}") {{answer.user.username}}
+    .row
+      .col-xs-1.voting
+        div(ng-class="{ 'animated headShake infinite' : !question.hasVoted }")
+          i.icon.ion-arrow-up-b(ng-click='voteQuestionUp()' ng-class="{ 'voted': question.hasVoted, 'not-voted': !question.hasVoted }")
+        {{question.votes.length}}
+      .col-xs-11
+        h3 {{question.title}}
+        div(marked="question.body")
+        .text-right.text-muted Asked by 
+          a(href="/users/{{question.user._id}}") {{question.user.username}} 
+          br
+          a(href="/edit/questions/{{question._id}}" ng-show="isCurrentUsersQuestion") improve question
+    .row
+      hr
+      h5 Post an Answer
+      form(ng-submit="createAnswer()")
+        .form-group
+          textarea.form-control(rows="5" ng-model="answer.body")
+        button.btn.btn-sm.btn-primary(type='submit') Post Answer
+      hr
+      h5 Answers
+      div(ng-repeat="answer in answers")
+        section 
+          {{answer.body}}
+          .text-right.text-muted
+            | Answered by 
+            a(href="/users/{{answer.user._id}}") {{answer.user.username}}
 
   .col-sm-4.col-md-3
     | Related Questions

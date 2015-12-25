@@ -3,6 +3,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('basic-auth', [
                          'basic-auth.services',
+                         'basic-auth.directives',
                          'ngRoute',
                          'ngResource',
                          'satellizer',
