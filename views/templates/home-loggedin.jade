@@ -2,8 +2,14 @@
 .row
   .col-sm-8.col-md-7.col-md-offset-1
     .list-group
-      a.list-group-item(href="/questions/{{question._id}}" ng-repeat="question in questions")
-        h5 {{question.title}}
+      .list-group-item(ng-repeat="question in questions.docs")
+        h5 #[a(href="/questions/{{question._id}}") {{question.title}}]
+        small
+          .text-right.text-muted
+            | asked #[span(am-time-ago="question.createdAt")]
+            |  by #[a(href="/users/{{question.user._id}}") {{question.user.username}}]
+
+    uib-pagination(total-items="questions.total" direction-links="false" ng-model="questions.page" ng-change="pageChanged()")
   .col-sm-4.col-md-3
     .well 
       h5 Welcome!

@@ -6,6 +6,7 @@
 angular.module('basic-auth.services', [])
   .factory('Question', ['$resource', '$window', function ($resource, $window) {
     return $resource($window.location.origin + '/api/questions/:id', { id: '@id' }, {
+      query: { isArray: false },
       update: { method: 'PUT' }
     });
   }])

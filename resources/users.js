@@ -1,5 +1,7 @@
 
 var User = require('../models/user.js')
+  , Question = require('../models/question.js')
+  , Answer = require('../models/answer.js')
   , qs = require('querystring')
   , jwt = require('jwt-simple')
   , request = require('request')
@@ -9,18 +11,39 @@ var User = require('../models/user.js')
 
 module.exports = function(app) {
 
+  // GET USER
   app.get('/api/users/:id', auth.ensureAuthenticated, function (req, res) {
     User.findById(req.params.id, function (err, user) {
       res.send(user);
     });
   });
 
+  // CURRENT USER
   app.get('/api/me', auth.ensureAuthenticated, function (req, res) {
     User.findById(req.userId, '+email', function (err, user) {
       res.send(user);
     });
   });
 
+  // USER PROFILE QUESTIONS INDEX
+  app.get('/api/users/:id/questions', auth.ensureAuthenticated, function (req, res) {
+    Question.find({ user: req.params.id }).exec(function (err, questions) {
+      if (err) { return res.status(400).send({ message: err }) }
+
+      res.send(questions);
+    });
+  });
+
+  // USER PROFILE ANSWERS INDEX
+  app.get('/api/users/:id/answers', auth.ensureAuthenticated, function (req, res) {
+    Answer.find({ user: req.params.id }).populate('question').exec(function (err, answers) {
+      if (err) { return res.status(400).send({ message: err }) }
+
+      res.send(answers);
+    });
+  });
+
+  // UPDATE USER
   app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
     console.log(req.body)
     User.findById(req.userId, function (err, user) {
@@ -41,6 +64,7 @@ module.exports = function(app) {
     });
   });
 
+  // LOGIN
   app.post('/auth/login', function (req, res) {
     User.findOne({ email: req.body.email }, '+password', function (err, user) {
       // CHECK IF ACCOUNT EXISTS
@@ -63,6 +87,7 @@ module.exports = function(app) {
     });
   });
 
+  // SIGNUP 
   app.post('/auth/signup', function (req, res) {
     User.findOne({ email: req.body.email }, function (err, user) {
       if (user) {
@@ -78,6 +103,7 @@ module.exports = function(app) {
     });
   });
 
+  // REQUEST PASSWORD
   app.post('/auth/passwords', function (req, res) {
     // Find User by email
     User.findOne({ email: req.body.email }, '+email', function (err, user) {
@@ -107,6 +133,7 @@ module.exports = function(app) {
     
   });
 
+  // UPDATE PASSWORD
   app.put('/auth/passwords/edit/:token', function (req, res) {
     // Find user by token
     User.findOne({ resetPasswordToken: req.params.token }).where('resetPasswordExpires').gt(Date.now()).exec(function (err, user) {

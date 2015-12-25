@@ -8,8 +8,8 @@ function toLower (v) {
 }
 
 var UserSchema = new Schema({
-    created_at         : Date
-  , updated_at         : Date
+    createdAt          : Date
+  , updatedAt          : Date
   , email              : { type: String, required: true, select:false, unique: true, trim: true, set: toLower }
   , password           : { type: String, select: false, trim: true }
   , first              : { type: String, trim: true }
@@ -19,7 +19,7 @@ var UserSchema = new Schema({
   , type               : String // Student, TA, DIR, Instructor, Staff, Grad
   , rep                : { type: Number, default: 25 }
   , admin              : { type: Boolean, default: false }
-  , confirmedAt        : { type: Date }
+  , confirmedAt        : { type: Date, default: undefined }
   , resetPasswordToken : String
   , resetPasswordExp   : Date
 })
@@ -29,11 +29,11 @@ UserSchema.virtual('fullname').get(function() {
 });
 
 UserSchema.pre('save', function(next){
-  // SET CREATED_AT AND UPDATED_AT
+  // SET createdAt AND updatedAt
   now = new Date();
-  this.updated_at = now;
-  if ( !this.created_at ) {
-    this.created_at = now;
+  this.updatedAt = now;
+  if ( !this.createdAt ) {
+    this.createdAt = now;
   }
 
   // ENCRYPT PASSWORD

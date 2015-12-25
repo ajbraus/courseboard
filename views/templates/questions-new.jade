@@ -4,11 +4,11 @@
       .form-group
         label Title*
         .text-muted Include your tools and problem
-        input.form-control(type="text" ng-model="question.title" placeholder="Title")
+        input.form-control(type="text" ng-model="question.title" placeholder="Title" required)
       .form-group
         label Details* 
         .text-muted Include Your goal, What you've already tried, and Relevant sample code
-        textarea.form-control(rows="10" ng-model="question.body" placeholder="(accepts markdown)")
+        textarea.form-control(rows="10" ng-model="question.body" placeholder="(accepts markdown)" required)
       hr
       div.border(marked="question.body")
       br

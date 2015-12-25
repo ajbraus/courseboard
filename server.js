@@ -16,9 +16,15 @@ var config = require('./config')
   , logger = require('morgan')
   , server = app.listen(config.port)
   , mongoose  = require('mongoose')
+  , mongoosePaginate = require('mongoose-paginate')
   , mailer = require('express-mailer');
 
 mongoose.connect(config.db);
+mongoosePaginate.paginate.options = { 
+    lean:  true,
+    limit: 15
+};
+
 app.use("/", express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(logger('dev'));

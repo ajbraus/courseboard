@@ -6,7 +6,9 @@ angular.module('basic-auth', [
                          'ngRoute',
                          'ngResource',
                          'satellizer',
-                         'hc.marked'
+                         'hc.marked',
+                         'angularMoment',
+                         'ui.bootstrap'
                          ])
 
     .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {

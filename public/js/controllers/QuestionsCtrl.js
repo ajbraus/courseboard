@@ -3,11 +3,23 @@
 /* QUESTIONS Controllers */
 
 angular.module('basic-auth')
-  .controller('QuestionsIndexCtrl', ['$scope', '$http', '$auth', 'Auth', 'Question', function($scope, $http, $auth, Auth, Question) {
+  .controller('QuestionsIndexCtrl', ['$scope', '$http', '$location', '$auth', 'Auth', 'Question', function($scope, $http, $location, $auth, Auth, Question) {
     $scope.questions = Question.query();
+
+    $scope.pageChanged = function() {
+      // $location.path('/').search({pages: $scope.questions.page});
+      $http.get('/api/questions?pages=' + $scope.questions.page)
+        .then(function (response) {
+          $scope.questions = response.data;
+        })
+        .catch(function (response) {
+          console.log(response)
+        })
+    }
+
   }])
 
-  .controller('QuestionsShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', 'Question', 'Answer', function($scope, $http, $routeParams, $auth, Auth, Question, Answer) {
+  .controller('QuestionsShowCtrl', ['$scope', '$http', '$rootScope', '$routeParams', '$auth', 'Auth', 'Question', 'Answer', function($scope, $http, $rootScope, $routeParams, $auth, Auth, Question, Answer) {
     Question.get({ id: $routeParams.id }, function (question) {
       $scope.question = question;
 

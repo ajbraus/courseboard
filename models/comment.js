@@ -2,8 +2,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var CommentSchema = new Schema({
-    created_at    : { type: Date }
-  , updated_at    : { type: Date }
+    createdAt     : { type: Date }
+  , updatedAt     : { type: Date }
   , user          : { type: Schema.Types.ObjectId, ref: 'User' }
   , type          : { type: String, required: true }
   , parent        : { type: Schema.Types.ObjectId, required: true}
@@ -11,11 +11,11 @@ var CommentSchema = new Schema({
 })
 
 CommentSchema.pre('save', function(next){
-  // SET CREATED_AT AND UPDATED_AT
+  // SET createdAt AND updatedAt
   now = new Date();
-  this.updated_at = now;
-  if ( !this.created_at ) {
-    this.created_at = now;
+  this.updatedAt = now;
+  if ( !this.createdAt ) {
+    this.createdAt = now;
   }
   next();
 });

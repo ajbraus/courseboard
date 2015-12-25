@@ -1,19 +1,18 @@
 .row
-  .col-sm-4.col-md-3.col-md-offset-1
+  .col-sm-12.col-md-10.col-md-offset-1
     h3.page-header
       {{user.first}} {{user.last}} 
     b {{user.type}}
-
-  .col-sm-8.col-md-7
-    .col-sm-6
-      .page-header Questions
-      .list-group(ng-repeat="question in questions")
-        a.list-group-item(href="/questions/{{question._id}}") {{question.title}}
-    //- .col-sm-6
-    //-   .page-header Answers
-    //-   .list-group(ng-repeat="answer in answers")
-    //-     a.list-group-item(href="/questions/{{answer.question}}") {{answer.question.title}}
-    //- .col-sm-6
-    //-   .page-header Comments
-    //-   .list-group(ng-repeat="comment in comments")
-    //-     a.list-group-item(href="/questions/{{comment.parent}}") {{comment.question.title}}
+    .row
+      .col-sm-6
+        .page-header Asked Questions
+        .list-group(ng-repeat="question in questions")
+          a.list-group-item(href="/questions/{{question._id}}") {{question.title}}
+      .col-sm-6
+        .page-header Answered Questions
+        .list-group(ng-repeat="answer in answers")
+          a.list-group-item(href="/questions/{{answer.question._id}}") {{answer.question.title}}
+      //- .col-sm-6
+      //-   .page-header Comments
+      //-   .list-group(ng-repeat="comment in comments")
+      //-     a.list-group-item(href="/questions/{{comment.parent}}") {{comment.question.title}}

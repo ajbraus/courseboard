@@ -2,8 +2,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var AnswerSchema = new Schema({
-    created_at    : Date
-  , updated_at    : Date 
+    createdAt     : Date
+  , updatedAt     : Date 
   , body          : { type: String, required: true }
   , user          : { type: Schema.Types.ObjectId, ref: 'User' }
   , question      : { type: Schema.Types.ObjectId, ref: 'Question' }
@@ -14,11 +14,11 @@ var AnswerSchema = new Schema({
 })
 
 AnswerSchema.pre('save', function(next){
-  // SET CREATED_AT AND UPDATED_AT
+  // SET createdAt AND updatedAt
   now = new Date();
-  this.updated_at = now;
-  if ( !this.created_at ) {
-    this.created_at = now;
+  this.updatedAt = now;
+  if ( !this.createdAt ) {
+    this.createdAt = now;
   }
   next();
 });

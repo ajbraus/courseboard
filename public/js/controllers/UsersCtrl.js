@@ -16,6 +16,14 @@ angular.module('basic-auth')
         console.log(response);
       });
 
+    $http.get('/api/users/' + $auth.getPayload().sub + '/answers')
+      .then(function (response) {
+        $scope.answers = response.data;
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
+
   }])
 
   .controller('UsersShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', function($scope, $http, $routeParams, $auth, Auth) {

@@ -40,8 +40,10 @@ module.exports = function(app) {
             });
           })
         }
-
-        res.send(answer);
+        Answer.populate(answer, {path:"user"}, function (err, answer) {
+          res.send(answer);
+        });
+        
       });
     })
   });

@@ -7,13 +7,13 @@ var User = require('../models/user.js')
   , auth = require('./auth.js')
   , config = require('../config.js')
 
+
 module.exports = function(app) {
   // QUESTIONS INDEX
   app.get('/api/questions', auth.ensureAuthenticated, function (req, res) {
-    Question.find().exec(function (err, questions) {
-      if (err) { return res.status(400).send({ message: err }) }
-
-      res.send(questions);
+    Question.paginate({}, { page: req.query.pages, populate: 'user' }).then(function (result) {
+      // if (err) { return res.status(400).send({ message: err }) }
+      res.send(result);
     });
   });
 
@@ -61,16 +61,6 @@ module.exports = function(app) {
 
       res.send("Successfully removed question")
     })
-  });
-
-  // GET USER QUESTIONS
-  // QUESTIONS INDEX
-  app.get('/api/users/:id/questions', auth.ensureAuthenticated, function (req, res) {
-    Question.find({ user: req.params.id }).exec(function (err, questions) {
-      if (err) { return res.status(400).send({ message: err }) }
-
-      res.send(questions);
-    });
   });
 
 }

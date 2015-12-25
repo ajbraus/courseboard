@@ -1,9 +1,10 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose')
+  , mongoosePaginate = require('mongoose-paginate')
+  , Schema = mongoose.Schema;
 
 var QuestionSchema = new Schema({
-    created_at    : { type: Date }
-  , updated_at    : { type: Date }
+    createdAt     : { type: Date }
+  , updatedAt     : { type: Date }
   , title         : { type: String, required: true }
   , body          : { type: String, required: true }
   , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true}
@@ -15,14 +16,16 @@ var QuestionSchema = new Schema({
 })
 
 QuestionSchema.pre('save', function(next){
-  // SET CREATED_AT AND UPDATED_AT
+  // SET createdAt AND updatedAt
   now = new Date();
-  this.updated_at = now;
-  if ( !this.created_at ) {
-    this.created_at = now;
+  this.updatedAt = now;
+  if ( !this.createdAt ) {
+    this.createdAt = now;
   }
   next();
 });
+
+QuestionSchema.plugin(mongoosePaginate);
 
 var Question = mongoose.model('Question', QuestionSchema);
 
