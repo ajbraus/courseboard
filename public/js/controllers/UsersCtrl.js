@@ -2,8 +2,8 @@
 
 /* USER Controllers */
 
-angular.module('basic-auth')
-  .controller('ProfileCtrl', ['$scope', '$http', '$auth', 'Auth', function($scope, $http, $auth, Auth) {
+angular.module('ga-qa')
+  .controller('ProfileCtrl', ['$scope', '$http', '$auth', 'Auth', 'Alert', function($scope, $http, $auth, Auth, Alert) {
     $http.get('/api/me').then(function(response) {
       $scope.user = response.data;
     });
@@ -13,7 +13,7 @@ angular.module('basic-auth')
         $scope.questions = response.data;
       })
       .catch(function (response) {
-        console.log(response);
+        Alert.add('warning', response.message, 2000);
       });
 
     $http.get('/api/users/' + $auth.getPayload().sub + '/answers')
@@ -21,19 +21,19 @@ angular.module('basic-auth')
         $scope.answers = response.data;
       })
       .catch(function (response) {
-        console.log(response);
+        Alert.add('warning', response.message, 2000);
       });
 
   }])
 
-  .controller('UsersShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', function($scope, $http, $routeParams, $auth, Auth) {
+  .controller('UsersShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', 'Alert', function($scope, $http, $routeParams, $auth, Auth, Alert) {
 
     $http.get('/api/users/' + $routeParams.id)
       .then(function (response) {
         $scope.user = response.data;
       })
       .catch(function (response) {
-        console.log(response);
+        Alert.add('warning', response.message, 2000);
       });
 
 
@@ -43,11 +43,11 @@ angular.module('basic-auth')
         $scope.questions = response.data;
       })
       .catch(function (response) {
-        console.log(response);
+        Alert.add('warning', response.message, 2000);
       });
   }])
 
-  .controller('SettingsCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
+  .controller('SettingsCtrl', ['$scope', '$http', '$location', 'Alert', function($scope, $http, $location, Alert) {
     $http.get('/api/me').then(function(response) {
       $scope.user = response.data;
     });
@@ -57,20 +57,21 @@ angular.module('basic-auth')
         .then(function (response) {
           console.log(response)
           $location.path('/profile')
+          Alert.add('success', "User updated", 2000);
         })
         .catch(function (response) {
-          console.log(response)
+          Alert.add('warning', response.message, 2000);
         })
     }
   }])
 
-  .controller('UsersShowCtrl', ['$scope', '$http', '$auth', 'Auth', '$routeParams', function($scope, $http, $auth, Auth, $routeParams) {
+  .controller('UsersShowCtrl', ['$scope', '$http', '$auth', 'Auth', 'Alert', '$routeParams', function($scope, $http, $auth, Auth, Alert, $routeParams) {
     $http.get('/api/users/' + $routeParams.id).then(function(response) {
       $scope.user = response.data;
     });
   }])
 
-  .controller('PasswordNewCtrl', ['$scope', '$http', '$auth', 'Auth', '$location', '$routeParams', function($scope, $http, $auth, Auth, $location, $routeParams) {
+  .controller('PasswordNewCtrl', ['$scope', '$http', '$auth', 'Auth', 'Alert', '$location', '$routeParams', function($scope, $http, $auth, Auth, Alert, $location, $routeParams) {
     $('.dropdown.open .dropdown-toggle').dropdown('toggle');
 
     $scope.requestPassword = function() {
@@ -79,21 +80,22 @@ angular.module('basic-auth')
           console.log(response);
           $scope.user = {};
           $location.path('/');
+          Alert.add('success', "Password reset instructions sent", 2000);
         })
         .catch(function (response) {
-          console.log(response);
+          Alert.add('warning', response.message, 2000);
         })
     }
   }])
 
-  .controller('PasswordEditCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+  .controller('PasswordEditCtrl', ['$scope', '$http', '$routeParams', 'Alert', function($scope, $http, $routeParams, Alert) {
     console.log('in password edit ctrl')
-    // $http.put('/auth/passwords/edit/' + $routeParams.token)
-    //   .then(function (response) {
-    //     console.log(response);
-    //     $location.path('/');
-    //   })
-    //   .catch(function (response) {
-    //     console.log(response);
-    //   })
+    $http.put('/auth/passwords/edit/' + $routeParams.token)
+      .then(function (response) {
+        $location.path('/');
+        Alert.add('success', "Password updated", 2000);
+      })
+      .catch(function (response) {
+        Alert.add('warning', response.message, 2000);
+      })
   }]);

@@ -1,5 +1,6 @@
 extends layout
 
 block body
-	ng-include(src="'templates/navbar'")
-	.container(ng-view)
+  ng-include(src="'templates/navbar'")
+  alert(ng-repeat='alert in globalAlerts', type='{{alert.type}}', close='alert.close()', ng-cloak='') {{alert.msg}}
+  .container(ng-view)

@@ -2,8 +2,8 @@
 
 /* QUESTIONS Controllers */
 
-angular.module('basic-auth')
-  .controller('QuestionsIndexCtrl', ['$scope', '$http', '$location', '$auth', 'Auth', 'Question', function($scope, $http, $location, $auth, Auth, Question) {
+angular.module('ga-qa')
+  .controller('QuestionsIndexCtrl', ['$scope', '$http', '$location', '$auth', 'Auth', 'Question', 'Alert', function($scope, $http, $location, $auth, Auth, Question, Alert) {
     $scope.questions = Question.query();
 
     $scope.pageChanged = function() {
@@ -13,13 +13,13 @@ angular.module('basic-auth')
           $scope.questions = response.data;
         })
         .catch(function (response) {
-          console.log(response)
+          Alert.add('warning', response.message, 2000);
         })
     }
 
   }])
 
-  .controller('QuestionsShowCtrl', ['$scope', '$http', '$rootScope', '$routeParams', '$auth', 'Auth', 'Question', 'Answer', function($scope, $http, $rootScope, $routeParams, $auth, Auth, Question, Answer) {
+  .controller('QuestionsShowCtrl', ['$scope', '$http', '$rootScope', '$routeParams', '$auth', 'Auth', 'Question', 'Alert', 'Answer', function($scope, $http, $rootScope, $routeParams, $auth, Auth, Question, Alert, Answer) {
     Question.get({ id: $routeParams.id }, function (question) {
       $scope.question = question;
 
@@ -30,39 +30,42 @@ angular.module('basic-auth')
       $scope.question.hasVoted = $scope.question.votes.indexOf($rootScope.currentUser._id) >= 0;
     });
 
+    Answer.query({ questionId: $routeParams.id }, function (answers) {
+      $scope.answers = answers;
+      angular.forEach($scope.answers, function(answer) {
+        answer.hasVoted = answer.votes.indexOf($rootScope.currentUser._id) >= 0;
+      })      
+    })
+
     $scope.voteQuestionUp = function() {
       if (!$scope.question.hasVoted) {
         $http.post('/api/questions/' + $scope.question._id + '/vote-up')
           .then(function (response) {
             $scope.question.votes.push($rootScope.currentUser._id);
             $scope.question.hasVoted = true;
-
-            console.log(response)
           })
           .catch(function (response) {
-            console.log(response.data.message)
+            Alert.add('warning', response.message, 2000)
           })
       }
     }
 
-    // $scope.voteAnswerUp = function() {
-    //   if (!$scope.question.hasVoted) {
-    //     $http.post('/api/questions/' + $scope.question._id + '/vote-up')
-    //       .then(function (response) {
-    //         $scope.question.votes.push($rootScope.currentUser._id);
-    //         $scope.question.hasVoted = true;
+    $scope.voteAnswerUp = function(answer) {
+      if (!answer.hasVoted) {
+        $http.post('/api/answers/' + answer._id + '/vote-up')
+          .then(function (response) {
+            answer.votes.push($rootScope.currentUser._id);
+            answer.hasVoted = true;
 
-    //         console.log(response)
-    //       })
-    //       .catch(function (response) {
-    //         console.log(response.data.message)
-    //       })
-    //   }
-    // }
+            console.log(response)
+          })
+          .catch(function (response) {
+            Alert.add('warning', response.message, 2000);
+          })
+      }
+    }
 
     $scope.questions = Question.query();
-
-    $scope.answers = Answer.query({ questionId: $routeParams.id })
 
     $scope.createAnswer = function() {
       var answer = new Answer($scope.answer);
@@ -74,9 +77,11 @@ angular.module('basic-auth')
 
           // ADDING REPUTATION
           $rootScope.currentUser.rep = $rootScope.currentUser.rep + 10
+
+          Alert.add('success', "Answer posted", 2000);
         }, 
         function (response) {
-          console.log(response)
+          Alert.add('warning', response.message, 2000);
         }
       );
     }
@@ -107,9 +112,17 @@ angular.module('basic-auth')
     //   );
     // }
 
+    $http.get('/api/gif')
+      .then(function (response) {
+        console.log(response)
+        $scope.gif = response.data;
+      })
+      .catch(function (response) {
+        console.log(response)
+      })
   }])
 
-  .controller('QuestionsEditCtrl', ['$scope', '$http', '$location', '$routeParams', '$auth', 'Auth', 'Question', function($scope, $http, $location, $routeParams, $auth, Auth, Question) {
+  .controller('QuestionsEditCtrl', ['$scope', '$http', '$location', '$routeParams', '$auth', 'Auth', 'Question', 'Alert', function($scope, $http, $location, $routeParams, $auth, Auth, Question, Alert) {
     $scope.editQuestion = true;
     $scope.question = Question.get({ id: $routeParams.id });
     
@@ -118,15 +131,17 @@ angular.module('basic-auth')
       question.$update({id: question._id}).then(
         function (response) {
           $location.path('/questions/' + response._id)
+
+          Alert.add('success', "Question updated", 2000);
         }, 
         function (response) {
-          console.log(response);
+          Alert.add('warning', response.message, 2000);
         }
       );
     }
   }])
 
-  .controller('QuestionsNewCtrl', ['$scope', '$rootScope', '$auth', 'Auth', 'Question', '$location', function($scope, $rootScope, $auth, Auth, Question, $location) {
+  .controller('QuestionsNewCtrl', ['$scope', '$rootScope', '$auth', 'Auth', 'Question', 'Alert', '$location', function($scope, $rootScope, $auth, Auth, Question, Alert, $location) {
     $scope.question = {};
 
     $scope.createQuestion = function() {
@@ -137,9 +152,11 @@ angular.module('basic-auth')
           $rootScope.currentUser.rep = $rootScope.currentUser.rep + 5
 
     			$location.path('/questions/' + response._id)
+
+          Alert.add('success', "Question posted", 2000);
     		}, 
     		function (response) {
-    			console.log(response);
+    			Alert.add('warning', response.message, 2000);
     		}
     	);
     }

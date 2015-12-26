@@ -2,8 +2,8 @@
 
 /* MAIN Controller */
 
-angular.module('basic-auth')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http',  function($scope, $rootScope, $location, $auth, $http) {
+angular.module('ga-qa')
+  .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'Alert', function($scope, $rootScope, $location, $auth, $http, Alert) {
 
     // LOGIN/REGISTER
     $scope.user = {};
@@ -27,12 +27,13 @@ angular.module('basic-auth')
     $scope.signup = function() {
       $auth.signup($scope.user)
         .then(function (response) {
-          console.log(response);
           $('.dropdown.open .dropdown-toggle').dropdown('toggle');
           $scope.user = {};
+
+          Alert.add('success', "Access requested", 2000);
         })
         .catch(function (response) {
-          console.log(response)
+          Alert.add('warning', "Something went wrong while requesting access", 2000);
         });
     };
 
@@ -43,9 +44,11 @@ angular.module('basic-auth')
           $auth.setToken(response.data.token);
           $scope.isAuthenticated();
           $scope.user = {};
+
+          Alert.add('success', "Logged In", 2000);
         })
         .catch(function(response) {
-          console.log(response)
+          Alert.add('warning', "Something went wrong while loggin in", 2000);
         });
     };
     
@@ -55,6 +58,8 @@ angular.module('basic-auth')
           $auth.removeToken();
           $rootScope.currentUser = null;
           $location.path('/')
+
+          Alert.add('success', "Logged out", 2000);
         });
     };
   }]);

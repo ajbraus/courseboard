@@ -25,14 +25,21 @@
           ng-pluralize(count='answers.length', when="{'0': 'Answers',\
           'one': '1 Answer',\
           'other': '{} Answers'}")
-      section(ng-repeat="answer in answers")
-        {{answer.body}}
-        .text-right.text-muted
-          | Answered by 
-          a(href="/users/{{answer.user._id}}") {{answer.user.username}}
+      section(ng-repeat="answer in answers | orderBy: '-votes.length'")
+        .col-xs-1.voting
+          div
+            i.icon.ion-arrow-up-b(ng-click='voteAnswerUp(answer)' ng-class="{ 'voted': answer.hasVoted, 'not-voted': !answer.hasVoted }")
+          {{answer.votes.length}}
+        .col-xs-11
+          {{answer.body}}
+          .text-right.text-muted
+            | Answered by 
+            a(href="/users/{{answer.user._id}}") {{answer.user.username}}
 
-  .col-sm-4.col-md-3
-    | Related Questions
-    .list-group
-      a.list-group-item(href="/questions/{{a._id}}" ng-repeat="q in questions")
-        {{q.title}}
+  .col-sm-4
+    h3 Do your Homework
+    img.img-responsive(ng-src="{{gif}}")
+    //- | Related Questions
+    //- .list-group
+    //-   a.list-group-item(href="/questions/{{a._id}}" ng-repeat="q in questions")
+    //-     {{q.title}}

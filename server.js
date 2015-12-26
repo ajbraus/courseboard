@@ -11,13 +11,14 @@ var config = require('./config')
   , resources = require('./resources')
   , path = require('path')
   , bodyParser = require('body-parser')
-  , flash = require('connect-flash')
   , cors = require('cors')
   , logger = require('morgan')
   , server = app.listen(config.port)
   , mongoose  = require('mongoose')
   , mongoosePaginate = require('mongoose-paginate')
-  , mailer = require('express-mailer');
+  , mailer = require('express-mailer')
+  , favicon = require('serve-favicon');
+
 
 mongoose.connect(config.db);
 mongoosePaginate.paginate.options = { 
@@ -28,11 +29,12 @@ mongoosePaginate.paginate.options = {
 app.use("/", express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(logger('dev'));
-app.use(flash());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
+
+// app.use(favicon(__dirname + '/public/favicon.ico'));
 
 mailer.extend(app, {
   from: 'GA/QA', 
@@ -66,9 +68,9 @@ require('./resources/users')(app);
 require('./resources/admin')(app);
 require('./resources/questions')(app);
 require('./resources/answers')(app);
-require('./resources/comments')(app);
 require('./resources/votes')(app);
 
+// require('./resources/comments')(app);
 
 // redirect all others to the index (HTML5 history)
 app.get('/*', resources.index);

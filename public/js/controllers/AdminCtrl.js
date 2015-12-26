@@ -2,8 +2,8 @@
 
 /* ADMIN Controller */
 
-angular.module('basic-auth')
-  .controller('AdminCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http',  function($scope, $rootScope, $location, $auth, $http) {
+angular.module('ga-qa')
+  .controller('AdminCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'Alert', function($scope, $rootScope, $location, $auth, $http, Alert) {
     if (!$scope.currentUser.admin) {
       $location.path('/');
     } else {
@@ -12,7 +12,7 @@ angular.module('basic-auth')
           $scope.unconfirmedUsers = response.data;
         },
         function (response) {
-          console.log(response);
+          Alert.add('warning', response.message, 2000);
         }
       );
     }
@@ -24,7 +24,7 @@ angular.module('basic-auth')
           console.log(response);
         },
         function (response) {
-          console.log(response);
+          Alert.add('warning', response.message, 2000);
         }
       )
     }

@@ -5,6 +5,7 @@ var User = require('../models/user.js')
   , Comment = require('../models/comment.js')
   , reputation = require('./reputation.js')
   , auth = require('./auth.js')
+  , request = require('request')
   , config = require('../config.js')
 
 
@@ -17,6 +18,13 @@ module.exports = function(app) {
       res.send(result);
     });
   });
+
+  app.get('/api/gif', function (req, res) {
+    request('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC', function (err, response, body) {
+      var url = JSON.parse(body).data.fixed_width_downsampled_url
+      res.send(url);
+    })
+  })
 
   // QUESTIONS SHOW
   app.get('/api/questions/:id', auth.ensureAuthenticated, function (req, res) {
