@@ -5,11 +5,17 @@
     b A GA {{user.type}} in {{user.location}}
     .row
       .col-sm-6
-        .page-header Asked {{questions.length}} Questions
+        .page-header Asked 
+          ng-pluralize(count='questions.length', when="{'0': 'Questions',\
+          'one': '1 Question',\
+          'other': '{} Questions'}") {{questions.length}} Questions
         .list-group
           a.list-group-item(href="/questions/{{question._id}}" ng-repeat="question in questions") {{question.title}}
       .col-sm-6
-        .page-header Answered {{answers.length}} Questions
+        .page-header Answered 
+          ng-pluralize(count='answers.length', when="{'0': 'Questions',\
+          'one': '1 Question',\
+          'other': '{} Questions'}") {{answers.length}} Questions
         .list-group
           a.list-group-item(href="/questions/{{answer.question._id}}" ng-repeat="answer in answers") {{answer.question.title}}
       //- .col-sm-6

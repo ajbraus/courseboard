@@ -2,7 +2,7 @@
 
 /* DIRECTIVES */
 
-angular.module('basic-auth.directives', ['basic-auth.services'])
+angular.module('ga-qa.directives', ['ga-qa.services'])
 
   .directive('capitalize', [function() {
      return {

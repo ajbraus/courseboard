@@ -2,6 +2,8 @@
   "name": "ga-qa",
   "version": "1.0.0",
   "description": "Question-Answer platform for General Assembly",
+  "author": "Adam Joseph Braus @ajbraus",
+  "license": "ISC",
   "main": "server.js",
   "scripts": {
     "test": "mocha",
@@ -19,8 +21,6 @@
     "node": "4.1.0",
     "npm": "2.14.3"
   },
-  "author": "Adam Braus",
-  "license": "ISC",
   "dependencies": {
     "bcrypt": "^0.8.5",
     "bcryptjs": "^2.3.0",

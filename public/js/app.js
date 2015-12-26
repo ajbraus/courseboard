@@ -1,9 +1,9 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('basic-auth', [
-                         'basic-auth.services',
-                         'basic-auth.directives',
+angular.module('ga-qa', [
+                         'ga-qa.services',
+                         'ga-qa.directives',
                          'ngRoute',
                          'ngResource',
                          'satellizer',

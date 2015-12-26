@@ -20,13 +20,16 @@
           textarea.form-control(rows="5" ng-model="answer.body")
         button.btn.btn-sm.btn-primary(type='submit') Post Answer
       hr
-      h5 Answers
-      div(ng-repeat="answer in answers")
-        section 
-          {{answer.body}}
-          .text-right.text-muted
-            | Answered by 
-            a(href="/users/{{answer.user._id}}") {{answer.user.username}}
+      h4 
+        b 
+          ng-pluralize(count='answers.length', when="{'0': 'Answers',\
+          'one': '1 Answer',\
+          'other': '{} Answers'}")
+      section(ng-repeat="answer in answers")
+        {{answer.body}}
+        .text-right.text-muted
+          | Answered by 
+          a(href="/users/{{answer.user._id}}") {{answer.user.username}}
 
   .col-sm-4.col-md-3
     | Related Questions

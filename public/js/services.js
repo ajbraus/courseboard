@@ -3,7 +3,7 @@
 
 /* Services */
 
-angular.module('basic-auth.services', [])
+angular.module('ga-qa.services', [])
   .factory('Question', ['$resource', '$window', function ($resource, $window) {
     return $resource($window.location.origin + '/api/questions/:id', { id: '@id' }, {
       query: { isArray: false },
