@@ -9,18 +9,18 @@ angular.module('ga-qa')
     });
 
     $http.get('/api/users/' + $auth.getPayload().sub + '/questions')
-      .then(function (response) {
+      .success(function (response) {
         $scope.questions = response.data;
       })
-      .catch(function (response) {
+      .error(function (response) {
         Alert.add('warning', response.message, 2000);
       });
 
     $http.get('/api/users/' + $auth.getPayload().sub + '/answers')
-      .then(function (response) {
+      .success(function (response) {
         $scope.answers = response.data;
       })
-      .catch(function (response) {
+      .error(function (response) {
         Alert.add('warning', response.message, 2000);
       });
 
@@ -29,20 +29,20 @@ angular.module('ga-qa')
   .controller('UsersShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', 'Alert', function($scope, $http, $routeParams, $auth, Auth, Alert) {
 
     $http.get('/api/users/' + $routeParams.id)
-      .then(function (response) {
+      .success(function (response) {
         $scope.user = response.data;
       })
-      .catch(function (response) {
+      .error(function (response) {
         Alert.add('warning', response.message, 2000);
       });
 
 
     $http.get('/api/users/' + $routeParams.id + '/questions')
-      .then(function (response) {
+      .success(function (response) {
         console.log(response);
         $scope.questions = response.data;
       })
-      .catch(function (response) {
+      .error(function (response) {
         Alert.add('warning', response.message, 2000);
       });
   }])
@@ -54,12 +54,12 @@ angular.module('ga-qa')
 
     $scope.updateUser = function() {
       $http.put('/api/me', $scope.user)
-        .then(function (response) {
+        .success(function (response) {
           console.log(response)
           $location.path('/profile')
           Alert.add('success', "User updated", 2000);
         })
-        .catch(function (response) {
+        .error(function (response) {
           Alert.add('warning', response.message, 2000);
         })
     }
@@ -76,13 +76,14 @@ angular.module('ga-qa')
 
     $scope.requestPassword = function() {
       $http.post('/auth/passwords', $scope.user)
-        .then(function (response) {
+        .success(function (response) {
           console.log(response);
           $scope.user = {};
-          $location.path('/');
+          $location.path('/'); 
           Alert.add('success', "Password reset instructions sent", 2000);
-        })
-        .catch(function (response) {
+        }) 
+        .error(function (response) {
+          console.log(response);
           Alert.add('warning', response.message, 2000);
         })
     }
@@ -91,11 +92,11 @@ angular.module('ga-qa')
   .controller('PasswordEditCtrl', ['$scope', '$http', '$routeParams', 'Alert', function($scope, $http, $routeParams, Alert) {
     console.log('in password edit ctrl')
     $http.put('/auth/passwords/edit/' + $routeParams.token)
-      .then(function (response) {
+      .success(function (response) {
         $location.path('/');
         Alert.add('success', "Password updated", 2000);
       })
-      .catch(function (response) {
+      .error(function (response) {
         Alert.add('warning', response.message, 2000);
       })
   }]);

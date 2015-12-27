@@ -7,14 +7,13 @@ angular.module('ga-qa')
     if (!$scope.currentUser.admin) {
       $location.path('/');
     } else {
-      $http.get('/api/admin/unconfirmed-users').then(
-        function (response) {
+      $http.get('/api/admin/unconfirmed-users')
+        .success(function (response) {
           $scope.unconfirmedUsers = response.data;
-        },
-        function (response) {
+        })
+        .error(function (response) {
           Alert.add('warning', response.message, 2000);
-        }
-      );
+        });
     }
 
     $scope.confirmUser = function(user, index) {

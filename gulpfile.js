@@ -82,6 +82,6 @@ gulp.task('scripts', function() {
 gulp.task('watch', function() {
   console.log('watching')
   gulp.watch('public/css/*.css', ['styles']);
-  gulp.watch('public/js/*.js', ['scripts', 'clean']);
+  gulp.watch('public/js/**/*.js', ['scripts', 'clean']);
 });
 

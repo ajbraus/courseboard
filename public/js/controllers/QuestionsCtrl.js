@@ -9,10 +9,10 @@ angular.module('ga-qa')
     $scope.pageChanged = function() {
       // $location.path('/').search({pages: $scope.questions.page});
       $http.get('/api/questions?pages=' + $scope.questions.page)
-        .then(function (response) {
+        .success(function (response) {
           $scope.questions = response.data;
         })
-        .catch(function (response) {
+        .error(function (response) {
           Alert.add('warning', response.message, 2000);
         })
     }
@@ -24,11 +24,11 @@ angular.module('ga-qa')
     $rootScope.term = $routeParams.term;
 
     $http.get('/api/search', { params: { term: $routeParams.term } })
-      .then(function (response) {
+      .success(function (response) {
         $scope.questions.docs = response.data;
         $scope.questions.total = 1;
       })
-      .catch(function (response) {
+      .error(function (response) {
         console.log(response);
       })
   }])
@@ -54,11 +54,11 @@ angular.module('ga-qa')
     $scope.voteQuestionUp = function() {
       if (!$scope.question.hasVoted) {
         $http.post('/api/questions/' + $scope.question._id + '/vote-up')
-          .then(function (response) {
+          .success(function (response) {
             $scope.question.votes.push($rootScope.currentUser._id);
             $scope.question.hasVoted = true;
           })
-          .catch(function (response) {
+          .error(function (response) {
             Alert.add('warning', response.message, 2000)
           })
       }
@@ -67,13 +67,13 @@ angular.module('ga-qa')
     $scope.voteAnswerUp = function(answer) {
       if (!answer.hasVoted) {
         $http.post('/api/answers/' + answer._id + '/vote-up')
-          .then(function (response) {
+          .success(function (response) {
             answer.votes.push($rootScope.currentUser._id);
             answer.hasVoted = true;
 
             console.log(response)
           })
-          .catch(function (response) {
+          .error(function (response) {
             Alert.add('warning', response.message, 2000);
           })
       }
@@ -131,7 +131,7 @@ angular.module('ga-qa')
         console.log(response)
         $scope.gif = response.data;
       })
-      .catch(function (response) {
+      .error(function (response) {
         console.log(response)
       })
   }])
