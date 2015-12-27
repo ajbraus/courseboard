@@ -64,7 +64,7 @@ app.set('view options', {
 });
 
 // RESOURCES
-app.get('/', resources.index);
+// app.get('/', resources.index);
 app.get('/templates/:name', resources.templates);
 
 require('./resources/users')(app);
@@ -72,7 +72,6 @@ require('./resources/admin')(app);
 require('./resources/questions')(app);
 require('./resources/answers')(app);
 require('./resources/votes')(app);
-
 // require('./resources/comments')(app);
 
 // redirect all others to the index (HTML5 history)
