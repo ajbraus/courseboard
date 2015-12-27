@@ -93,7 +93,7 @@ nav.navbar.navbar-default
 .container(ng-show='currentUser')
   .row
     .col-sm-8.col-md-7.col-md-offset-1
-      form(ng-submit="search(term)")
+      form(ng-submit="search(term)" style="z-index: 0;")
         .input-group
           input.form-control(type='text' ng-model="term" placeholder='Search all the questions!')
           span.input-group-btn

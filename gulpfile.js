@@ -4,10 +4,8 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var del = require('del');
 var runSequence = require('run-sequence');
-// var stripDebug = require('gulp-strip-debug');
-
 var minifyCss = require('gulp-minify-css');
-
+// var stripDebug = require('gulp-strip-debug');
 
 var paths = {
     scripts: [
@@ -42,18 +40,16 @@ var paths = {
             ]
 };
 
+// Default Task
+gulp.task('build', function (cb) {
+  runSequence('scripts', ['styles', 'clean', 'watch'], cb);
+}); 
+
 // Lint Task
 // gulp.task('lint', function() {
 //     return gulp.src('js/*.js')
 //         .pipe(jshint())
 //         .pipe(jshint.reporter('default'));
-// });
-
-// Compile Our Sass
-// gulp.task('sass', function() {
-//     return gulp.src('scss/*.scss')
-//         .pipe(sass())
-//         .pipe(gulp.dest('css'));
 // });
 
 // Concatenate & Minify Css
@@ -83,12 +79,9 @@ gulp.task('scripts', function() {
       .pipe(gulp.dest('public/dist'));
 });
 
-// gulp.task('watch', function() {
-//     gulp.watch('js/*.js', ['lint', 'scripts']);
-//     gulp.watch('scss/*.scss', ['sass']);
-// });
+gulp.task('watch', function() {
+  console.log('watching')
+  gulp.watch('public/css/*.css', ['styles']);
+  gulp.watch('public/js/*.js', ['scripts', 'clean']);
+});
 
-// Default Task
-gulp.task('build', function (cb) {
-  runSequence('scripts', ['styles', 'clean'], cb);
-}); // , 'watch'
