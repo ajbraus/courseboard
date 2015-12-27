@@ -52,9 +52,9 @@ mailer.extend(app, {
 });
 
 if (process.env.NODE_ENV === 'production') {
-  app.locals.baseUrl = 'http://localhost:1337'
-} else {
   app.locals.baseUrl = 'https://gaqa.herokuapp.com'
+} else if (process.env.NODE_ENV === 'development') {
+  app.locals.baseUrl = 'http://localhost:1337'
 }
 
 app.set('views', path.join(__dirname, 'views'));
