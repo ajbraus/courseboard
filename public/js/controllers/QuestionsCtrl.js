@@ -19,6 +19,20 @@ angular.module('ga-qa')
 
   }])
 
+  .controller('QuestionsSearchCtrl', ['$scope', '$http', '$rootScope', '$routeParams', function ($scope, $http, $rootScope, $routeParams) {
+    $scope.questions = {};
+    $rootScope.term = $routeParams.term;
+
+    $http.get('/api/search', { params: { term: $routeParams.term } })
+      .then(function (response) {
+        $scope.questions.docs = response.data;
+        $scope.questions.total = 1;
+      })
+      .catch(function (response) {
+        console.log(response);
+      })
+  }])
+
   .controller('QuestionsShowCtrl', ['$scope', '$http', '$rootScope', '$routeParams', '$auth', 'Auth', 'Question', 'Alert', 'Answer', function($scope, $http, $rootScope, $routeParams, $auth, Auth, Question, Alert, Answer) {
     Question.get({ id: $routeParams.id }, function (question) {
       $scope.question = question;

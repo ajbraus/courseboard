@@ -18,6 +18,12 @@ angular.module('ga-qa', [
         controller: 'QuestionsIndexCtrl'
       });
 
+      // SEARCH
+      $routeProvider.when('/search', {
+        templateUrl: 'templates/questions-index',
+        controller: 'QuestionsSearchCtrl'
+      });
+
       // QUESTIONS
       $routeProvider.when('/questions/new', {
         templateUrl: 'templates/questions-new',

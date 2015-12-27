@@ -9,7 +9,7 @@
     .list-group
       .list-group-item(ng-repeat="question in questions.docs")
         .row
-          .col-xs-3
+          .col-xs-3.no-padding
             .row.stats.text-center
               .col-xs-4
                 {{question.votes.length}}
@@ -20,7 +20,7 @@
                 br
                 small.hidden-xs.text-muted answers
               .col-xs-4
-                {{question.impressions}}
+                {{question.impressions.length}}
                 br
                 small.hidden-xs.text-muted views
           .col-xs-9

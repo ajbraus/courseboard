@@ -5,6 +5,14 @@
 angular.module('ga-qa')
   .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'Alert', function($scope, $rootScope, $location, $auth, $http, Alert) {
 
+    $scope.search = function(term) {
+      $location.path('/search').search('term', term)
+    }
+
+    $scope.clearSearch = function() {
+      $scope.questions = Question.query();
+    }
+
     // LOGIN/REGISTER
     $scope.user = {};
 

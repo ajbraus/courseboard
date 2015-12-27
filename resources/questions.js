@@ -15,16 +15,33 @@ module.exports = function(app) {
     // RECENT QUESTIONS
     Question.paginate({}, { sort:'-createdAt', page: req.query.pages, populate: 'user' }).then(function (result) {
       // if (err) { return res.status(400).send({ message: err }) }
+      
       res.send(result);
     });
   });
 
-  app.get('/api/gif', function (req, res) {
-    request('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC', function (err, response, body) {
-      var url = JSON.parse(body).data.fixed_width_downsampled_url
-      res.send(url);
-    })
-  })
+  // SEARCH
+  app.get('/api/search', auth.ensureAuthenticated, function (req, res) {
+    Question
+        .find(
+            { $text : { $search : req.query.term } }, 
+            { score : { $meta: "textScore" } }
+        )
+        .sort({ score : { $meta : 'textScore' } })
+        .sort('-createdAt')
+        .limit(20)
+        .populate('user')
+        .exec(function(err, results) {
+            if (err) { return res.status(400).send({ message: err }) }
+            if (results.length == 0) { return res.status(400).send({ message: "Your search returned no questions"})}
+              
+            res.send(results);
+        });
+
+    // Question.paginate({}, { sort:'-createdAt', page: req.query.pages, populate: 'user' }).then(function (result) {
+      // if (err) { return res.status(400).send({ message: err }) }
+    // });
+  });
 
   // QUESTIONS SHOW
   app.get('/api/questions/:id', auth.ensureAuthenticated, function (req, res) {
@@ -37,6 +54,14 @@ module.exports = function(app) {
       res.send(question);
     });
   });
+
+  // GET RANDOM GIF
+  app.get('/api/gif', function (req, res) {
+    request('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC', function (err, response, body) {
+      var url = JSON.parse(body).data.fixed_width_downsampled_url
+      res.send(url);
+    })
+  })
 
   // QUESTIONS CREATE
   app.post('/api/questions', auth.ensureAuthenticated, function (req, res) { 

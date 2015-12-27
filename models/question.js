@@ -12,10 +12,22 @@ var QuestionSchema = new Schema({
   , votes         : [{ type: Schema.Types.ObjectId, ref: 'User' }]
   , impressions   : [{ type: Schema.Types.ObjectId, ref: 'User' }]
   
-  , tags          : []
+  , tags          : [String]
   , comments      : [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
-  
 })
+ 
+QuestionSchema.index(
+  { 
+    title: 'text'
+    , body: 'text' 
+    , tags: 'text'
+    , weights: {
+        title: 3,
+        body: 1,
+        tags: 5
+      }
+  }
+);
 
 QuestionSchema.pre('save', function(next){
   // SET createdAt AND updatedAt
