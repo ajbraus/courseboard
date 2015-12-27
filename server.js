@@ -2,8 +2,11 @@
  * SERVER.JS
  */
 
-require('dotenv').load();
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+if (process.env.NODE_ENV == 'development') {
+  require('dotenv').load();
+}
 
 var config = require('./config')
   , express = require('express')
