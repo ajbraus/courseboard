@@ -82,7 +82,8 @@ module.exports = function(app) {
         if (!isMatch) {
           return res.status(401).send({ message: 'Wrong email or password' });
         }
-        res.send({ token: auth.createJWT(user) });
+        var token = auth.createJWT(user);
+        res.send({ token: token });
       });
     });
   });

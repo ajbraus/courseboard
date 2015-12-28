@@ -2,5 +2,5 @@ extends layout
 
 block body
   ng-include(src="'templates/navbar'")
-  alert(ng-repeat='alert in globalAlerts', type='{{alert.type}}', close='alert.close()', ng-cloak='') {{alert.msg}}
+  alert(ng-repeat='alert in globalAlerts', class='alert', type='{{alert.type}}', close='alert.close()', ng-cloak='') {{alert.msg}}
   .container.min-height(ng-view)

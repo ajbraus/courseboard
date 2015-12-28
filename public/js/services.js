@@ -38,7 +38,7 @@ angular.module('ga-qa.services', [])
     }
   }])
 
-  .factory('Alert', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
+  .factory('GlobalAlert', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
     var alertService;
     $rootScope.globalAlerts = [];
     return alertService = {

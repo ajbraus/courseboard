@@ -3,7 +3,7 @@
 /* MAIN Controller */
 
 angular.module('ga-qa')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'Alert', function($scope, $rootScope, $location, $auth, $http, Alert) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'GlobalAlert', function ($scope, $rootScope, $location, $auth, $http, GlobalAlert) {
 
     $scope.search = function(term) { 
       $location.path('/search').search('term', term)
@@ -17,59 +17,63 @@ angular.module('ga-qa')
     $scope.user = {};
 
     $scope.isAuthenticated = function() {
-      $http.get('/api/me')
-        .success(function (response) {
+
+      $http.get('/api/me').then(
+        function (response) {
           if (!!response.data) {
             $rootScope.currentUser = response.data;
             $rootScope.currentUser.admin = $auth.getPayload().admin
           } else {
             $auth.removeToken();
           }
-        })
-        .error(function (response) {
+        }, 
+        function (response) {
           $auth.removeToken();
           $location.path('/');
         });
     };
 
-    $scope.isAuthenticated();
+    if ($auth.isAuthenticated()) {
+      $scope.isAuthenticated();  
+    }
 
     $scope.signup = function() {
       $auth.signup($scope.user)
-        .success(function (response) {
+        .then(function (response) {
           $('.dropdown.open .dropdown-toggle').dropdown('toggle');
           $scope.user = {};
 
-          Alert.add('success', "Access requested", 2000);
+          GlobalAlert.add('success', "Access requested", 2000);
         })
-        .error(function (response) {
-          Alert.add('warning', "Something went wrong while requesting access", 2000);
+        .catch(function (response) {
+          GlobalAlert.add('warning', "Something went wrong while requesting access", 2000);
         });
     };
 
     $scope.login = function() {
       $auth.login($scope.user)
-        .success(function(response) {
+        .then(function (response) {
           $('.dropdown.open .dropdown-toggle').dropdown('toggle');
+          console.log(response)
           $auth.setToken(response.data.token);
           $scope.isAuthenticated();
           $scope.user = {};
 
-          Alert.add('success', "Logged In", 2000);
+          // GlobalAlert.add('success', "Logged In", 2000);
         })
-        .error(function(response) {
-          Alert.add('warning', "Something went wrong while loggin in", 2000);
+        .catch(function (response) {
+          GlobalAlert.add('warning', "Something went wrong while loggin in", 2000);
         });
     };
     
     $scope.logout = function() {
-      $auth.logout()
-        .success(function() {
+      $auth.logout().then(
+        function() {
           $auth.removeToken();
           $rootScope.currentUser = null;
           $location.path('/')
 
-          Alert.add('success', "Logged out", 2000);
+          GlobalAlert.add('success', "Logged out", 2000);
         });
     };
   }]);

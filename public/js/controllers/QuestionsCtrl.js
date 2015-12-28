@@ -3,17 +3,19 @@
 /* QUESTIONS Controllers */
 
 angular.module('ga-qa')
-  .controller('QuestionsIndexCtrl', ['$scope', '$http', '$location', '$auth', 'Auth', 'Question', 'Alert', function($scope, $http, $location, $auth, Auth, Question, Alert) {
-    $scope.questions = Question.query();
+  .controller('QuestionsIndexCtrl', ['$scope', '$http', '$location', '$auth', 'Auth', 'Question', 'GlobalAlert', function($scope, $http, $location, $auth, Auth, Question, GlobalAlert) {
+    if ($auth.isAuthenticated()) {
+      $scope.questions = Question.query();
+    }
 
     $scope.pageChanged = function() {
       // $location.path('/').search({pages: $scope.questions.page});
-      $http.get('/api/questions?pages=' + $scope.questions.page)
-        .success(function (response) {
+      $http.get('/api/questions?pages=' + $scope.questions.page).then(
+        function (response) {
           $scope.questions = response.data;
-        })
-        .error(function (response) {
-          Alert.add('warning', response.message, 2000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.message, 2000);
         })
     }
 
@@ -23,17 +25,17 @@ angular.module('ga-qa')
     $scope.questions = {};
     $rootScope.term = $routeParams.term;
 
-    $http.get('/api/search', { params: { term: $routeParams.term } })
-      .success(function (response) {
+    $http.get('/api/search', { params: { term: $routeParams.term } }).then(
+      function (response) {
         $scope.questions.docs = response.data;
         $scope.questions.total = 1;
-      })
-      .error(function (response) {
+      },
+      function (response) {
         console.log(response);
-      })
+      });
   }])
 
-  .controller('QuestionsShowCtrl', ['$scope', '$http', '$rootScope', '$routeParams', '$auth', 'Auth', 'Question', 'Alert', 'Answer', function($scope, $http, $rootScope, $routeParams, $auth, Auth, Question, Alert, Answer) {
+  .controller('QuestionsShowCtrl', ['$scope', '$http', '$rootScope', '$routeParams', '$auth', 'Auth', 'Question', 'GlobalAlert', 'Answer', function($scope, $http, $rootScope, $routeParams, $auth, Auth, Question, GlobalAlert, Answer) {
     Question.get({ id: $routeParams.id }, function (question) {
       $scope.question = question;
 
@@ -53,29 +55,29 @@ angular.module('ga-qa')
 
     $scope.voteQuestionUp = function() {
       if (!$scope.question.hasVoted) {
-        $http.post('/api/questions/' + $scope.question._id + '/vote-up')
-          .success(function (response) {
+        $http.post('/api/questions/' + $scope.question._id + '/vote-up').then(
+          function (response) {
             $scope.question.votes.push($rootScope.currentUser._id);
             $scope.question.hasVoted = true;
-          })
-          .error(function (response) {
-            Alert.add('warning', response.message, 2000)
+          },
+          function (response) {
+            GlobalAlert.add('warning', response.message, 2000)
           })
       }
     }
 
     $scope.voteAnswerUp = function(answer) {
       if (!answer.hasVoted) {
-        $http.post('/api/answers/' + answer._id + '/vote-up')
-          .success(function (response) {
+        $http.post('/api/answers/' + answer._id + '/vote-up').then(
+          function (response) {
             answer.votes.push($rootScope.currentUser._id);
             answer.hasVoted = true;
 
             console.log(response)
-          })
-          .error(function (response) {
-            Alert.add('warning', response.message, 2000);
-          })
+          },
+          function (response) {
+            GlobalAlert.add('warning', response.message, 2000);
+          });
       }
     }
 
@@ -92,10 +94,10 @@ angular.module('ga-qa')
           // ADDING REPUTATION
           $rootScope.currentUser.rep = $rootScope.currentUser.rep + 10
 
-          Alert.add('success', "Answer posted", 2000);
+          GlobalAlert.add('success', "Answer posted", 2000);
         }, 
         function (response) {
-          Alert.add('warning', response.message, 2000);
+          GlobalAlert.add('warning', response.message, 2000);
         }
       );
     }
@@ -126,17 +128,17 @@ angular.module('ga-qa')
     //   );
     // }
 
-    $http.get('/api/gif')
-      .then(function (response) {
+    $http.get('/api/gif').then(
+      function (response) {
         console.log(response)
         $scope.gif = response.data;
-      })
-      .error(function (response) {
+      },
+      function (response) {
         console.log(response)
       })
   }])
 
-  .controller('QuestionsEditCtrl', ['$scope', '$http', '$location', '$routeParams', '$auth', 'Auth', 'Question', 'Alert', function($scope, $http, $location, $routeParams, $auth, Auth, Question, Alert) {
+  .controller('QuestionsEditCtrl', ['$scope', '$http', '$location', '$routeParams', '$auth', 'Auth', 'Question', 'GlobalAlert', function($scope, $http, $location, $routeParams, $auth, Auth, Question, GlobalAlert) {
     $scope.editQuestion = true;
     $scope.question = Question.get({ id: $routeParams.id });
     
@@ -146,16 +148,16 @@ angular.module('ga-qa')
         function (response) {
           $location.path('/questions/' + response._id)
 
-          Alert.add('success', "Question updated", 2000);
+          GlobalAlert.add('success', "Question updated", 2000);
         }, 
         function (response) {
-          Alert.add('warning', response.message, 2000);
+          GlobalAlert.add('warning', response.message, 2000);
         }
       );
     }
   }])
 
-  .controller('QuestionsNewCtrl', ['$scope', '$rootScope', '$auth', 'Auth', 'Question', 'Alert', '$location', function($scope, $rootScope, $auth, Auth, Question, Alert, $location) {
+  .controller('QuestionsNewCtrl', ['$scope', '$rootScope', '$auth', 'Auth', 'Question', 'GlobalAlert', '$location', function($scope, $rootScope, $auth, Auth, Question, GlobalAlert, $location) {
     $scope.question = {};
 
     $scope.createQuestion = function() {
@@ -167,10 +169,10 @@ angular.module('ga-qa')
 
     			$location.path('/questions/' + response._id)
 
-          Alert.add('success', "Question posted", 2000);
+          GlobalAlert.add('success', "Question posted", 2000);
     		}, 
     		function (response) {
-    			Alert.add('warning', response.message, 2000);
+    			GlobalAlert.add('warning', response.message, 2000);
     		}
     	);
     }
