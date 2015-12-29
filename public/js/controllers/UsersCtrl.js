@@ -13,7 +13,7 @@ angular.module('ga-qa')
         $scope.questions = response.data;
       },
       function (response) {
-        GlobalAlert.add('warning', response.message, 2000);
+        GlobalAlert.add('warning', response.data.message, 2000);
       });
 
     $http.get('/api/users/' + $auth.getPayload().sub + '/answers').then(
@@ -21,7 +21,7 @@ angular.module('ga-qa')
         $scope.answers = response.data;
       },
       function (response) {
-        GlobalAlert.add('warning', response.message, 2000);
+        GlobalAlert.add('warning', response.data.message, 2000);
       });
 
   }])
@@ -33,7 +33,7 @@ angular.module('ga-qa')
         $scope.user = response.data;
       },
       function (response) {
-        GlobalAlert.add('warning', response.message, 2000);
+        GlobalAlert.add('warning', response.data.message, 2000);
       });
 
 
@@ -43,7 +43,7 @@ angular.module('ga-qa')
         $scope.questions = response.data;
       },
       function (response) {
-        GlobalAlert.add('warning', response.message, 2000);
+        GlobalAlert.add('warning', response.data.message, 2000);
       });
   }])
 
@@ -60,7 +60,7 @@ angular.module('ga-qa')
           GlobalAlert.add('success', "User updated", 2000);
         },
         function (response) {
-          GlobalAlert.add('warning', response.message, 2000);
+          GlobalAlert.add('warning', response.data.message, 2000);
         })
     }
   }])
@@ -77,14 +77,13 @@ angular.module('ga-qa')
     $scope.requestPassword = function() {
       $http.post('/auth/passwords', $scope.user).then(
         function (response) {
-          console.log(response);
           $scope.user = {};
           $location.path('/'); 
           GlobalAlert.add('success', "Password reset instructions sent", 2000);
         },
         function (response) {
           console.log(response);
-          GlobalAlert.add('warning', response.message, 2000);
+          GlobalAlert.add('warning', response.data.message, 2000);
         });
     }
   }])
@@ -97,6 +96,6 @@ angular.module('ga-qa')
         GlobalAlert.add('success', "Password updated", 2000);
       },
       function (response) {
-        GlobalAlert.add('warning', response.message, 2000);
+        GlobalAlert.add('warning', response.data.message, 2000);
       })
   }]);

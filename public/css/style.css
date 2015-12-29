@@ -35,6 +35,15 @@ section {
     margin-right: 0;
 }
 
+.navbar-brand {
+  padding: 0;
+  font-size: 31px;
+  font-family: 'Roboto', sans-serif;
+}
+.navbar-brand > img {
+    display: inline-block;
+}
+
 .btn-toolbar {
   display: inline-block;
 }​

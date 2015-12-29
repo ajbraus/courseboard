@@ -1,5 +1,5 @@
 .row
-  .col-sm-8.col-md-7.col-md-offset-1
+  .col-sm-8.col-lg-7.col-lg-offset-1
     .row
       .col-xs-1.voting
         div(ng-class="{ 'animated headShake infinite' : !question.hasVoted }")
@@ -36,9 +36,13 @@
             | Answered by 
             a(href="/users/{{answer.user._id}}") {{answer.user.username}}
 
-  .col-sm-4
-    h3 Do your Homework
-    img.img-responsive(ng-src="{{gif}}")
+  .col-sm-4.col-lg-3
+    .well 
+      h5 Welcome!
+      p This is a Q&A platform for General Assembly Web Development Immersive students, TAs, instructors, and alumni.
+
+    //- h3 Here's a Random Gif
+    //- img.img-responsive(ng-src="{{gif}}")
     //- | Related Questions
     //- .list-group
     //-   a.list-group-item(href="/questions/{{a._id}}" ng-repeat="q in questions")

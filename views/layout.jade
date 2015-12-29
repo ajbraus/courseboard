@@ -5,47 +5,47 @@ html(lang="en", ng-app='ga-qa')
     meta(charset='utf8')
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1")
     base(href='/')
-    title GA/QA
+    title GA Q&A | Questions - Answers - Comments
     meta(name="description" content="A MEAN stack auth skeleton using Satellizer.")
 
     //- PRODUCTION ASSETS
-    link(rel='stylesheet', href="/dist/all.min.css")
-    script(type="text/javascript", src='/dist/all.min.js')
+    //- link(rel='stylesheet', href="/dist/all.min.css")
+    //- script(type="text/javascript", src='/dist/all.min.js')
 
     link(rel='stylesheet', href='/vendor/ionicons/css/ionicons.css')
     //- DEVELOPMENT ASSETS
 
-    //- link(rel='stylesheet', href='/vendor/bootstrap/dist/css/bootstrap.min.css')
-    //- link(rel='stylesheet', href='/vendor/bootstrap/dist/css/cosmo.css')
-    //- link(rel='stylesheet', href='/vendor/animate.css/animate.min.css')
-    //- link(rel='stylesheet', href='/vendor/highlightjs/styles/monokai.css')
-    //- link(rel='stylesheet', href='/vendor/angular-bootstrap/ui-bootstrap-csp.css')
+    link(rel='stylesheet', href='/vendor/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/vendor/bootstrap/dist/css/cosmo.css')
+    link(rel='stylesheet', href='/vendor/animate.css/animate.min.css')
+    link(rel='stylesheet', href='/vendor/highlightjs/styles/monokai.css')
+    link(rel='stylesheet', href='/vendor/angular-bootstrap/ui-bootstrap-csp.css')
 
-    //- link(rel='stylesheet', href='/css/footer.css')
-    //- link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/footer.css')
+    link(rel='stylesheet', href='/css/style.css')
 
-    //- script(type="text/javascript", src='/vendor/angular/angular.js')
-    //- script(type="text/javascript", src='/vendor/angular-resource/angular-resource.min.js')
-    //- script(type="text/javascript", src='/vendor/angular-route/angular-route.min.js')
-    //- script(type="text/javascript", src='/vendor/angular-sanitize/angular-sanitize.min.js')
-    //- script(type="text/javascript", src='/vendor/angular-bootstrap/ui-bootstrap.min.js')
-    //- script(type="text/javascript", src='/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js')
-    //- script(type="text/javascript", src='/vendor/jquery/dist/jquery.min.js')
-    //- script(type="text/javascript", src='/vendor/bootstrap/dist/js/bootstrap.min.js')
-    //- script(type="text/javascript", src='/vendor/highlightjs/highlight.pack.min.js')
-    //- script(type="text/javascript", src='/vendor/marked/lib/marked.js')    
-    //- script(type="text/javascript", src='/vendor/angular-marked/dist/angular-marked.min.js')
-    //- script(type="text/javascript", src='/vendor/moment/moment.js')
-    //- script(type="text/javascript", src='/vendor/angular-moment/angular-moment.js')
-    //- script(type="text/javascript", src='/vendor/satellizer/satellizer.min.js')
+    script(type="text/javascript", src='/vendor/angular/angular.js')
+    script(type="text/javascript", src='/vendor/angular-resource/angular-resource.min.js')
+    script(type="text/javascript", src='/vendor/angular-route/angular-route.min.js')
+    script(type="text/javascript", src='/vendor/angular-sanitize/angular-sanitize.min.js')
+    script(type="text/javascript", src='/vendor/angular-bootstrap/ui-bootstrap.min.js')
+    script(type="text/javascript", src='/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js')
+    script(type="text/javascript", src='/vendor/jquery/dist/jquery.min.js')
+    script(type="text/javascript", src='/vendor/bootstrap/dist/js/bootstrap.min.js')
+    script(type="text/javascript", src='/vendor/highlightjs/highlight.pack.min.js')
+    script(type="text/javascript", src='/vendor/marked/lib/marked.js')    
+    script(type="text/javascript", src='/vendor/angular-marked/dist/angular-marked.min.js')
+    script(type="text/javascript", src='/vendor/moment/moment.js')
+    script(type="text/javascript", src='/vendor/angular-moment/angular-moment.js')
+    script(type="text/javascript", src='/vendor/satellizer/satellizer.min.js')
 
-    //- script(type="text/javascript", src='/js/app.js')
-    //- script(type="text/javascript", src='/js/services.js')
-    //- script(type="text/javascript", src='/js/directives.js')
-    //- script(type="text/javascript", src='/js/controllers/MainCtrl.js')
-    //- script(type="text/javascript", src='/js/controllers/UsersCtrl.js')
-    //- script(type="text/javascript", src='/js/controllers/QuestionsCtrl.js')
-    //- script(type="text/javascript", src='/js/controllers/AdminCtrl.js')
+    script(type="text/javascript", src='/js/app.js')
+    script(type="text/javascript", src='/js/services.js')
+    script(type="text/javascript", src='/js/directives.js')
+    script(type="text/javascript", src='/js/controllers/MainCtrl.js')
+    script(type="text/javascript", src='/js/controllers/UsersCtrl.js')
+    script(type="text/javascript", src='/js/controllers/QuestionsCtrl.js')
+    script(type="text/javascript", src='/js/controllers/AdminCtrl.js')
       
     script.
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -57,30 +57,3 @@ html(lang="en", ng-app='ga-qa')
 
   body(ng-controller="MainCtrl")
     block body
-
-    br
-    br
-    br
-    br
-    section.footer
-      .container
-        .row
-          .col-lg-4.col-md-4.col-sm-4
-            .footer_dv
-              h4 Services
-              ul
-                li.line_rv Blah
-          .col-lg-4.col-md-4.col-sm-4
-            .footer_dv
-              h4 Services
-              ul
-                li
-                  a(href='/') Come Visit Us
-          .col-lg-4.col-md-4.col-sm-4
-            .footer_dv
-              h4 Contact us
-              p Customer Support
-              p Call Us 
-                br
-        .row.text-center.white
-          | Built with #[i.icon.ion-heart] by #[a(href='https://www.linkedin.com/in/ajbraus') Adam Braus] in San Francisco, CA 

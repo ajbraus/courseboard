@@ -21,9 +21,14 @@ angular.module('ga-qa')
 
   }])
 
-  .controller('QuestionsSearchCtrl', ['$scope', '$http', '$rootScope', '$routeParams', function ($scope, $http, $rootScope, $routeParams) {
+  .controller('QuestionsSearchCtrl', ['$scope', '$http', '$rootScope', '$routeParams', '$location', function ($scope, $http, $rootScope, $routeParams, $location) {
     $scope.questions = {};
     $rootScope.term = $routeParams.term;
+
+    $scope.$on('$locationChangeStart', function(e, next, current) { 
+      $scope.term = null;
+      $rootScope.term = null;
+    });
 
     $http.get('/api/search', { params: { term: $routeParams.term } }).then(
       function (response) {
@@ -128,14 +133,14 @@ angular.module('ga-qa')
     //   );
     // }
 
-    $http.get('/api/gif').then(
-      function (response) {
-        console.log(response)
-        $scope.gif = response.data;
-      },
-      function (response) {
-        console.log(response)
-      })
+    // $http.get('/api/gif').then(
+    //   function (response) {
+    //     console.log(response)
+    //     $scope.gif = response.data;
+    //   },
+    //   function (response) {
+    //     console.log(response)
+    //   })
   }])
 
   .controller('QuestionsEditCtrl', ['$scope', '$http', '$location', '$routeParams', '$auth', 'Auth', 'Question', 'GlobalAlert', function($scope, $http, $location, $routeParams, $auth, Auth, Question, GlobalAlert) {

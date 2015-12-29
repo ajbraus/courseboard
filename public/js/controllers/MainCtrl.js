@@ -42,7 +42,8 @@ angular.module('ga-qa')
         .then(function (response) {
           $('.dropdown.open .dropdown-toggle').dropdown('toggle');
           $scope.user = {};
-
+          $location.path('/');
+          
           GlobalAlert.add('success', "Access requested", 2000);
         })
         .catch(function (response) {
@@ -58,8 +59,8 @@ angular.module('ga-qa')
           $auth.setToken(response.data.token);
           $scope.isAuthenticated();
           $scope.user = {};
-
-          // GlobalAlert.add('success', "Logged In", 2000);
+          $location.path('/');
+          GlobalAlert.add('success', "Logged In", 2000);
         })
         .catch(function (response) {
           GlobalAlert.add('warning', "Something went wrong while loggin in", 2000);

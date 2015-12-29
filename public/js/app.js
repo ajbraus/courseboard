@@ -11,8 +11,12 @@ angular.module('ga-qa', [
                          'angularMoment',
                          'ui.bootstrap'
                          ])
-
     .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+      $routeProvider.when('/password-edit', {
+        templateUrl: 'templates/password-edit',
+        controller: 'PasswordEditCtrl'
+      });
+      
       $routeProvider.when('/', {
         templateUrl: 'templates/questions-index',
         controller: 'QuestionsIndexCtrl'
@@ -66,11 +70,6 @@ angular.module('ga-qa', [
       $routeProvider.when('/password-new', {
         templateUrl: 'templates/password-new',
         controller: 'PasswordNewCtrl'
-      });
-
-      $routeProvider.when('/password-edit', {
-        templateUrl: 'templates/password-edit',
-        controller: 'PasswordEditCtrl'
       });
 
       $routeProvider.otherwise({ redirectTo: '/' });

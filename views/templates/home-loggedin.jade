@@ -1,6 +1,6 @@
 //- HOME LOGGED IN
 .row
-  .col-sm-8.col-md-7.col-md-offset-1
+  .col-sm-8.col-lg-7.col-lg-offset-1
 
     //- PAGINATION
     uib-pagination(total-items="questions.total" direction-links="false" ng-model="questions.page" ng-change="pageChanged()")
@@ -32,7 +32,7 @@
                     | asked #[span(am-time-ago="question.createdAt")]
                     |  by #[a(href="/users/{{question.user._id}}") {{question.user.username}}]
   //- SIDEBAR
-  .col-sm-4.col-md-3
+  .col-sm-4.col-lg-3
     .well 
       h5 Welcome!
-      p This is a QA platform go General Assembly Web Development Immersive students, TAs, instructors, and alumni.
+      p This is a QA platform for General Assembly Web Development Immersive students, TAs, instructors, and alumni.
