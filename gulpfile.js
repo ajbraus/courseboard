@@ -31,12 +31,12 @@ var paths = {
 
   , images: 'client/img/**/*'
   , styles: [ 
-               'public/css/*.css'
-             , 'public/vendor/bootstrap/dist/css/bootstrap.min.css'
+               'public/vendor/bootstrap/dist/css/bootstrap.min.css'
              , 'public/vendor/bootstrap/dist/css/cosmo.css'
              , 'public/vendor/animate.css/animate.min.css'
              , 'public/vendor/highlightjs/styles/monokai.css'
              , 'public/vendor/angular-bootstrap/ui-bootstrap-csp.css'
+             , 'public/css/*.css'
             ]
 };
 
