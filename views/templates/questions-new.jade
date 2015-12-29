@@ -1,5 +1,5 @@
 .row
-  .col-sm-8.col-md-7.col-md-offset-1
+  .col-sm-8.col-lg-7.col-lg-offset-1
     form(ng-submit="createQuestion()")
       .form-group
         label Title*
@@ -16,7 +16,7 @@
       div
         button.btn.btn-primary(type="submit") Save Question
         a.btn.btn-link(href="/questions/{{question._id}}" ng-show="editQuestion") cancel
-  .col-sm-4.col-md-3
+  .col-sm-4.col-lg-3
     br
     .panel.panel-danger
       .panel-heading
