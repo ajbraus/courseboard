@@ -8,8 +8,9 @@
       .col-xs-11
         h3 {{question.title}}
         div(marked="question.body")
-        .text-right.text-muted Asked by 
-          a(href="/users/{{question.user._id}}") {{question.user.username}} 
+        .text-right.text-muted 
+          | posted in {{question.user.location}} #[span(am-time-ago="question.createdAt")]
+          |  by #[a(href="/users/{{question.user._id}}") {{question.user.username}}]
           br
           a(href="/edit/questions/{{question._id}}" ng-show="isCurrentUsersQuestion") improve question
     .row
@@ -33,8 +34,8 @@
         .col-xs-11
           {{answer.body}}
           .text-right.text-muted
-            | Answered by 
-            a(href="/users/{{answer.user._id}}") {{answer.user.username}}
+            | posted in {{answer.user.location}} #[span(am-time-ago="answer.createdAt")]
+            |  by #[a(href="/users/{{answer.user._id}}") {{answer.user.username}}]
 
   .col-sm-4.col-lg-3
     .well 

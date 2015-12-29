@@ -29,7 +29,7 @@
               .col-xs-12
                 small
                   .text-right.text-muted
-                    | asked #[span(am-time-ago="question.createdAt")]
+                    | posted in {{question.user.location}} #[span(am-time-ago="question.createdAt")]
                     |  by #[a(href="/users/{{question.user._id}}") {{question.user.username}}]
   //- SIDEBAR
   .col-sm-4.col-lg-3
