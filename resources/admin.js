@@ -15,19 +15,21 @@ module.exports = function(app) {
   })
 
   app.put('/api/admin/confirm/:userId', auth.ensureAuthenticated, auth.ensureAdmin, function (req, res) {
-    User.findById(req.params.userId).exec(function (err, user) {
+    User.findById(req.params.userId, '+email').exec(function (err, user) {
       user.confirmedAt = Date.now();
       user.save(function (err) {
-        res.send({ message: "User confirmed"})
-
+        
+        console.log(user.email)
         // SEND CONFIRMATION EMAIL
         app.mailer.send('emails/confirmed', {
-          to: user.email,
-          subject: 'Account Confirmed: Welcome to GA/QA',
+          to: [user.email],
+          subject: 'Account Confirmed: Welcome to GA Q&A',
           user: user
         }, function (err) {
           if (err) { console.log(err); return }
         });
+
+        res.send({ message: "User confirmed"})
       });
     })
   })

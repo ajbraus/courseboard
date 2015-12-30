@@ -40,7 +40,7 @@ app.use(bodyParser.json());
 // app.use(favicon(__dirname + '/public/favicon.ico'));
 
 mailer.extend(app, {
-  from: 'GA/QA', 
+  from: 'GA Q&A <generalassemblyquestions@gmail.com>', 
   host: 'smtp.gmail.com', // hostname 
   secureConnection: true, // use SSL 
   port: 465, // port for secure SMTP 
