@@ -27,7 +27,7 @@ module.exports = function(app) {
 
         // SEND ANSWER EMAIL to FOLLOWERS AND QUESTION AUTHOR
         if (req.userId != question.user) { // IF NOT ANSWERING YOUR OWN QUESTION
-          User.findById(question.user).exec(function (err, user) {
+          User.findById(question.user, '+email').exec(function (err, user) {
             console.log('sending email to:', user.email);
             app.mailer.send('emails/new-answer', {
               to: user.email,
