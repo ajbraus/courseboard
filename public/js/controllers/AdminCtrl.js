@@ -12,7 +12,7 @@ angular.module('ga-qa')
           $scope.unconfirmedUsers = response;
         })
         .error(function (response) {
-          GlobalAlert.add('warning', response.message, 2000);
+          GlobalAlert.add('warning', response.data.message, 2000);
         });
     }
 
@@ -23,7 +23,7 @@ angular.module('ga-qa')
           GlobalAlert.add('success', "User confirmed", 2000);
         },
         function (response) {
-          GlobalAlert.add('warning', response.message, 2000);
+          GlobalAlert.add('warning', response.data.message, 2000);
         }
       )
     }

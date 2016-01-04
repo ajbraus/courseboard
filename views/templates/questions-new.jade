@@ -3,12 +3,12 @@
     form(ng-submit="createQuestion()")
       .form-group
         label Title*
-        .text-muted Include your tools and problem
+        i.text-muted Include your tools and problem
         input.form-control(type="text" ng-model="question.title" placeholder="Title" required)
       .form-group
         label Details* 
-        .text-muted Include Your goal, What you've already tried, and Relevant sample code
-        textarea.form-control(rows="10" ng-model="question.body" placeholder="(accepts markdown)" required)
+        i.text-muted Always include 1) your goal, 2) what you've already tried, and 3) relevant sample code
+        textarea.form-control(rows="10" ng-model="question.body" placeholder="Be sure to use markdown here to make a nice question." required)
       hr
       div.border(marked="question.body")
       br
@@ -18,10 +18,10 @@
         a.btn.btn-link(href="/questions/{{question._id}}" ng-show="editQuestion") cancel
   .col-sm-4.col-lg-3
     br
-    .panel.panel-danger
-      .panel-heading
-        h3.panel-title Panel title
-      .panel-body Panel content
+    //- .panel.panel-danger
+    //-   .panel-heading
+    //-     h3.panel-title Panel title
+    //-   .panel-body Panel content
     .panel.panel-danger
       .panel-heading
         h3.panel-title Markdown CheatSheet

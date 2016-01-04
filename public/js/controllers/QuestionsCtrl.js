@@ -15,7 +15,7 @@ angular.module('ga-qa')
           $scope.questions = response.data;
         },
         function (response) {
-          GlobalAlert.add('warning', response.message, 2000);
+          GlobalAlert.add('warning', response.data.message, 2000);
         })
     }
 
@@ -36,7 +36,7 @@ angular.module('ga-qa')
         $scope.questions.total = 1;
       },
       function (response) {
-        console.log(response);
+        console.log(response.data);
       });
   }])
 
@@ -66,7 +66,7 @@ angular.module('ga-qa')
             $scope.question.hasVoted = true;
           },
           function (response) {
-            GlobalAlert.add('warning', response.message, 2000)
+            GlobalAlert.add('warning', response.data.message, 2000)
           })
       }
     }
@@ -81,7 +81,7 @@ angular.module('ga-qa')
             console.log(response)
           },
           function (response) {
-            GlobalAlert.add('warning', response.message, 2000);
+            GlobalAlert.add('warning', response.data.message, 2000);
           });
       }
     }

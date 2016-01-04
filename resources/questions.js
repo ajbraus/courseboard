@@ -14,7 +14,7 @@ module.exports = function(app) {
   app.get('/api/questions', auth.ensureAuthenticated, function (req, res) {
     // RECENT QUESTIONS
     Question.paginate({}, { sort:'-createdAt', page: req.query.pages, populate: 'user' }).then(function (result) {
-      // if (err) { return res.status(400).send({ message: err }) }
+      // if (err) { return res.status(400).send(err) }
       
       res.send(result);
     });
@@ -32,21 +32,21 @@ module.exports = function(app) {
         .limit(20)
         .populate('user')
         .exec(function(err, results) {
-            if (err) { return res.status(400).send({ message: err }) }
-            if (results.length == 0) { return res.status(400).send({ message: "Your search returned no questions"})}
+            if (err) { return res.status(400).send(err) }
+            if (results.length == 0) { return res.status(400).send({ message: "Your query returned no questions" }) }
               
             res.send(results);
         });
 
     // Question.paginate({}, { sort:'-createdAt', page: req.query.pages, populate: 'user' }).then(function (result) {
-      // if (err) { return res.status(400).send({ message: err }) }
+      // if (err) { return res.status(400).send(err) }
     // });
   });
 
   // QUESTIONS SHOW
   app.get('/api/questions/:id', auth.ensureAuthenticated, function (req, res) {
     Question.findById(req.params.id).populate('comments, user').exec(function (err, question) {
-      if (err) { return res.status(400).send({ message: err }) }
+      if (err) { return res.status(400).send(err) }
 
       question.impressions = question.impressions + 1;
       question.save();
@@ -69,7 +69,7 @@ module.exports = function(app) {
     req.body.votes = [req.userId]; // already vote for own answer
 
     Question.create(req.body, function (err, question) {
-      if (err) { return res.status(400).send({ message: err }) }
+      if (err) { return res.status(400).send(err) }
 
       // GIVE REP TO THE QUESTIONER
       reputation.newValue('add', 'new-question', req.userId);
@@ -83,7 +83,7 @@ module.exports = function(app) {
     req.body.user = req.userId;
 
     Question.findByIdAndUpdate(req.params.id, req.body, function (err, question) {
-      if (err) { return res.status(400).send({ message: err }) }
+      if (err) { return res.status(400).send(err) }
 
       res.send(question);
     });
@@ -92,7 +92,7 @@ module.exports = function(app) {
   // QUESTIONS DELETE
   app.delete('/api/questions/:id', auth.ensureAuthenticated, function (req, res) {
     Question.findByIdAndRemove(req.params.id).exec(function (err) {
-      if (err) { return res.status(400).send({ message: err }) }
+      if (err) { return res.status(400).send(err) }
 
       // REMOVE REP FROM THE QUESTIONER
       reputation.newValue('remove', 'new-question', userId);

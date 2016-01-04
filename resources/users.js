@@ -37,7 +37,7 @@ module.exports = function(app) {
   // USER PROFILE ANSWERS INDEX
   app.get('/api/users/:id/answers', auth.ensureAuthenticated, function (req, res) {
     Answer.find({ user: req.params.id }).sort('-createdAt').populate('question').exec(function (err, answers) {
-      if (err) { return res.status(400).send({ message: err }) }
+      if (err) { return res.status(400).send(err) }
 
       res.send(answers);
     });
@@ -46,21 +46,10 @@ module.exports = function(app) {
   // UPDATE USER
   app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
     console.log(req.body)
-    User.findById(req.userId, function (err, user) {
-      if (!user) {
-        return res.status(400).send({ message: 'User not found' });
-      }
-      
-      user.email = req.body.email || user.email;
-      user.type = req.body.type  || user.type;
-      user.first = req.body.first || user.first;
-      user.last = req.body.last || user.last;
-      user.username = req.body.username || user.username;
-      user.location = req.body.location || user.location;
-
-      user.save(function(err) {
-        res.status(200).end();
-      });
+    User.findByIdAndUpdate(req.userId, req.body, function (err, user) {
+      if (!user) { return res.status(400).send({ message: 'User not found' }) };
+      console.log(user)
+      res.status(200).send(user);
     });
   });
 
@@ -96,7 +85,7 @@ module.exports = function(app) {
       }
       var user = new User(req.body);
       user.save(function(err) {
-        if (err) { return res.status(400).send({ message: err }) }
+        if (err) { return res.status(400).send(err) }
 
         // res.send({ token: auth.createJWT(user) });
         res.send({ message: "Access requested" });

@@ -3,7 +3,7 @@
 /* MAIN Controller */
 
 angular.module('ga-qa')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'GlobalAlert', function ($scope, $rootScope, $location, $auth, $http, GlobalAlert) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'GlobalAlert', 'Question', function ($scope, $rootScope, $location, $auth, $http, GlobalAlert, Question) {
 
     $scope.search = function(term) { 
       $location.path('/search').search('term', term)
@@ -47,7 +47,8 @@ angular.module('ga-qa')
           GlobalAlert.add('success', "Access requested", 2000);
         })
         .catch(function (response) {
-          GlobalAlert.add('warning', "Something went wrong while requesting access", 2000);
+          $('.dropdown.open .dropdown-toggle').dropdown('toggle');
+          GlobalAlert.add('warning', response.data.message, 2000);
         });
     };
 
@@ -59,11 +60,12 @@ angular.module('ga-qa')
           $auth.setToken(response.data.token);
           $scope.isAuthenticated();
           $scope.user = {};
-          $location.path('/');
+          $scope.questions = Question.query();
           GlobalAlert.add('success', "Logged In", 2000);
         })
         .catch(function (response) {
-          GlobalAlert.add('warning', "Something went wrong while loggin in", 2000);
+          $('.dropdown.open .dropdown-toggle').dropdown('toggle');
+          GlobalAlert.add('warning', response.data.message, 2000);
         });
     };
     

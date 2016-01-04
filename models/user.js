@@ -7,13 +7,17 @@ function toLower (v) {
   return v.toLowerCase();
 }
 
+function toTitle(v) {
+  return v.charAt(0).toUpperCase() + v.slice(1);
+}
+
 var UserSchema = new Schema({
     createdAt          : Date
   , updatedAt          : Date
   , email              : { type: String, required: true, select:false, unique: true, trim: true, set: toLower }
   , password           : { type: String, select: false, trim: true }
-  , first              : { type: String, trim: true }
-  , last               : { type: String, trim: true }
+  , first              : { type: String, trim: true, set: toTitle }
+  , last               : { type: String, trim: true, set: toTitle }
   , location           : { type: String, trim: true }
   , username           : { type: String, trim: true, set: toLower }
   , type               : String // Student, TA, DIR, Instructor, Staff, Grad

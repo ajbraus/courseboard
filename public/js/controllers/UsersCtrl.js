@@ -27,7 +27,6 @@ angular.module('ga-qa')
   }])
 
   .controller('UsersShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $routeParams, $auth, Auth, GlobalAlert) {
-
     $http.get('/api/users/' + $routeParams.id).then(
       function (response) {
         $scope.user = response.data;
@@ -63,12 +62,6 @@ angular.module('ga-qa')
           GlobalAlert.add('warning', response.data.message, 2000);
         })
     }
-  }])
-
-  .controller('UsersShowCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', '$routeParams', function($scope, $http, $auth, Auth, GlobalAlert, $routeParams) {
-    $http.get('/api/users/' + $routeParams.id).then(function(response) {
-      $scope.user = response.data;
-    });
   }])
 
   .controller('PasswordNewCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', '$location', '$routeParams', function($scope, $http, $auth, Auth, GlobalAlert, $location, $routeParams) {
