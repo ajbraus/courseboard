@@ -9,12 +9,7 @@ nav.navbar.navbar-default
       a.navbar-brand(href='/') 
         img.img-responsive(ng-src="/img/ga_cog.png" width="50px")
         | Q&A
-    .collapse.navbar-collapse
-      //- form.navbar-form.navbar-right(role='search')
-      //-   .form-group
-      //-     input.form-control(type='text', placeholder='')      
-      //-     button.btn.btn-sm.btn-default(type='submit')
-      //-       i.icon.ion-search
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
         li.dropdown(ng-show='!currentUser')
           a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
