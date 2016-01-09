@@ -20,11 +20,9 @@ QuestionSchema.index(
   { 
     title: 'text'
     , body: 'text' 
-    , tags: 'text'
     , weights: {
         title: 3,
-        body: 1,
-        tags: 5
+        body: 1
       }
   }
 );
