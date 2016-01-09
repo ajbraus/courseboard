@@ -48,6 +48,9 @@ module.exports = function(app) {
     Question.findById(req.params.id).populate('comments, user').exec(function (err, question) {
       if (err) { return res.status(400).send(err) }
 
+      if (question.impressions == []) {
+        question.impressions = 0;
+      }
       question.impressions = question.impressions + 1;
       question.save();
 
