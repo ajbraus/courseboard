@@ -10,7 +10,7 @@ var QuestionSchema = new Schema({
   , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true}
   , answers       : [{ type: Schema.Types.ObjectId, ref: 'Answer' }]
   , votes         : [{ type: Schema.Types.ObjectId, ref: 'User' }]
-  , impressions   : [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  , impressions   : { type: Number, default: 0 } //[{ type: Schema.Types.ObjectId, ref: 'User' }]
   
   , tags          : [String]
   , comments      : [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
