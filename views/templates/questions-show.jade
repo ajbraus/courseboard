@@ -13,12 +13,14 @@
           |  by #[a(href="/users/{{question.user._id}}") {{question.user.username}}]
           br
           a(href="/edit/questions/{{question._id}}" ng-show="isCurrentUsersQuestion") improve question
+      a(href="/search?term={{tag}}").badge.tag(ng-repeat="tag in question.tags") 
+        {{tag}} 
     .row
       hr
       h5 Post an Answer
       form(ng-submit="createAnswer()")
         .form-group
-          textarea.form-control(rows="5" ng-model="answer.body")
+          textarea.form-control(rows="5" ng-model="answer.body" placeholder="(Accepts Markdown)")
         button.btn.btn-sm.btn-primary(type='submit') Post Answer
       hr
       h4 
@@ -32,7 +34,7 @@
             i.icon.ion-arrow-up-b(ng-click='voteAnswerUp(answer)' ng-class="{ 'voted': answer.hasVoted, 'not-voted': !answer.hasVoted }")
           {{answer.votes.length}}
         .col-xs-11
-          {{answer.body}}
+          div(marked="answer.body")
           .text-right.text-muted
             | posted in {{answer.user.location}} #[span(am-time-ago="answer.createdAt")]
             |  by #[a(href="/users/{{answer.user._id}}") {{answer.user.username}}]
@@ -41,6 +43,29 @@
     .well 
       h5 Welcome!
       p This is a Q&A platform for General Assembly Web Development Immersive students, TAs, instructors, and alumni. To gain reputation ask, answer, and vote.
+    .panel.panel-danger
+      .panel-heading
+        h3.panel-title Markdown CheatSheet
+      .panel-body 
+        b Links
+        p [Link Text](http://www.google.com)
+        b Images
+        p ![Alt text](/path/to/img.jpg)
+        b Typography
+        p **Bold**
+        p _italic_ or *italic* 
+        b Code Block
+        p
+          ```js
+          br
+          | var aDude = "Cowboy";
+          br
+          ```
+        b Code Inline
+        p
+          `var thisCode = "is great";`
+        b Any HTML Tags
+        p
 
     //- h3 Here's a Random Gif
     //- img.img-responsive(ng-src="{{gif}}")

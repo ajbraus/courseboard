@@ -1,4 +1,11 @@
 .row
+  span(ng-repeat='tag in tags') {{tag.name}} 
+  h3 Add Tag
+  form(ng-submit="createTag()")
+    .form-group
+      input.form-control(ng-model='tag.name')
+    .text-right
+      button.btn.btn-primary(type="submit") Add Tag
   h3 Unconfirmed Users
   ul.list-group
     li.clearfix.list-group-item(ng-repeat="user in unconfirmedUsers")

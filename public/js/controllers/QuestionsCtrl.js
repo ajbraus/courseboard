@@ -102,7 +102,7 @@ angular.module('ga-qa')
           GlobalAlert.add('success', "Answer posted", 2000);
         }, 
         function (response) {
-          GlobalAlert.add('warning', response.message, 2000);
+          GlobalAlert.add('warning', response.data.message, 2000);
         }
       );
     }
@@ -156,14 +156,18 @@ angular.module('ga-qa')
           GlobalAlert.add('success', "Question updated", 2000);
         }, 
         function (response) {
-          GlobalAlert.add('warning', response.message, 2000);
+          GlobalAlert.add('warning', response.data.message, 2000);
         }
       );
     }
   }])
 
-  .controller('QuestionsNewCtrl', ['$scope', '$rootScope', '$auth', 'Auth', 'Question', 'GlobalAlert', '$location', function($scope, $rootScope, $auth, Auth, Question, GlobalAlert, $location) {
+  .controller('QuestionsNewCtrl', ['$scope', '$http', '$rootScope', '$auth', 'Auth', 'Question', 'GlobalAlert', '$location', function($scope, $http, $rootScope, $auth, Auth, Question, GlobalAlert, $location) {
     $scope.question = {};
+
+    $scope.loadTags = function(term) {
+      return $http.get('/api/tags?term=' + term)
+    };
 
     $scope.createQuestion = function() {
     	var question = new Question($scope.question);
@@ -177,7 +181,7 @@ angular.module('ga-qa')
           GlobalAlert.add('success', "Question posted", 2000);
     		}, 
     		function (response) {
-    			GlobalAlert.add('warning', response.message, 2000);
+    			GlobalAlert.add('warning', response.data.message, 2000);
     		}
     	);
     }

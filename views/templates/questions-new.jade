@@ -9,6 +9,11 @@
         label Details* 
         i.text-muted Always include 1) your goal, 2) what you've already tried, and 3) relevant sample code
         textarea.form-control(rows="10" ng-model="question.body" placeholder="Be sure to use markdown here to make a nice question." required)
+      .form-group
+        label Tags*
+        i.text-muted Include a comma-delimited list of tags (7 max)
+        tags-input(ng-model="question.tags" add-from-autocomplete-only="true")
+          auto-complete(source='loadTags($query)')
       hr
       div.border(marked="question.body")
       br
@@ -33,12 +38,15 @@
         b Typography
         p **Bold**
         p _italic_ or *italic* 
-        b Code
+        b Code Block
         p
           ```js
           br
           | var aDude = "Cowboy";
           br
           ```
-        b HTML Tags
+        b Code Inline
+        p
+          `var thisCode = "is great";`
+        b Any HTML Tags
         p

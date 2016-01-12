@@ -9,17 +9,42 @@ angular.module('ga-qa', [
                          'satellizer',
                          'hc.marked',
                          'angularMoment',
+                         'ngTagsInput',
                          'ui.bootstrap'
                          ])
-    .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
-      $routeProvider.when('/password-edit', {
-        templateUrl: 'templates/password-edit',
-        controller: 'PasswordEditCtrl'
+    
+    .run(['$rootScope', '$location', '$auth', 'GlobalAlert', function ($rootScope, $location, $auth, GlobalAlert) {
+      // Redirect to login if route requires auth and you're not logged in
+      $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+        var loggedIn = $auth.isAuthenticated()
+        if (!next.publicAccess && !loggedIn) {
+          $rootScope.returnToState = next.url;
+          $rootScope.returnToStateParams = next.params.Id;
+          $location.path('/');
+          GlobalAlert.add('warning', "Please log in to see this question", 2000);
+        }
       });
-      
+    }])
+
+    .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+      // HOME
       $routeProvider.when('/', {
         templateUrl: 'templates/questions-index',
-        controller: 'QuestionsIndexCtrl'
+        controller: 'QuestionsIndexCtrl',
+        publicAccess: true
+      });
+
+      // PASSWORD
+      $routeProvider.when('/password-edit', {
+        templateUrl: 'templates/password-edit',
+        controller: 'PasswordEditCtrl',
+        publicAccess: true
+      });
+
+      $routeProvider.when('/password-new', {
+        templateUrl: 'templates/password-new',
+        controller: 'PasswordNewCtrl',
+        publicAccess: true
       });
 
       // SEARCH
@@ -64,12 +89,6 @@ angular.module('ga-qa', [
       $routeProvider.when('/admin', {
         templateUrl: 'templates/admin',
         controller: 'AdminCtrl'
-      });
-
-      // PASSWORD
-      $routeProvider.when('/password-new', {
-        templateUrl: 'templates/password-new',
-        controller: 'PasswordNewCtrl'
       });
 
       $routeProvider.otherwise({ redirectTo: '/' });

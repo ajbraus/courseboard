@@ -3,10 +3,12 @@ var User = require('../models/user.js')
   , Question = require('../models/question.js')
   , Answer = require('../models/answer.js')
   , Comment = require('../models/comment.js')
+  , Tag = require('../models/tag.js')
   , reputation = require('./reputation.js')
   , auth = require('./auth.js')
   , request = require('request')
   , config = require('../config.js')
+  , _ = require('lodash')
 
 
 module.exports = function(app) {
@@ -70,6 +72,7 @@ module.exports = function(app) {
   app.post('/api/questions', auth.ensureAuthenticated, function (req, res) { 
     req.body.user = req.userId;
     req.body.votes = [req.userId]; // already vote for own answer
+    req.body.tags = _.pluck(req.body.tags, "text");
 
     Question.create(req.body, function (err, question) {
       if (err) { return res.status(400).send(err) }

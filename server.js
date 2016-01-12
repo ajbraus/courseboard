@@ -72,6 +72,7 @@ require('./resources/admin')(app);
 require('./resources/questions')(app);
 require('./resources/answers')(app);
 require('./resources/votes')(app);
+require('./resources/tags')(app);
 // require('./resources/comments')(app);
 
 // redirect all others to the index (HTML5 history)

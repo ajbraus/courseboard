@@ -24,6 +24,7 @@ var paths = {
             , 'public/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js'
             , 'public/vendor/jquery/dist/jquery.min.js'
             , 'public/vendor/bootstrap/dist/js/bootstrap.min.js'
+            , 'public/vendor/ng-tags-input/ng-tags-input.min.js'
 
             // APP SCRIPTS
             , 'public/js/**/*.js' 
@@ -36,6 +37,7 @@ var paths = {
              , 'public/vendor/animate.css/animate.min.css'
              , 'public/vendor/highlightjs/styles/monokai.css'
              , 'public/vendor/angular-bootstrap/ui-bootstrap-csp.css'
+             , 'public/vendor/ng-tags-input/ng-tags-input.min.css'
              , 'public/css/*.css'
             ]
 };

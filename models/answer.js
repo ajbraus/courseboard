@@ -8,9 +8,9 @@ var AnswerSchema = new Schema({
   , user          : { type: Schema.Types.ObjectId, ref: 'User' }
   , question      : { type: Schema.Types.ObjectId, ref: 'Question' }
   , votes         : [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  , isBest        : { type: Boolean, default: false }
 
   , comments      : [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
-  , isBest        : { type: Boolean, default: false }
 })
 
 AnswerSchema.pre('save', function(next){

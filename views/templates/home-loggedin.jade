@@ -14,15 +14,18 @@
               .col-xs-4
                 {{question.votes.length}}
                 br
-                small.hidden-xs.text-muted votes
+                .text-muted 
+                  i.icon.ion-arrow-up-b
               .col-xs-4
                 {{question.answers.length}}
                 br
-                small.hidden-xs.text-muted answers
+                .text-muted 
+                  i.icon.ion-checkmark-circled
               .col-xs-4
                 {{question.impressions}}
                 br
-                small.hidden-xs.text-muted views
+                .text-muted 
+                  i.icon.ion-eye
           .col-xs-9
             h4 #[a(href="/questions/{{question._id}}") {{question.title}}]
             .row

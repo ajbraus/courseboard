@@ -302,3 +302,7 @@ color:rgb(244, 244, 244);
 .min-height {
   min-height: 400px;
 }
+
+.tag {
+  margin:0 2px;
+}
