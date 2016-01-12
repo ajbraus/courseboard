@@ -1,5 +1,5 @@
 .row
-  span(ng-repeat='tag in tags') {{tag.name}} 
+  span.badge.tag(ng-repeat='tag in tags') {{tag.name}} 
   h3 Add Tag
   form(ng-submit="createTag()")
     .form-group

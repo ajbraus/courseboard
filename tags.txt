@@ -24,4 +24,5 @@
   {name: 'ux'},
   {name: 'ui'},
   {name: 'product-managment'}
+  DONE
 ]
