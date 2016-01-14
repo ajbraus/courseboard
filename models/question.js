@@ -11,8 +11,9 @@ var QuestionSchema = new Schema({
   , answers       : [{ type: Schema.Types.ObjectId, ref: 'Answer' }]
   , votes         : [{ type: Schema.Types.ObjectId, ref: 'User' }]
   , impressions   : { type: Number, default: 0 } //[{ type: Schema.Types.ObjectId, ref: 'User' }]
-  
   , tags          : [String]
+
+  , anonymous     : { type: Boolean, default: false }
   , comments      : [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 })
  
