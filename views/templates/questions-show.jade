@@ -12,7 +12,7 @@
           | posted in {{question.user.location}} #[span(am-time-ago="question.createdAt")]
           |  by #[a(href="/users/{{question.user._id}}") {{question.user.username}}]
           br
-          a(href="/edit/questions/{{question._id}}" ng-show="isCurrentUsersQuestion") improve question
+          a(href="/edit/questions/{{question._id}}" ng-show="canEdit") improve question
       a(href="/search?term={{tag}}").badge.tag(ng-repeat="tag in question.tags") 
         {{tag}} 
     .row

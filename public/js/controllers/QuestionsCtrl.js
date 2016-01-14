@@ -44,10 +44,11 @@ angular.module('ga-qa')
     Question.get({ id: $routeParams.id }, function (question) {
       $scope.question = question;
 
-      $scope.isCurrentUsersQuestion = false;
-      if ($scope.question.user._id == $auth.getPayload().sub) {
-        $scope.isCurrentUsersQuestion = true;
+      $scope.canEdit = false;
+      if ($scope.question.user._id == $rootScope.currentUser._id || ["DIR", "TA", "Instructor", "Staff"].indexOf($rootScope.currentUser.type) >= 0) {
+        $scope.canEdit = true;
       }
+
       $scope.question.hasVoted = $scope.question.votes.indexOf($rootScope.currentUser._id) >= 0;
     });
 
