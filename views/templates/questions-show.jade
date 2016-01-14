@@ -38,6 +38,8 @@
           .text-right.text-muted
             | posted in {{answer.user.location}} #[span(am-time-ago="answer.createdAt")]
             |  by #[a(href="/users/{{answer.user._id}}") {{answer.user.username}}]
+            br
+            span(ng-if="answer.user._id == currentUser._id") #[a(href="/edit/questions/{{question._id}}/answers/{{answer._id}}") edit]
 
   .col-sm-4.col-lg-3
     .well 

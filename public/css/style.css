@@ -44,6 +44,11 @@ section {
     display: inline-block;
 }
 
+.navbar-brand > span {
+  position: relative;
+  top: 2px;
+}
+
 .btn-toolbar {
   display: inline-block;
 }​

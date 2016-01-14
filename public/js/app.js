@@ -69,6 +69,11 @@ angular.module('ga-qa', [
         controller: 'QuestionsEditCtrl'
       });
 
+      $routeProvider.when('/edit/questions/:questionId/answers/:id', {
+        templateUrl: 'templates/answers-edit',
+        controller: 'AnswersEditCtrl'
+      });
+
       // USERS & PROFILE
       $routeProvider.when('/users/:id', {
         templateUrl: 'templates/profile',

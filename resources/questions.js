@@ -53,6 +53,7 @@ module.exports = function(app) {
       if (question.impressions == []) {
         question.impressions = 0;
       }
+      
       question.impressions = question.impressions + 1;
       question.save();
 
