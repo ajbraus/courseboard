@@ -45,6 +45,7 @@ angular.module('ga-qa')
       $scope.question = question;
 
       $scope.canEdit = false;
+      console.log($scope.question.user)
       if ($scope.question.user._id == $rootScope.currentUser._id || ["DIR", "TA", "Instructor", "Staff"].indexOf($rootScope.currentUser.type) >= 0) {
         $scope.canEdit = true;
       }

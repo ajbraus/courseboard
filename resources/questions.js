@@ -50,13 +50,19 @@ module.exports = function(app) {
     Question.findById(req.params.id).populate('comments, user').exec(function (err, question) {
       if (err) { return res.status(400).send(err) }
 
+      // INCREMENT IMPRESSIONS
       if (question.impressions == []) {
         question.impressions = 0;
       }
-      
       question.impressions = question.impressions + 1;
-      question.save();
 
+      // SET ISANONYMOUS IF UNDEFINED
+      if (typeof question.isAnonymous == 'undefined') {
+        question.isAnonymous = false;
+      }
+
+      question.save();
+      
       res.send(question);
     });
   });
@@ -78,8 +84,10 @@ module.exports = function(app) {
     Question.create(req.body, function (err, question) {
       if (err) { return res.status(400).send(err) }
 
-      // GIVE REP TO THE QUESTIONER
-      reputation.newValue('add', 'new-question', req.userId);
+      if (!question.isAnonymous) {
+        // GIVE REP TO THE QUESTIONER
+        reputation.newValue('add', 'new-question', req.userId);
+      }
 
       res.send(question);
     });

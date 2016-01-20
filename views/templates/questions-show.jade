@@ -10,7 +10,11 @@
         div(marked="question.body")
         .text-right.text-muted 
           | posted in {{question.user.location}} #[span(am-time-ago="question.createdAt")]
-          |  by #[a(href="/users/{{question.user._id}}") {{question.user.username}}]
+          span(ng-if="question.isAnonymous")
+            |  by anonymous
+          span(ng-if="!question.isAnonymous")
+            |  by #[a(href="/users/{{question.user._id}}") {{question.user.username}}]
+          
           br
           a(href="/edit/questions/{{question._id}}" ng-show="canEdit") improve question
       a(href="/search?term={{tag}}").badge.tag(ng-repeat="tag in question.tags") 
@@ -21,7 +25,8 @@
       form(ng-submit="createAnswer()")
         .form-group
           textarea.form-control(rows="5" ng-model="answer.body" placeholder="(Accepts Markdown)")
-        button.btn.btn-sm.btn-primary(type='submit') Post Answer
+        .text-right
+          button.btn.btn-danger(type='submit') Post Answer
       hr
       h4 
         b 
