@@ -18,10 +18,11 @@
       div.border(marked="question.body")
       br
       br
-      div
-        button.btn.btn-primary(type="submit") Save Question
-        a.btn.btn-link(href="/questions/{{question._id}}" ng-show="editQuestion") cancel
+      .text-right
         a.btn.btn-warning(ng-click="deleteQuestion()" ng-show="editQuestion") Delete
+        a.btn.btn-link(href="/" ng-hide="editQuestion") Cancel
+        a.btn.btn-link(href="/questions/{{question._id}}" ng-show="editQuestion") Cancel
+        button.btn.btn-danger(type="submit") Save Question
   .col-sm-4.col-lg-3
     br
     //- .panel.panel-danger
