@@ -21,6 +21,7 @@
       div
         button.btn.btn-primary(type="submit") Save Question
         a.btn.btn-link(href="/questions/{{question._id}}" ng-show="editQuestion") cancel
+        a.btn.btn-warning(ng-click="deleteQuestion()" ng-show="editQuestion") Delete
   .col-sm-4.col-lg-3
     br
     //- .panel.panel-danger

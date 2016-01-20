@@ -148,9 +148,27 @@ angular.module('ga-qa')
     $scope.editQuestion = true;
     $scope.question = Question.get({ id: $routeParams.id });
     
+    $scope.loadTags = function(term) {
+      return $http.get('/api/tags?term=' + term)
+    };
+    
+    $scope.deleteQuestion = function() {
+      var question = new Question($scope.question);
+      question.$remove({ id: $routeParams.id }).then(
+        function (response) {
+          $location.path('/')
+
+          GlobalAlert.add('success', "Question deleted", 2000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 2000);
+        }
+      );
+    }
+
     $scope.createQuestion = function() {
       var question = new Question($scope.question);
-      question.$update({id: question._id}).then(
+      question.$update({ id: question._id }).then(
         function (response) {
           $location.path('/questions/' + response._id)
 

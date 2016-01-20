@@ -21,7 +21,7 @@ module.exports = {
     }
 
     if (direction == 'remove') {
-      val * -1
+      val = val * -1
     }
 
     User.findById(userId).exec(function (err, user) {

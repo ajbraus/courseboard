@@ -87,7 +87,8 @@ module.exports = function(app) {
 
   // QUESTIONS UPDATE
   app.put('/api/questions/:id', auth.ensureAuthenticated, function (req, res) { 
-    req.body.user = req.userId;
+    // req.body.user = req.userId;
+    req.body.tags = _.pluck(req.body.tags, "text");
 
     Question.findByIdAndUpdate(req.params.id, req.body, function (err, question) {
       if (err) { return res.status(400).send(err) }
@@ -98,9 +99,12 @@ module.exports = function(app) {
 
   // QUESTIONS DELETE
   app.delete('/api/questions/:id', auth.ensureAuthenticated, function (req, res) {
-    Question.findByIdAndRemove(req.params.id).exec(function (err) {
+    Question.findById(req.params.id).exec(function (err, question) {
       if (err) { return res.status(400).send(err) }
 
+      userId = question.user;
+      question.remove();
+      
       // REMOVE REP FROM THE QUESTIONER
       reputation.newValue('remove', 'new-question', userId);
 
