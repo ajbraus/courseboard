@@ -2,7 +2,7 @@
 
 /* USER Controllers */
 
-angular.module('ga-qa')
+angular.module('courseboard')
   .controller('ProfileCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
     $http.get('/api/me').then(function(response) {
       $scope.user = response.data;

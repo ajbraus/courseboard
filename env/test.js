@@ -2,5 +2,5 @@ var port = 3001;
 
 module.exports = {
   port: port,
-  db: 'mongodb://localhost/ga-qa'
+  db: 'mongodb://localhost/courseboard'
 };

@@ -2,7 +2,7 @@
 
 /* DIRECTIVES */
 
-angular.module('ga-qa.directives', ['ga-qa.services'])
+angular.module('courseboard.directives', ['courseboard.services'])
 
   .directive('capitalize', [function() {
      return {

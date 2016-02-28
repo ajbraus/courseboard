@@ -1,9 +1,9 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('ga-qa', [
-                         'ga-qa.services',
-                         'ga-qa.directives',
+angular.module('courseboard', [
+                         'courseboard.services',
+                         'courseboard.directives',
                          'ngRoute',
                          'ngResource',
                          'satellizer',
@@ -29,8 +29,7 @@ angular.module('ga-qa', [
     .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
       // HOME
       $routeProvider.when('/', {
-        templateUrl: 'templates/questions-index',
-        controller: 'QuestionsIndexCtrl',
+        templateUrl: 'templates/splash',
         publicAccess: true
       });
 
@@ -45,33 +44,6 @@ angular.module('ga-qa', [
         templateUrl: 'templates/password-new',
         controller: 'PasswordNewCtrl',
         publicAccess: true
-      });
-
-      // SEARCH
-      $routeProvider.when('/search', {
-        templateUrl: 'templates/questions-index',
-        controller: 'QuestionsSearchCtrl'
-      });
-
-      // QUESTIONS
-      $routeProvider.when('/questions/new', {
-        templateUrl: 'templates/questions-new',
-        controller: 'QuestionsNewCtrl'
-      });
-
-      $routeProvider.when('/questions/:id', {
-        templateUrl: 'templates/questions-show',
-        controller: 'QuestionsShowCtrl'
-      });
-
-      $routeProvider.when('/edit/questions/:id', {
-        templateUrl: 'templates/questions-new',
-        controller: 'QuestionsEditCtrl'
-      });
-
-      $routeProvider.when('/edit/questions/:questionId/answers/:id', {
-        templateUrl: 'templates/answers-edit',
-        controller: 'AnswersEditCtrl'
       });
 
       // USERS & PROFILE

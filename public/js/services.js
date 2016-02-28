@@ -3,22 +3,9 @@
 
 /* Services */
 
-angular.module('ga-qa.services', [])
-  .factory('Question', ['$resource', '$window', function ($resource, $window) {
-    return $resource($window.location.origin + '/api/questions/:id', { id: '@id' }, {
-      query: { isArray: false },
-      update: { method: 'PUT' }
-    });
-  }])
-
-  .factory('Answer', ['$resource', '$window', function ($resource, $window) {
-    return $resource($window.location.origin + '/api/questions/:questionId/answers/:id', { questionid: '@questionId', id: '@id' }, {
-      update: { method: 'PUT' }
-    });
-  }])
-
-  // .factory('Comment', ['$resource', '$window', function ($resource, $window) {
-  //   return $resource($window.location.origin + '/api/parent/:parentId/comments/:id', { parentId: '@parentId', id: '@id' }, {
+angular.module('courseboard.services', [])
+  // .factory('Answer', ['$resource', '$window', function ($resource, $window) {
+  //   return $resource($window.location.origin + '/api/questions/:questionId/answers/:id', { questionid: '@questionId', id: '@id' }, {
   //     update: { method: 'PUT' }
   //   });
   // }])

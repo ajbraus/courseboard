@@ -1,9 +1,0 @@
-.col-sm-8.col-sm-offset-2
-  legend Update Answer
-  form(ng-submit="createAnswer()")
-    .form-group
-      textarea.form-control(ng-model="answer.body" rows="10")
-    .text-right
-      a.btn.btn-warning(ng-click="deleteAnswer(answer)") Delete Answer
-      a.btn.btn-link(href="/questions/{{answer.question}}") Cancel
-      button.btn.btn-danger(type="submit") Update Answer

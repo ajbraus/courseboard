@@ -2,8 +2,8 @@
 
 /* MAIN Controller */
 
-angular.module('ga-qa')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'GlobalAlert', 'Question', function ($scope, $rootScope, $location, $auth, $http, GlobalAlert, Question) {
+angular.module('courseboard')
+  .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'GlobalAlert', function ($scope, $rootScope, $location, $auth, $http, GlobalAlert) {
 
     $scope.search = function(term) { 
       $location.path('/search').search('term', term)

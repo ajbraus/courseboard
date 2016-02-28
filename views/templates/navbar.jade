@@ -6,9 +6,7 @@ nav.navbar.navbar-default
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/') 
-        img.img-responsive(ng-src="/img/ga_cog.png" width="50px")
-        span Q&A
+      a.navbar-brand(href='/') Course Board
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
         li.dropdown(ng-show='!currentUser')
@@ -40,33 +38,6 @@ nav.navbar.navbar-default
               .form-group
                 label(for='') Username
                 input.form-control(type='text', ng-model='user.username')
-              .form-group
-                label Account Type
-                select.form-control(ng-model='user.type')            
-                  option() Student
-                  option() Graduate
-                  option() TA
-                  option() DIR
-                  option() Instructor
-                  option() Staff
-              .form-group
-                label(for='') Location
-                select.form-control(ng-model='user.location')            
-                  option(selected) San Francisco
-                  option() New York
-                  option() Los Angeles
-                  option() Chicago
-                  option() London
-                  option() Sydney
-                  option() Singapore
-                  option() Hong Kong
-                  option() Austin
-                  option() Atlanta
-                  option() Boston
-                  option() Denver
-                  option() Washington DC
-                  option() Seattle
-                  option() Melbourne
               .form-group
                 label(for='') Email
                 input.form-control(type='email', ng-model='user.email')

@@ -2,7 +2,7 @@
 
 /* ADMIN Controller */
 
-angular.module('ga-qa')
+angular.module('courseboard')
   .controller('AdminCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'GlobalAlert', function ($scope, $rootScope, $location, $auth, $http, GlobalAlert) {
     if (!$scope.currentUser.admin) {
       $location.path('/');
