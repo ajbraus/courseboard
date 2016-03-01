@@ -5,7 +5,7 @@
 angular.module('courseboard')
   .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'GlobalAlert', function ($scope, $rootScope, $location, $auth, $http, GlobalAlert) {
 
-    $scope.search = function(term) { 
+    $scope.search = function(term) {
       $location.path('/search').search('term', term)
     }
 
@@ -26,7 +26,7 @@ angular.module('courseboard')
           } else {
             $auth.removeToken();
           }
-        }, 
+        },
         function (response) {
           $auth.removeToken();
           $location.path('/');
@@ -34,8 +34,11 @@ angular.module('courseboard')
     };
 
     if ($auth.isAuthenticated()) {
-      $scope.isAuthenticated();  
+      $scope.isAuthenticated();
     }
+
+    $scope.isAuthenticated();
+
 
     $scope.signup = function() {
       $auth.signup($scope.user)
@@ -43,7 +46,7 @@ angular.module('courseboard')
           $('.dropdown.open .dropdown-toggle').dropdown('toggle');
           $scope.user = {};
           $location.path('/');
-          
+
           GlobalAlert.add('success', "Access requested", 2000);
         })
         .catch(function (response) {
@@ -68,7 +71,7 @@ angular.module('courseboard')
           GlobalAlert.add('warning', response.data.message, 2000);
         });
     };
-    
+
     $scope.logout = function() {
       $auth.logout().then(
         function() {
