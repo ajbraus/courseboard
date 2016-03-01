@@ -12,7 +12,7 @@ angular.module('courseboard', [
                          'ngTagsInput',
                          'ui.bootstrap'
                          ])
-    
+
     .run(['$rootScope', '$location', '$auth', 'GlobalAlert', function ($rootScope, $location, $auth, GlobalAlert) {
       // Redirect to login if route requires auth and you're not logged in
       $rootScope.$on( "$routeChangeStart", function(event, next, current) {
@@ -66,6 +66,12 @@ angular.module('courseboard', [
       $routeProvider.when('/admin', {
         templateUrl: 'templates/admin',
         controller: 'AdminCtrl'
+      });
+
+      $routeProvider.when('/courses', {
+          templateUrl: 'templates/courses',
+          controller: 'CourseCtrl',
+          publicAccess: true
       });
 
       $routeProvider.otherwise({ redirectTo: '/' });
