@@ -37,9 +37,6 @@ angular.module('courseboard')
       $scope.isAuthenticated();
     }
 
-    $scope.isAuthenticated();
-
-
     $scope.signup = function() {
       $auth.signup($scope.user)
         .then(function (response) {
