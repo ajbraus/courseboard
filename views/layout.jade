@@ -1,5 +1,5 @@
 doctype html
-html(lang="en", ng-app='courseboard') 
+html(lang="en", ng-app='courseboard')
   //- ng-strict-di
   head
     meta(charset='utf8')
@@ -34,7 +34,7 @@ html(lang="en", ng-app='courseboard')
     script(type="text/javascript", src='/vendor/jquery/dist/jquery.min.js')
     script(type="text/javascript", src='/vendor/bootstrap/dist/js/bootstrap.min.js')
     script(type="text/javascript", src='/vendor/highlightjs/highlight.pack.min.js')
-    script(type="text/javascript", src='/vendor/marked/lib/marked.js')    
+    script(type="text/javascript", src='/vendor/marked/lib/marked.js')
     script(type="text/javascript", src='/vendor/angular-marked/dist/angular-marked.min.js')
     script(type="text/javascript", src='/vendor/moment/moment.js')
     script(type="text/javascript", src='/vendor/angular-moment/angular-moment.js')
@@ -47,6 +47,7 @@ html(lang="en", ng-app='courseboard')
     script(type="text/javascript", src='/js/controllers/MainCtrl.js')
     script(type="text/javascript", src='/js/controllers/UsersCtrl.js')
     script(type="text/javascript", src='/js/controllers/AdminCtrl.js')
-      
+    script(type="text/javascript", src='/js/controllers/CoursesCtrl.js')
+
   body(ng-controller="MainCtrl")
     block body

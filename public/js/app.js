@@ -69,8 +69,8 @@ angular.module('courseboard', [
       });
 
       $routeProvider.when('/courses', {
-          templateUrl: 'templates/courses',
-          controller: 'CourseCtrl',
+          templateUrl: 'templates/courses-index',
+          controller: 'CourseIndexCtrl',
           publicAccess: true
       });
 
