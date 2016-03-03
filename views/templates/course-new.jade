@@ -1,0 +1,10 @@
+.container
+  .row
+    .col-md-4.col-md-offset-4.col-sm-6.col-sm-offset-3
+      legend Create New Course
+      form(ng-submit="createCourse()")
+        .form-group
+          label Course Title*
+          input.form-control(ng-model="course.title")
+        .text-right
+          button.btn.btn-danger(type="submit") Send Request

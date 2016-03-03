@@ -33,6 +33,19 @@ angular.module('courseboard', [
         publicAccess: true
       });
 
+      // COURSES
+      $routeProvider.when('/courses', {
+        templateUrl: 'templates/courses',
+        controller: 'CoursesCtrl',
+        publicAccess: true
+      });
+
+      $routeProvider.when('/courses/new', {
+        templateUrl: 'templates/course-new',
+        controller: 'CoursesNewCtrl',
+        publicAccess: true
+      });
+
       // PASSWORD
       $routeProvider.when('/password-edit', {
         templateUrl: 'templates/password-edit',
