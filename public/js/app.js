@@ -40,9 +40,15 @@ angular.module('courseboard', [
         publicAccess: true
       });
 
-      $routeProvider.when('/courses/new', {
+      $routeProvider.when('/courses-new', {
         templateUrl: 'templates/course-new',
         controller: 'CoursesNewCtrl',
+        publicAccess: true
+      });
+
+      $routeProvider.when('/courses/:id', {
+        templateUrl: 'templates/course',
+        controller: 'CourseShowCtrl',
         publicAccess: true
       });
 

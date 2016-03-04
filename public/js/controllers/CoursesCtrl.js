@@ -12,20 +12,32 @@ angular.module('courseboard')
     //   {title: "so does abe"}
     // ]
 
-    // $http.get('/api/users/' + $auth.getPayload().sub + '/questions').then(
-    //   function (response) {
-    //     $scope.questions = response.data;
-    //   },
-    //   function (response) {
-    //     GlobalAlert.add('warning', response.data.message, 2000);
-    //   });
+  }])
 
-    // $http.get('/api/users/' + $auth.getPayload().sub + '/answers').then(
-    //   function (response) {
-    //     $scope.answers = response.data;
-    //   },
-    //   function (response) {
-    //     GlobalAlert.add('warning', response.data.message, 2000);
-    //   });
+  .controller('CoursesNewCtrl', ['$scope', '$http', 'GlobalAlert', '$location', function($scope, $http, GlobalAlert, $location) {
+    $scope.createCourse = function() {
+      $http.post('/api/courses', $scope.course).then(
+        function (response) {
+          $scope.course = {};
+          $location.path('/courses'); 
+          GlobalAlert.add('success', "Create course request sent", 2000);
+        },
+        function (response) {
+          console.log(response);
+          GlobalAlert.add('warning', response.data.message, 2000);
+        });
+    }
+  }])
+
+  .controller('CourseShowCtrl', ['$scope', '$http', '$routeParams', 'GlobalAlert', function($scope, $http, $routeParams, GlobalAlert) {
+    $http.get('/api/courses/' + $routeParams.id).then(
+      function (response) {
+        $scope.course = response.data;
+      },
+      function (response) {
+        GlobalAlert.add('warning', response.data.message, 2000);
+      });
 
   }])
+
+

@@ -21,4 +21,27 @@ module.exports = function(app) {
     // });
   });
 
+  app.post('/api/courses', function (req, res) {
+    // ALL COURSES
+    //                  function(err, courses)
+    Course.findOne({ title: req.body.title }, function (err, course) {
+      if (course) {
+        return res.status(409).send({ message: 'Course already exists' });
+      }
+      var course = new Course(req.body);
+      course.save(function(err) {
+        if (err) { return res.status(400).send(err) }
+
+        // res.send({ token: auth.createJWT(user) });
+        res.send({ message: "Course created" });
+      });
+    });
+  });
+
+  app.get('/api/courses/:id', function (req, res) {
+    Course.findById(req.params.id, function (err, course) {
+      res.send(course);
+    });
+  });
+
 }

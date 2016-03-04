@@ -3,9 +3,10 @@ var mongoose = require('mongoose')
   , Schema = mongoose.Schema;
 
 var CourseSchema = new Schema({
-    createdAt     : { type: Date }
+  createdAt     : { type: Date }
   , updatedAt     : { type: Date }
   , title         : { type: String, required: true }
+  , description   : { type: String, required: true }
 })
  
 CourseSchema.index(
