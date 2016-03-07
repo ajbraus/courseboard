@@ -11,14 +11,10 @@ module.exports = function(app) {
   // COURSES INDEX 
   app.get('/api/courses', function (req, res) {
     // ALL COURSES
-    //                  function(err, courses)
     Course.find().exec( (error, courses) => {
+
       res.send(courses);
     });
-
-    // User.findById(req.params.id, function (err, user) {
-    //   res.send(user);
-    // });
   });
 
   app.post('/api/courses', function (req, res) {
@@ -32,7 +28,6 @@ module.exports = function(app) {
       course.save(function(err) {
         if (err) { return res.status(400).send(err) }
 
-        // res.send({ token: auth.createJWT(user) });
         res.send({ message: "Course created" });
       });
     });
@@ -40,8 +35,17 @@ module.exports = function(app) {
 
   app.get('/api/courses/:id', function (req, res) {
     Course.findById(req.params.id, function (err, course) {
+      if (err) { return res.status(400).send(err) }
+
       res.send(course);
     });
   });
 
+  app.put('/api/courses-edit/:id', function (req, res) {
+    Course.findByIdAndUpdate(req.body._id, req.body, function (err, course) {
+      if (!course) { return res.status(400).send({message: 'Course not found' }) }
+        
+      res.status(200).send(course);
+    });
+  });
 }

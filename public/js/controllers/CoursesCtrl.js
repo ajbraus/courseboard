@@ -40,4 +40,27 @@ angular.module('courseboard')
 
   }])
 
+  .controller('CourseEditCtrl', ['$scope', '$http', '$routeParams', '$location', 'GlobalAlert', function($scope, $http, $routeParams, $location, GlobalAlert) {
+    $http.get('/api/courses/' + $routeParams.id).then(
+      function (response) {
+        $scope.course = response.data;
+      },
+      function (response) {
+        GlobalAlert.add('warning', response.data.message, 2000);
+      });
+
+    $scope.updateCourse = function() {
+      $http.put('/api/courses-edit/' + $routeParams.id, $scope.course).then(
+        function (response) {
+          $location.path('/courses-edit/' + $scope.course._id)
+          GlobalAlert.add('success', "Course updated", 2000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 2000);
+        }
+      );
+    }
+
+  }])
+
 
