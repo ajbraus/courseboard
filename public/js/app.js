@@ -75,6 +75,12 @@ angular.module('courseboard', [
         publicAccess: true
     });
 
+    $routeProvider.when('/course-new', {
+        templateUrl: 'templates/course-new',
+        controller: 'CourseNewCtrl',
+        publicAccess: true
+    });
+
     $routeProvider.otherwise({ redirectTo: '/' });
 
     // $locationProvider.html5Mode(true);
