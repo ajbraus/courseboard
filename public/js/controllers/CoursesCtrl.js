@@ -47,13 +47,25 @@ angular.module('courseboard')
       },
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
-      });
+    });
 
     $scope.updateCourse = function() {
       $http.put('/api/courses-edit/' + $routeParams.id, $scope.course).then(
         function (response) {
           $location.path('/courses-edit/' + $scope.course._id)
           GlobalAlert.add('success', "Course updated", 2000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 2000);
+        }
+      );
+    }
+
+    $scope.deleteCourse = function() {
+      $http.delete('/api/courses-edit/' + $routeParams.id).then(
+        function (response) {
+          $location.path('/courses');
+          GlobalAlert.add('success', "Course deleted", 2000);
         },
         function (response) {
           GlobalAlert.add('warning', response.data.message, 2000);

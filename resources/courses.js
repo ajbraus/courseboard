@@ -48,4 +48,16 @@ module.exports = function(app) {
       res.status(200).send(course);
     });
   });
+
+  app.delete('/api/courses-edit/:id', function (req, res) {
+    Course.findById(req.params.id).exec(function (err, course) {
+      if (err) { return res.status(400).send(err) }
+
+      courseId = course._id;
+
+      course.remove();
+
+      res.send("Successfully removed course: " + courseId);
+    })
+  });
 }
