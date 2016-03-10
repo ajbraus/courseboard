@@ -11,4 +11,11 @@ var Course = require('../models/course.js')
 
 
 module.exports = function(app) {
+    // GET COURSES
+    app.get('/api/courses/', function (req, res) {
+      Course.find(function (err, user) {
+          if (err) { return res.status(400).send({ message: err}) }
+          res.send(courses);
+      });
+    });
 }
