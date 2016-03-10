@@ -5,8 +5,11 @@ var mongoose = require('mongoose')
 var CourseSchema = new Schema({
   createdAt     : { type: Date }
   , updatedAt     : { type: Date }
+ 
   , title         : { type: String, required: true }
   , description   : { type: String, required: true }
+
+  , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true }
 })
  
 CourseSchema.index(
