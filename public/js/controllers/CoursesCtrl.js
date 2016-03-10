@@ -18,4 +18,18 @@ angular.module('courseboard')
     //           GlobalAlert.add('warning', response.data.message, 2000);
     //       }
     //   );
+  }])
+  .controller('CourseNewCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', '$location', '$routeParams', function($scope, $http, $auth, Auth, GlobalAlert, $location, $routeParams) {
+    $scope.createCourse = function() {
+      $http.post('/api/courses', $scope.course).then(
+        function (response) {
+          $scope.course = {};
+          $location.path('/');
+          GlobalAlert.add('success', "Course created", 2000);
+        },
+        function (response) {
+          console.log(response);
+          GlobalAlert.add('warning', response.data.message, 2000);
+        });
+    }
   }]);
