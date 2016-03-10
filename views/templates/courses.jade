@@ -1,3 +1,7 @@
 .row
   .col-sm-12
-    h1.page-header Courses Index
+    h3 Courses Index
+
+    ul
+      li(ng-repeat="course in courses")
+        {{course.title}} by {{course.instructor}} - {{course.description}}
