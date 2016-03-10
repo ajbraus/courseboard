@@ -9,8 +9,11 @@ nav.navbar.navbar-default
       a.navbar-brand(href='/') Course Board
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
-        li
-          a.link-text(href="/courses") Courses
+        li.dropdown(ng-show='!currentUser')
+          a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
+            | Courses
+          .dropdown-menu.dropdown-form
+            a.link-text(href="/course-new") New Course
         li.dropdown(ng-show='!currentUser')
           a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
             | Login
