@@ -9,6 +9,8 @@ nav.navbar.navbar-default
       a.navbar-brand(href='/') Course Board
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
+        li
+          a.link-text(href="/courses") Courses
         li.dropdown(ng-show='!currentUser')
           a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
             | Login
@@ -21,7 +23,7 @@ nav.navbar.navbar-default
                 label(for='') Password
                 input.form-control(type='password', ng-model='user.password')
               .text-right
-                a.btn.btn-link.link-text(href="/password-new") Forgot Password 
+                a.btn.btn-link.link-text(href="/password-new") Forgot Password
                 button.btn.btn-danger(type='submit', ng-click='login()') Log In
 
         li.dropdown(ng-show='!currentUser')
@@ -48,7 +50,7 @@ nav.navbar.navbar-default
               //-   label(for='') Confirm Password
               //-   input.form-control(type='password', ng-model='user.confirm')
               .text-right
-                a.btn.btn-link.link-text(href="/password-new") Forgot Password 
+                a.btn.btn-link.link-text(href="/password-new") Forgot Password
                 button.btn.btn-danger(type='submit', ng-click='signup()') Sign Up
         li(ng-show='currentUser')
           a(href="/profile") {{currentUser.username}} - {{currentUser.rep}}
@@ -74,8 +76,8 @@ nav.navbar.navbar-default
             button.btn.btn-default(type='submit') Search
     .col-sm-4.col-lg-3.text-right
       .btn-group
-        a.btn.btn-sm.btn-default(href="/") Questions 
-        //- .btn.btn-sm.btn-default Tags 
-        a.btn.btn-sm.btn-danger(href="/questions/new") Ask a Question 
+        a.btn.btn-sm.btn-default(href="/") Questions
+        //- .btn.btn-sm.btn-default Tags
+        a.btn.btn-sm.btn-danger(href="/questions/new") Ask a Question
 
 br
