@@ -1,0 +1,16 @@
+.container
+  .row
+    .col-md-4.col-md-offset-4.col-sm-6.col-sm-offset-3
+      legend Create New Course
+      form(ng-submit="createCourse()")
+        .form-group
+          label Title
+          input.form-control(type="text" ng-model="course.title")
+        .form-group
+          label Instructor
+          input.form-control(type="text" ng-model="course.instructor")
+        .form-group
+          label Description
+          input.form-control(type="text" ng-model="course.description")
+        .text-right
+          button.btn.btn-primary(type="submit") Save New Course
