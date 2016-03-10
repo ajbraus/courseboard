@@ -9,21 +9,13 @@ angular.module('courseboard')
           { title: 'MEAN', instructor: 'Adam Braus', description: 'Make a courseboard!' },
           { title: 'Reddit on Rails', instructor: 'Andy Tiffany', description: 'Pair programming Reddit using Rails.' }
       ];
-    // $http.get('/api/courses/' + $routeParams.id).then(
-    //   function (response) {
-    //     $scope.user = response.data;
-    //   },
-    //   function (response) {
-    //     GlobalAlert.add('warning', response.data.message, 2000);
-    //   });
-    //
-    //
-    // $http.get('/api/courses/' + $routeParams.id).then(
-    //   function (response) {
-    //     console.log(response);
-    //     $scope.questions = response.data;
-    //   },
-    //   function (response) {
-    //     GlobalAlert.add('warning', response.data.message, 2000);
-    //   });
+
+    //   $http.get('api/courses/').then(
+    //       function (response) {
+    //           $scope.courses = response.data;
+    //       },
+    //       function (response) {
+    //           GlobalAlert.add('warning', response.data.message, 2000);
+    //       }
+    //   );
   }]);
