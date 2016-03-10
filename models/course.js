@@ -28,6 +28,15 @@ var CourseSchema = new Schema({
   // , resetPasswordExp   : Date
 })
 
+CourseSchema.pre('save', function(next){
+  // SET createdAt AND updatedAt
+  now = new Date();
+  this.updatedAt = now;
+  if ( !this.createdAt ) {
+    this.createdAt = now;
+  }
+});
+
 var Course = mongoose.model('Course', CourseSchema);
 
 module.exports = Course;
