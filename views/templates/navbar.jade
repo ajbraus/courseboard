@@ -12,8 +12,11 @@ nav.navbar.navbar-default
         li.dropdown(ng-show='!currentUser')
           a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
             | Courses
-          .dropdown-menu.dropdown-form
-            a.link-text(href="/course-new") New Course
+          ul.dropdown-menu
+            li
+              a(href="/courses") All Courses
+            li
+              a(href="/course-new") New Course
         li.dropdown(ng-show='!currentUser')
           a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
             | Login
