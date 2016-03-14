@@ -3,7 +3,7 @@
 /* USER Controllers */
 
 angular.module('courseboard')
-  .controller('CoursesCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
+  .controller('CoursesIndexCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
     $http.get('/api/courses').then(function(response) {
       $scope.courses = response.data;
     });
@@ -29,7 +29,7 @@ angular.module('courseboard')
     }
   }])
 
-  .controller('CourseShowCtrl', ['$scope', '$http', '$routeParams', 'GlobalAlert', function($scope, $http, $routeParams, GlobalAlert) {
+  .controller('CoursesShowCtrl', ['$scope', '$http', '$routeParams', 'GlobalAlert', function($scope, $http, $routeParams, GlobalAlert) {
     $http.get('/api/courses/' + $routeParams.id).then(
       function (response) {
         $scope.course = response.data;
@@ -40,7 +40,7 @@ angular.module('courseboard')
 
   }])
 
-  .controller('CourseEditCtrl', ['$scope', '$http', '$routeParams', '$location', 'GlobalAlert', function($scope, $http, $routeParams, $location, GlobalAlert) {
+  .controller('CoursesEditCtrl', ['$scope', '$http', '$routeParams', '$location', 'GlobalAlert', function($scope, $http, $routeParams, $location, GlobalAlert) {
     $http.get('/api/courses/' + $routeParams.id).then(
       function (response) {
         $scope.course = response.data;
@@ -50,9 +50,9 @@ angular.module('courseboard')
     });
 
     $scope.updateCourse = function() {
-      $http.put('/api/courses-edit/' + $routeParams.id, $scope.course).then(
+      $http.put('/api/courses/' + $routeParams.id, $scope.course).then(
         function (response) {
-          $location.path('/courses-edit/' + $scope.course._id)
+          $location.path('/courses/' + $scope.course._id)
           GlobalAlert.add('success', "Course updated", 2000);
         },
         function (response) {
@@ -62,7 +62,7 @@ angular.module('courseboard')
     }
 
     $scope.deleteCourse = function() {
-      $http.delete('/api/courses-edit/' + $routeParams.id).then(
+      $http.delete('/api/courses/' + $routeParams.id).then(
         function (response) {
           $location.path('/courses');
           GlobalAlert.add('success', "Course deleted", 2000);

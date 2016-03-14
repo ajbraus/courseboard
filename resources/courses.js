@@ -20,10 +20,10 @@ module.exports = function(app) {
   app.post('/api/courses', auth.ensureAuthenticated, function (req, res) {
     var course = new Course(req.body);
     course.user = req.userId
-    course.save(function(err) {
+    course.save(function(err, course) {
       if (err) { return res.status(400).send(err) }
 
-      res.send({ message: "Course created" });
+      res.send(course);
     });
 
   });
@@ -38,7 +38,7 @@ module.exports = function(app) {
   });
 
   // UPDATE
-  app.put('/api/courses-edit/:id', function (req, res) {
+  app.put('/api/courses/:id', auth.ensureAuthenticated, function (req, res) {
     Course.findByIdAndUpdate(req.body._id, req.body, function (err, course) {
       if (!course) { return res.status(400).send({message: 'Course not found' }) }
 
@@ -47,7 +47,7 @@ module.exports = function(app) {
   });
 
   // DELETE
-  app.delete('/api/courses-edit/:id', function (req, res) {
+  app.delete('/api/courses/:id', auth.ensureAuthenticated, function (req, res) {
     Course.findById(req.params.id).exec(function (err, course) {
       if (err) { return res.status(400).send(err) }
 

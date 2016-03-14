@@ -1,3 +1,7 @@
-h1 Course (singular)
-{{course}}
-
+.col-sm-6.col-sm-offset-3
+    legend {{course.title}}
+    {{course.description}}
+    .text-right
+        small.text-muted
+            {{course.user.username}} 
+            a(href="/courses-edit/{{course._id}}" ng-show='currentUser._id === course.user._id') Edit

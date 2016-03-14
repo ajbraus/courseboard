@@ -36,7 +36,7 @@ angular.module('courseboard', [
       // COURSES
       $routeProvider.when('/courses', {
         templateUrl: 'templates/courses',
-        controller: 'CoursesCtrl',
+        controller: 'CoursesIndexCtrl',
         publicAccess: true
       });
 
@@ -48,13 +48,13 @@ angular.module('courseboard', [
 
       $routeProvider.when('/courses/:id', {
         templateUrl: 'templates/course',
-        controller: 'CourseShowCtrl',
+        controller: 'CoursesShowCtrl',
         publicAccess: true
       });
 
       $routeProvider.when('/courses-edit/:id', {
         templateUrl: 'templates/course-edit',
-        controller: 'CourseEditCtrl',
+        controller: 'CoursesEditCtrl',
         publicAccess: true
       });
 
@@ -92,12 +92,6 @@ angular.module('courseboard', [
       $routeProvider.when('/admin', {
         templateUrl: 'templates/admin',
         controller: 'AdminCtrl'
-      });
-
-      $routeProvider.when('/courses', {
-          templateUrl: 'templates/courses-index',
-          controller: 'CourseIndexCtrl',
-          publicAccess: true
       });
 
       $routeProvider.otherwise({ redirectTo: '/' });
