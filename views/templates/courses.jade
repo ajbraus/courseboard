@@ -1,0 +1,6 @@
+//- h1 courses
+//- {{courses}}
+
+.list-group
+  a.clearfix.list-group-item(ng-repeat="course in courses" href="/courses/{{course._id}}")
+    {{course.title}}

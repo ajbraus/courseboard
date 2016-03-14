@@ -33,6 +33,32 @@ angular.module('courseboard', [
         publicAccess: true
       });
 
+      // COURSES
+      $routeProvider.when('/courses', {
+        templateUrl: 'templates/courses',
+        controller: 'CoursesCtrl',
+        publicAccess: true
+      });
+
+      $routeProvider.when('/courses-new', {
+        templateUrl: 'templates/course-new',
+        controller: 'CoursesNewCtrl',
+        publicAccess: true
+      });
+
+      $routeProvider.when('/courses/:id', {
+        templateUrl: 'templates/course',
+        controller: 'CourseShowCtrl',
+        publicAccess: true
+      });
+
+      $routeProvider.when('/courses-edit/:id', {
+        templateUrl: 'templates/course-edit',
+        controller: 'CourseEditCtrl',
+        publicAccess: true
+      });
+
+
       // PASSWORD
       $routeProvider.when('/password-edit', {
         templateUrl: 'templates/password-edit',

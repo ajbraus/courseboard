@@ -62,9 +62,9 @@ module.exports = function(app) {
       }
       
       // CHECK CONFIRMEDAT
-      if (!user.confirmedAt) {
-        return res.status(401).send({ message: 'Awaiting confirmation' });
-      }
+      // if (!user.confirmedAt) {
+      //   return res.status(401).send({ message: 'Awaiting confirmation' });
+      // }
 
       // CHECK PASSWORD
       user.comparePassword(req.body.password, function (err, isMatch) {
@@ -87,8 +87,8 @@ module.exports = function(app) {
       user.save(function(err) {
         if (err) { return res.status(400).send(err) }
 
-        // res.send({ token: auth.createJWT(user) });
-        res.send({ message: "Access requested" });
+        res.send({ token: auth.createJWT(user) });
+        // res.send({ message: "Access requested" });
       });
     });
   });

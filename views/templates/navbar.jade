@@ -26,7 +26,7 @@ nav.navbar.navbar-default
 
         li.dropdown(ng-show='!currentUser')
           a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
-            | Request Access
+            | Sign Up
           .dropdown-menu.dropdown-form
             form
               .form-group
@@ -74,8 +74,8 @@ nav.navbar.navbar-default
             button.btn.btn-default(type='submit') Search
     .col-sm-4.col-lg-3.text-right
       .btn-group
-        a.btn.btn-sm.btn-default(href="/") Questions 
+        a.btn.btn-sm.btn-default(href="/courses") Courses 
         //- .btn.btn-sm.btn-default Tags 
-        a.btn.btn-sm.btn-danger(href="/questions/new") Ask a Question 
+        a.btn.btn-sm.btn-danger(href="/courses-new") New Course 
 
 br
