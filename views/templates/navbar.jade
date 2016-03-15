@@ -11,14 +11,6 @@ nav.navbar.navbar-inverse
       ul.nav.navbar-nav.navbar-right
         li.dropdown(ng-show='!currentUser')
           a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
-            | Courses
-          ul.dropdown-menu
-            li
-              a(href="/courses") All Courses
-            li
-              a(href="/course-new") New Course
-        li.dropdown(ng-show='!currentUser')
-          a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
             | Login
           .dropdown-menu.dropdown-form
             form
@@ -29,7 +21,7 @@ nav.navbar.navbar-inverse
                 label(for='') Password
                 input.form-control(type='password', ng-model='user.password')
               .text-right
-                a.btn.btn-link.link-text(href="/password-new") Forgot Password
+                a.btn.btn-link.link-text(href="/password-new") Forgot Password 
                 button.btn.btn-danger(type='submit', ng-click='login()') Log In
 
         li.dropdown(ng-show='!currentUser')
@@ -56,7 +48,7 @@ nav.navbar.navbar-inverse
               //-   label(for='') Confirm Password
               //-   input.form-control(type='password', ng-model='user.confirm')
               .text-right
-                a.btn.btn-link.link-text(href="/password-new") Forgot Password
+                a.btn.btn-link.link-text(href="/password-new") Forgot Password 
                 button.btn.btn-danger(type='submit', ng-click='signup()') Sign Up
         li(ng-show='currentUser')
           a(href="/profile") {{currentUser.username}} - {{currentUser.rep}}
@@ -82,14 +74,8 @@ nav.navbar.navbar-inverse
             button.btn.btn-default(type='submit') Search
     .col-sm-4.col-lg-3.text-right
       .btn-group
-<<<<<<< HEAD
-        a.btn.btn-sm.btn-default(href="/") Questions
-        //- .btn.btn-sm.btn-default Tags
-        a.btn.btn-sm.btn-danger(href="/questions/new") Ask a Question
-=======
         a.btn.btn-sm.btn-default(href="/courses") Courses 
         //- .btn.btn-sm.btn-default Tags 
         a.btn.btn-sm.btn-danger(href="/courses-new") New Course 
->>>>>>> ca7946ad12a347667a4239be841cd7cdd548cfca
 
 br
