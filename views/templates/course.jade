@@ -4,8 +4,6 @@
     .pull-right
       .btn.btn-sm.btn-danger(ng-click="unenroll()" ng-if="enrolled") Unenroll
       .btn.btn-sm.btn-primary(ng-click="enroll()" ng-if="!enrolled") Enroll
-      //- .btn.btn-sm.btn-danger(ng-click="unenroll()") Unenroll
-      //- .btn.btn-sm.btn-primary(ng-click="enroll()") Enroll
   {{course.description}}
   ul
     li(ng-repeat="student in course.students") {{student.username}}
