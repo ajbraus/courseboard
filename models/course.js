@@ -14,6 +14,7 @@ var CourseSchema = new Schema({
   , students      : [{ type: Schema.Types.ObjectId, ref: 'User' }]
 })
 
+// Compound index
 CourseSchema.index({
     title: 'text'
   , body:  'text'
@@ -25,8 +26,8 @@ CourseSchema.index({
     }
 });
 
+// SET createdAt and updatedAt
 CourseSchema.pre('save', function(next) {
-  // SET createdAt and updatedAt
   now = new Date();
   this.updatedAt = now;
   if ( !this.createdAt ) {
