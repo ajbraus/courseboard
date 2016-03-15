@@ -1,0 +1,19 @@
+.container
+  .row
+    .col-md-4.col-md-offset-4.col-sm-6.col-sm-offset-3
+      legend Edit Course
+      form(ng-submit="updateCourse()")
+        .form-group
+          label Title*
+          input.form-control(type="text" ng-model="course.title")
+        .form-group
+          label Description*
+          input.form-control(type="text" ng-model="course.description")
+        .form-group
+          label Instructor*
+          input.form-control(ng-model="course.instructor")
+        .btn-toolbar.text-right
+          .btn-group
+            .btn.btn-danger(ng-click="deleteCourse()") Delete Course
+          .btn-group
+            button.btn.btn-primary(type="submit") Update Course

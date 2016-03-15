@@ -2,6 +2,6 @@
   .col-sm-12
     .h3 Courses Index
 
-    .ul
-      .li(ng-repeat="course in courses")
-        {{course.title}} by {{course.instructor}} - {{course.description}}
+    .list-group
+      a.clearfix.list-group-item(ng-repeat="course in courses" href="/courses/{{course._id}}")
+        {{course.title}}

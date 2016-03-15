@@ -54,7 +54,6 @@ module.exports = {
 	    email: user.email,
 	    fullname: user.fullname,
 	    admin: user.admin,
-	    type: user.type,
 	    iat: moment().unix(),
 	    exp: moment().add(14, 'days').unix()
 	  };

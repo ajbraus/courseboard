@@ -1,36 +1,90 @@
-
-var Course = require('../models/course.js')
-, Question = require('../models/question.js')
-, Answer = require('../models/answer.js')
-, Comment = require('../models/comment.js')
-, Tag = require('../models/tag.js')
-, auth = require('./auth.js')
-, request = require('request')
-, config = require('../config.js')
-, _ = require('lodash')
+var User = require('../models/user.js')
+  , Course = require('../models/course.js')
+  , Tag = require('../models/tag.js')
+  , auth = require('./auth.js')
+  , request = require('request')
+  , config = require('../config.js')
+  , _ = require('lodash')
 
 
 module.exports = function(app) {
-    // GET COURSES
-    app.get('/api/courses/', function (req, res) {
-        Course.find().exec((err, courses) => {
-            if (err) { return res.status(400).send({ message: err}) }
-            res.send(courses);
-        });
+  // INDEX
+  app.get('/api/courses', function (req, res) {
+    Course.find().exec( (error, courses) => {
+
+      res.send(courses);
+    });
+  });
+
+  // CREATE
+  app.post('/api/courses', auth.ensureAuthenticated, function (req, res) {
+    var course = new Course(req.body);
+    course.user = req.userId
+    course.save(function(err, course) {
+      if (err) { return res.status(400).send(err) }
+
+      res.send(course);
     });
 
-    // POST COURSE
-    app.post('/api/courses', function(req, res) {
-        console.log("hi");
-        Course.findOne({ title: req.body.title }, function (err, course) {
-            if (course) { return res.status(409).send({ message: 'Course already exists.'}); }
+  });
 
-            var course = new Course(req.body);
-            course.save(function(err) {
-                if (err) { return res.status(400).send(err) }
+  // SHOW
+  app.get('/api/courses/:id', function (req, res) {
+    Course.findById(req.params.id).populate('user').populate('students').exec(function (err, course) {
+      if (err) { return res.status(400).send(err) }
 
-                res.send({ message: 'Course created' });
-            })
-        })
+      res.send(course);
     });
+  });
+
+  // UPDATE
+  app.put('/api/courses/:id', auth.ensureAuthenticated, function (req, res) {
+    Course.findByIdAndUpdate(req.body._id, req.body, function (err, course) {
+      if (!course) { return res.status(400).send({message: 'Course not found' }) }
+
+      res.status(200).send(course);
+    });
+  });
+
+  // DELETE
+  app.delete('/api/courses/:id', auth.ensureAuthenticated, function (req, res) {
+    Course.findById(req.params.id).exec(function (err, course) {
+      if (err) { return res.status(400).send(err) }
+
+      courseId = course._id;
+      course.remove();
+
+      res.send("Successfully removed course: " + courseId);
+    })
+  });
+
+  // ENROLL
+  app.put('/api/courses/:id/enroll', auth.ensureAuthenticated, function (req, res) {
+    Course.findById(req.params.id, function (err, course) {
+      if (!course) { return res.status(400).send({message: 'Course not found' }) }
+
+      if (!(course.students.indexOf(req.userId) > -1)) {
+        course.students.push(req.userId);
+      }
+      else { return res.status(400).send({message: 'Already enrolled!'})}
+      course.save()
+
+      res.send(course);
+    });
+  });
+
+  // UNENROLL
+  app.put('/api/courses/:id/unenroll', auth.ensureAuthenticated, function (req, res) {
+    Course.findById(req.params.id, function (err, course) {
+      if (!course) { return res.status(400).send({message: 'Course not found' }) }
+
+      index = course.students.indexOf(req.userId)
+      if (index > -1) {
+        course.students.splice(index, 1);
+      }
+      course.save()
+
+      res.send(course);
+    });
+  });
 }

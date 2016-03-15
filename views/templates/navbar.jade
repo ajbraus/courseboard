@@ -1,4 +1,4 @@
-nav.navbar.navbar-default
+nav.navbar.navbar-inverse
   .container
     .navbar-header
       button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
@@ -34,7 +34,7 @@ nav.navbar.navbar-default
 
         li.dropdown(ng-show='!currentUser')
           a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
-            | Request Access
+            | Sign Up
           .dropdown-menu.dropdown-form
             form
               .form-group
@@ -82,8 +82,14 @@ nav.navbar.navbar-default
             button.btn.btn-default(type='submit') Search
     .col-sm-4.col-lg-3.text-right
       .btn-group
+<<<<<<< HEAD
         a.btn.btn-sm.btn-default(href="/") Questions
         //- .btn.btn-sm.btn-default Tags
         a.btn.btn-sm.btn-danger(href="/questions/new") Ask a Question
+=======
+        a.btn.btn-sm.btn-default(href="/courses") Courses 
+        //- .btn.btn-sm.btn-default Tags 
+        a.btn.btn-sm.btn-danger(href="/courses-new") New Course 
+>>>>>>> ca7946ad12a347667a4239be841cd7cdd548cfca
 
 br

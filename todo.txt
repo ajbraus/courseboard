@@ -1,0 +1,17 @@
+DONE Courses CRUD
+DONE Associate couress with user
+
+Course has
+- Enrolled students - "Enroll". Only enroll once. "Drop" a course
+- Instructor
+- Start Date
+- End Date
+- Duration
+
+Course can have announcements/plans
+Credits for attending courses
+
+
+GO LIVE
+
+Organizations

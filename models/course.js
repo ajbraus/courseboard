@@ -1,32 +1,31 @@
-var mongoose = require('mongoose'),
-    bcrypt = require('bcryptjs'),
-    Schema = mongoose.Schema;
-
-// GETTER
-function toLower (v) {
-  return v.toLowerCase();
-}
-
-function toTitle(v) {
-  return v.charAt(0).toUpperCase() + v.slice(1);
-}
+var mongoose = require('mongoose')
+  , mongoosePaginate = require('mongoose-paginate')
+  , Schema = mongoose.Schema;
 
 var CourseSchema = new Schema({
-    createdAt          : Date
-  , updatedAt          : Date
-  , title              : String
-  , instructor         : String
-  , description        : String
-  // , email              : { type: String, required: true, select:false, unique: true, trim: true, set: toLower }
-  // , password           : { type: String, select: false, trim: true }
-  // , first              : { type: String, trim: true, set: toTitle }
-  // , last               : { type: String, trim: true, set: toTitle }
-  // , username           : { type: String, trim: true, set: toLower }
-  // , admin              : { type: Boolean, default: false }
-  // , confirmedAt        : { type: Date, default: undefined }
-  // , resetPasswordToken : String
-  // , resetPasswordExp   : Date
+  createdAt     : { type: Date }
+  , updatedAt     : { type: Date }
+
+  , title         : { type: String, required: true }
+  , description   : { type: String, required: true }
+  , instructor    : { type: String }
+
+  , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true }
+  , students      : [{ type: Schema.Types.ObjectId, ref: 'User' }]
 })
+
+CourseSchema.index(
+  {
+    title: 'text'
+    , body: 'text'
+    , tags: 'text'
+    , weights: {
+        title: 3,
+        body: 1,
+        tags: 5
+      }
+  }
+);
 
 CourseSchema.pre('save', function(next){
   // SET createdAt AND updatedAt
@@ -35,6 +34,7 @@ CourseSchema.pre('save', function(next){
   if ( !this.createdAt ) {
     this.createdAt = now;
   }
+  next();
 });
 
 var Course = mongoose.model('Course', CourseSchema);

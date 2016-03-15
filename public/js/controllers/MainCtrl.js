@@ -5,7 +5,7 @@
 angular.module('courseboard')
   .controller('MainCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'GlobalAlert', function ($scope, $rootScope, $location, $auth, $http, GlobalAlert) {
 
-    $scope.search = function(term) { 
+    $scope.search = function(term) {
       $location.path('/search').search('term', term)
     }
 
@@ -26,7 +26,7 @@ angular.module('courseboard')
           } else {
             $auth.removeToken();
           }
-        }, 
+        },
         function (response) {
           $auth.removeToken();
           $location.path('/');
@@ -34,17 +34,19 @@ angular.module('courseboard')
     };
 
     if ($auth.isAuthenticated()) {
-      $scope.isAuthenticated();  
+      $scope.isAuthenticated();
     }
 
     $scope.signup = function() {
       $auth.signup($scope.user)
         .then(function (response) {
           $('.dropdown.open .dropdown-toggle').dropdown('toggle');
+          $auth.setToken(response.data.token);
+          $scope.isAuthenticated();
           $scope.user = {};
           $location.path('/');
-          
-          GlobalAlert.add('success', "Access requested", 2000);
+
+          GlobalAlert.add('success', "Sign up successful", 2000);
         })
         .catch(function (response) {
           $('.dropdown.open .dropdown-toggle').dropdown('toggle');
@@ -60,7 +62,6 @@ angular.module('courseboard')
           $auth.setToken(response.data.token);
           $scope.isAuthenticated();
           $scope.user = {};
-          $scope.questions = Question.query();
           GlobalAlert.add('success', "Logged In", 2000);
         })
         .catch(function (response) {
@@ -68,7 +69,7 @@ angular.module('courseboard')
           GlobalAlert.add('warning', response.data.message, 2000);
         });
     };
-    
+
     $scope.logout = function() {
       $auth.logout().then(
         function() {
