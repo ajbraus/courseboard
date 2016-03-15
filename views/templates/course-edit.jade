@@ -4,15 +4,15 @@
       legend Edit Course
       form(ng-submit="updateCourse()")
         .form-group
-          label Title*
+          label Title
           input.form-control(type="text" ng-model="course.title")
         .form-group
-          label Description*
+          label Description
           input.form-control(type="text" ng-model="course.description")
         .form-group
-          label Instructor*
+          label Instructor
           input.form-control(ng-model="course.instructor")
-        .btn-toolbar.text-right
+        .btn-toolbar.pull-right
           .btn-group
             .btn.btn-danger(ng-click="deleteCourse()") Delete Course
           .btn-group
