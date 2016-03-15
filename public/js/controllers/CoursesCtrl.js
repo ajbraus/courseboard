@@ -7,7 +7,6 @@ angular.module('courseboard')
     $http.get('/api/courses').then(function(response) {
       $scope.courses = response.data;
     });
-
   }])
 
   .controller('CoursesNewCtrl', ['$scope', '$http', 'GlobalAlert', '$location', function($scope, $http, GlobalAlert, $location) {
@@ -21,7 +20,8 @@ angular.module('courseboard')
         function (response) {
           console.log(response);
           GlobalAlert.add('warning', response.data.message, 2000);
-        });
+        }
+      );
     }
   }])
 
@@ -30,33 +30,38 @@ angular.module('courseboard')
       function (response) {
         $scope.course = response.data;
 
-        $scope.enrolled = ($rootScope.currentUser._id.indexOf(_.map($scope.course.students, '_id')) > -1)
+        // var index = $rootScope.currentUser._id.indexOf(_.map($scope.course.students, '_id'))
+        // $scope.enrolled = index > -1
+        // console.log($scope.enrolled)  // this is always -1???
       },
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
-      });
+      }
+    );
 
     $scope.enroll = function() {
       $http.put('/api/courses/' + $routeParams.id + '/enroll').then(
         function (response) {
+          $scope.enrolled = true;
           GlobalAlert.add('success', "You've enrolled!", 2000);
         },
         function (response) {
           GlobalAlert.add('warning', response.data.message, 2000);
-        });
+        }
+      );
     }
 
     $scope.unenroll = function() {
       $http.put('/api/courses/' + $routeParams.id + '/unenroll').then(
         function (response) {
+          $scope.enrolled = false;
           GlobalAlert.add('success', "You've unenrolled!", 2000);
         },
         function (response) {
           GlobalAlert.add('warning', response.data.message, 2000);
-        });
+        }
+      );
     }
-
-
   }])
 
   .controller('CoursesEditCtrl', ['$scope', '$http', '$routeParams', '$location', 'GlobalAlert', function($scope, $http, $routeParams, $location, GlobalAlert) {
@@ -66,7 +71,8 @@ angular.module('courseboard')
       },
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
-    });
+      }
+    );
 
     $scope.updateCourse = function() {
       $http.put('/api/courses/' + $routeParams.id, $scope.course).then(
@@ -91,5 +97,4 @@ angular.module('courseboard')
         }
       );
     }
-
   }])
