@@ -10,7 +10,8 @@ angular.module('courseboard', [
                          'hc.marked',
                          'angularMoment',
                          'ngTagsInput',
-                         'ui.bootstrap'
+                         'ui.bootstrap',
+                         'ngLodash'
                          ])
 
     .run(['$rootScope', '$location', '$auth', 'GlobalAlert', function ($rootScope, $location, $auth, GlobalAlert) {

@@ -1,7 +1,13 @@
 .col-sm-6.col-sm-offset-3
-    legend {{course.title}}
-    {{course.description}}
-    .text-right
-        small.text-muted
-            {{course.user.username}} 
-            a(href="/courses-edit/{{course._id}}" ng-show='currentUser._id === course.user._id') Edit
+  legend {{course.title}} 
+    small.text-muted {{course.instructor}}
+    .pull-right
+      .btn.btn-sm.btn-danger(ng-click="unenroll()" ng-if="enrolled") Unenroll
+      .btn.btn-sm.btn-primary(ng-click="enroll()" ng-if="!enrolled") Enroll
+  {{course.description}}
+  ul
+    li(ng-repeat="student in course.students") {{student.username}}
+  .text-right
+      small.text-muted
+        {{course.user.username}} 
+        a(href="/courses-edit/{{course._id}}" ng-show='currentUser._id === course.user._id') Edit

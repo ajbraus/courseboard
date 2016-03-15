@@ -30,7 +30,7 @@ module.exports = function(app) {
 
   // SHOW
   app.get('/api/courses/:id', function (req, res) {
-    Course.findById(req.params.id).populate('user').exec(function (err, course) {
+    Course.findById(req.params.id).populate('user').populate('students').exec(function (err, course) {
       if (err) { return res.status(400).send(err) }
 
       res.send(course);
@@ -56,5 +56,35 @@ module.exports = function(app) {
 
       res.send("Successfully removed course: " + courseId);
     })
+  });
+
+  // ENROLL
+  app.put('/api/courses/:id/enroll', auth.ensureAuthenticated, function (req, res) {
+    Course.findById(req.params.id, function (err, course) {
+      if (!course) { return res.status(400).send({message: 'Course not found' }) }
+
+      if (!(course.students.indexOf(req.userId) > -1)) {
+        course.students.push(req.userId);
+      }
+      else { return res.status(400).send({message: 'Already enrolled!'})}
+      course.save()
+
+      res.send(course);
+    });
+  });
+
+  // UNENROLL
+  app.put('/api/courses/:id/unenroll', auth.ensureAuthenticated, function (req, res) {
+    Course.findById(req.params.id, function (err, course) {
+      if (!course) { return res.status(400).send({message: 'Course not found' }) }
+
+      index = course.students.indexOf(req.userId)
+      if (index > -1) {
+        course.students.splice(index, 1);
+      }
+      course.save()
+
+      res.send(course);
+    });
   });
 }

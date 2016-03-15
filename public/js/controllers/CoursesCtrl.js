@@ -29,14 +29,37 @@ angular.module('courseboard')
     }
   }])
 
-  .controller('CoursesShowCtrl', ['$scope', '$http', '$routeParams', 'GlobalAlert', function($scope, $http, $routeParams, GlobalAlert) {
+  .controller('CoursesShowCtrl', ['$scope', '$rootScope', 'lodash', '$http', '$routeParams', 'GlobalAlert', function($scope, $rootScope, lodash, $http, $routeParams, GlobalAlert) {
     $http.get('/api/courses/' + $routeParams.id).then(
       function (response) {
         $scope.course = response.data;
+
+        $scope.enrolled = ($rootScope.currentUser._id.indexOf(_.map($scope.course.students, '_id')) > -1)
       },
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
       });
+
+    $scope.enroll = function() {
+      $http.put('/api/courses/' + $routeParams.id + '/enroll').then(
+        function (response) {
+          GlobalAlert.add('success', "You've enrolled!", 2000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 2000);
+        });
+    }
+
+    $scope.unenroll = function() {
+      $http.put('/api/courses/' + $routeParams.id + '/unenroll').then(
+        function (response) {
+          GlobalAlert.add('success', "You've unenrolled!", 2000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 2000);
+        });
+    }
+
 
   }])
 

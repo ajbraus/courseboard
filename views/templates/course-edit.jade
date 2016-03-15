@@ -9,6 +9,11 @@
         .form-group
           label Description*
           input.form-control(type="text" ng-model="course.description")
-        .text-right
-          button.btn.btn-primary(type="submit") Update Course
-          .btn.btn-danger(ng-click="deleteCourse()") Delete Course
+        .form-group
+          label Instructor*
+          input.form-control(ng-model="course.instructor")
+        .btn-toolbar.text-right
+          .btn-group
+            .btn.btn-danger(ng-click="deleteCourse()") Delete Course
+          .btn-group
+            button.btn.btn-primary(type="submit") Update Course

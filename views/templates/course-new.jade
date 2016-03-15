@@ -4,10 +4,13 @@
       legend Create New Course
       form(ng-submit="createCourse()")
         .form-group
-          label Course Title*
+          label Title*
           input.form-control(ng-model="course.title")
         .form-group
-          label Course Description*
+          label Description*
           textarea.form-control(ng-model="course.description")
+        .form-group
+          label Instructor*
+          input.form-control(ng-model="course.instructor")
         .text-right
           button.btn.btn-danger(type="submit") Save Course
