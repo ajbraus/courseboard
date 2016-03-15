@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
   , Schema = mongoose.Schema;
 
 var CourseSchema = new Schema({
-  createdAt     : { type: Date }
+    createdAt     : { type: Date }
   , updatedAt     : { type: Date }
 
   , title         : { type: String, required: true }
@@ -14,21 +14,19 @@ var CourseSchema = new Schema({
   , students      : [{ type: Schema.Types.ObjectId, ref: 'User' }]
 })
 
-CourseSchema.index(
-  {
+CourseSchema.index({
     title: 'text'
-    , body: 'text'
-    , tags: 'text'
-    , weights: {
-        title: 3,
-        body: 1,
-        tags: 5
-      }
-  }
-);
+  , body:  'text'
+  , tags:  'text'
+  , weights: {
+      title: 3,
+      body:  1,
+      tags:  5
+    }
+});
 
-CourseSchema.pre('save', function(next){
-  // SET createdAt AND updatedAt
+CourseSchema.pre('save', function(next) {
+  // SET createdAt and updatedAt
   now = new Date();
   this.updatedAt = now;
   if ( !this.createdAt ) {
