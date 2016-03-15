@@ -30,9 +30,8 @@ angular.module('courseboard')
       function (response) {
         $scope.course = response.data;
 
-        // var index = $rootScope.currentUser._id.indexOf(_.map($scope.course.students, '_id'))
-        // $scope.enrolled = index > -1
-        // console.log($scope.enrolled)  // this is always -1???
+        var index = _.map($scope.course.students, '_id').indexOf($rootScope.currentUser._id)
+        $scope.enrolled = index > -1
       },
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
@@ -43,6 +42,7 @@ angular.module('courseboard')
       $http.put('/api/courses/' + $routeParams.id + '/enroll').then(
         function (response) {
           $scope.enrolled = true;
+          $scope.course.students.push($rootScope.currentUser)
           GlobalAlert.add('success', "You've enrolled!", 2000);
         },
         function (response) {
@@ -55,6 +55,8 @@ angular.module('courseboard')
       $http.put('/api/courses/' + $routeParams.id + '/unenroll').then(
         function (response) {
           $scope.enrolled = false;
+          var index = _.map($scope.course.students, '_id').indexOf($rootScope.currentUser._id)
+          $scope.course.students.splice(index, 1)
           GlobalAlert.add('success', "You've unenrolled!", 2000);
         },
         function (response) {
