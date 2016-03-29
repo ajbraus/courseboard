@@ -1,13 +1,33 @@
-.col-sm-6.col-sm-offset-3
-  legend {{course.title}} 
-    small.text-muted {{course.instructor}}
-    .pull-right
-      .btn.btn-sm.btn-danger(ng-click="unenroll()" ng-if="enrolled") Unenroll
-      .btn.btn-sm.btn-primary(ng-click="enroll()" ng-if="!enrolled") Enroll
-  {{course.description}}
-  ul
-    li(ng-repeat="student in course.students") {{student.username}}
-  .text-right
-      small.text-muted
-        {{course.user.username}} 
-        a(href="/courses-edit/{{course._id}}" ng-show='currentUser._id === course.user._id') Edit
+.row
+  .col-sm-10.col-sm-offset-1
+    legend {{course.title}} 
+      .pull-right
+        .btn.btn-sm.btn-danger(ng-click="unenroll()" ng-if="enrolled") Unenroll
+        .btn.btn-sm.btn-primary(ng-click="enroll()" ng-if="!enrolled") Enroll
+
+    .row
+      .col-sm-7
+        b Instructor: 
+        | {{course.instructor}}
+        br
+        b Starts On: 
+        span(ng-bind="course.startsOn | date:'MMMM dd, yyyy'")
+        br
+        b Duration: 
+        span(ng-pluralize count="course.duration" when="{'0': 'One Off', 'one': '1 Week', 'other': '{} Weeks'}")
+
+        hr
+
+        h5 Description
+        | {{course.description}}
+      .col-sm-5
+        h5 Students
+        ul.list-group
+          li.list-group-item(ng-repeat="student in course.students") {{student.username}}
+    
+    .row 
+      .col-sm-12
+        .text-right
+            small.text-muted
+              | {{course.user.username}} 
+              a(href="/courses-edit/{{course._id}}" ng-show='currentUser._id === course.user._id') Edit

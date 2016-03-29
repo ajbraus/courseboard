@@ -1,14 +1,26 @@
 DONE Courses CRUD
 DONE Associate couress with user
 
-Course has
-- Enrolled students - "Enroll". Only enroll once. "Drop" a course
-- Instructor
-- Start Date
-- End Date
-- Duration
+User profile
+- see courses
 
-Course can have announcements/plans
+Course has
+DONE - Enrolled students - "Enroll". Only enroll once. "Drop" a course
+DONE - Instructor
+DONE - Thumbnails
+DONE - Start Date
+DONE - Duration
+- End Date
+
+Search
+Course can have announcements/plans, assignments?
+  - populating posts course.jade
+  - create posts from course.jade
+  - populate post on profile.jade
+  - delete posts
+  - edit posts
+  - create announcements vs. assignments
+
 Credits for attending courses
 
 

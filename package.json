@@ -33,7 +33,6 @@
     "npm": "2.14.3"
   },
   "dependencies": {
-    "bcrypt": "^0.8.5",
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.12.3",
     "bower": "^1.4.1",

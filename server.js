@@ -70,6 +70,7 @@ app.get('/templates/:name', resources.templates);
 require('./resources/users')(app);
 require('./resources/admin')(app);
 require('./resources/courses')(app);
+require('./resources/posts')(app);
 // require('./resources/comments')(app);
 
 // redirect all others to the index (HTML5 history)

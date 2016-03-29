@@ -30,7 +30,7 @@ module.exports = function(app) {
 
   // SHOW
   app.get('/api/courses/:id', function (req, res) {
-    Course.findById(req.params.id).populate('user').populate('students').exec(function (err, course) {
+    Course.findById(req.params.id).populate('user').populate('students').populate('posts').exec(function (err, course) {
       if (err) { return res.status(400).send(err) }
 
       res.send(course);
@@ -39,6 +39,7 @@ module.exports = function(app) {
 
   // UPDATE
   app.put('/api/courses/:id', auth.ensureAuthenticated, function (req, res) {
+    console.log(req.body)
     Course.findByIdAndUpdate(req.body._id, req.body, function (err, course) {
       if (!course) { return res.status(400).send({message: 'Course not found' }) }
 
