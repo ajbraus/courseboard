@@ -10,6 +10,9 @@ angular.module('courseboard')
   }])
 
   .controller('CoursesNewCtrl', ['$scope', '$http', 'GlobalAlert', '$location', function($scope, $http, GlobalAlert, $location) {
+    $scope.course = {
+      duration: 0
+    }
     $scope.createCourse = function() {
       $http.post('/api/courses', $scope.course).then(
         function (response) {
@@ -75,6 +78,17 @@ angular.module('courseboard')
         GlobalAlert.add('warning', response.data.message, 2000);
       }
     );
+
+    $scope.dateOptions = {
+       formatYear: 'yy',
+       maxDate: new Date(2020, 5, 22),
+       minDate: new Date()
+       // startingDay: 1
+    };
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[0];
+    $scope.altInputFormats = ['M!/d!/yyyy'];
+
 
     $scope.updateCourse = function() {
       $http.put('/api/courses/' + $routeParams.id, $scope.course).then(

@@ -1,12 +1,16 @@
 DONE Courses CRUD
 DONE Associate couress with user
 
+User profile
+- see courses
+
 Course has
-- Enrolled students - "Enroll". Only enroll once. "Drop" a course
-- Instructor
-- Start Date
+DONE - Enrolled students - "Enroll". Only enroll once. "Drop" a course
+DONE - Instructor
+DONE - Thumbnails
+DONE - Start Date
+DONE - Duration
 - End Date
-- Duration
 
 Course can have announcements/plans
 Credits for attending courses

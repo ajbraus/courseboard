@@ -39,6 +39,7 @@ module.exports = function(app) {
 
   // UPDATE
   app.put('/api/courses/:id', auth.ensureAuthenticated, function (req, res) {
+    console.log(req.body)
     Course.findByIdAndUpdate(req.body._id, req.body, function (err, course) {
       if (!course) { return res.status(400).send({message: 'Course not found' }) }
 

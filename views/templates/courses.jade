@@ -1,7 +1,14 @@
 .row
-  .col-sm-12
-    .h3 Courses Index
-
-    .list-group
-      a.clearfix.list-group-item(ng-repeat="course in courses" href="/courses/{{course._id}}")
-        {{course.title}}
+  .col-sm-4.col-md-3(ng-repeat="course in courses")
+    .well
+      a(href="/courses/{{course._id}}")
+        h4.text-center {{course.title}}  
+      .text-muted {{course.instructor}}
+      b Starts On: 
+      span(ng-bind="course.startsOn | date:'MMMM dd, yy'")
+      br
+      b Duration: 
+      span(ng-pluralize count="course.duration" when="{'0': 'One Off', 'one': '1 Week', 'other': '{} Weeks'}")
+      //- p
+      //-   a.btn.btn-primary(href='#', role='button') Button
+      //-   a.btn.btn-default(href='#', role='button') Button
