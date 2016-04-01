@@ -46,10 +46,10 @@ angular.module('courseboard')
         function (response) {
           $scope.enrolled = true;
           $scope.course.students.push($rootScope.currentUser)
-          GlobalAlert.add('success', "You've enrolled!", 2000);
+          GlobalAlert.add('success', "You've enrolled!", 3000);
         },
         function (response) {
-          GlobalAlert.add('warning', response.data.message, 2000);
+          GlobalAlert.add('warning', response.data.message, 3000);
         }
       );
     }
@@ -60,10 +60,10 @@ angular.module('courseboard')
           $scope.enrolled = false;
           var index = _.map($scope.course.students, '_id').indexOf($rootScope.currentUser._id)
           $scope.course.students.splice(index, 1)
-          GlobalAlert.add('success', "You've unenrolled!", 2000);
+          GlobalAlert.add('success', "You've unenrolled!", 3000);
         },
         function (response) {
-          GlobalAlert.add('warning', response.data.message, 2000);
+          GlobalAlert.add('warning', response.data.message, 3000);
         }
       );
     }

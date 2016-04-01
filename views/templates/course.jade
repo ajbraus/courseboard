@@ -52,7 +52,7 @@
     h5 Students
     .text-right
       p
-        .btn.btn-sm.btn-danger(ng-click="unenroll()" ng-if="enrolled") Unenroll
-        .btn.btn-sm.btn-primary(ng-click="enroll()" ng-if="!enrolled") Enroll
+        .btn.btn-sm.btn-block.btn-danger(ng-click="unenroll()" ng-if="enrolled") Unenroll
+        .btn.btn-sm.btn-primary.btn-block(ng-click="enroll()" ng-if="!enrolled") Enroll
     ul.list-group
       li.list-group-item(ng-repeat="student in course.students") {{student.username}}
