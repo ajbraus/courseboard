@@ -67,6 +67,21 @@ angular.module('courseboard')
         }
       );
     }
+
+    $scope.createPost = function() {
+      $http.post('/api/courses/' + $scope.course._id + '/posts', $scope.post).then(
+        function (response) {
+          $scope.post = {};
+          $scope.course.posts.unshift(response.data)
+
+          GlobalAlert.add('success', "Post created successfully!", 2000);
+        },
+        function (response) {
+          console.log(response);
+          GlobalAlert.add('warning', response.data.message, 2000);
+        }
+      );
+    }
   }])
 
   .controller('CoursesEditCtrl', ['$scope', '$http', '$routeParams', '$location', 'GlobalAlert', function($scope, $http, $routeParams, $location, GlobalAlert) {

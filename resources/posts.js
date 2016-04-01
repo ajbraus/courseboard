@@ -27,15 +27,29 @@ module.exports = function(app) {
   });
 
   // CREATE
-  app.post('/api/courses/:course_id/posts', auth.ensureAuthenticated, function (req, res) {
-    var post = new Post(req.body);
-    post.user = req.userId
-    post.course = req.params.course_id
-    post.save(function(err, post) {
-      if (err) { return res.status(400).send(err) }
+  app.post('/api/courses/:courseId/posts', auth.ensureAuthenticated, function (req, res) {
+    // Find the course
+    Course.findById(req.params.courseId).exec(function(err, course) {
+      // Make the post object with the model
+      var post = new Post(req.body);
+      // assign the user of the post
+      post.user = req.userId
+      // assign the course to the post
+      post.course = req.params.courseId
+      //save the post
+      post.save(function(err, post) {
+        // catch error
+        if (err) { return res.status(400).send(err) }
+        // unshift post into course.posts
+        course.posts.unshift(post)
+        // save the course
+        course.save();
 
-      res.send(post);
-    });
+        // send back post
+        res.send(post);
+      });      
+    })
+
 
   });
 

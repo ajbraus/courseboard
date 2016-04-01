@@ -1,33 +1,58 @@
+
 .row
-  .col-sm-10.col-sm-offset-1
+  .col-sm-4
+    //- COURSE INFO
+
     legend {{course.title}} 
-      .pull-right
+    b Instructor: 
+    | {{course.instructor}}
+    br
+    b Starts On: 
+    span(ng-bind="course.startsOn | date:'MMMM dd, yyyy'")
+    br
+    b Duration: 
+    span(ng-pluralize count="course.duration" when="{'0': 'One Off', 'one': '1 Week', 'other': '{} Weeks'}")
+
+    hr
+
+    h5 Description
+    | {{course.description}}
+
+    hr
+    .text-left
+      small.text-muted
+        | {{course.user.username}} 
+        a(href="/courses-edit/{{course._id}}" ng-show='currentUser._id === course.user._id') Edit
+
+  .col-sm-5
+    //- ANNOUNCMENTS
+    
+    h5 Announcements/Assignments
+    form(ng-submit="createPost()")
+      .form-group
+        textarea.form-control(ng-model="post.body", placeholder="New announcement or assignment")
+      .form-group
+        p.input-group
+          input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='post.dueDate', is-open='open', ng-required='true', close-text='Close', alt-input-formats='altInputFormats')
+          span.input-group-btn
+            button.btn.btn-default(type='button', ng-click='open = !open')
+              i.glyphicon.glyphicon-calendar
+      .text-right
+        button.btn.btn-primary.btn-sm(type="submit") Save
+
+    hr
+    div(ng-repeat="post in course.posts")
+      {{post.body}}
+      p.text-muted.text-right
+        span(ng-bind="post.dueDate | date:'EEE MMMM dd'")
+
+  .col-sm-3
+    //- STUDENTS
+
+    h5 Students
+    .text-right
+      p
         .btn.btn-sm.btn-danger(ng-click="unenroll()" ng-if="enrolled") Unenroll
         .btn.btn-sm.btn-primary(ng-click="enroll()" ng-if="!enrolled") Enroll
-
-    .row
-      .col-sm-7
-        b Instructor: 
-        | {{course.instructor}}
-        br
-        b Starts On: 
-        span(ng-bind="course.startsOn | date:'MMMM dd, yyyy'")
-        br
-        b Duration: 
-        span(ng-pluralize count="course.duration" when="{'0': 'One Off', 'one': '1 Week', 'other': '{} Weeks'}")
-
-        hr
-
-        h5 Description
-        | {{course.description}}
-      .col-sm-5
-        h5 Students
-        ul.list-group
-          li.list-group-item(ng-repeat="student in course.students") {{student.username}}
-    
-    .row 
-      .col-sm-12
-        .text-right
-            small.text-muted
-              | {{course.user.username}} 
-              a(href="/courses-edit/{{course._id}}" ng-show='currentUser._id === course.user._id') Edit
+    ul.list-group
+      li.list-group-item(ng-repeat="student in course.students") {{student.username}}

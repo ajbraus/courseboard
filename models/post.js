@@ -8,7 +8,7 @@ var PostSchema = new Schema({
 
   , body          : { type: String, required: true }
   , dueDate       : { type: Date }
-  , kind          : { type: String, required: true }
+  // , kind          : { type: String, required: true }
 
   , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true}
   , course        : { type: Schema.Types.ObjectId, ref: 'Course', required: true}
