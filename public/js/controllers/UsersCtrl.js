@@ -8,22 +8,10 @@ angular.module('courseboard')
       $scope.user = response.data;
     });
 
-    $http.get('/api/users/' + $auth.getPayload().sub + '/questions').then(
-      function (response) {
-        $scope.questions = response.data;
-      },
-      function (response) {
-        GlobalAlert.add('warning', response.data.message, 2000);
-      });
-
-    $http.get('/api/users/' + $auth.getPayload().sub + '/answers').then(
-      function (response) {
-        $scope.answers = response.data;
-      },
-      function (response) {
-        GlobalAlert.add('warning', response.data.message, 2000);
-      });
-
+    // POSTS
+    $http.get('/api/posts').then(function(response) {
+      $scope.posts = response.data;
+    });
   }])
 
   .controller('UsersShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $routeParams, $auth, Auth, GlobalAlert) {

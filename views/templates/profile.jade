@@ -1,3 +1,16 @@
 .row
-  .col-sm-12
-    h1.page-header {{user.first}} {{user.last}} 
+  .col-sm-3
+    h3 {{user.first}} {{user.last}}
+    p {{user.username}}
+    
+    hr
+    
+    h3 Courses
+    div(ng-repeat="course in user.courses")
+      | {{course.title}}
+  .col-sm-1
+  .col-sm-8
+    h3 Announcements
+    hr
+    div(ng-include="'templates/post'", ng-repeat="post in posts")
+

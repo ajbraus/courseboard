@@ -14,8 +14,8 @@ DONE - Duration
 
 Search
 Course can have announcements/plans, assignments?
-  - populating posts course.jade
-  - create posts from course.jade
+DONE  - populating posts course.jade
+DONE  - create posts from course.jade
   - populate post on profile.jade
   - delete posts
   - edit posts

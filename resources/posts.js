@@ -12,19 +12,24 @@ module.exports = function(app) {
   // INDEX OF POSTS FROM ENROLLED COURSES 
   app.get('/api/posts', auth.ensureAuthenticated, function (req, res) {
     Course.find({ students: req.userId }).select('_id').exec(function(err, courses) {
-      Post.find({ course: courses }).exec(function(err, posts) {
+      if (!courses) { return res.status(400).send(err) }
+
+      Post.find({ course: _.pluck(courses, '_id') }).exec(function(err, posts) {
+        if (!posts) { return res.status(400).send(err) }
+
+        console.log(posts)
         res.send(posts);
-      })
+      });
     });
   });
 
   // INDEX OF POSTS USER MADE
-  app.get('/api/posts', auth.ensureAuthenticated, function (req, res) {
-    Post.find({ user: req.userId }).exec(function(err, posts) {
+  // app.get('/api/posts', auth.ensureAuthenticated, function (req, res) {
+  //   Post.find({ user: req.userId }).exec(function(err, posts) {
 
-      res.send(posts);
-    });
-  });
+  //     res.send(posts);
+  //   });
+  // });
 
   // CREATE
   app.post('/api/courses/:courseId/posts', auth.ensureAuthenticated, function (req, res) {

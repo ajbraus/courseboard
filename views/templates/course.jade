@@ -33,18 +33,16 @@
         textarea.form-control(ng-model="post.body", placeholder="New announcement or assignment")
       .form-group
         p.input-group
-          input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='post.dueDate', is-open='open', ng-required='true', close-text='Close', alt-input-formats='altInputFormats')
           span.input-group-btn
             button.btn.btn-default(type='button', ng-click='open = !open')
               i.glyphicon.glyphicon-calendar
+          input.form-control(type='text', placeholder="Due date", uib-datepicker-popup='{{format}}', ng-model='post.dueDate', is-open='open', ng-required='true', close-text='Close', alt-input-formats='altInputFormats')
+          
       .text-right
         button.btn.btn-primary.btn-sm(type="submit") Save
 
     hr
-    div(ng-repeat="post in course.posts")
-      {{post.body}}
-      p.text-muted.text-right
-        span(ng-bind="post.dueDate | date:'EEE MMMM dd'")
+    div(ng-include="'templates/post'", ng-repeat="post in course.posts")
 
   .col-sm-3
     //- STUDENTS
