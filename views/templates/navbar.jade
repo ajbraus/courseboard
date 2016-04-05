@@ -8,14 +8,11 @@ nav.navbar.navbar-inverse
         span.icon-bar
       a.navbar-brand(href='/') Course Board
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      form.navbar-form.navbar-left(ng-submit="search(term)" style="z-index: 0;" ng-show='currentUser')
-        .input-group
-          input.form-control(type='text' ng-model="term" placeholder='Search all the questions!')
-          span.input-group-btn
-            button.btn.btn-default(type='submit') Search
-
-      a.btn.navbar-btn.btn-sm.btn-default(href="/courses" ng-show='currentUser') Courses 
-      a.btn.navbar-btn.btn-sm.btn-danger(href="/courses-new" ng-show='currentUser') New Course 
+      //- form.navbar-form.navbar-left(ng-submit="search(term)" style="z-index: 0;" ng-show='currentUser')
+      //-   .input-group
+      //-     input.form-control(type='text' ng-model="term" placeholder='Search all the questions!')
+      //-     span.input-group-btn
+      //-       button.btn.btn-default(type='submit') Search
 
       ul.nav.navbar-nav.navbar-right
         li.dropdown(ng-show='!currentUser')
@@ -68,6 +65,9 @@ nav.navbar.navbar-inverse
           ul.dropdown-menu
             li
               a(href='/settings') Account Settings
+            li.divider(role='separator') 
+            li
+              a(href="/courses-new") New Course 
             li(ng-show="currentUser.admin")
               a(href='/admin') Admin Settings
             li.divider(role='separator')

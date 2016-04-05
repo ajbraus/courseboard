@@ -2,7 +2,10 @@ DONE Courses CRUD
 DONE Associate couress with user
 
 User profile
-- see courses
+DONE - see courses
+- see upcoming courses
+- see your past courses vs current courses
+- see courses you are an instructor for in left col
 
 Course has
 DONE - Enrolled students - "Enroll". Only enroll once. "Drop" a course
@@ -11,19 +14,45 @@ DONE - Thumbnails
 DONE - Start Date
 DONE - Duration
 - End Date
+- deleted course will still be in user.courses if they were enrolled. maybe instead just archive courses.
+- repeat a course? multiple start times? change the start time?
 
 Search
-Course can have announcements/plans, assignments?
+Course can have updates, assignments?
 DONE  - populating posts course.jade
 DONE  - create posts from course.jade
-  - populate post on profile.jade
+DONE  - populate post on profile.jade
   - delete posts
   - edit posts
-  - create announcements vs. assignments
+  - differentiate between updates vs. assignments
 
 Credits for attending courses
 
+Hide new course button
+- teach people how to make a course (kickstarter teaches you how to make a campaign)
+course-index is only upcoming courses
+- see past and current courses
+
+- email 3 days before course starts
+
+comments on posts
+turn in assignments 
+autocomplete on instructor name to set instructor
+  - only instructors can post assignments (w/ dueDate)
 
 GO LIVE
+
+critical to mvp
+DONE - remove splash page - go directly to course-index page  
+- upcoming courses in course-index
+- students link to their profiles - public profile
+- public vs. private - do you need to be logged in to see course details? user details?
+- hide unenrole button (put in user-settings)
+- link to course in profile/posts
+- archiving courses
+- editing and deleting posts
+- emails...? 
+  - when a new post gets created - by an instructor? or by anyone? or is there a checkbox "update (email everyone)"
+
 
 Organizations
