@@ -17,6 +17,7 @@ var CourseSchema = new Schema({
   , instructor    : { type: String, set: toTitle }
   , duration      : { type: String }
   , startsOn      : { type: Date }
+  , endsOn        : { type: Date }
 
   , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true }
   , students      : [{ type: Schema.Types.ObjectId, ref: 'User' }]

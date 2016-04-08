@@ -8,8 +8,9 @@ angular.module('courseboard')
       $scope.user = response.data;
     });
 
+    // console.log($auth.getPayload());
     // POSTS
-    $http.get('/api/posts').then(function(response) {
+    $http.get('/api/users/' + $auth.getPayload().sub + '/posts').then(function(response) {
       $scope.posts = response.data;
     });
   }])
@@ -23,15 +24,10 @@ angular.module('courseboard')
         GlobalAlert.add('warning', response.data.message, 2000);
       });
 
-
-    $http.get('/api/users/' + $routeParams.id + '/questions').then(
-      function (response) {
-        console.log(response);
-        $scope.questions = response.data;
-      },
-      function (response) {
-        GlobalAlert.add('warning', response.data.message, 2000);
-      });
+    // POSTS
+    $http.get('/api/users/' + $routeParams.id + '/posts').then(function(response) {
+      $scope.posts = response.data;
+    });
   }])
 
   .controller('SettingsCtrl', ['$scope', '$http', '$location', 'GlobalAlert', function($scope, $http, $location, GlobalAlert) {
@@ -49,6 +45,34 @@ angular.module('courseboard')
         function (response) {
           GlobalAlert.add('warning', response.data.message, 2000);
         })
+    }
+
+    $scope.enroll = function(course) {
+      $http.put('/api/courses/' + course._id + '/enroll').then(
+        function (response) {
+          course.enrolled = true;
+
+          // $scope.course.students.push($rootScope.currentUser)
+          GlobalAlert.add('success', "You've enrolled!", 3000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 3000);
+        }
+      );
+    }
+
+    $scope.unenroll = function(course) {
+      $http.put('/api/courses/' + course._id + '/unenroll').then(
+        function (response) {
+          course.enrolled = false;
+          // var index = _.map($scope.course.students, '_id').indexOf($rootScope.currentUser._id)
+          // $scope.course.students.splice(index, 1)
+          GlobalAlert.add('success', "You've unenrolled!", 3000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 3000);
+        }
+      );
     }
   }])
 

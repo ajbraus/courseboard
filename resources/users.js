@@ -13,7 +13,7 @@ module.exports = function(app) {
 
   // GET USER
   app.get('/api/users/:id', auth.ensureAuthenticated, function (req, res) {
-    User.findById(req.params.id, function (err, user) {
+    User.findById(req.params.id).populate('courses').exec(function (err, user) {
       res.send(user);
     });
   });

@@ -7,22 +7,29 @@
 .form-group
   label Description
   textarea.form-control(type="text" ng-model="course.description")
-.form-group
-  label Duration
-  select.form-control(ng-model="course.duration")
-    option(value="0") One Off
-    option(value="1") 1 Week
-    option(value="2") 2 Weeks
-    option(value="3") 3 Weeks
-    option(value="4") 4 Weeks
-    option(value="5") 5 Weeks
-    option(value="6") 6 Weeks
-    option(value="7") 7 Weeks
-    option(value="8") 8 Weeks
+//- .form-group
+//-   label Duration
+//-   select.form-control(ng-model="course.duration")
+//-     option(value="0") One Off
+//-     option(value="1") 1 Week
+//-     option(value="2") 2 Weeks
+//-     option(value="3") 3 Weeks
+//-     option(value="4") 4 Weeks
+//-     option(value="5") 5 Weeks
+//-     option(value="6") 6 Weeks
+//-     option(value="7") 7 Weeks
+//-     option(value="8") 8 Weeks
 .form-group
   label Start Date
   p.input-group
-    input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.startsOn', is-open='open', ng-required='true', close-text='Close', alt-input-formats='altInputFormats')
+    input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.startsOn', is-open='startsOnOpen', ng-required='true', close-text='Close', alt-input-formats='altInputFormats')
     span.input-group-btn
-      button.btn.btn-default(type='button', ng-click='open = !open')
+      button.btn.btn-default(type='button', ng-click='startsOnOpen = !startsOnOpen')
+        i.glyphicon.glyphicon-calendar
+.form-group
+  label End Date
+  p.input-group
+    input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.endsOn', is-open='endsOnOpen', ng-required='true', close-text='Close', alt-input-formats='altInputFormats')
+    span.input-group-btn
+      button.btn.btn-default(type='button', ng-click='endsOnOpen = !endsOnOpen')
         i.glyphicon.glyphicon-calendar

@@ -7,6 +7,21 @@ angular.module('courseboard')
     $http.get('/api/courses').then(function(response) {
       $scope.courses = response.data;
     });
+
+    $scope.upcomingCourses = function(c) {
+      // return true if course havent started. currernt date > coures start date
+      return new Date() < new Date(c.startsOn)
+    }
+
+    $scope.currentCourses = function(c) {
+      // return true if we are in the middle of the course
+      return new Date(c.startsOn) <= new Date() && new Date(c.endsOn) >= new Date()
+    }
+
+    $scope.pastCourses = function(c) {
+      return new Date() > new Date(c.endsOn)
+    }
+
   }])
 
   .controller('CoursesNewCtrl', ['$scope', '$http', 'GlobalAlert', '$location', function($scope, $http, GlobalAlert, $location) {
@@ -47,20 +62,6 @@ angular.module('courseboard')
           $scope.enrolled = true;
           $scope.course.students.push($rootScope.currentUser)
           GlobalAlert.add('success', "You've enrolled!", 3000);
-        },
-        function (response) {
-          GlobalAlert.add('warning', response.data.message, 3000);
-        }
-      );
-    }
-
-    $scope.unenroll = function() {
-      $http.put('/api/courses/' + $routeParams.id + '/unenroll').then(
-        function (response) {
-          $scope.enrolled = false;
-          var index = _.map($scope.course.students, '_id').indexOf($rootScope.currentUser._id)
-          $scope.course.students.splice(index, 1)
-          GlobalAlert.add('success', "You've unenrolled!", 3000);
         },
         function (response) {
           GlobalAlert.add('warning', response.data.message, 3000);

@@ -22,7 +22,7 @@ angular.module('courseboard', [
           $rootScope.returnToState = next.url;
           $rootScope.returnToStateParams = next.params.Id;
           $location.path('/');
-          GlobalAlert.add('warning', "Please log in to see this question", 2000);
+          GlobalAlert.add('warning', "Please log in to see this resource", 2000);
         }
       });
     }])
@@ -36,29 +36,25 @@ angular.module('courseboard', [
 
       // COURSES
       $routeProvider.when('/', {
-        templateUrl: 'templates/courses',
+        templateUrl: 'templates/course-index',
         controller: 'CoursesIndexCtrl',
         publicAccess: true
       });
 
       $routeProvider.when('/courses-new', {
         templateUrl: 'templates/course-new',
-        controller: 'CoursesNewCtrl',
-        publicAccess: true
+        controller: 'CoursesNewCtrl'
       });
 
       $routeProvider.when('/courses/:id', {
-        templateUrl: 'templates/course',
-        controller: 'CoursesShowCtrl',
-        publicAccess: true
+        templateUrl: 'templates/course-show',
+        controller: 'CoursesShowCtrl'
       });
 
       $routeProvider.when('/courses-edit/:id', {
         templateUrl: 'templates/course-edit',
-        controller: 'CoursesEditCtrl',
-        publicAccess: true
+        controller: 'CoursesEditCtrl'
       });
-
 
       // PASSWORD
       $routeProvider.when('/password-edit', {

@@ -37,18 +37,20 @@ course-index is only upcoming courses
 
 comments on posts
 turn in assignments 
-autocomplete on instructor name to set instructor
-  - only instructors can post assignments (w/ dueDate)
+
 
 GO LIVE
 
 critical to mvp
 DONE - remove splash page - go directly to course-index page  
-- upcoming courses in course-index
-- students link to their profiles - public profile
-- public vs. private - do you need to be logged in to see course details? user details?
-- hide unenrole button (put in user-settings)
-- link to course in profile/posts
+DONE - upcoming courses in course-index
+DONE - students link to their profiles - public profile
+DONE - public vs. private - do you need to be logged in to see course details? user details? (No)
+DONE - hide unenrole button (put in user-settings)
+DONE - link to course in profile/posts
+- select instructor name to set instructor
+  - only instructors can post assignments (w/ dueDate)
+  - instructor = boolean in user.js
 - archiving courses
 - editing and deleting posts
 - emails...? 

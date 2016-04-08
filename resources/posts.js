@@ -10,11 +10,11 @@ var User = require('../models/user.js')
 
 module.exports = function(app) {
   // INDEX OF POSTS FROM ENROLLED COURSES 
-  app.get('/api/posts', auth.ensureAuthenticated, function (req, res) {
-    Course.find({ students: req.userId }).select('_id').exec(function(err, courses) {
+  app.get('/api/users/:id/posts', auth.ensureAuthenticated, function (req, res) {
+    Course.find({ students: req.params.id }).select('_id').exec(function(err, courses) {
       if (!courses) { return res.status(400).send(err) }
 
-      Post.find({ course: _.pluck(courses, '_id') }).exec(function(err, posts) {
+      Post.find({ course: _.pluck(courses, '_id') }).populate({ path: 'course', select: 'title' }).exec(function(err, posts) {
         if (!posts) { return res.status(400).send(err) }
 
         console.log(posts)

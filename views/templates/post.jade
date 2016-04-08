@@ -1,3 +1,5 @@
 {{post.body}}
-p.text-muted.text-right
-  span(ng-bind="post.dueDate | date:'EEE MMMM dd'")
+.text-right(ng-show="profile")
+  a(href="/courses/{{post.course._id}}") {{post.course.title}}
+p.text-muted.text-right(ng-show="post.dueDate")
+  | Due on #[span(ng-bind="post.dueDate | date:'EEE MMMM dd'")]
