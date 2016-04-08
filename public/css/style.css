@@ -14,3 +14,9 @@
   height:40px;
   line-height: 10px;
 }
+
+.navbar {
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+}

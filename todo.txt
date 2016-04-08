@@ -3,9 +3,8 @@ DONE Associate couress with user
 
 User profile
 DONE - see courses
-- see upcoming courses
-- see your past courses vs current courses
-- see courses you are an instructor for in left col
+DONE - see upcoming courses
+DONE - see your past courses vs current courses
 
 Course has
 DONE - Enrolled students - "Enroll". Only enroll once. "Drop" a course
@@ -13,31 +12,12 @@ DONE - Instructor
 DONE - Thumbnails
 DONE - Start Date
 DONE - Duration
-- End Date
-- deleted course will still be in user.courses if they were enrolled. maybe instead just archive courses.
-- repeat a course? multiple start times? change the start time?
-
-Search
-Course can have updates, assignments?
+DONE - End Date
 DONE  - populating posts course.jade
 DONE  - create posts from course.jade
 DONE  - populate post on profile.jade
-  - delete posts
-  - edit posts
-  - differentiate between updates vs. assignments
 
-Credits for attending courses
-
-Hide new course button
-- teach people how to make a course (kickstarter teaches you how to make a campaign)
-course-index is only upcoming courses
-- see past and current courses
-
-- email 3 days before course starts
-
-comments on posts
-turn in assignments 
-
+-----------------------------------------
 
 GO LIVE
 
@@ -52,9 +32,23 @@ DONE - link to course in profile/posts
   - only instructors can post assignments (w/ dueDate)
   - instructor = boolean in user.js
 - archiving courses
-- editing and deleting posts
+- editing and deleting posts, differentiate visually between announcements and assignments
 - emails...? 
   - when a new post gets created - by an instructor? or by anyone? or is there a checkbox "update (email everyone)"
+- sticky footer
 
+-----------------------------------------
 
+comments on posts
+see courses you are an instructor for in left col (profile)
+repeat a course? multiple start times? change the start time?
+Credits for attending courses
+Search
+
+-----------------------------------------
+
+- email 3 days before course starts
+- teach people how to make a course (kickstarter teaches you how to make a campaign)
+course-index is only upcoming courses
 Organizations
+turn in assignments 
