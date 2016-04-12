@@ -11,6 +11,13 @@ var User = require('../models/user.js')
 
 module.exports = function(app) {
 
+  // GET INSTRUCTORS
+  app.get('/api/instructors', auth.ensureAuthenticated, function (req, res) {
+    User.find({ role: "Instructor" }).exec(function (err, instructors) {
+      res.send(instructors);
+    });
+  });
+
   // GET USER
   app.get('/api/users/:id', auth.ensureAuthenticated, function (req, res) {
     User.findById(req.params.id).populate('courses').exec(function (err, user) {

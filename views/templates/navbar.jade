@@ -21,10 +21,10 @@ nav.navbar.navbar-inverse
           .dropdown-menu.dropdown-form
             form
               .form-group
-                label(for='') Email
+                label Email
                 input.form-control(type='email', ng-model='user.email')
               .form-group
-                label(for='') Password
+                label Password
                 input.form-control(type='password', ng-model='user.password')
               .text-right
                 a.btn.btn-link.link-text(href="/password-new") Forgot Password 
@@ -36,22 +36,28 @@ nav.navbar.navbar-inverse
           .dropdown-menu.dropdown-form
             form
               .form-group
-                label(for='') First Name
+                label First Name
                 input.form-control(type='text', ng-model='user.first')
               .form-group
-                label(for='') Last Name
+                label Last Name
                 input.form-control(type='text', ng-model='user.last')
               .form-group
-                label(for='') Username
+                label Username
                 input.form-control(type='text', ng-model='user.username')
               .form-group
-                label(for='') Email
+                label Role
+                select.form-control(ng-model="user.role")
+                  option(value="Student") Student
+                  option(value="Instructor") Instructor
+                  option(value="Staff") Staff
+              .form-group
+                label Email
                 input.form-control(type='email', ng-model='user.email')
               .form-group
-                label(for='') Password
+                label Password
                 input.form-control(type='password', ng-model='user.password')
               //- .form-group
-              //-   label(for='') Confirm Password
+              //-   label Confirm Password
               //-   input.form-control(type='password', ng-model='user.confirm')
               .text-right
                 a.btn.btn-link.link-text(href="/password-new") Forgot Password 

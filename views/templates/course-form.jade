@@ -1,9 +1,10 @@
 .form-group
   label Title
-  input.form-control(type="text" ng-model="course.title")
+  input.form-control(type="text" ng-model="course.title" required)
 .form-group
   label Instructor
-  input.form-control(type="text" ng-model="course.instructor")
+  select.form-control(type="text" ng-model="course.instructor" required)
+    option(ng-repeat="instructor in instructors" value="{{instructor._id}}") {{instructor.fullname}}
 .form-group
   label Description
   textarea.form-control(type="text" ng-model="course.description")

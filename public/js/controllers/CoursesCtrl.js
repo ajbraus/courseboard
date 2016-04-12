@@ -28,6 +28,11 @@ angular.module('courseboard')
     $scope.course = {
       duration: 0
     }
+
+    $http.get('/api/instructors').then(function(response) {
+      $scope.instructors = response.data;
+    });
+
     $scope.createCourse = function() {
       $http.post('/api/courses', $scope.course).then(
         function (response) {
@@ -83,17 +88,39 @@ angular.module('courseboard')
         }
       );
     }
+
+    $scope.deletePost = function(post) {
+      $http.delete('/api/courses/' + $scope.course._id + '/posts/' + post._id).then(
+        function (response) {
+          // remove the post from $scope.course
+          // _.remove($scope.course.posts, function(post._id) {
+          //   return post._id
+          // })
+
+          GlobalAlert.add('success', "Post removed successfully!", 2000);
+        },
+        function (response) {
+          console.log(response);
+          GlobalAlert.add('warning', response.data.message, 2000);
+        }
+      )
+    }
   }])
 
   .controller('CoursesEditCtrl', ['$scope', '$http', '$routeParams', '$location', 'GlobalAlert', function($scope, $http, $routeParams, $location, GlobalAlert) {
     $http.get('/api/courses/' + $routeParams.id).then(
       function (response) {
         $scope.course = response.data;
+        $scope.course.instructor = response.data.instructor._id 
       },
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
       }
     );
+
+    $http.get('/api/instructors').then(function(response) {
+      $scope.instructors = response.data;
+    });
 
     $scope.dateOptions = {
        formatYear: 'yy',

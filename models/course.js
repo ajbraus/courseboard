@@ -20,6 +20,7 @@ var CourseSchema = new Schema({
   , endsOn        : { type: Date }
 
   , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true }
+  , instructor    : { type: Schema.Types.ObjectId, ref: 'User', required: true }
   , students      : [{ type: Schema.Types.ObjectId, ref: 'User' }]
   , posts         : [{ type: Schema.Types.ObjectId, ref: 'Post' }]
 })

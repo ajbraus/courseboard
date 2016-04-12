@@ -15,6 +15,12 @@
         .form-group
           label(for='') Email
           input.form-control(type='email', ng-model='user.email')
+        .form-group
+          label Role
+          select.form-control(ng-model="user.role")
+            option(value="Student") Student
+            option(value="Instructor") Instructor
+            option(value="Staff") Staff
         .text-right
           a.btn.btn-link.link-text(href="/profile") Cancel
           button.btn.btn-danger(type="submit") Update Account

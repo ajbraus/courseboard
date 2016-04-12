@@ -1,7 +1,7 @@
 .well
   a(href="/courses/{{course._id}}")
     h4.text-center {{course.title}}  
-  .text-muted {{course.instructor}}
+  .text-muted {{course.instructor.fullname}}
   b Starts On: 
   span(ng-bind="course.startsOn | date:'MMMM dd, yy'")
   br

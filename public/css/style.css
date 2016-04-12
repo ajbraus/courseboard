@@ -1,3 +1,6 @@
+body {
+  background: #fcfcfc;
+}
 .dropdown-menu {
   padding: 10px;
   width: 280px;
@@ -19,4 +22,22 @@
   border-radius: 0;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
+}
+
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.card {
+  padding: 10px;
+  margin: 0.5rem 0 1rem 0;
+  background-color: #fff;
+  transition: box-shadow .25s;
+  border-radius: 2px;
+  border: 1px solid #eee;
+}
+
+.text-large {
+  font-size: 130%;
 }

@@ -10,7 +10,7 @@ var User = require('../models/user.js')
 module.exports = function(app) {
   // INDEX
   app.get('/api/courses', function (req, res) {
-    Course.find().exec( (error, courses) => {
+    Course.find().populate({ path: 'instructor', select: 'fullname first last' }).exec( (error, courses) => {
 
       res.send(courses);
     });
@@ -30,7 +30,13 @@ module.exports = function(app) {
 
   // SHOW
   app.get('/api/courses/:id', function (req, res) {
-    Course.findById(req.params.id).populate('user').populate('students').populate('posts').exec(function (err, course) {
+    Course.findById(req.params.id)
+          .populate('user')
+          .populate('students')
+          .populate('posts')
+          .populate({ path: 'instructor', select: 'fullname first last' })
+          .exec(function (err, course) {
+            
       if (err) { return res.status(400).send(err) }
 
       res.send(course);
