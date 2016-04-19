@@ -33,8 +33,11 @@ DONE - only instructors can post assignments (w/ dueDate)
 DONE - deleting posts
 DONE - differentiate visually between announcements and assignments
 DONE - posted by links to user profile
-- emails...? 
-  - when a new post gets created - by an instructor? or by anyone? or is there a checkbox "update (email everyone)"
+- emails...?
+  - welcome email
+  DONE - enroll-notification - instructor & 
+  - enroll-confirmation tudent
+  - new-post - when a new post gets created by anyone (there a checkbox "update (email everyone)" sendEmail)
 - sticky footer
 
 

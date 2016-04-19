@@ -40,19 +40,19 @@ app.use(bodyParser.json());
 // app.use(favicon(__dirname + '/public/favicon.ico'));
 
 mailer.extend(app, {
-  from: 'GA Q&A <generalassemblyquestions@gmail.com>',
+  from: 'Courseboard <ourcourseboard@gmail.com>',
   host: 'smtp.gmail.com', // hostname
   secureConnection: true, // use SSL
   port: 465, // port for secure SMTP
   transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts
   auth: {
-    user: 'generalassemblyquestions@gmail.com',
+    user: 'ourcourseboard@gmail.com',
     pass: process.env.EMAIL_SECRET
   }
 });
 
 if (process.env.NODE_ENV === 'production') {
-  app.locals.baseUrl = 'https://gaqa.herokuapp.com'
+  app.locals.baseUrl = 'https://meancourseboard.herokuapp.com'
 } else if (process.env.NODE_ENV === 'development') {
   app.locals.baseUrl = 'http://localhost:1337'
 }

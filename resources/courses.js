@@ -77,6 +77,20 @@ module.exports = function(app) {
 
           user.courses.unshift(course);
           user.save();
+
+          // SEND NOTIFICATION TO INSTRUCTOR
+          User.findById(course.instructor, '+email').exec(function (err, instructor) {
+            app.mailer.send('emails/enroll-notification', {
+              to: instructor.email,
+              subject: 'New Student: ' + user.first + " " + user.last,
+              instructor: instructor,
+              course: course,
+              student: user
+            }, function (err) {
+              if (err) { console.log(err); return }
+            });
+
+          })
         })
       }
       else { return res.status(400).send({message: 'Already enrolled!'})}
