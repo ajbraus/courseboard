@@ -34,7 +34,6 @@ module.exports = function(app) {
 
   // UPDATE USER
   app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
-    console.log(req.body)
     User.findByIdAndUpdate(req.userId, req.body, function (err, user) {
       if (!user) { return res.status(400).send({ message: 'User not found' }) };
       console.log(user)

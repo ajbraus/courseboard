@@ -61,6 +61,15 @@ angular.module('courseboard')
       }
     );
 
+    $http.get('/api/courses/' + $routeParams.id + "/posts").then(
+      function (response) {
+        $scope.posts = response.data;
+      },
+      function (response) {
+        GlobalAlert.add('warning', response.data.message, 2000);
+      }
+    );
+
     $scope.enroll = function() {
       $http.put('/api/courses/' + $routeParams.id + '/enroll').then(
         function (response) {
@@ -78,7 +87,7 @@ angular.module('courseboard')
       $http.post('/api/courses/' + $scope.course._id + '/posts', $scope.post).then(
         function (response) {
           $scope.post = {};
-          $scope.course.posts.unshift(response.data)
+          $scope.posts.unshift(response.data)
 
           GlobalAlert.add('success', "Post created successfully!", 2000);
         },
@@ -93,9 +102,9 @@ angular.module('courseboard')
       $http.delete('/api/courses/' + $scope.course._id + '/posts/' + post._id).then(
         function (response) {
           // remove the post from $scope.course
-          // _.remove($scope.course.posts, function(post._id) {
-          //   return post._id
-          // })
+          _.remove($scope.posts, function(coursePost) {
+            return post._id == coursePost._id
+          })
 
           GlobalAlert.add('success', "Post removed successfully!", 2000);
         },

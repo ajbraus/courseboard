@@ -1,13 +1,20 @@
 .card
-  p {{post.body}}
-  small Posted by {{post.user.fullname}} on #[span(ng-bind="post.createdAt | date:'EEE MMMM dd'")]
-
+  .row
+    .col-xs-11
+      .card-header(ng-show="profile")
+        a(href="/courses/{{post.course._id}}") {{post.course.title}}
+      hr(ng-show="profile")
+      p {{post.body}}
+    .col-xs-1
+      .text-muted.pull-right.text-large.dropdown.corner-icon(ng-hide="profile")
+        .dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+          span.caret
+        ul.dropdown-menu.short-dropdown-menu(aria-labelledby='dropdownMenu1')
+          li
+            a(ng-click="deletePost(post)") Delete
   br
-  small.text-muted(ng-show="post.dueDate")
-    i.icon.ion-ios-list-outline 
-    | Due on #[span(ng-bind="post.dueDate | date:'EEE MMMM dd'")]
-  .text-muted.pull-right.text-large 
-    a(ng-click="deletePost(post)") #[i.icon.ion-trash-a]
-
-  .text-right(ng-show="profile")
-    a(href="/courses/{{post.course._id}}") {{post.course.title}}
+  .clearfix
+    small.pull-left Posted by #[a(href="/users/{{post.user._id}}") {{post.user.username}}] on #[span(ng-bind="post.createdAt | date:'EEE MMMM dd'")]
+    small.text-danger.pull-right(ng-show="post.dueDate")
+      i.icon.ion-ios-list-outline
+      |  Due on #[span(ng-bind="post.dueDate | date:'EEE MMMM dd'")]

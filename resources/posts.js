@@ -14,14 +14,29 @@ module.exports = function(app) {
     Course.find({ students: req.params.id }).select('_id').exec(function(err, courses) {
       if (!courses) { return res.status(400).send(err) }
 
-      Post.find({ course: _.pluck(courses, '_id') }).populate({ path: 'course', select: 'title' }).exec(function(err, posts) {
+      Post.find({ 'course': { $in: _.pluck(courses, '_id') }})
+          .sort({ createdAt: -1 })
+          .populate({ path: 'course', select: 'title' })
+          .populate({ path: 'user', select: 'username' })
+          .exec(function(err, posts) {
+
         if (!posts) { return res.status(400).send(err) }
 
-        console.log(posts)
         res.send(posts);
       });
     });
   });
+
+  // INDEX OF POSTS FROM A SINGLE COURES
+  app.get('/api/courses/:courseId/posts', auth.ensureAuthenticated, function (req, res) {
+    Post.find({ course: req.params.courseId })
+        .populate({ path: 'user', select: 'username' })
+        .sort({ createdAt: -1 }).exec(function(err, posts) {
+      if (!posts) { return res.status(400).send(err) }
+
+      res.send(posts)
+    })
+  })
 
   // INDEX OF POSTS USER MADE
   // app.get('/api/posts', auth.ensureAuthenticated, function (req, res) {
@@ -50,7 +65,7 @@ module.exports = function(app) {
         // save the course
         course.save();
 
-        // send back post
+        // send back post`````````
         res.send(post);
       });      
     })
@@ -77,14 +92,20 @@ module.exports = function(app) {
   });
 
   // DELETE
-  app.delete('/api/posts/:id', auth.ensureAuthenticated, function (req, res) {
+  app.delete('/api/courses/:courseId/posts/:id', auth.ensureAuthenticated, function (req, res) {
     Post.findById(req.params.id).exec(function (err, post) {
       if (err) { return res.status(400).send(err) }
 
-      postId = post._id;
-      post.remove();
+      // Course.findById(req.params.courseId).exec(function (err, course) {
+      //   course.update({})
+      // })
 
-      res.send("Successfully removed post: " + postId);
-    })
+      Course.update({ _id: req.params.courseId }, { $pull: { posts: post._id } }, function(err, course) {
+        if (err) { return res.status(400).send(err) }
+
+        post.remove();
+        res.send("Successfully removed post");
+      });
+    });
   });
 }

@@ -6,6 +6,11 @@ body {
   width: 280px;
 }
 
+.short-dropdown-menu {
+  padding: 10px;
+  width: 160px;
+}
+
 .btn {
     border-radius: 0;
 }
@@ -24,20 +29,38 @@ body {
   -webkit-border-radius: 0;
 }
 
+.corner-icon {
+  margin-top: -5px;
+}
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
 
 .card {
-  padding: 10px;
+  padding: 15px;
   margin: 0.5rem 0 1rem 0;
   background-color: #fff;
   transition: box-shadow .25s;
   border-radius: 2px;
   border: 1px solid #eee;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.card-header {
+  margin-bottom: -15px;
+  font-weight: bold;
 }
 
 .text-large {
   font-size: 130%;
+}
+
+.course {
+  
+  transition: all 0.2s ease-in-out;
+}
+
+.course:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }

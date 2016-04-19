@@ -43,12 +43,12 @@
                 span.input-group-btn
                   button.btn.btn-default(type='button', ng-click='open = !open')
                     i.glyphicon.glyphicon-calendar
-                input.form-control(ng-if="course.instructor._id === currentUser._id" type='text', placeholder="Due date", uib-datepicker-popup='{{format}}', ng-model='post.dueDate', is-open='open', ng-required='true', close-text='Close', alt-input-formats='altInputFormats')
+                input.form-control(ng-if="course.instructor._id === currentUser._id" type='text', placeholder="Due date", uib-datepicker-popup='{{format}}', ng-model='post.dueDate', is-open='open', close-text='Close', alt-input-formats='altInputFormats')
           .col-xs-2
             button.btn.btn-primary(type="submit") #[i.icon.ion-edit]
 
     hr
-    div(ng-include="'templates/post'", ng-repeat="post in course.posts")
+    div(ng-include="'templates/post'", ng-repeat="post in posts")
 
   .col-sm-3
     //- STUDENTS

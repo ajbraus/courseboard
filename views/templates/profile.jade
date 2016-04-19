@@ -6,7 +6,7 @@
     hr
     
     h3 Courses
-    a(href="courses/{{course._id}}" ng-repeat="course in user.courses") {{course.title}}
+    a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.courses") {{course.title}}
   
   .col-sm-6.col-sm-offset-1
     h3 Announcements
