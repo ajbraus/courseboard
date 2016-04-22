@@ -72,14 +72,27 @@ module.exports = function(app) {
 
       if (!(course.students.indexOf(req.userId) > -1)) {
         course.students.push(req.userId);
-        User.findById(req.userId).exec(function (err, user) {
+        User.findById(req.userId, '+email').exec(function (err, user) {
           if (err) { return res.status(400).send(err) }
 
+            console.log(user)
+
           user.courses.unshift(course);
-          user.save();
+          user.save(function(err) {
+            // SEND NOTIFICATION TO STUDENT
+            app.mailer.send('emails/student-enroll-notification', {
+              to: user.email,
+              course: course,
+              subject: 'Welcome to ' + course.title,
+              user: user
+            }, function (err) {
+              if (err) { console.log(err); return }
+            });
+          });
 
           // SEND NOTIFICATION TO INSTRUCTOR
           User.findById(course.instructor, '+email').exec(function (err, instructor) {
+            console.log(instructor)
             app.mailer.send('emails/enroll-notification', {
               to: instructor.email,
               subject: 'New Student: ' + user.first + " " + user.last,
@@ -89,7 +102,6 @@ module.exports = function(app) {
             }, function (err) {
               if (err) { console.log(err); return }
             });
-
           })
         })
       }
