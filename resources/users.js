@@ -76,7 +76,14 @@ module.exports = function(app) {
         if (err) { return res.status(400).send(err) }
 
         res.send({ token: auth.createJWT(user) });
-        // res.send({ message: "Access requested" });
+
+        app.mailer.send('emails/welcome', {
+          to: user.email,
+          subject: 'Welcome to Courseboard',
+          user: user
+        }, function (err) {
+          if (err) { console.log(err); return }
+        });
       });
     });
   });
