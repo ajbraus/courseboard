@@ -1,12 +1,11 @@
 extends layout
 
 block body
-  .wrapper
+  .page-wrap
     ng-include(src="'templates/navbar'")
     alert(ng-repeat='alert in globalAlerts', class='alert', type='{{alert.type}}', close='alert.close()', ng-cloak='') {{alert.msg}}
     .container.min-height(ng-view)
-  .push
-  section.footer
+  .site-footer
     .container
       .row
         .col-sm-4

@@ -3,19 +3,26 @@ body {
 }
 
 * {
-margin: 0;
+  margin: 0;
 }
 html, body {
-height: 100%;
+  height: 100%;
 }
-.wrapper {
-min-height: 100%;
-height: auto !important;
-height: 100%;
-margin: 0 auto -4em;
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -142px; 
 }
-.footer, .push {
-height: 4em;
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.site-footer, .page-wrap:after {
+  height: 142px; 
+  margin-top: 20px;
+}
+.site-footer {
+  background: black;
 }
 
 .dropdown-menu {
