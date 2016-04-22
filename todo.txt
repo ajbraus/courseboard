@@ -36,7 +36,7 @@ DONE - posted by links to user profile
 - emails...?
   DONE  - welcome email
   DONE - enroll-notification - instructor
-  - enroll-confirmation student
+  DONE - enroll-confirmation student
   - new-post - when a new post gets created by anyone (there a checkbox "update (email everyone)" sendEmail)
 - sticky footer
 
