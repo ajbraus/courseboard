@@ -12,16 +12,16 @@
 .form-group
   label Start Date
   p.input-group
-    input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.startsOn', is-open='startsOnOpen', close-text='Close', alt-input-formats='altInputFormats')
+    input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.startsOn', is-open='starts.opened', close-text='Close', alt-input-formats='altInputFormats')
     span.input-group-btn
-      button.btn.btn-default(type='button', ng-click='startsOnOpen = !startsOnOpen')
+      button.btn.btn-default(type='button', ng-click='startsOpen()')
         i.glyphicon.glyphicon-calendar
 .form-group
   label End Date
   p.input-group
-    input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.endsOn', is-open='endsOnOpen', close-text='Close', alt-input-formats='altInputFormats')
+    input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.endsOn', is-open='ends.opened', close-text='Close', alt-input-formats='altInputFormats')
     span.input-group-btn
-      button.btn.btn-default(type='button', ng-click='endsOnOpen = !endsOnOpen')
+      button.btn.btn-default(type='button', ng-click='endsOpen()')
         i.glyphicon.glyphicon-calendar
 .form-group
   label Credit Hours (Hours per Week in Class)

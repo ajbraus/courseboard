@@ -34,6 +34,22 @@ angular.module('courseboard')
       $scope.instructors = response.data;
     });
 
+    $scope.startsOpen = function() {
+      $scope.starts.opened = true;
+    };
+    
+    $scope.starts = {
+      opened: false
+    };
+
+    $scope.endsOpen = function() {
+      $scope.ends.opened = true;
+    };
+    
+    $scope.ends = {
+      opened: false
+    };
+
     $scope.createCourse = function() {
       $http.post('/api/courses', $scope.course).then(
         function (response) {
@@ -87,7 +103,7 @@ angular.module('courseboard')
     $scope.open1 = function() {
       $scope.popup1.opened = true;
     };
-    
+
     $scope.popup1 = {
       opened: false
     };
