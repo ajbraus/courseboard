@@ -7,6 +7,9 @@
   br
   b Ends On: 
   span(ng-bind="course.endsOn | date:'MMMM dd, yy'")  
+  br
+  b Credit Hours: 
+  span(ng-bind="course.hours")
   //- br
   //- b Duration: 
   //- span(ng-pluralize count="course.duration" when="{'0': 'One Off', 'one': '1 Week', 'other': '{} Weeks'}")

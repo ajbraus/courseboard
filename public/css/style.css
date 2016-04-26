@@ -38,6 +38,7 @@ html, body {
 .btn {
     border-radius: 0;
 }
+
 .alert {
   position: absolute;
   top:50px;
@@ -45,6 +46,14 @@ html, body {
   text-align: center;
   height:40px;
   line-height: 10px;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+.white {
+  color: white;
 }
 
 .navbar {

@@ -38,12 +38,15 @@ DONE - posted by links to user profile
   DONE - enroll-notification - instructor
   DONE - enroll-confirmation student
   - new-post - when a new post gets created by anyone (there a checkbox "update (email everyone)" sendEmail)
-- sticky footer
+DONE - sticky footer
 
 
 
 -----------------------------------------
 
+main navbar- catalog/my courses
+my course section above course catalog
+drag and drop enroll
 flashy enroll button!
 archiving courses
 comments on posts

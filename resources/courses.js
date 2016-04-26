@@ -20,6 +20,7 @@ module.exports = function(app) {
   app.post('/api/courses', auth.ensureAuthenticated, function (req, res) {
     var course = new Course(req.body);
     course.user = req.userId
+
     course.save(function(err, course) {
       if (err) { return res.status(400).send(err) }
 

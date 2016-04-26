@@ -24,9 +24,10 @@ angular.module('courseboard')
 
   }])
 
-  .controller('CoursesNewCtrl', ['$scope', '$http', 'GlobalAlert', '$location', function($scope, $http, GlobalAlert, $location) {
+  .controller('CoursesNewCtrl', ['$scope', '$rootScope', '$http', 'GlobalAlert', '$location', function($scope, $rootScope, $http, GlobalAlert, $location) {
     $scope.course = {
-      duration: 0
+      duration: 0,
+      instructor: $rootScope.currentUser.role == "Instructor" ? $rootScope.currentUser._id : null
     }
 
     $http.get('/api/instructors').then(function(response) {
@@ -82,6 +83,14 @@ angular.module('courseboard')
         }
       );
     }
+
+    $scope.open1 = function() {
+      $scope.popup1.opened = true;
+    };
+    
+    $scope.popup1 = {
+      opened: false
+    };
 
     $scope.createPost = function() {
       $http.post('/api/courses/' + $scope.course._id + '/posts', $scope.post).then(

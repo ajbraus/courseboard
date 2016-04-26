@@ -64,7 +64,7 @@ nav.navbar.navbar-inverse
                 button.btn.btn-danger(type='submit', ng-click='signup()') Sign Up
 
         li(ng-show='currentUser')
-          a(href="/profile") {{currentUser.username}} - {{currentUser.rep}}
+          a(href="/profile") {{currentUser.username}}
         li.dropdown(ng-show='currentUser')
           a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
             span.caret
