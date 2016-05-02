@@ -1,4 +1,4 @@
-# General Assembly Q&A 
+# Course Board
 
 ## What's inside
 
@@ -10,8 +10,3 @@
 1. fork and clone this repo
 2. run `npm install`
 3. run `nodemon`
-
-
-# gaqa
-# gaqa
-# courseboard
