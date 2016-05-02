@@ -19,10 +19,19 @@ var UserSchema = new Schema({
   , first              : { type: String, trim: true, set: toTitle }
   , last               : { type: String, trim: true, set: toTitle }
   , username           : { type: String, trim: true, set: toLower }
+  , role               : { type: String }
+  , courses            : [{ type: Schema.Types.ObjectId, ref: 'Course' }]
   , admin              : { type: Boolean, default: false }
   , confirmedAt        : { type: Date, default: undefined }
   , resetPasswordToken : String
   , resetPasswordExp   : Date
+}, {
+  toObject: {
+  virtuals: true
+  },
+  toJSON: {
+  virtuals: true 
+  }
 })
 
 UserSchema.virtual('fullname').get(function() {

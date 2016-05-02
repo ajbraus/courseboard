@@ -24,7 +24,7 @@ var config = require('./config')
 
 
 mongoose.connect(config.db);
-mongoosePaginate.paginate.options = { 
+mongoosePaginate.paginate.options = {
     lean:  true,
     limit: 12
 };
@@ -40,19 +40,19 @@ app.use(bodyParser.json());
 // app.use(favicon(__dirname + '/public/favicon.ico'));
 
 mailer.extend(app, {
-  from: '', 
-  host: 'smtp.gmail.com', // hostname 
-  secureConnection: true, // use SSL 
-  port: 465, // port for secure SMTP 
-  transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts 
+  from: 'Courseboard <ourcourseboard@gmail.com>',
+  host: 'smtp.gmail.com', // hostname
+  secureConnection: true, // use SSL
+  port: 465, // port for secure SMTP
+  transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts
   auth: {
-    user: '',
+    user: 'ourcourseboard@gmail.com',
     pass: process.env.EMAIL_SECRET
   }
 });
 
 if (process.env.NODE_ENV === 'production') {
-  app.locals.baseUrl = 'https://courseboard.herokuapp.com'
+  app.locals.baseUrl = 'https://meancourseboard.herokuapp.com'
 } else if (process.env.NODE_ENV === 'development') {
   app.locals.baseUrl = 'http://localhost:1337'
 }
@@ -70,11 +70,11 @@ app.get('/templates/:name', resources.templates);
 require('./resources/users')(app);
 require('./resources/admin')(app);
 require('./resources/courses')(app);
+require('./resources/posts')(app);
+// require('./resources/comments')(app);
 
 // redirect all others to the index (HTML5 history)
 app.get('/*', resources.index);
 
 module.exports = server;
 console.log('server running at http://localhost:' + config.port);
-
-

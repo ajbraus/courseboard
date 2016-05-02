@@ -1,6 +1,6 @@
 .container
   .row
-    .col-md-4.col-md-offset-4.col-sm-6.col-sm-offset-3
+    .col-md-4.col-md-offset-2.col-sm-6
       legend Account Settings
       form(ng-submit="updateUser()")
         .form-group
@@ -15,6 +15,19 @@
         .form-group
           label(for='') Email
           input.form-control(type='email', ng-model='user.email')
+        .form-group
+          label Role
+          select.form-control(ng-model="user.role")
+            option(value="Student") Student
+            option(value="Instructor") Instructor
+            option(value="Staff") Staff
         .text-right
           a.btn.btn-link.link-text(href="/profile") Cancel
           button.btn.btn-danger(type="submit") Update Account
+    .col-md-4.col-sm-6
+      legend My Courses
+      .well(ng-repeat="course in user.courses")
+        h5 {{course.title}}
+        .text-right
+          button.btn.btn-sm.btn-danger(ng-init="course.enrolled = true" ng-click="unenroll(course)" ng-show="course.enrolled") Unenroll
+          button.btn.btn-sm.btn-primary(ng-click="enroll(course)" ng-show="!course.enrolled") Re-enroll

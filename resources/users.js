@@ -11,41 +11,29 @@ var User = require('../models/user.js')
 
 module.exports = function(app) {
 
+  // GET INSTRUCTORS
+  app.get('/api/instructors', auth.ensureAuthenticated, function (req, res) {
+    User.find({ role: "Instructor" }).exec(function (err, instructors) {
+      res.send(instructors);
+    });
+  });
+
   // GET USER
   app.get('/api/users/:id', auth.ensureAuthenticated, function (req, res) {
-    User.findById(req.params.id, function (err, user) {
+    User.findById(req.params.id).populate('courses').exec(function (err, user) {
       res.send(user);
     });
   });
 
   // CURRENT USER
   app.get('/api/me', auth.ensureAuthenticated, function (req, res) {
-    User.findById(req.userId, '+email', function (err, user) {
+    User.findById(req.userId, '+email').populate('courses').exec(function (err, user) {
       res.send(user);
-    });
-  });
-
-  // USER PROFILE QUESTIONS INDEX
-  app.get('/api/users/:id/questions', auth.ensureAuthenticated, function (req, res) {
-    Question.find({ user: req.params.id }).sort('-createdAt').exec(function (err, questions) {
-      if (err) { return res.status(400).send({ message: err }) }
-
-      res.send(questions);
-    });
-  });
-
-  // USER PROFILE ANSWERS INDEX
-  app.get('/api/users/:id/answers', auth.ensureAuthenticated, function (req, res) {
-    Answer.find({ user: req.params.id }).sort('-createdAt').populate('question').exec(function (err, answers) {
-      if (err) { return res.status(400).send(err) }
-
-      res.send(answers);
     });
   });
 
   // UPDATE USER
   app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
-    console.log(req.body)
     User.findByIdAndUpdate(req.userId, req.body, function (err, user) {
       if (!user) { return res.status(400).send({ message: 'User not found' }) };
       console.log(user)
@@ -62,9 +50,9 @@ module.exports = function(app) {
       }
       
       // CHECK CONFIRMEDAT
-      if (!user.confirmedAt) {
-        return res.status(401).send({ message: 'Awaiting confirmation' });
-      }
+      // if (!user.confirmedAt) {
+      //   return res.status(401).send({ message: 'Awaiting confirmation' });
+      // }
 
       // CHECK PASSWORD
       user.comparePassword(req.body.password, function (err, isMatch) {
@@ -87,8 +75,15 @@ module.exports = function(app) {
       user.save(function(err) {
         if (err) { return res.status(400).send(err) }
 
-        // res.send({ token: auth.createJWT(user) });
-        res.send({ message: "Access requested" });
+        res.send({ token: auth.createJWT(user) });
+
+        app.mailer.send('emails/welcome', {
+          to: user.email,
+          subject: 'Welcome to Courseboard',
+          user: user
+        }, function (err) {
+          if (err) { console.log(err); return }
+        });
       });
     });
   });

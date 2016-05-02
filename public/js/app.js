@@ -10,9 +10,10 @@ angular.module('courseboard', [
                          'hc.marked',
                          'angularMoment',
                          'ngTagsInput',
-                         'ui.bootstrap'
+                         'ui.bootstrap',
+                         'ngLodash'
                          ])
-    
+
     .run(['$rootScope', '$location', '$auth', 'GlobalAlert', function ($rootScope, $location, $auth, GlobalAlert) {
       // Redirect to login if route requires auth and you're not logged in
       $rootScope.$on( "$routeChangeStart", function(event, next, current) {
@@ -21,29 +22,38 @@ angular.module('courseboard', [
           $rootScope.returnToState = next.url;
           $rootScope.returnToStateParams = next.params.Id;
           $location.path('/');
-          GlobalAlert.add('warning', "Please log in to see this question", 2000);
+          GlobalAlert.add('warning', "Please log in to see this resource", 2000);
         }
       });
     }])
 
     .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
       // HOME
-      $routeProvider.when('/', {
-        templateUrl: 'templates/splash',
-        publicAccess: true
-      });
+      // $routeProvider.when('/', {
+      //   templateUrl: 'templates/splash',
+      //   publicAccess: true
+      // });
 
       // COURSES
-      $routeProvider.when('/courses', {
-        templateUrl: 'templates/courses-index',
+      $routeProvider.when('/', {
+        templateUrl: 'templates/course-index',
         controller: 'CoursesIndexCtrl',
         publicAccess: true
       });
 
       $routeProvider.when('/courses-new', {
-        templateUrl: 'templates/courses-new',
-        controller: 'CoursesNewCtrl',
-        publicAccess: true
+        templateUrl: 'templates/course-new',
+        controller: 'CoursesNewCtrl'
+      });
+
+      $routeProvider.when('/courses/:id', {
+        templateUrl: 'templates/course-show',
+        controller: 'CoursesShowCtrl'
+      });
+
+      $routeProvider.when('/courses-edit/:id', {
+        templateUrl: 'templates/course-edit',
+        controller: 'CoursesEditCtrl'
       });
 
       // PASSWORD

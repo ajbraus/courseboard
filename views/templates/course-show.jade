@@ -1,0 +1,61 @@
+
+.row
+  .col-sm-4
+    //- COURSE INFO
+
+    legend {{course.title}} 
+    b Instructor: 
+    a(href="/users/{{course.instructor._id}}") {{course.instructor.fullname}}
+    br
+    b Starts On: 
+    span(ng-bind="course.startsOn | date:'MMMM dd, yyyy'")
+    br
+    b Ends On: 
+    span(ng-bind="course.endsOn | date:'MMMM dd, yyyy'")
+    br
+    b Hours per Week in Class: 
+    span {{course.hours}}
+    br  
+    .text-left
+      b Administrator: 
+      a(href="/courses-edit/{{course._id}}" ng-show='currentUser._id === course.user._id || currentUser._id === course.instructor._id') Edit Course
+    //- b Duration: 
+    //- span(ng-pluralize count="course.duration" when="{'0': 'One Off', 'one': '1 Week', 'other': '{} Weeks'}")
+
+    hr
+
+    h5 Description
+    | {{course.description}}
+
+    .text-right
+      p
+        //- .btn.btn-sm.btn-block.btn-danger(ng-click="unenroll()" ng-if="enrolled") Unenroll
+        .btn.btn-sm.btn-primary.btn-block(class="ng-cloak" ng-click="enroll()" ng-if="!enrolled") Enroll
+
+  .col-sm-5
+    //- ANNOUNCMENTS
+    .card
+      h5 Announcements/Assignments
+      form(ng-submit="createPost()")
+        .form-group
+          textarea.form-control(ng-model="post.body", placeholder="New announcement or assignment")
+        .row
+          .col-xs-10
+            .form-group
+              p.input-group
+                span.input-group-btn
+                  button.btn.btn-default(type='button', ng-click="open1()")
+                    i.glyphicon.glyphicon-calendar
+                input.form-control(ng-if="course.instructor._id === currentUser._id" type='text', placeholder="Due date", uib-datepicker-popup='{{format}}', ng-model='post.dueDate', is-open='popup1.opened', close-text='Close', alt-input-formats='altInputFormats')
+          .col-xs-2
+            button.btn.btn-primary(type="submit") #[i.icon.ion-paper-airplane]
+
+    hr
+    div(ng-include="'templates/post'", ng-repeat="post in posts")
+
+  .col-sm-3
+    //- STUDENTS
+
+    h5 Students
+    .list-group
+      a.list-group-item(href="users/{{student._id}}" ng-repeat="student in course.students") {{student.username}}

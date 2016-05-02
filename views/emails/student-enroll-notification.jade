@@ -1,0 +1,11 @@
+extends email-layout
+
+block body
+  p
+    strong Hi there #{user.first}, 
+  br 
+  | You have successfully enrolled in #{course.title}!
+  
+  p Sincerely,
+  br
+  | Courseboard

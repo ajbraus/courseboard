@@ -1,0 +1,13 @@
+extends email-layout
+
+block body
+  p
+    strong Hi there #{instructor.first}, 
+  b New Student: 
+  | #{student.first} #{student.last}
+  br
+  b Course: 
+  a(href="#{baseUrl}/courses/#{course._id}") #{course.title}
+  br
+  b Student Count: 
+  | #{course.students.count}
