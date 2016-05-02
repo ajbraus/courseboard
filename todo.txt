@@ -1,3 +1,29 @@
+
+-----------------------------------------
+
+main navbar- catalog/my courses
+my course section above course catalog
+drag and drop enroll
+flashy enroll button!
+archiving courses
+comments on posts
+see courses you are an instructor for in left col (profile)
+repeat a course? multiple start times? change the start time?
+Credits for attending courses
+Search
+
+-----------------------------------------
+
+- email 3 days before course starts
+- teach people how to make a course (kickstarter teaches you how to make a campaign)
+course-index is only upcoming courses
+Organizations
+turn in assignments
+
+
+
+
+
 DONE Courses CRUD
 DONE Associate couress with user
 
@@ -39,26 +65,3 @@ DONE - posted by links to user profile
   DONE - enroll-confirmation student
   - new-post - when a new post gets created by anyone (there a checkbox "update (email everyone)" sendEmail)
 DONE - sticky footer
-
-
-
------------------------------------------
-
-main navbar- catalog/my courses
-my course section above course catalog
-drag and drop enroll
-flashy enroll button!
-archiving courses
-comments on posts
-see courses you are an instructor for in left col (profile)
-repeat a course? multiple start times? change the start time?
-Credits for attending courses
-Search
-
------------------------------------------
-
-- email 3 days before course starts
-- teach people how to make a course (kickstarter teaches you how to make a campaign)
-course-index is only upcoming courses
-Organizations
-turn in assignments
