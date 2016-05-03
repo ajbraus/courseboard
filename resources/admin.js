@@ -9,13 +9,13 @@ var User = require('../models/user.js')
 module.exports = function(app) {
 
   app.get('/api/admin/students', auth.ensureAuthenticated, auth.ensureAdmin, function (req, res) {
-    User.find({ role: "Student" }, '+email').exec(function (err, students) {
+    User.find({ role: "Student" }, '+email').populate('courses').exec(function (err, students) {
       res.send(students)
     })
   })
 
   app.get('/api/admin/instructors', auth.ensureAuthenticated, auth.ensureAdmin, function (req, res) {
-    User.find({ role: "Instructor" }, '+email').exec(function (err, instructors) {
+    User.find({ role: "Instructor" }, '+email').populate('courses').exec(function (err, instructors) {
       res.send(instructors)
     })
   })

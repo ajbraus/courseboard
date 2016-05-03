@@ -3,8 +3,15 @@
     .page-header
       h3 Students
     .list-group
-      a.clearfix.list-group-item(ng-repeat="student in students" href="/users/{{student._id}}")
-        {{student.first}} {{student.last}} - {{student.username}} {{student.email}}
+      .list-group-item(ng-repeat="student in students")
+        a.clearfix(href="/users/{{student._id}}")
+          {{student.first}} {{student.last}} - {{student.username}} {{student.email}}
+        br
+        ul(ng-show="student.courses.length > 0")
+          li
+            a(href="/courses/{{course._id}}" ng-repeat="course in student.courses")
+              {{course.title}}
+  
 .row
   .col-sm-10.col-sm-offset-1
     .page-header
