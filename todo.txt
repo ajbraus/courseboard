@@ -1,9 +1,22 @@
 
------------------------------------------
-
 main navbar- catalog/my courses
 my course section above course catalog
-drag and drop enroll
+instructors are not "enrolled" in their own courses - when you create a course, enroll the instructor
+add objectives/competencies to courses
+add personal objectives to user
+create a "Product Team" that can be connected or independent from a course
+Product Team has
+  - user interviews
+  - user narratives
+  - user testing sessions
+  - github link
+  - live product link
+  - evaluations
+
+
+-----------------------------------------
+
+tags/categories for courses
 flashy enroll button!
 archiving courses
 comments on posts
