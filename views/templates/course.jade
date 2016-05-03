@@ -1,18 +1,21 @@
-.card.course
-  a(href="/courses/{{course._id}}")
-    h4.text-center {{course.title}}  
-  .text-muted {{course.instructor.fullname}}
-  b Starts On: 
-  span(ng-bind="course.startsOn | date:'MMMM dd, yy'")
-  br
-  b Ends On: 
-  span(ng-bind="course.endsOn | date:'MMMM dd, yy'")  
-  br
-  b Credit Hours: 
-  span(ng-bind="course.hours")
-  //- br
-  //- b Duration: 
-  //- span(ng-pluralize count="course.duration" when="{'0': 'One Off', 'one': '1 Week', 'other': '{} Weeks'}")
-  //- p
-  //-   a.btn.btn-primary(href='#', role='button') Button
-  //-   a.btn.btn-default(href='#', role='button') Button
+a.no-style(href="/courses/{{course._id}}")
+  .card.course
+    h4 {{course.title}}  
+    .text-muted {{course.instructor.fullname}}
+    p {{course.description | limitTo:180 }} . . .
+    .row
+      .col-sm-6
+        ng-pluralize(count='course.students.length', 
+                     when="{'1': '1 participant', 'other': '{} participants' }")
+        br
+        span(ng-bind="course.startsOn | date:'MMM dd, yy'")
+        | -
+        span(ng-bind="course.endsOn | date:'MMM dd, yy'")
+      .col-sm-6
+        b Hours per Week: 
+        span(ng-bind="course.hours")
+        br
+        b Location: 
+        span {{course.location}}
+
+

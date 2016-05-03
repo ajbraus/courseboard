@@ -13,24 +13,31 @@
     b Ends On: 
     span(ng-bind="course.endsOn | date:'MMMM dd, yyyy'")
     br
-    b Hours per Week in Class: 
+    b Hours per Week: 
     span {{course.hours}}
     br  
+    b Location: 
+    span {{course.location}}
+    br
     .text-left
       b Administrator: 
       a(href="/courses-edit/{{course._id}}" ng-show='currentUser._id === course.user._id || currentUser._id === course.instructor._id') Edit Course
     //- b Duration: 
     //- span(ng-pluralize count="course.duration" when="{'0': 'One Off', 'one': '1 Week', 'other': '{} Weeks'}")
 
-    hr
+    hr(class="ng-cloak" ng-click="enroll()" ng-if="!enrolled")
     .text-right
-      p
+      //- p
         //- .btn.btn-sm.btn-block.btn-danger(ng-click="unenroll()" ng-if="enrolled") Unenroll
         .btn.btn-sm.btn-primary.btn-block(class="ng-cloak" ng-click="enroll()" ng-if="!enrolled") Enroll
     hr
 
     h5 Description
     | {{course.description}}
+
+    h5 Objectives
+    .list-group
+      .list-group-item(ng-repeat="objective in course.objectives") {{objective}}
 
   .col-sm-5
     //- ANNOUNCMENTS
@@ -56,6 +63,6 @@
   .col-sm-3
     //- STUDENTS
 
-    h5 Students
+    h5 Participants
     .list-group
       a.list-group-item(href="users/{{student._id}}" ng-repeat="student in course.students") {{student.username}}

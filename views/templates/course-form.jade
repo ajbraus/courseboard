@@ -20,7 +20,7 @@
       button.btn.btn-default(type='button', ng-click='endsOpen()')
         i.glyphicon.glyphicon-calendar
 .form-group
-  label Credit Hours (Hours per Week in Class)
+  label Hours per Week
   select.form-control(ng-model="course.hours")
     option(value="1") 1 Hour
     option(value="2") 2 Hours
@@ -32,7 +32,15 @@
     option(value="8") 8 Hours
     option(value="9") 9 Hours
     option(value="10") 10 Hours
+.form-group
+  label Location
+  input.form-control(ng-model='course.location')
 
 .form-group
   label Description
   textarea.form-control(type="text" ng-model="course.description" rows="10")
+.form-group
+  label Objectives
+  p(ng-repeat='objective in course.objectives track by $index')
+    input.form-control(type='text' ng-model='course.objectives[$index]')
+  .btn.btn-default(ng-click="addObjectiveField()") Add

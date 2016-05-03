@@ -8,6 +8,12 @@ body {
 html, body {
   height: 100%;
 }
+
+a.no-style, a.no-style:hover {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
 .page-wrap {
   min-height: 100%;
   /* equal to footer height */
@@ -90,7 +96,7 @@ html, body {
 }
 
 .course {
-  
+  min-height: 210px;
   transition: all 0.2s ease-in-out;
 }
 

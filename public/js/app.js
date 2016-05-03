@@ -41,6 +41,12 @@ angular.module('courseboard', [
         publicAccess: true
       });
 
+      $routeProvider.when('/course-catalog', {
+        templateUrl: 'templates/course-index',
+        controller: 'CoursesIndexCtrl',
+        publicAccess: true
+      });
+
       $routeProvider.when('/courses-new', {
         templateUrl: 'templates/course-new',
         controller: 'CoursesNewCtrl'

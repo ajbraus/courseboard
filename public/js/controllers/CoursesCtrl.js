@@ -27,12 +27,17 @@ angular.module('courseboard')
   .controller('CoursesNewCtrl', ['$scope', '$rootScope', '$http', 'GlobalAlert', '$location', function($scope, $rootScope, $http, GlobalAlert, $location) {
     $scope.course = {
       duration: 0,
-      instructor: $rootScope.currentUser.role == "Instructor" ? $rootScope.currentUser._id : null
+      instructor: $rootScope.currentUser.role == "Instructor" ? $rootScope.currentUser._id : null,
+      objectives: [""]
     }
 
     $http.get('/api/instructors').then(function(response) {
       $scope.instructors = response.data;
     });
+
+    $scope.addObjectiveField = function() {
+      $scope.course.objectives.push("");
+    }
 
     $scope.startsOpen = function() {
       $scope.starts.opened = true;
@@ -51,6 +56,7 @@ angular.module('courseboard')
     };
 
     $scope.createCourse = function() {
+      // console.log($scope.course)
       $http.post('/api/courses', $scope.course).then(
         function (response) {
           $scope.course = {};
@@ -152,6 +158,10 @@ angular.module('courseboard')
       }
     );
 
+    $scope.addObjectiveField = function() {
+      $scope.course.objectives.push("");
+    }
+    
     $http.get('/api/instructors').then(function(response) {
       $scope.instructors = response.data;
     });

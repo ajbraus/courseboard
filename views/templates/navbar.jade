@@ -64,6 +64,10 @@ nav.navbar.navbar-inverse
                 button.btn.btn-danger(type='submit', ng-click='signup()') Sign Up
 
         li(ng-show='currentUser')
+          a(href="/course-catalog") Course Catalog
+        li(ng-show="currentUser.role != 'Student' ")
+          a(href="/courses-new") New Course
+        li(ng-show='currentUser')
           a(href="/profile") {{currentUser.username}}
         li.dropdown(ng-show='currentUser')
           a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
@@ -71,9 +75,6 @@ nav.navbar.navbar-inverse
           ul.dropdown-menu
             li
               a(href='/settings') Account Settings
-            li.divider(role='separator') 
-            li
-              a(href="/courses-new") New Course 
             li(ng-show="currentUser.admin")
               a(href='/admin') Admin Settings
             li.divider(role='separator')
