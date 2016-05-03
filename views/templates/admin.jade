@@ -1,13 +1,14 @@
 .row
-  span.badge.tag(ng-repeat='tag in tags') {{tag.name}} 
-  h3 Add Tag
-  form(ng-submit="createTag()")
-    .form-group
-      input.form-control(ng-model='tag.name')
-    .text-right
-      button.btn.btn-primary(type="submit") Add Tag
-  h3 Unconfirmed Users
-  ul.list-group
-    li.clearfix.list-group-item(ng-repeat="user in unconfirmedUsers")
-      {{user.first}} {{user.last}} - {{user.username}} {{user.email}} - {{user.type}} in {{user.location}}
-      .pull-right.btn.btn-primary(ng-click="confirmUser(user, $index)") Confirm
+  .col-sm-10.col-sm-offset-1
+    .page-header
+      h3 Students
+    .list-group
+      a.clearfix.list-group-item(ng-repeat="student in students" href="/users/{{student._id}}")
+        {{student.first}} {{student.last}} - {{student.username}} {{student.email}}
+.row
+  .col-sm-10.col-sm-offset-1
+    .page-header
+      h3 Instructors
+    .list-group
+      a.clearfix.list-group-item(ng-repeat="instructor in instructors" href="/users/{{instructor._id}}")
+        {{instructor.first}} {{instructor.last}} - {{instructor.username}} {{instructor.email}}
