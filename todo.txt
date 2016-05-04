@@ -1,4 +1,3 @@
-edit objectives/compentencies to courses
 email checkbox to send email to all particpants in a course
 
 instructors are not "enrolled" in their own courses - when you create a course, enroll the instructor
@@ -18,6 +17,7 @@ DONE - redesign course catalog page
 DONE - course displays num of students
 DONE - BUG: flashing enroll button on course show page
 DONE - add objectives/competencies to courses
+DONE edit objectives/compentencies to courses
 
 -----------------------------------------
 

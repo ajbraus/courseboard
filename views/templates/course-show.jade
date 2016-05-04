@@ -32,12 +32,12 @@
       .btn.btn-sm.btn-primary.btn-block(class="ng-cloak" ng-click="enroll()" ng-if="!enrolled") Enroll
     hr
 
+    h5 Objectives
+    ul
+      li(ng-repeat="objective in course.objectives") {{objective}}
+
     h5 Description
     | {{course.description}}
-
-    h5 Objectives
-    .list-group
-      .list-group-item(ng-repeat="objective in course.objectives") {{objective}}
 
   .col-sm-5
     //- ANNOUNCMENTS
