@@ -1,3 +1,5 @@
+
+BUG: fix reset password
 email checkbox to send email to all particpants in a course
 
 instructors are not "enrolled" in their own courses - when you create a course, enroll the instructor
@@ -34,6 +36,7 @@ add personal objectives to user
 
 -----------------------------------------
 
+be able to log in with email (students could just log in with their MS/organization email and see the courseboard for MS/organization)
 list students alphabetically?? list my courses alphabetically??
 date picker left side numbers - what are these? (week in the year - get rid of this)
 add admin so they can set all classes and assign instructors (i.e. at beginning of term) and remove setting instructor for all other accounts when creating courses
