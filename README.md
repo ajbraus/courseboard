@@ -8,8 +8,9 @@ Course Board is a platform that provides faster and easier course creation and m
 
 ## Table of contents
 * [Quick start](#quick-start)
+* [What's included](#whats-included)
 * [What's inside](#whats-inside)
-* [Bugs and features requests](#bugs-and-feature-requests)
+* [Bugs and features requests](#bugs-and-features-requests)
 * [Contributing](#contributing)
 
 ## Quick start
