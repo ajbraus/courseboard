@@ -9,16 +9,20 @@ var User = require('../models/user.js')
 module.exports = function(app) {
 
   app.get('/api/admin/students', auth.ensureAuthenticated, auth.ensureAdmin, function (req, res) {
-    User.find({ role: "Student" }, '+email').populate('courses').exec(function (err, students) {
-      res.send(students)
-    })
-  })
+    User.find({ role: "Student" }, '+email')
+        .populate({ path: 'courses', select: '_id title' })
+        .exec(function (err, students) {
+          res.send(students)
+        });
+  });
 
   app.get('/api/admin/instructors', auth.ensureAuthenticated, auth.ensureAdmin, function (req, res) {
-    User.find({ role: "Instructor" }, '+email').populate('courses').exec(function (err, instructors) {
-      res.send(instructors)
-    })
-  })
+    User.find({ role: "Instructor" }, '+email')
+        .populate({ path: 'courses', select: '_id title' })
+        .exec(function (err, instructors) {
+          res.send(instructors)
+        });
+  });
 
   app.put('/api/admin/confirm/:userId', auth.ensureAuthenticated, auth.ensureAdmin, function (req, res) {
     User.findById(req.params.userId, '+email').exec(function (err, user) {

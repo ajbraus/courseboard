@@ -41,6 +41,14 @@
   textarea.form-control(type="text" ng-model="course.description" rows="10")
 .form-group
   label Objectives
-  p(ng-repeat='objective in course.objectives track by $index')
+  p
+    small.text-muted By the end, students will be able to ...
+  .input-group.margin-bottom(ng-repeat='objective in course.objectives track by $index')
     input.form-control(type='text' ng-model='course.objectives[$index]')
-  .btn.btn-default(ng-click="addObjectiveField()") Add
+    .input-group-btn
+      .btn.btn-default(ng-click="rmObjectiveField($index)")
+        i.icon.ion-minus-circled
+  .text-right
+    .btn.btn-default(ng-click="addObjectiveField()") Add
+
+{{course}}

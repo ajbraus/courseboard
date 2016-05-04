@@ -1,4 +1,3 @@
-
 edit objectives/compentencies to courses
 email checkbox to send email to all particpants in a course
 

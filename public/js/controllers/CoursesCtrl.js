@@ -28,7 +28,7 @@ angular.module('courseboard')
     $scope.course = {
       duration: 0,
       instructor: $rootScope.currentUser.role == "Instructor" ? $rootScope.currentUser._id : null,
-      objectives: [""]
+      objectives: ["", "", ""]
     }
 
     $http.get('/api/instructors').then(function(response) {
@@ -37,6 +37,10 @@ angular.module('courseboard')
 
     $scope.addObjectiveField = function() {
       $scope.course.objectives.push("");
+    }
+
+    $scope.rmObjectiveField = function(index) {
+      $scope.course.objectives.splice(index, 1)
     }
 
     $scope.startsOpen = function() {
@@ -160,6 +164,10 @@ angular.module('courseboard')
 
     $scope.addObjectiveField = function() {
       $scope.course.objectives.push("");
+    }
+
+    $scope.rmObjectiveField = function(index) {
+      $scope.course.objectives.splice(index, 1)
     }
     
     $http.get('/api/instructors').then(function(response) {
