@@ -80,8 +80,12 @@ module.exports = function(app) {
           }
         }
 
-        // send back post`````````
-        res.send(post);
+        // send back post
+        User.findById(req.userId).exec(function(err, user) {
+          post.user = user;
+          res.send(post);  
+        })
+        
       });      
     })
 
