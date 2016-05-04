@@ -49,7 +49,7 @@ module.exports = function(app) {
   // CREATE
   app.post('/api/courses/:courseId/posts', auth.ensureAuthenticated, function (req, res) {
     // Find the course
-    Course.findById(req.params.courseId).populate('students').exec(function(err, course) {
+    Course.findById(req.params.courseId).populate('students', '+email').exec(function(err, course) {
       // Make the post object with the model
       var post = new Post(req.body);
       // assign the user of the post

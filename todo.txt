@@ -7,8 +7,6 @@ instructors are not "enrolled" in their own courses - when you create a course, 
 hitting `enter` in the password field should be the same as clicking the `Login` button.
 login with email or username
 
-
-
 DONE - main navbar
   DONE - catalog/my courses
   DONE - move new course out of dropdown
@@ -22,9 +20,20 @@ DONE BUG: date picker icon is there when you are not the instructor - only instr
 DONE BUG: when posting, it doesn't show up until refresh bc when we send back the ‘course’ object it doesn’t have the nested user subnode - add the currentUser as the ‘user’ subnode before pushing it into the array of ‘course.posts’ either on the server or the client
 DONE email checkbox to send email to all particpants in a course
 DONE clarification of assignment vs announcement when actually posting
-
+DONE links not turning into urls
 
 -----------------------------------------
+
+add gulp to minify all css and js
+
+admins should be able to enroll students in courses
+
+plan classes by objective
+  - courses have class 
+    - date/time (calendar stuff - set dates and times of classes)
+    - class objectives
+
+course-index is courses you can sign up for
 
 create a "Product Team" that can be connected or independent from a course
 Product Team has
@@ -34,7 +43,8 @@ Product Team has
   - github link
   - live product link
   - evaluations
-add personal objectives to user
+  - code reviews
+
 
 
 -----------------------------------------
@@ -55,14 +65,9 @@ Search
 
 -----------------------------------------
 
-- email 3 days before course starts
-- teach people how to make a course (kickstarter teaches you how to make a campaign)
-course-index is only upcoming courses
+
 Organizations
-turn in assignments
-calendar stuff
-
-
+add personal objectives to user
 
 
 
