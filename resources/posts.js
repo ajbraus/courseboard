@@ -84,8 +84,8 @@ module.exports = function(app) {
         User.findById(req.userId).exec(function(err, user) {
           post.user = user;
           res.send(post);  
-        })
-        
+        });
+
       });      
     })
 
