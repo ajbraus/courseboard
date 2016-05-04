@@ -65,7 +65,7 @@ nav.navbar.navbar-inverse
 
         li(ng-show='currentUser')
           a(href="/course-catalog") Course Catalog
-        li(ng-show="currentUser.role != 'Student' ")
+        li(ng-show="currentUser && currentUser.role != 'Student' ")
           a(href="/courses-new") New Course
         li(ng-show='currentUser')
           a(href="/profile") {{currentUser.username}}

@@ -5,7 +5,6 @@ instructors are not "enrolled" in their own courses - when you create a course, 
   - course index page should show partial description, # of students signed up and objectives
 
 BUG: when posting, it doesn't show up until refresh bc when we send back the ‘course’ object it doesn’t have the nested user subnode - add the currentUser as the ‘user’ subnode before pushing it into the array of ‘course.posts’ either on the server or the client
-BUG: date picker icon is there when you are not the instructor - only instructor posts assignments
 clarification of assignment vs announcement when actually posting
 
 
@@ -18,6 +17,7 @@ DONE - course displays num of students
 DONE - BUG: flashing enroll button on course show page
 DONE - add objectives/competencies to courses
 DONE edit objectives/compentencies to courses
+DONE BUG: date picker icon is there when you are not the instructor - only instructor posts assignments
 
 -----------------------------------------
 

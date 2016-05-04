@@ -45,12 +45,12 @@
           textarea.form-control(ng-model="post.body", placeholder="New announcement or assignment")
         .row
           .col-xs-9.col-md-10
-            .form-group
+            .form-group(ng-if="course.instructor._id === currentUser._id")
               p.input-group
                 span.input-group-btn
                   button.btn.btn-default(type='button', ng-click="open1()")
                     i.glyphicon.glyphicon-calendar
-                input.form-control(ng-if="course.instructor._id === currentUser._id" type='text', placeholder="Due date", uib-datepicker-popup='{{format}}', ng-model='post.dueDate', is-open='popup1.opened', close-text='Close', alt-input-formats='altInputFormats')
+                input.form-control(type='text', placeholder="Due date", uib-datepicker-popup='{{format}}', ng-model='post.dueDate', is-open='popup1.opened', close-text='Close', alt-input-formats='altInputFormats')
           .col-xs-3.col-md-2
             button.btn.btn-primary.btn-sm(type="submit") #[i.icon.ion-paper-airplane]
 
