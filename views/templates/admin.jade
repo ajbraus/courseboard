@@ -8,8 +8,8 @@
           {{student.first}} {{student.last}} - {{student.username}} {{student.email}}
         br
         ul(ng-show="student.courses.length > 0")
-          li
-            a(href="/courses/{{course._id}}" ng-repeat="course in student.courses")
+          li(ng-repeat="course in student.courses")
+            a(href="/courses/{{course._id}}")
               {{course.title}}
   
 .row
