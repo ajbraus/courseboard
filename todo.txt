@@ -4,7 +4,9 @@ instructors are not "enrolled" in their own courses - when you create a course, 
   - change list to particpants in course page and automatically enroll instructor
   - course index page should show partial description, # of students signed up and objectives
 
-clarification of assignment vs announcement when actually posting
+hitting `enter` in the password field should be the same as clicking the `Login` button.
+login with email or username
+
 
 
 DONE - main navbar
@@ -19,6 +21,7 @@ DONE edit objectives/compentencies to courses
 DONE BUG: date picker icon is there when you are not the instructor - only instructor posts assignments
 DONE BUG: when posting, it doesn't show up until refresh bc when we send back the ‘course’ object it doesn’t have the nested user subnode - add the currentUser as the ‘user’ subnode before pushing it into the array of ‘course.posts’ either on the server or the client
 DONE email checkbox to send email to all particpants in a course
+DONE clarification of assignment vs announcement when actually posting
 
 
 -----------------------------------------

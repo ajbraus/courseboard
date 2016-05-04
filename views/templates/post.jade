@@ -4,7 +4,7 @@
       .card-header(ng-show="profile")
         a(href="/courses/{{post.course._id}}") {{post.course.title}}
       hr(ng-show="profile")
-      p {{post.body}}
+      p(ng-bind-html="post.body | linky:'_blank'")
     .col-xs-1
       .text-muted.pull-right.text-large.dropdown.corner-icon(ng-hide="profile")
         .dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
@@ -14,7 +14,9 @@
             a(ng-click="deletePost(post)") Delete
   br
   .clearfix
-    small.pull-left Posted by #[a(href="/users/{{post.user._id}}") {{post.user.username}}] on #[span(ng-bind="post.createdAt | date:'EEE MMMM dd'")]
+    small.pull-left 
+      i.icon.ion-ios-email(ng-show="post.emailParticipants") 
+      | Posted by #[a(href="/users/{{post.user._id}}") {{post.user.username}}] on #[span(ng-bind="post.createdAt | date:'EEE MMMM dd'")]
     small.text-danger.pull-right(ng-show="post.dueDate")
       i.icon.ion-ios-list-outline
       |  Due on #[span(ng-bind="post.dueDate | date:'EEE MMMM dd'")]

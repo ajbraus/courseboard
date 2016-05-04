@@ -6,6 +6,7 @@ angular.module('courseboard', [
                          'courseboard.directives',
                          'ngRoute',
                          'ngResource',
+                         'ngSanitize',
                          'satellizer',
                          'hc.marked',
                          'angularMoment',
