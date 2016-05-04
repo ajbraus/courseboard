@@ -49,7 +49,7 @@ module.exports = function(app) {
   // CREATE
   app.post('/api/courses/:courseId/posts', auth.ensureAuthenticated, function (req, res) {
     // Find the course
-    Course.findById(req.params.courseId).exec(function(err, course) {
+    Course.findById(req.params.courseId).populate('students').exec(function(err, course) {
       // Make the post object with the model
       var post = new Post(req.body);
       // assign the user of the post
@@ -64,6 +64,21 @@ module.exports = function(app) {
         course.posts.unshift(post)
         // save the course
         course.save();
+
+        // if emailParticipants send emails
+        if (post.emailParticipants) {
+          for (i = 0; i < course.students.length; i++) { 
+            app.mailer.send('emails/announcement', {
+              to: course.students[i].email,
+              course: course,
+              subject: 'Announcement - ' + course.title,
+              post: post,
+              user: course.students[i]
+            }, function (err) {
+              if (err) { console.log(err); return }
+            });
+          }
+        }
 
         // send back post`````````
         res.send(post);

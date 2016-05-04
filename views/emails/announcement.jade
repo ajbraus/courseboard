@@ -1,0 +1,10 @@
+extends email-layout
+
+block body
+  p
+    strong Hi there #{user.first}, 
+
+  p New Annoucement in #[a(href="#{baseUrl}/courses/#{course._id}") #{course.title}]
+  
+  p 
+    i "#{post.body}"

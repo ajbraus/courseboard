@@ -3,16 +3,17 @@ var mongoose = require('mongoose')
   , Schema = mongoose.Schema;
 
 var PostSchema = new Schema({
-    createdAt     : { type: Date }
-  , updatedAt     : { type: Date }
-
-  , body          : { type: String, required: true }
-  , dueDate       : { type: Date }
-  // , kind          : { type: String, required: true }
-
-  , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true}
-  , course        : { type: Schema.Types.ObjectId, ref: 'Course', required: true}
-  // , comments      : [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
+    createdAt           : { type: Date }
+  , updatedAt           : { type: Date }
+      
+  , body                : { type: String, required: true }
+  , dueDate             : { type: Date }
+  , emailParticipants   : { type: Boolean }
+  // , kind             : { type: String, required: true }
+  
+  , user                : { type: Schema.Types.ObjectId, ref: 'User', required: true}
+  , course              : { type: Schema.Types.ObjectId, ref: 'Course', required: true}
+  // , comments         : [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 })
 
 PostSchema.pre('save', function(next){
