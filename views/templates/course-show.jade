@@ -39,7 +39,7 @@
     h5 Description
     | {{course.description}}
 
-  .col-sm-5
+  .col-sm-6
     //- ANNOUNCMENTS
     .card
       h5 Announcements/Assignments
@@ -60,9 +60,9 @@
     hr
     div(ng-include="'templates/post'", ng-repeat="post in posts")
 
-  .col-sm-3
+  .col-sm-2
     //- STUDENTS
 
-    h5 Participants
+    h4 Participants
     .list-group
       a.list-group-item(href="users/{{student._id}}" ng-repeat="student in course.students") {{student.username}}
