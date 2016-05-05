@@ -4,8 +4,13 @@ instructors are not "enrolled" in their own courses - when you create a course, 
   - change list to particpants in course page and automatically enroll instructor
   - course index page should show partial description, # of students signed up and objectives
 
+Loading spinner
+
 hitting `enter` in the password field should be the same as clicking the `Login` button.
 login with email or username
+
+Course drafts vs. published
+publish a new course, send everyone an email
 
 DONE - main navbar
   DONE - catalog/my courses
@@ -24,8 +29,6 @@ DONE links not turning into urls
 
 -----------------------------------------
 
-add gulp to minify all css and js
-
 admins should be able to enroll students in courses
 
 plan classes by objective
@@ -37,6 +40,7 @@ course-index is courses you can sign up for
 
 create a "Product Team" that can be connected or independent from a course
 Product Team has
+  - participants
   - user interviews
   - user narratives
   - user testing sessions
@@ -45,9 +49,9 @@ Product Team has
   - evaluations
   - code reviews
 
-
-
 -----------------------------------------
+
+add gulp to minify all css and js
 
 be able to log in with email (students could just log in with their MS/organization email and see the courseboard for MS/organization)
 list students alphabetically?? list my courses alphabetically??

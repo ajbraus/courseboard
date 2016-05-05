@@ -6,7 +6,7 @@
       hr(ng-show="profile")
       p(ng-bind-html="post.body | linky:'_blank'")
     .col-xs-1
-      .text-muted.pull-right.text-large.dropdown.corner-icon(ng-hide="profile")
+      .text-muted.pull-right.text-large.dropdown.corner-icon(ng-hide="profile || post.user._id != currentUser._id")
         .dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
           span.caret
         ul.dropdown-menu.short-dropdown-menu(aria-labelledby='dropdownMenu1')
