@@ -43,24 +43,30 @@ module.exports = function(app) {
 
   // LOGIN
   app.post('/auth/login', function (req, res) {
-    User.findOne({ email: req.body.email }, '+password', function (err, user) {
-      // CHECK IF ACCOUNT EXISTS
-      if (!user) {
-        return res.status(401).send({ message: 'Wrong email or password' });
-      }
-      
-      // CHECK CONFIRMEDAT
-      // if (!user.confirmedAt) {
-      //   return res.status(401).send({ message: 'Awaiting confirmation' });
-      // }
+    console.log(req.body.email)
+    User.findOne({ email: req.body.email }, '+password', function (err, emailUser) {
+      User.findOne({ username: req.body.email }, '+password', function(err, usernameUser) {
+        // CHECK IF ACCOUNT EXISTS
 
-      // CHECK PASSWORD
-      user.comparePassword(req.body.password, function (err, isMatch) {
-        if (!isMatch) {
+        var user = emailUser || usernameUser;
+        console.log(user)
+        console.log(req.body.email)
+        if (!user) {
           return res.status(401).send({ message: 'Wrong email or password' });
         }
-        var token = auth.createJWT(user);
-        res.send({ token: token });
+        // CHECK CONFIRMEDAT
+        // if (!user.confirmedAt) {
+        //   return res.status(401).send({ message: 'Awaiting confirmation' });
+        // }
+
+        // CHECK PASSWORD
+        user.comparePassword(req.body.password, function (err, isMatch) {
+          if (!isMatch) {
+            return res.status(401).send({ message: 'Wrong email or password' });
+          }
+          var token = auth.createJWT(user);
+          res.send({ token: token });
+        });
       });
     });
   });

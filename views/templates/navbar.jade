@@ -21,11 +21,11 @@ nav.navbar.navbar-inverse
           .dropdown-menu.dropdown-form
             form
               .form-group
-                label Email
-                input.form-control(type='email', ng-model='user.email')
+                label Username or Email
+                input.form-control(type='text', ng-model='user.email' required)
               .form-group
                 label Password
-                input.form-control(type='password', ng-model='user.password')
+                input.form-control(type='password', ng-model='user.password' required)
               .text-right
                 a.btn.btn-link.link-text(href="/password-new") Forgot Password 
                 button.btn.btn-danger(type='submit', ng-click='login()') Log In

@@ -1,5 +1,3 @@
-BUG: fix reset password
-
 instructors are not "enrolled" in their own courses - when you create a course, enroll the instructor
 
 BUG: flashing enroll button on course show page
@@ -12,7 +10,6 @@ login with email or username
 
 Course drafts vs. published
 publish a new course, send everyone an email
-
 
 DONE main navbar
   DONE - catalog/my courses
@@ -29,6 +26,7 @@ DONE email checkbox to send email to all particpants in a course
 DONE clarification of assignment vs announcement when actually posting
 DONE links not turning into urls
 DONE change list to particpants in course page and automatically enroll instructor
+DONE BUG: fix reset password
 
 -----------------------------------------
 
