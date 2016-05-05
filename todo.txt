@@ -4,11 +4,7 @@ BUG: flashing enroll button on course show page
 
 Loading spinner
 
-hitting `enter` in the password field should be the same as clicking the `Login` button.
-
-login with email or username
-
-Course drafts vs. published
+Course drafts vs. published - has start and end date or not or is past 
 publish a new course, send everyone an email
 
 DONE main navbar
@@ -27,10 +23,10 @@ DONE clarification of assignment vs announcement when actually posting
 DONE links not turning into urls
 DONE change list to particpants in course page and automatically enroll instructor
 DONE BUG: fix reset password
+DONE login with email or username
+DONE hitting `enter` in the password field should be the same as clicking the `Login` button.
 
 -----------------------------------------
-
-admins should be able to enroll students in courses
 
 plan classes by objective
   - courses have class 
@@ -40,15 +36,16 @@ plan classes by objective
 course-index is courses you can sign up for
 
 create a "Product Team" that can be connected or independent from a course
-Product Team has
+Product Team has 
   - participants
-  - user interviews
-  - user narratives
-  - user testing sessions
   - github link
   - live product link
-  - evaluations
-  - code reviews
+  - updates
+    - user interviews
+    - user narratives
+    - user testing sessions
+    - code reviews
+    - evaluations
 
 -----------------------------------------
 

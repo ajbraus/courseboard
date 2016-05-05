@@ -22,11 +22,11 @@
     //- b Duration: 
     //- span(ng-pluralize count="course.duration" when="{'0': 'One Off', 'one': '1 Week', 'other': '{} Weeks'}")
 
-    hr(class="ng-cloak" ng-click="enroll()" ng-if="!enrolled")
+    hr(class="ng-cloak" ng-cloak ng-click="enroll()" ng-show="!enrolled")
     .text-right
       //- p
         //- .btn.btn-sm.btn-block.btn-danger(ng-click="unenroll()" ng-if="enrolled") Unenroll
-      .btn.btn-primary.btn-block(class="ng-cloak" ng-click="enroll()" ng-if="!enrolled") Enroll
+      .btn.btn-primary.btn-block(class="ng-cloak" ng-cloak ng-click="enroll()" ng-show="!enrolled") Enroll
     hr
 
     h5 Objectives

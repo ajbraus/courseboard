@@ -11,10 +11,18 @@ var User = require('../models/user.js')
 module.exports = function(app) {
   // INDEX
   app.get('/api/courses', function (req, res) {
-    Course.find().populate({ path: 'instructor', select: 'fullname first last' }).exec( (error, courses) => {
+    // RETURN COURSES THAT START FEWER THAN 10 DAYS AGO
+    var d = new Date();
+    d.setDate(d.getDate()-10);
 
-      res.send(courses);
-    });
+    Course.find({ "startsOn": { "$gte": d } })
+          .populate({ path: 'instructor', select: 'fullname first last' })
+          .exec(function(err, courses) {
+            // {"created_on": {"$gte": new Date(2012, 7, 14), "$lt": new Date(2012, 7, 15)}})
+            if (err) { return res.status(400).send(err) }
+
+            res.send(courses);
+          });
   });
 
   // CREATE

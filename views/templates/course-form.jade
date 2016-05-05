@@ -1,40 +1,53 @@
-.form-group
-  label Title*
-  input.form-control(type="text" ng-model="course.title" required)
-.form-group
-  label Instructor
-  select.form-control(ng-model="course.instructor")
-    option(ng-repeat="instructor in instructors" value="{{instructor._id}}") {{instructor.fullname}}
-.form-group
-  label Start Date
-  p.input-group
-    input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.startsOn', is-open='starts.opened', close-text='Close', alt-input-formats='altInputFormats')
-    span.input-group-btn
-      button.btn.btn-default(type='button', ng-click='startsOpen()')
-        i.glyphicon.glyphicon-calendar
-.form-group
-  label End Date
-  p.input-group
-    input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.endsOn', is-open='ends.opened', close-text='Close', alt-input-formats='altInputFormats')
-    span.input-group-btn
-      button.btn.btn-default(type='button', ng-click='endsOpen()')
-        i.glyphicon.glyphicon-calendar
-.form-group
-  label Hours per Week
-  select.form-control(ng-model="course.hours")
-    option(value="1") 1 Hour
-    option(value="2") 2 Hours
-    option(value="3") 3 Hours
-    option(value="4") 4 Hours
-    option(value="5") 5 Hours
-    option(value="6") 6 Hours
-    option(value="7") 7 Hours
-    option(value="8") 8 Hours
-    option(value="9") 9 Hours
-    option(value="10") 10 Hours
-.form-group
-  label Location
-  input.form-control(ng-model='course.location')
+.row
+  .col-sm-8
+    .form-group
+      label Title*
+      input.form-control(type="text" ng-model="course.title" required)
+  .col-sm-4
+    .form-group
+      label Instructor
+      select.form-control(ng-model="course.instructor")
+        option(ng-repeat="instructor in instructors" value="{{instructor._id}}") {{instructor.fullname}}
+.row
+  .col-xs-12
+    .text-muted
+      | *Setting a Start and End Date will publish your course
+.row
+  .col-sm-6
+    .form-group
+      label Start Date
+      p.input-group
+        input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.startsOn', is-open='starts.opened', close-text='Close', alt-input-formats='altInputFormats')
+        span.input-group-btn
+          button.btn.btn-default(type='button', ng-click='startsOpen()')
+            i.glyphicon.glyphicon-calendar
+  .col-sm-6
+    .form-group
+      label End Date
+      p.input-group
+        input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.endsOn', is-open='ends.opened', close-text='Close', alt-input-formats='altInputFormats')
+        span.input-group-btn
+          button.btn.btn-default(type='button', ng-click='endsOpen()')
+            i.glyphicon.glyphicon-calendar
+.row
+  .col-sm-6
+    .form-group
+      label Location
+      input.form-control(ng-model='course.location')
+  .col-sm-6
+    .form-group
+      label Hours per Week
+      select.form-control(ng-model="course.hours")
+        option(value="1") 1 Hour
+        option(value="2") 2 Hours
+        option(value="3") 3 Hours
+        option(value="4") 4 Hours
+        option(value="5") 5 Hours
+        option(value="6") 6 Hours
+        option(value="7") 7 Hours
+        option(value="8") 8 Hours
+        option(value="9") 9 Hours
+        option(value="10") 10 Hours
 
 .form-group
   label Description
