@@ -1,31 +1,34 @@
 BUG: fix reset password
 
 instructors are not "enrolled" in their own courses - when you create a course, enroll the instructor
-  - change list to particpants in course page and automatically enroll instructor
-  - course index page should show partial description, # of students signed up and objectives
+
+BUG: flashing enroll button on course show page
 
 Loading spinner
 
 hitting `enter` in the password field should be the same as clicking the `Login` button.
+
 login with email or username
 
 Course drafts vs. published
 publish a new course, send everyone an email
 
-DONE - main navbar
+
+DONE main navbar
   DONE - catalog/my courses
   DONE - move new course out of dropdown
-DONE - add course location/room
-DONE - redesign course catalog page
-DONE - course displays num of students
-DONE - BUG: flashing enroll button on course show page
-DONE - add objectives/competencies to courses
+DONE add course location/room
+DONE redesign course catalog page
+  DONE - course index page should show partial description, # of students signed up and objectives
+DONE course displays num of students
+DONE add objectives/competencies to courses
 DONE edit objectives/compentencies to courses
 DONE BUG: date picker icon is there when you are not the instructor - only instructor posts assignments
 DONE BUG: when posting, it doesn't show up until refresh bc when we send back the ‘course’ object it doesn’t have the nested user subnode - add the currentUser as the ‘user’ subnode before pushing it into the array of ‘course.posts’ either on the server or the client
 DONE email checkbox to send email to all particpants in a course
 DONE clarification of assignment vs announcement when actually posting
 DONE links not turning into urls
+DONE change list to particpants in course page and automatically enroll instructor
 
 -----------------------------------------
 
@@ -58,11 +61,12 @@ list students alphabetically?? list my courses alphabetically??
 date picker left side numbers - what are these? (week in the year - get rid of this)
 add admin so they can set all classes and assign instructors (i.e. at beginning of term) and remove setting instructor for all other accounts when creating courses
 manage my courses as instructor
+  - see courses you are an instructor for in left col (profile)
+  - separate section only for instructor profile pages
 tags/categories for courses
-flashy enroll button! - unenroll is very unintuitive
+unenroll is very unintuitive
 archiving courses
 comments on posts
-see courses you are an instructor for in left col (profile)
 repeat a course? multiple start times? change the start time?
 Credits for attending courses
 Search
@@ -72,8 +76,6 @@ Search
 
 Organizations
 add personal objectives to user
-
-
 
 DONE Courses CRUD
 DONE Associate couress with user

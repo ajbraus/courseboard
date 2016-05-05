@@ -121,7 +121,8 @@ module.exports = function(app) {
   // UPDATE PASSWORD
   app.put('/auth/passwords/edit/:token', function (req, res) {
     // Find user by token
-    User.findOne({ resetPasswordToken: req.params.token }).where('resetPasswordExpires').gt(Date.now()).exec(function (err, user) {
+    console.log(req.body);
+    User.findOne({ resetPasswordToken: req.params.token }).where('resetPasswordExp').gt(Date.now()).exec(function (err, user) {
       if (!user) {
         return res.status(409).send({ message: 'Token is not valid' });
       }
