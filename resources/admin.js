@@ -10,6 +10,7 @@ module.exports = function(app) {
 
   app.get('/api/admin/students', auth.ensureAuthenticated, auth.ensureAdmin, function (req, res) {
     User.find({ role: "Student" }, '+email')
+        .sort([['first', 'descending']])
         .populate({ path: 'courses', select: '_id title' })
         .exec(function (err, students) {
           res.send(students)

@@ -1,4 +1,6 @@
-instructors are not "enrolled" in their own courses - when you create a course, enroll the instructor
+See draft courses ...
+  - your profile
+  - admin dashboard
 
 BUG: flashing enroll button on course show page
 
@@ -25,6 +27,7 @@ DONE change list to particpants in course page and automatically enroll instruct
 DONE BUG: fix reset password
 DONE login with email or username
 DONE hitting `enter` in the password field should be the same as clicking the `Login` button.
+DONE instructors are not "enrolled" in their own courses - when you create a course, enroll the instructor
 
 -----------------------------------------
 
@@ -32,8 +35,6 @@ plan classes by objective
   - courses have class 
     - date/time (calendar stuff - set dates and times of classes)
     - class objectives
-
-course-index is courses you can sign up for
 
 create a "Product Team" that can be connected or independent from a course
 Product Team has 
@@ -49,9 +50,9 @@ Product Team has
 
 -----------------------------------------
 
-add gulp to minify all css and js
+test our API
 
-be able to log in with email (students could just log in with their MS/organization email and see the courseboard for MS/organization)
+add gulp to minify all css and js
 list students alphabetically?? list my courses alphabetically??
 date picker left side numbers - what are these? (week in the year - get rid of this)
 add admin so they can set all classes and assign instructors (i.e. at beginning of term) and remove setting instructor for all other accounts when creating courses

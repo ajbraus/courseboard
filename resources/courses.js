@@ -33,7 +33,16 @@ module.exports = function(app) {
     course.save(function(err, course) {
       if (err) { return res.status(400).send(err) }
 
-      res.send(course);
+      // ENROLL INSTRUCTOR
+      User.findById(course.instructor).exec(function(err, user) {
+        course.students.push(req.userId);
+        course.save();
+
+        user.courses.unshift(course);
+        user.save();
+
+        res.send(course);
+      });
     });
 
   });
