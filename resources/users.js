@@ -47,10 +47,7 @@ module.exports = function(app) {
     User.findOne({ email: req.body.email }, '+password', function (err, emailUser) {
       User.findOne({ username: req.body.email }, '+password', function(err, usernameUser) {
         // CHECK IF ACCOUNT EXISTS
-
         var user = emailUser || usernameUser;
-        console.log(user)
-        console.log(req.body.email)
         if (!user) {
           return res.status(401).send({ message: 'Wrong email or password' });
         }
@@ -73,22 +70,29 @@ module.exports = function(app) {
 
   // SIGNUP 
   app.post('/auth/signup', function (req, res) {
-    User.findOne({ email: req.body.email }, function (err, user) {
-      if (user) {
-        return res.status(409).send({ message: 'Email is already taken' });
-      }
-      var user = new User(req.body);
-      user.save(function(err) {
-        if (err) { return res.status(400).send(err) }
+    User.findOne({ email: req.body.email }, '+password', function (err, emailUser) {
+      User.findOne({ username: req.body.username }, '+password', function(err, usernameUser) {
+        // CHECK IF EMAIL TAKEN
+        if (emailUser) {
+          return res.status(409).send({ message: 'Email is already taken' });
+        }
+        // CHECK IF USERNAME TAKEN
+        if (usernameUser) {
+          return res.status(409).send({ message: 'Username is already taken' });
+        }
+        var user = new User(req.body);
+        user.save(function(err) {
+          if (err) { return res.status(400).send(err) }
 
-        res.send({ token: auth.createJWT(user) });
+          res.send({ token: auth.createJWT(user) });
 
-        app.mailer.send('emails/welcome', {
-          to: user.email,
-          subject: 'Welcome to Courseboard',
-          user: user
-        }, function (err) {
-          if (err) { console.log(err); return }
+          app.mailer.send('emails/welcome', {
+            to: user.email,
+            subject: 'Welcome to Courseboard',
+            user: user
+          }, function (err) {
+            if (err) { console.log(err); return }
+          });
         });
       });
     });
