@@ -1,4 +1,5 @@
 var User = require('../models/user.js')
+  , Course = require('../models/course.js')
   , qs = require('querystring')
   , jwt = require('jwt-simple')
   , request = require('request')
@@ -14,6 +15,15 @@ module.exports = function(app) {
         .populate({ path: 'courses', select: '_id title' })
         .exec(function (err, students) {
           res.send(students)
+        });
+  });
+
+  app.get('/api/admin/courses', auth.ensureAuthenticated, auth.ensureAdmin, function (req, res) {
+    Course.find()
+        .sort([['title', 'ascending']])
+        .populate({ path: 'instructor', select: 'fullname first last' })
+        .exec(function (err, courses) {
+          res.send(courses)
         });
   });
 

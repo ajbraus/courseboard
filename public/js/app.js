@@ -10,7 +10,6 @@ angular.module('courseboard', [
                          'satellizer',
                          'hc.marked',
                          'angularMoment',
-                         'ngTagsInput',
                          'ui.bootstrap',
                          'ngLodash'
                          ])

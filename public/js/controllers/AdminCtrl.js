@@ -22,5 +22,13 @@ angular.module('courseboard')
         .error(function (response) {
           GlobalAlert.add('warning', response.data.message, 2000);
         });
+
+      $http.get('/api/admin/courses')
+        .success(function (response) {
+          $scope.courses = response;
+        })
+        .error(function (response) {
+          GlobalAlert.add('warning', response.data.message, 2000);
+        });
     }
   }]);
