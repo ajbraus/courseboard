@@ -93,14 +93,17 @@ angular.module('courseboard')
     }
   }])
 
-  .controller('PasswordEditCtrl', ['$scope', '$http', '$routeParams', 'GlobalAlert', function($scope, $http, $routeParams, GlobalAlert) {
-    console.log('in password edit ctrl')
-    $http.put('/auth/passwords/edit/' + $routeParams.token).then(
-      function (response) {
-        $location.path('/');
-        GlobalAlert.add('success', "Password updated", 2000);
-      },
-      function (response) {
-        GlobalAlert.add('warning', response.data.message, 2000);
-      })
+  .controller('PasswordEditCtrl', ['$scope', '$http', '$auth', 'Auth', '$routeParams', '$location', 'GlobalAlert', function($scope, $http, $auth, Auth, $routeParams, $location, GlobalAlert) {
+    console.log('in password edit ctrl');
+    $scope.updatePassword = function() {
+      $http.put('/auth/passwords/edit/' + $routeParams.token, $scope.user).then(
+        function (response) {
+          $location.path('/');
+          GlobalAlert.add('success', "Password updated", 2000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 2000);
+        }
+      );
+    }
   }]);
