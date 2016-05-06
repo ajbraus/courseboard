@@ -53,7 +53,7 @@ Course Board is a platform that provides faster and easier course creation and m
 
 1. Create a .env file with token in the main project directory
   ```
-  touch .env echo TOKEN_SECRET=SuperSecretToken
+  touch .env | echo TOKEN_SECRET=SuperSecretToken > .env
   ```
 1. Run the server
 

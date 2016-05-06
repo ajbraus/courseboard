@@ -76,9 +76,12 @@ angular.module('courseboard')
   }])
 
   .controller('CoursesShowCtrl', ['$scope', '$rootScope', 'lodash', '$http', '$routeParams', 'GlobalAlert', function($scope, $rootScope, lodash, $http, $routeParams, GlobalAlert) {
+    $scope.isCoursesLoaded = false;
+    
     $http.get('/api/courses/' + $routeParams.id).then(
       function (response) {
         $scope.course = response.data;
+        $scope.isCoursesLoaded = true;
 
         var index = _.map($scope.course.students, '_id').indexOf($rootScope.currentUser._id)
         $scope.enrolled = index > -1
