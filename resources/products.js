@@ -1,6 +1,6 @@
 
 var User = require('../models/user.js')
-  , Course = require('../models/course.js')
+  , Product = require('../models/product.js')
   , Tag = require('../models/tag.js')
   , auth = require('./auth.js')
   , request = require('request')
@@ -10,99 +10,100 @@ var User = require('../models/user.js')
 
 module.exports = function(app) {
   // INDEX
-  app.get('/api/courses', function (req, res) {
+  app.get('/api/products', function (req, res) {
     // RETURN COURSES THAT START FEWER THAN 10 DAYS AGO
     var d = new Date();
     d.setDate(d.getDate()-10);
 
-    Course.find({ "startsOn": { "$gte": d } })
+    Product.find({ "startsOn": { "$gte": d } })
           .populate({ path: 'instructor', select: 'fullname first last' })
-          .exec(function(err, courses) {
+          .exec(function(err, products) {
             // {"created_on": {"$gte": new Date(2012, 7, 14), "$lt": new Date(2012, 7, 15)}})
             if (err) { return res.status(400).send(err) }
 
-            res.send(courses);
+            res.send(products);
           });
   });
 
   // CREATE
-  app.post('/api/courses', auth.ensureAuthenticated, function (req, res) {
-    var course = new Course(req.body);
-    course.user = req.userId
+  app.post('/api/products', auth.ensureAuthenticated, function (req, res) {
+    console.log('here');
+    var product = new Product(req.body);
+    product.user = req.userId
 
-    course.save(function(err, course) {
+    product.save(function(err, product) {
       if (err) { return res.status(400).send(err) }
 
-      // ENROLL INSTRUCTOR
-      User.findById(course.instructor).exec(function(err, user) {
-        course.students.push(req.userId);
-        course.save();
+      // ENROLL CREATOR
+      User.findById(product.instructor).exec(function(err, user) {
+        product.contributors.push(req.userId);
+        product.save();
 
-        user.courses.unshift(course);
+        user.products.unshift(product);
         user.save();
 
-        res.send(course);
+        res.send(product);
       });
     });
 
   });
 
   // SHOW
-  app.get('/api/courses/:id', function (req, res) {
-    Course.findById(req.params.id)
+  app.get('/api/products/:id', function (req, res) {
+    Product.findById(req.params.id)
           .populate('user')
           .populate('students')
           .populate('posts')
           .populate({ path: 'instructor', select: 'fullname first last' })
-          .exec(function (err, course) {
+          .exec(function (err, product) {
             
       if (err) { return res.status(400).send(err) }
 
-      res.send(course);
+      res.send(product);
     });
   });
 
   // UPDATE
-  app.put('/api/courses/:id', auth.ensureAuthenticated, function (req, res) {
+  app.put('/api/products/:id', auth.ensureAuthenticated, function (req, res) {
     console.log(req.body)
-    Course.findByIdAndUpdate(req.body._id, req.body, function (err, course) {
-      if (!course) { return res.status(400).send({message: 'Course not found' }) }
+    Product.findByIdAndUpdate(req.body._id, req.body, function (err, product) {
+      if (!product) { return res.status(400).send({message: 'Product not found' }) }
 
-      res.status(200).send(course);
+      res.status(200).send(product);
     });
   });
 
   // DELETE
-  app.delete('/api/courses/:id', auth.ensureAuthenticated, function (req, res) {
-    Course.findById(req.params.id).exec(function (err, course) {
+  app.delete('/api/products/:id', auth.ensureAuthenticated, function (req, res) {
+    Product.findById(req.params.id).exec(function (err, product) {
       if (err) { return res.status(400).send(err) }
 
-      courseId = course._id;
-      course.remove();
+      productId = product._id;
+      product.remove();
 
-      res.send("Successfully removed course: " + courseId);
+      res.send("Successfully removed product: " + productId);
     })
   });
 
   // ENROLL
-  app.put('/api/courses/:id/enroll', auth.ensureAuthenticated, function (req, res) {
-    Course.findById(req.params.id, function (err, course) {
-      if (!course) { return res.status(400).send({message: 'Course not found' }) }
+  app.put('/api/products/:id/enroll', auth.ensureAuthenticated, function (req, res) {
+    Product.findById(req.params.id, function (err, product) {
+      if (!product) { return res.status(400).send({message: 'Product not found' }) }
 
-      if (!(course.students.indexOf(req.userId) > -1)) {
-        course.students.push(req.userId);
+      if (!(product.students.indexOf(req.userId) > -1)) {
+        product.students.push(req.userId);
         User.findById(req.userId, '+email').exec(function (err, user) {
           if (err) { return res.status(400).send(err) }
 
             console.log(user)
 
-          user.courses.unshift(course);
+          user.products.unshift(product);
           user.save(function(err) {
             // SEND NOTIFICATION TO STUDENT
             app.mailer.send('emails/student-enroll-notification', {
               to: user.email,
-              course: course,
-              subject: 'Welcome to ' + course.title,
+              product: product,
+              subject: 'Welcome to ' + product.title,
               user: user
             }, function (err) {
               if (err) { console.log(err); return }
@@ -110,13 +111,13 @@ module.exports = function(app) {
           });
 
           // SEND NOTIFICATION TO INSTRUCTOR
-          User.findById(course.instructor, '+email').exec(function (err, instructor) {
+          User.findById(product.instructor, '+email').exec(function (err, instructor) {
             console.log(instructor)
             app.mailer.send('emails/enroll-notification', {
               to: instructor.email,
               subject: 'New Student: ' + user.first + " " + user.last,
               instructor: instructor,
-              course: course,
+              product: product,
               student: user
             }, function (err) {
               if (err) { console.log(err); return }
@@ -125,31 +126,31 @@ module.exports = function(app) {
         })
       }
       else { return res.status(400).send({message: 'Already enrolled!'})}
-      course.save()
+      product.save()
 
-      res.send(course);
+      res.send(product);
     });
   });
 
   // UNENROLL
-  app.put('/api/courses/:id/unenroll', auth.ensureAuthenticated, function (req, res) {
-    Course.findById(req.params.id, function (err, course) {
-      if (!course) { return res.status(400).send({message: 'Course not found' }) }
+  app.put('/api/products/:id/unenroll', auth.ensureAuthenticated, function (req, res) {
+    Product.findById(req.params.id, function (err, product) {
+      if (!product) { return res.status(400).send({message: 'Product not found' }) }
 
-      var index = course.students.indexOf(req.userId);
+      var index = product.students.indexOf(req.userId);
     
       if (index > -1) {
-        course.students.splice(index, 1);
+        product.students.splice(index, 1);
         User.findById(req.userId).exec(function (err, user) {
           if (err) { return res.status(400).send(err) }
 
-          user.courses.splice(user.courses.indexOf(course._id), 1);
+          user.products.splice(user.products.indexOf(product._id), 1);
           user.save();
         })
       }
-      course.save()
+      product.save()
 
-      res.send(course);
+      res.send(product);
     });
   });
 }

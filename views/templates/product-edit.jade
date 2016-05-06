@@ -1,0 +1,11 @@
+.container
+  .row
+    .col-sm-8.col-sm-offset-2
+      legend Edit Product
+      form(ng-submit="updateProduct()")
+        div(ng-include="'templates/product-form'")
+        .btn-toolbar.pull-right
+          .btn-group
+            .btn.btn-danger(ng-click="deleteProduct()") Delete Product
+          .btn-group
+            button.btn.btn-primary(type="submit") Update Product

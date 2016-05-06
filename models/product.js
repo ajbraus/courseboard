@@ -8,28 +8,24 @@ function toTitle(v) {
 }
 
 
-var CourseSchema = new Schema({
+var ProductSchema = new Schema({
     createdAt     : { type: Date }
   , updatedAt     : { type: Date }
 
   , title         : { type: String, required: true }
   , description   : { type: String, required: true }
-  , instructor    : { type: String, set: toTitle }
-  , duration      : { type: String }
-  , startsOn      : { type: Date }
-  , endsOn        : { type: Date }
-  , hours         : { type: String }
-  , location      : { type: String }
-  , objectives    : [String]
+  , githubUrl     : { type: String }
+  , agileUrl      : { type: String }
+  , liveUrl       : { type: String }
 
-  , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true }
+  // , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true }
   , instructor    : { type: Schema.Types.ObjectId, ref: 'User', required: true }
-  , students      : [{ type: Schema.Types.ObjectId, ref: 'User' }]
-  , posts         : [{ type: Schema.Types.ObjectId, ref: 'Post' }]
+  , contributors  : [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  // , posts         : [{ type: Schema.Types.ObjectId, ref: 'Post' }]
 })
 
 // Compound index
-CourseSchema.index({
+ProductSchema.index({
     title: 'text'
   , body:  'text'
   , tags:  'text'
@@ -41,7 +37,7 @@ CourseSchema.index({
 });
 
 // SET createdAt and updatedAt
-CourseSchema.pre('save', function(next) {
+ProductSchema.pre('save', function(next) {
   now = new Date();
   this.updatedAt = now;
   if ( !this.createdAt ) {
@@ -50,6 +46,6 @@ CourseSchema.pre('save', function(next) {
   next();
 });
 
-var Course = mongoose.model('Course', CourseSchema);
+var Product = mongoose.model('Product', ProductSchema);
 
-module.exports = Course;
+module.exports = Product;
