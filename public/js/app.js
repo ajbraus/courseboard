@@ -62,6 +62,28 @@ angular.module('courseboard', [
         controller: 'CoursesEditCtrl'
       });
 
+      // PRODUCTS
+      $routeProvider.when('/product-new', {
+        templateUrl: 'templates/product-new',
+        controller: 'ProductsNewCtrl'
+      });
+
+      $routeProvider.when('/product-catalog', {
+        templateUrl: 'templates/product-index',
+        controller: 'ProductsIndexCtrl',
+        publicAccess: true
+      });
+
+      $routeProvider.when('/products/:id', {
+        templateUrl: 'templates/product-show',
+        controller: 'ProductsShowCtrl'
+      });
+
+      $routeProvider.when('/products-edit/:id', {
+        templateUrl: 'templates/product-edit',
+        controller: 'ProductsEditCtrl'
+      });
+
       // PASSWORD
       $routeProvider.when('/password-edit', {
         templateUrl: 'templates/password-edit',
