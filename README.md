@@ -1,7 +1,9 @@
 # [Course Board](https://meancourseboard.herokuapp.com/)
-![npm version](https://img.shields.io/npm/v/bootstrap.svg)
-![node version](https://img.shields.io/node/v/gh-badges.svg)
+![node version](https://img.shields.io/badge/node-4.1.0-brightgreen.svg)
+![npm version](https://img.shields.io/badge/npm-2.14.3-red.svg)
 ![mongod](https://img.shields.io/myget/mongodb/v/MongoDB.Driver.Core.svg?maxAge=2592000)
+
+![CourseBoard](giphy.gif)
 
 ## Introduction
 Course Board is a platform that provides faster and easier course creation and management using a course management system.
@@ -14,28 +16,51 @@ Course Board is a platform that provides faster and easier course creation and m
 * [Contributing](#contributing)
 
 ## Quick start
-* Clone this repo
-* Skip to run mongod if you have Homebrew, Node.js, npm and nodemon installed
-* Install Homebrew
-  ```ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"```
-  * Ensure Homebrew is up to date
+1. Clone this repo
+1. Skip to run mongod if you have Homebrew, Node.js, npm and nodemon installed
+1. Install Homebrew
+
+  ```
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  ```
+  * Ensure Homebrew is up to date by running
   ```brew update```
-  * As a safe measure, make sure your system is ready to brew
+  * As a safe measure, make sure your system is ready to brew with
   ```brew doctor```
   * Add Homebrew location to your ```$PATH``` and source your bash profile after adding/saving this ```export PATH="/usr/local/bin:$PATH"```
-* Install Node (npm will be installed with node)
-  ```brew install node```
-* Install nodemon
-  ```npm install -g nodemon```
-* Install all dependencies
-  ```npm install```
-* Run the database. Once the database is running, you can close out of that tab.
-  ```mongod```
-* Create a .env file with token in the main project directory
-  ```touch .env echo TOKEN_SECRET=SuperSecretToken```
-* Run the server
-  ```nodemon```
-* Go to localhost:1337
+1. Install Node (npm will be installed with node)
+
+  ```
+  brew install node
+  ```
+
+1. Install nodemon
+
+  ```
+  npm install -g nodemon
+  ```
+
+1. Install all dependencies
+
+  ```
+  npm install
+  ```
+1. Run the database. Once the database is running, you can close out of that tab.
+
+  ```
+  mongod
+  ```
+
+1. Create a .env file with token in the main project directory
+  ```
+  touch .env echo TOKEN_SECRET=SuperSecretToken
+  ```
+1. Run the server
+
+  ```
+  nodemon
+  ```
+* Go to [localhost:1337](http://localhost:1337) in your favorite browser (Chrome duh..)
 
 ### What's included
 Within the download you'll find the following directories and files, logically grouping common assets. You'll see something like this:
