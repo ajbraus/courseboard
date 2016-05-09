@@ -1,4 +1,6 @@
 # [Course Board](https://meancourseboard.herokuapp.com/)
+
+[![Join the chat at https://gitter.im/ajbraus/courseboard](https://badges.gitter.im/ajbraus/courseboard.svg)](https://gitter.im/ajbraus/courseboard?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ![node version](https://img.shields.io/badge/node-4.1.0-brightgreen.svg)
 ![npm version](https://img.shields.io/badge/npm-2.14.3-red.svg)
 ![mongod](https://img.shields.io/myget/mongodb/v/MongoDB.Driver.Core.svg?maxAge=2592000)
