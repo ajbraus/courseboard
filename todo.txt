@@ -2,8 +2,6 @@ See draft courses ...
   - your profile
   - admin dashboard
 
-BUG: flashing enroll button on course show page
-
 Loading spinner
 
 Course drafts vs. published - has start and end date or not or is past 

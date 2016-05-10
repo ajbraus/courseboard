@@ -1,5 +1,0 @@
-- add routeprovider to app.js file
-- add a link to the navbar (kinda just for fun)
-- add jade file for template
-- create controller function in resources/objects.js
-- defind http methods in controller
