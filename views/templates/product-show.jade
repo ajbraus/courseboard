@@ -1,0 +1,34 @@
+.container
+  .row
+    .col-sm-offset-2.col-sm-6
+      //- PRODUCT INFO
+      legend {{product.title}}
+      p {{product.description}}
+      br
+      .row
+        .col-sm-4.text-center
+          a(href='{{product.githubUrl}}' type="submit") #[i.ion.icon-github] GitHub Repo
+        .col-sm-4.text-center
+          a(href='{{product.trelloUrl}}' type="submit") Trello
+        .col-sm-4.text-center
+          a(href='{{product.liveUrl}}' type="submit", disabled="disabled") Live Site
+    .col-sm-2
+      h4 Contributors
+      .list-group
+        a.list-group-item(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors") {{contributor.username}}
+  //- .row
+  //-   .col-sm-offset-2.col-sm-8
+  //-     hr
+  //-     .row
+  //-       .card
+  //-         h3 Title of stuf
+  //-         p more stuff
+  //-     .row
+  //-       .card
+  //-         h3 Title of stuf
+  //-         p more stuff
+  //-     .row
+  //-       .card
+  //-         h3 Title of stuf
+  //-         p more stuff
+  //-     

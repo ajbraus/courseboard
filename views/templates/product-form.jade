@@ -1,0 +1,38 @@
+.row
+  .col-sm-8
+    .form-group
+      label Title*
+      input.form-control(type="text" ng-model="product.title" required)
+  .col-sm-4
+    .form-group
+      label Advisor
+      select.form-control(ng-model="product.instructor")
+        option(ng-repeat="instructor in instructors" value="{{instructor._id}}") {{instructor.fullname}}
+.row
+  .col-sm-4
+    .form-group
+      label GitHub Repo URL
+      input.form-control(ng-model='product.githubUrl')
+  .col-sm-4
+    .form-group
+      label Agile Board URL
+      input.form-control(ng-model='product.agileUrl')
+  .col-sm-4
+    .form-group
+      label Live Site URL
+      input.form-control(ng-model='product.liveUrl')
+
+.form-group
+  label Description
+  textarea.form-control(type="text" ng-model="product.description" rows="10")
+//- .form-group
+//-   label Objectives
+//-   p
+//-     small.text-muted By the end, students will be able to ...
+//-   .input-group.margin-bottom(ng-repeat='objective in product.objectives track by $index')
+//-     input.form-control(type='text' ng-model='product.objectives[$index]')
+//-     .input-group-btn
+//-       .btn.btn-default(ng-click="rmObjectiveField($index)")
+//-         i.icon.ion-minus-circled
+//-   div
+//-     .btn.btn-default(ng-click="addObjectiveField()") Add

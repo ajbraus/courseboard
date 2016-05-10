@@ -21,6 +21,7 @@ var UserSchema = new Schema({
   , username           : { type: String, trim: true, set: toLower }
   , role               : { type: String }
   , courses            : [{ type: Schema.Types.ObjectId, ref: 'Course' }]
+  , products           : [{ type: Schema.Types.ObjectId, ref: 'Product' }]
   , admin              : { type: Boolean, default: false }
   , confirmedAt        : { type: Date, default: undefined }
   , resetPasswordToken : String
