@@ -32,23 +32,34 @@ DONE instructors are not "enrolled" in their own courses - when you create a cou
 create a "Product Team" that can be connected or independent from a course
 Product Team has 
   - participants
-  - github link
-  - live product link
+
+  - What problem are you solving?
+  - What is your unique value proposition?
+  - Who is your customer (who pays you $)?
+  - What are the assumptions that must be true for your product to succeed?
+  - Description of MVP
+
+  DONE - github link
+  DONE - live product link
   - updates
     - user interviews
     - user narratives
-    - user testing sessions
+    - user tests
     - code reviews
     - evaluations
 
 -----------------------------------------
 
-test our API
+3 tags on courses & products
 
+-----------------------------------------
+
+write tests (API & Angularjs)
 
 -----------------------------------------
 
 Gulp tasks
+  - minify css and javascripts
 
 -----------------------------------------
 

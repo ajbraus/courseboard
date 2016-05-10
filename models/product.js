@@ -12,7 +12,7 @@ var ProductSchema = new Schema({
     createdAt     : { type: Date }
   , updatedAt     : { type: Date }
 
-  , title         : { type: String, required: true }
+  , name          : { type: String, required: true }
   , description   : { type: String, required: true }
   , githubUrl     : { type: String }
   , agileUrl      : { type: String }
@@ -26,11 +26,11 @@ var ProductSchema = new Schema({
 
 // Compound index
 ProductSchema.index({
-    title: 'text'
+    name: 'text'
   , body:  'text'
   , tags:  'text'
   , weights: {
-      title: 3,
+      name: 3,
       body:  1,
       tags:  5
     }
