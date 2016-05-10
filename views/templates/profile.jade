@@ -1,14 +1,20 @@
 .row
-  .col-sm-3.col-sm-offset-1
-    h3 {{user.first}} {{user.last}}
-    p {{user.username}}
+  .col-sm-4.col-sm-offset-1
+    .card
+      h3 {{user.first}} {{user.last}}
+      p {{user.username}}
     
     hr
     
     h3 Courses
     a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.courses") {{course.title}}
+    
+    hr
+    
+    h3 Products
+    a.list-group-item(href="products/{{product._id}}" ng-repeat="product in user.products") {{product.title}}
   
-  .col-sm-6.col-sm-offset-1
+  .col-sm-5.col-sm-offset-1
     h3 Announcements
     hr
     div(ng-init="profile = true" ng-include="'templates/post'", ng-repeat="post in posts")

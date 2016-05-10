@@ -29,11 +29,6 @@ DONE instructors are not "enrolled" in their own courses - when you create a cou
 
 -----------------------------------------
 
-plan classes by objective
-  - courses have class 
-    - date/time (calendar stuff - set dates and times of classes)
-    - class objectives
-
 create a "Product Team" that can be connected or independent from a course
 Product Team has 
   - participants
@@ -49,6 +44,18 @@ Product Team has
 -----------------------------------------
 
 test our API
+
+
+-----------------------------------------
+
+Gulp tasks
+
+-----------------------------------------
+
+plan classes by objective
+  - courses have class 
+    - date/time (calendar stuff - set dates and times of classes)
+    - class objectives
 
 add gulp to minify all css and js
 list students alphabetically?? list my courses alphabetically??
