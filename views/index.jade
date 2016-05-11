@@ -4,7 +4,9 @@ block body
   .page-wrap
     ng-include(src="'templates/navbar'")
     alert(ng-repeat='alert in globalAlerts', class='alert', type='{{alert.type}}', close='alert.close()', ng-cloak='') {{alert.msg}}
-    .container.min-height(ng-view)
+    .min-height(ng-view)
+  
+
   .site-footer
     .container
       //- .row

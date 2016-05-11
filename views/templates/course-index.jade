@@ -1,15 +1,3 @@
-//- .row
-//-   .col-xs-12
-//-     h3 Enroll
-//-   .col-sm-6.col-lg-4(ng-include="'templates/course'" ng-repeat="course in courses" ng-if="upcomingCourses(course)")
-
-.row
-  .col-xs-12
-    h3 Course Catalog
-.row
-  .col-md-6(ng-include="'templates/course'" ng-repeat="course in courses")
-
-//- .row
-//-   .col-xs-12
-//-     h3 Past
-//-   .col-sm-6.col-lg-4(ng-include="'templates/course'" ng-repeat="course in courses" ng-if="pastCourses(course)")
+.col-xs-12
+  h3 Course Catalog
+.col-md-3.col-sm-6(ng-include="'templates/course'" ng-repeat="course in courses")
