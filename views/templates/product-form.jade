@@ -1,7 +1,7 @@
 .row
   .col-sm-8
     .form-group
-      label Name*
+      label Product Name or Codename*
       input.form-control(type="text" ng-model="product.name" required)
   .col-sm-4
     .form-group
@@ -22,9 +22,27 @@
       label Live Site URL
       input.form-control(ng-model='product.liveUrl')
 
+br
+legend Initial Product Plan #[small.text-muted (Its natural for these answers to change as you learn more)]
 .form-group
-  label Description
-  textarea.form-control(type="text" ng-model="product.description" rows="10")
+  label What problem are you solving?*
+  input.form-control(type="text" ng-model="product.description" required)
+.form-group
+  label What is your unique value proposition?
+  input.form-control(type="text" ng-model="product.description")
+.form-group
+  label Who is your customer (who pays you $)?
+  input.form-control(type="text" ng-model="product.description")
+.form-group
+  label What assumptions about the world must be true for your product to succeed?
+  textarea.form-control(type="text" ng-model="product.description" rows="3")
+.form-group
+  label Describe your product when it is 100% finished.
+  textarea.form-control(type="text" ng-model="product.description" rows="3")
+.form-group
+  label In contrast, describe your absoulte (absolute!) minimum viable product.
+  textarea.form-control(type="text" ng-model="product.description" rows="3")
+
 //- .form-group
 //-   label Objectives
 //-   p
