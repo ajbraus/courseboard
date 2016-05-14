@@ -1,0 +1,23 @@
+a.no-style(href="/products/{{product._id}}")
+  .card
+    h4 {{product.name}}  
+    .text-muted {{product.instructor.fullname}}
+    p {{product.problem | limitTo:180 }} ...
+    .row
+      .col-sm-6
+        ng-pluralize(count='product.contributors.length', 
+                     when="{'1': '1 contributor', 'other': '{} contributors' }")
+      //- .col-sm-6
+      //-   b Hours per Week: 
+      //-   span(ng-bind="course.hours")
+      //-   br
+      //-   b Location: 
+      //-   span {{course.location | limitTo:22}} #[span {{course.location.length > 22 ? '...' : ''}}]
+    //- br
+    //- .row
+    //-   .col-xs-12
+    //-     b Objectives: 
+    //-     ul
+    //-       li(ng-repeat='obj in course.objectives') {{obj}}
+
+

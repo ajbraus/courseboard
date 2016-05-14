@@ -17,14 +17,17 @@ angular.module('courseboard')
       $scope.instructors = response.data;
     });
 
+    $http.get('/api/courses').then(function(response) {
+      $scope.courses = response.data;
+    });
    
     $scope.createProduct = function() {
       console.log($scope.product)
       $http.post('/api/products', $scope.product).then(
         function (response) {
           $scope.product = {};
-          $location.path('/products');
-          GlobalAlert.add('success', "Create product request sent", 2000);
+          $location.path('/products/' + response.data._id);
+          GlobalAlert.add('success', "Successfully created product", 2000);
         },
         function (response) {
           console.log(response);
@@ -35,35 +38,37 @@ angular.module('courseboard')
   }])
 
   .controller('ProductsShowCtrl', ['$scope', '$rootScope', 'lodash', '$http', '$routeParams', 'GlobalAlert', function($scope, $rootScope, lodash, $http, $routeParams, GlobalAlert) {
-    // $scope.isCoursesLoaded = false;
-
-    // $scope.product = {
-    //   title: 'My Cool Product',
-    //   description: 'I put the radio on the Internet with my cool product and am now a billionaire and I invest in super cool apps like this one. Being almost a billionaire isnt enough and I drink fancy tequilla and accidentally press the delete button when I gift the fancy tequila which makes my investment go to shit b/c I accidentally deleted 50% of a clients data.',
-    //   contributors: [{username: 'lesliekimm'}]
-    // }
-
-    // console.log($scope.product)
+    $scope.isProductsLoaded = false;
     
     $http.get('/api/products/' + $routeParams.id).then(
       function (response) {
         $scope.product = response.data;
-        $scope.isCoursesLoaded = true;
+        $scope.isProductsLoaded = true;
 
-        var index = _.map($scope.product.students, '_id').indexOf($rootScope.currentUser._id)
-        $scope.enrolled = index > -1
+        console.log($scope.product.contributors)
+        var index = _.map($scope.product.contributors, '_id').indexOf($rootScope.currentUser._id)
+        $scope.joined = index > -1
       },
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
       }
     );
 
-    $scope.enroll = function() {
-      $http.put('/api/products/' + $routeParams.id + '/enroll').then(
+    // $http.get('/api/products/' + $routeParams.id + "/posts").then(
+    //   function (response) {
+    //     $scope.posts = response.data;
+    //   },
+    //   function (response) {
+    //     GlobalAlert.add('warning', response.data.message, 2000);
+    //   }
+    // );
+
+    $scope.join = function() {
+      $http.put('/api/products/' + $routeParams.id + '/join').then(
         function (response) {
-          $scope.enrolled = true;
-          $scope.product.students.push($rootScope.currentUser)
-          GlobalAlert.add('success', "You've enrolled!", 3000);
+          $scope.joined = true;
+          $scope.product.contributors.push($rootScope.currentUser)
+          GlobalAlert.add('success', "You've joined!", 3000);
         },
         function (response) {
           GlobalAlert.add('warning', response.data.message, 3000);
@@ -106,7 +111,7 @@ angular.module('courseboard')
     $scope.altInputFormats = ['M!/d!/yyyy'];
 
 
-    $scope.updateCourse = function() {
+    $scope.updateProduct = function() {
       $http.put('/api/products/' + $routeParams.id, $scope.product).then(
         function (response) {
           $location.path('/products/' + $scope.product._id)
@@ -118,7 +123,7 @@ angular.module('courseboard')
       );
     }
 
-    $scope.deleteCourse = function() {
+    $scope.deleteProduct = function() {
       $http.delete('/api/products/' + $routeParams.id).then(
         function (response) {
           $location.path('/products');

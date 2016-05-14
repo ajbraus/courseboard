@@ -1,9 +1,11 @@
 .container
   .row
-    .col-sm-offset-2.col-sm-6
+    .col-sm-9
       //- PRODUCT INFO
-      legend {{product.title}}
-      p {{product.description}}
+      legend {{product.name}}
+      p {{product.problem}}
+      .text-right
+        a.btn.btn-sm.btn-default(href="/products-edit/{{product._id}}") Edit Product
       br
       .row
         .col-sm-4.text-center
@@ -12,10 +14,18 @@
           a(href='{{product.trelloUrl}}' type="submit") Trello
         .col-sm-4.text-center
           a(href='{{product.liveUrl}}' type="submit", disabled="disabled") Live Site
-    .col-sm-2
-      h4 Contributors
-      .list-group
-        a.list-group-item(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors") {{contributor.username}}
+    .col-sm-3
+      .card
+        .btn.btn-primary.btn-block(ng-cloak ng-click="join()" ng-show="isProductsLoaded && !joined") Join
+        .btn.btn-success.btn-block(ng-show='isProductsLoaded && joined') Joined
+        hr
+        h4 Advisor
+        a(href="users/{{product.instructor._id}}") {{product.instructor.fullname}}
+        h4 Course
+        a(href="courses/{{product.course._id}}") {{product.course.title}}
+        h4 Contributors
+        a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors") {{contributor.username}}
+          br
   //- .row
   //-   .col-sm-offset-2.col-sm-8
   //-     hr

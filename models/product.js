@@ -13,12 +13,12 @@ var ProductSchema = new Schema({
   , updatedAt     : { type: Date }
 
   , name          : { type: String, required: true }
-  , description   : { type: String, required: true }
+  , problem       : { type: String, required: true }
   , githubUrl     : { type: String }
   , agileUrl      : { type: String }
   , liveUrl       : { type: String }
 
-  // , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true }
+  , course        : { type: Schema.Types.ObjectId, ref: 'Course' }
   , instructor    : { type: Schema.Types.ObjectId, ref: 'User', required: true }
   , contributors  : [{ type: Schema.Types.ObjectId, ref: 'User' }]
   // , posts         : [{ type: Schema.Types.ObjectId, ref: 'Post' }]

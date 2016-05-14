@@ -1,5 +1,6 @@
 
 var User = require('../models/user.js')
+  , Course = require('../models/course.js')
   , Product = require('../models/product.js')
   , Tag = require('../models/tag.js')
   , auth = require('./auth.js')
@@ -27,15 +28,19 @@ module.exports = function(app) {
 
   // CREATE
   app.post('/api/products', auth.ensureAuthenticated, function (req, res) {
-    console.log('here');
     var product = new Product(req.body);
-    product.user = req.userId
 
     product.save(function(err, product) {
       if (err) { return res.status(400).send(err) }
 
+      // ADD TO COURSE
+      Course.findById(req.body.course).exec(function(err, course) {
+        course.products.unshift(product);
+        course.save();
+      })
+
       // ENROLL CREATOR
-      User.findById(product.instructor).exec(function(err, user) {
+      User.findById(req.userId).exec(function(err, user) {
         product.contributors.push(req.userId);
         product.save();
 
@@ -52,9 +57,10 @@ module.exports = function(app) {
   app.get('/api/products/:id', function (req, res) {
     Product.findById(req.params.id)
           .populate('user')
-          .populate('students')
-          .populate('posts')
+          .populate('contributors')
+          // .populate('posts')
           .populate({ path: 'instructor', select: 'fullname first last' })
+          .populate({ path: 'course', select: 'title' })
           .exec(function (err, product) {
             
       if (err) { return res.status(400).send(err) }
@@ -86,12 +92,12 @@ module.exports = function(app) {
   });
 
   // ENROLL
-  app.put('/api/products/:id/enroll', auth.ensureAuthenticated, function (req, res) {
+  app.put('/api/products/:id/join', auth.ensureAuthenticated, function (req, res) {
     Product.findById(req.params.id, function (err, product) {
       if (!product) { return res.status(400).send({message: 'Product not found' }) }
 
-      if (!(product.students.indexOf(req.userId) > -1)) {
-        product.students.push(req.userId);
+      if (!(product.contributors.indexOf(req.userId) > -1)) {
+        product.contributors.push(req.userId);
         User.findById(req.userId, '+email').exec(function (err, user) {
           if (err) { return res.status(400).send(err) }
 
@@ -133,14 +139,14 @@ module.exports = function(app) {
   });
 
   // UNENROLL
-  app.put('/api/products/:id/unenroll', auth.ensureAuthenticated, function (req, res) {
+  app.put('/api/products/:id/unjoin', auth.ensureAuthenticated, function (req, res) {
     Product.findById(req.params.id, function (err, product) {
       if (!product) { return res.status(400).send({message: 'Product not found' }) }
 
-      var index = product.students.indexOf(req.userId);
+      var index = product.contributors.indexOf(req.userId);
     
       if (index > -1) {
-        product.students.splice(index, 1);
+        product.contributors.splice(index, 1);
         User.findById(req.userId).exec(function (err, user) {
           if (err) { return res.status(400).send(err) }
 

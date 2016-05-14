@@ -20,14 +20,14 @@ module.exports = function(app) {
 
   // GET USER
   app.get('/api/users/:id', auth.ensureAuthenticated, function (req, res) {
-    User.findById(req.params.id).populate('courses').exec(function (err, user) {
+    User.findById(req.params.id).populate('courses').populate('products').exec(function (err, user) {
       res.send(user);
     });
   });
 
   // CURRENT USER
   app.get('/api/me', auth.ensureAuthenticated, function (req, res) {
-    User.findById(req.userId, '+email').populate('courses').exec(function (err, user) {
+    User.findById(req.userId, '+email').populate('courses').populate('products').exec(function (err, user) {
       res.send(user);
     });
   });

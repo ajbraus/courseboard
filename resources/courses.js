@@ -54,6 +54,7 @@ module.exports = function(app) {
           .populate('students')
           .populate('posts')
           .populate({ path: 'instructor', select: 'fullname first last' })
+          .populate({ path: 'products', select: 'name' })
           .exec(function (err, course) {
             
       if (err) { return res.status(400).send(err) }

@@ -26,6 +26,7 @@ var CourseSchema = new Schema({
   , instructor    : { type: Schema.Types.ObjectId, ref: 'User', required: true }
   , students      : [{ type: Schema.Types.ObjectId, ref: 'User' }]
   , posts         : [{ type: Schema.Types.ObjectId, ref: 'Post' }]
+  , products      : [{ type: Schema.Types.ObjectId, ref: 'Product' }]
 })
 
 // Compound index

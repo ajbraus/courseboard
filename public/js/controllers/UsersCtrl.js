@@ -7,12 +7,6 @@ angular.module('courseboard')
     $http.get('/api/me').then(function(response) {
       $scope.user = response.data;
     });
-
-    // console.log($auth.getPayload());
-    // POSTS
-    $http.get('/api/users/' + $auth.getPayload().sub + '/posts').then(function(response) {
-      $scope.posts = response.data;
-    });
   }])
 
   .controller('UsersShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $routeParams, $auth, Auth, GlobalAlert) {

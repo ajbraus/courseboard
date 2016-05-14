@@ -1,56 +1,67 @@
 .row
-  .col-sm-8
+  .col-sm-12
     .form-group
       label Product Name or Codename*
       input.form-control(type="text" ng-model="product.name" required)
-  .col-sm-4
-    .form-group
-      label Advisor
-      select.form-control(ng-model="product.instructor")
-        option(ng-repeat="instructor in instructors" value="{{instructor._id}}") {{instructor.fullname}}
 .row
   .col-sm-4
     .form-group
-      label GitHub Repo URL
-      input.form-control(ng-model='product.githubUrl')
-  .col-sm-4
+      label Advisor*
+      select.form-control(ng-model="product.instructor" required)
+        option(ng-repeat="instructor in instructors" value="{{instructor._id}}") {{instructor.fullname}}
+  .col-sm-8
     .form-group
-      label Agile Board URL
-      input.form-control(ng-model='product.agileUrl')
-  .col-sm-4
+      label Course
+      select.form-control(ng-model="product.course")
+        option(ng-repeat="course in courses" value="{{course._id}}") {{course.title}}
+.row
+  .col-xs-12
     .form-group
-      label Live Site URL
-      input.form-control(ng-model='product.liveUrl')
+      label What problem are you solving?*
+      input.form-control(type="text" ng-model="product.problem" required)
+//- .row
+//-   .col-sm-4
+//-     .form-group
+//-       label GitHub Repo URL
+//-       input.form-control(ng-model='product.githubUrl')
+//-   .col-sm-4
+//-     .form-group
+//-       label Agile Board URL
+//-       input.form-control(ng-model='product.agileUrl')
+//-   .col-sm-4
+//-     .form-group
+//-       label Live Site URL
+//-       input.form-control(ng-model='product.liveUrl')
 
-br
-legend Initial Product Plan #[small.text-muted (Its natural for these answers to change as you learn more)]
-.form-group
-  label What problem are you solving?*
-  input.form-control(type="text" ng-model="product.description" required)
-.form-group
-  label What is your unique value proposition?
-  input.form-control(type="text" ng-model="product.description")
-.form-group
-  label Who is your customer (who pays you $)?
-  input.form-control(type="text" ng-model="product.description")
-.form-group
-  label What assumptions about the world must be true for your product to succeed?
-  textarea.form-control(type="text" ng-model="product.description" rows="3")
-.form-group
-  label Describe your product when it is 100% finished.
-  textarea.form-control(type="text" ng-model="product.description" rows="3")
-.form-group
-  label In contrast, describe your absoulte (absolute!) minimum viable product.
-  textarea.form-control(type="text" ng-model="product.description" rows="3")
-
+//- br
+//- legend Initial Product Plan #[small.text-muted (Its natural for these answers to change as you learn more)]
 //- .form-group
-//-   label Objectives
-//-   p
-//-     small.text-muted By the end, students will be able to ...
-//-   .input-group.margin-bottom(ng-repeat='objective in product.objectives track by $index')
-//-     input.form-control(type='text' ng-model='product.objectives[$index]')
-//-     .input-group-btn
-//-       .btn.btn-default(ng-click="rmObjectiveField($index)")
-//-         i.icon.ion-minus-circled
-//-   div
-//-     .btn.btn-default(ng-click="addObjectiveField()") Add
+//-   label What problem are you solving?*
+//-   input.form-control(type="text" ng-model="product.description" required)
+//- .form-group
+//-   label What is your unique value proposition?
+//-   input.form-control(type="text" ng-model="product.description")
+//- .form-group
+//-   label Who is your customer (who pays you $)?
+//-   input.form-control(type="text" ng-model="product.description")
+//- .form-group
+//-   label What assumptions about the world must be true for your product to succeed?
+//-   textarea.form-control(type="text" ng-model="product.description" rows="3")
+//- .form-group
+//-   label Describe your product when it is 100% finished.
+//-   textarea.form-control(type="text" ng-model="product.description" rows="3")
+//- .form-group
+//-   label In contrast, describe your absoulte (absolute!) minimum viable product.
+//-   textarea.form-control(type="text" ng-model="product.description" rows="3")
+
+//- //- .form-group
+//- //-   label Objectives
+//- //-   p
+//- //-     small.text-muted By the end, students will be able to ...
+//- //-   .input-group.margin-bottom(ng-repeat='objective in product.objectives track by $index')
+//- //-     input.form-control(type='text' ng-model='product.objectives[$index]')
+//- //-     .input-group-btn
+//- //-       .btn.btn-default(ng-click="rmObjectiveField($index)")
+//- //-         i.icon.ion-minus-circled
+//- //-   div
+//- //-     .btn.btn-default(ng-click="addObjectiveField()") Add
