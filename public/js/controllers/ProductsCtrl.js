@@ -17,7 +17,7 @@ angular.module('courseboard')
       $scope.instructors = response.data;
     });
 
-    $http.get('/api/courses').then(function(response) {
+    $http.get('/api/current-courses').then(function(response) {
       $scope.courses = response.data;
     });
    
