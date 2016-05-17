@@ -25,6 +25,21 @@ module.exports = function(app) {
           });
   });
 
+  app.get('/api/current-courses', function (req, res) {
+    // RETURN ALL CURRENT COURSES
+    var d = new Date();
+    // d.setDate(d.getDate()-10);
+
+    Course.find({ "startsOn": { "$lte": d }, "endsOn": { "$gte": d }})
+          .populate({ path: 'instructor', select: 'fullname first last' })
+          .exec(function(err, courses) {
+            // {"created_on": {"$gte": new Date(2012, 7, 14), "$lt": new Date(2012, 7, 15)}})
+            if (err) { return res.status(400).send(err) }
+
+            res.send(courses);
+          });
+  });
+
   // CREATE
   app.post('/api/courses', auth.ensureAuthenticated, function (req, res) {
     var course = new Course(req.body);

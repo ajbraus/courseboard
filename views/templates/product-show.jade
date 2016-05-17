@@ -1,44 +1,41 @@
 .container
   .row
-    .col-sm-9
+    .col-sm-offset-1.col-sm-7
       //- PRODUCT INFO
-      legend {{product.name}}
+      .page-header
+        h2 {{product.name}}
+      h4 What problem are you solving?
       p {{product.problem}}
-      .text-right
-        a.btn.btn-sm.btn-default(href="/products-edit/{{product._id}}") Edit Product
-      br
-      .row
-        .col-sm-4.text-center
-          a(href='{{product.githubUrl}}' type="submit") #[i.ion.icon-github] GitHub Repo
-        .col-sm-4.text-center
-          a(href='{{product.trelloUrl}}' type="submit") Trello
-        .col-sm-4.text-center
-          a(href='{{product.liveUrl}}' type="submit", disabled="disabled") Live Site
+      
+      hr
+      h4 Unique Value Proposition
+      p {{product.valueProp}}
+      h4 Customer
+      p {{product.customer}}
+      h4 Assumptions about the World
+      p {{product.assumptions}}
+      h4 Your Finished Product
+      p {{product.finishedProduct}}
+      h4 Your MVP
+      p {{product.mvp}}
+
+
     .col-sm-3
       .card
-        .btn.btn-primary.btn-block(ng-cloak ng-click="join()" ng-show="isProductsLoaded && !joined") Join
-        .btn.btn-success.btn-block(ng-show='isProductsLoaded && joined') Joined
+        .btn.btn-primary.btn-block(ng-cloak ng-click="join()" ng-show="isProductsLoaded && !isContributor") Join
+        .btn.btn-success.btn-block(ng-show='isProductsLoaded && isContributor') Joined
         hr
         h4 Advisor
         a(href="users/{{product.instructor._id}}") {{product.instructor.fullname}}
-        h4 Course
+        h4(ng-show="product.course") Course
         a(href="courses/{{product.course._id}}") {{product.course.title}}
         h4 Contributors
         a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors") {{contributor.username}}
-          br
-  //- .row
-  //-   .col-sm-offset-2.col-sm-8
-  //-     hr
-  //-     .row
-  //-       .card
-  //-         h3 Title of stuf
-  //-         p more stuff
-  //-     .row
-  //-       .card
-  //-         h3 Title of stuf
-  //-         p more stuff
-  //-     .row
-  //-       .card
-  //-         h3 Title of stuf
-  //-         p more stuff
-  //-     
+
+        h4 External Links
+        .btn.btn-default.btn-block(ng-click='goToUrl(product.githubUrl)' ng-disabled="!product.githubUrl") #[i.ion.icon-github] GitHub Repo
+        .btn.btn-default.btn-block(ng-click='goToUrl(product.agileUrl)' ng-disabled="!product.agileUrl") Trello
+        .btn.btn-default.btn-block(ng-click='goToUrl(product.liveUrl)' ng-disabled="!product.liveUrl") Live Site
+
+      a.btn.btn-default.btn-block(href="/products-edit/{{product._id}}" ng-show="isContributor") Edit Product
+ 

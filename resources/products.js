@@ -12,14 +12,10 @@ var User = require('../models/user.js')
 module.exports = function(app) {
   // INDEX
   app.get('/api/products', function (req, res) {
-    // RETURN COURSES THAT START FEWER THAN 10 DAYS AGO
-    var d = new Date();
-    d.setDate(d.getDate()-10);
-
-    Product.find({ "startsOn": { "$gte": d } })
+    Product.find()
           .populate({ path: 'instructor', select: 'fullname first last' })
+          .sort("createdAt")
           .exec(function(err, products) {
-            // {"created_on": {"$gte": new Date(2012, 7, 14), "$lt": new Date(2012, 7, 15)}})
             if (err) { return res.status(400).send(err) }
 
             res.send(products);

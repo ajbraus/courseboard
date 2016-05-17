@@ -8,9 +8,9 @@ a.no-style(href="/courses/{{course._id}}")
         ng-pluralize(count='course.students.length', 
                      when="{'1': '1 participant', 'other': '{} participants' }")
         br
-        span(ng-bind="course.startsOn | date:'MMM dd, yyyy'")
+        span(ng-bind="course.startsOn | date:'MMM dd'")
         |  - 
-        span(ng-bind="course.endsOn | date:'MMM dd, yyyy'")
+        span(ng-bind="course.endsOn | date:'MMM dd'")
       .col-sm-6
         b Hours per Week: 
         span(ng-bind="course.hours")

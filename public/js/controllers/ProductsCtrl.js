@@ -37,7 +37,7 @@ angular.module('courseboard')
     }
   }])
 
-  .controller('ProductsShowCtrl', ['$scope', '$rootScope', 'lodash', '$http', '$routeParams', 'GlobalAlert', function($scope, $rootScope, lodash, $http, $routeParams, GlobalAlert) {
+  .controller('ProductsShowCtrl', ['$scope', '$rootScope', 'lodash', '$http', '$routeParams', '$window', '$location', 'GlobalAlert', function($scope, $rootScope, lodash, $http, $routeParams, $window, $location, GlobalAlert) {
     $scope.isProductsLoaded = false;
     
     $http.get('/api/products/' + $routeParams.id).then(
@@ -45,14 +45,20 @@ angular.module('courseboard')
         $scope.product = response.data;
         $scope.isProductsLoaded = true;
 
-        console.log($scope.product.contributors)
+        
+        // Find out if current user is a contributor
         var index = _.map($scope.product.contributors, '_id').indexOf($rootScope.currentUser._id)
-        $scope.joined = index > -1
+        $scope.isContributor = index > -1
       },
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
       }
     );
+
+    $scope.goToUrl = function(url) {
+      console.log(url)
+      $window.open(url);
+    }
 
     // $http.get('/api/products/' + $routeParams.id + "/posts").then(
     //   function (response) {
@@ -75,6 +81,7 @@ angular.module('courseboard')
         }
       );
     }
+
   }])
 
   .controller('ProductsEditCtrl', ['$scope', '$http', '$routeParams', '$location', 'GlobalAlert', function($scope, $http, $routeParams, $location, GlobalAlert) {

@@ -8,19 +8,23 @@ angular.module('courseboard')
       $scope.courses = response.data;
     });
 
-    $scope.upcomingCourses = function(c) {
-      // return true if course havent started. currernt date > coures start date
-      return new Date() < new Date(c.startsOn)
-    }
+    $http.get('/api/current-courses').then(function(response) {
+      $scope.currentCourses = response.data;
+    });
 
-    $scope.currentCourses = function(c) {
-      // return true if we are in the middle of the course
-      return new Date(c.startsOn) <= new Date() && new Date(c.endsOn) >= new Date()
-    }
+    // $scope.upcomingCourses = function(c) {
+    //   // return true if course havent started. currernt date > coures start date
+    //   return new Date() < new Date(c.startsOn)
+    // }
 
-    $scope.pastCourses = function(c) {
-      return new Date() > new Date(c.endsOn)
-    }
+    // $scope.currentCourses = function(c) {
+    //   // return true if we are in the middle of the course
+    //   return new Date(c.startsOn) <= new Date() && new Date(c.endsOn) >= new Date()
+    // }
+
+    // $scope.pastCourses = function(c) {
+    //   return new Date() > new Date(c.endsOn)
+    // }
 
   }])
 

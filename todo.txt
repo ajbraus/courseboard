@@ -50,6 +50,7 @@ Product Team has
 
 -----------------------------------------
 
+fix enroll on current courses (disable)
 3 tags on courses & products
 
 -----------------------------------------
