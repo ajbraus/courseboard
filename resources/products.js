@@ -97,15 +97,13 @@ module.exports = function(app) {
         User.findById(req.userId, '+email').exec(function (err, user) {
           if (err) { return res.status(400).send(err) }
 
-            console.log(user)
-
           user.products.unshift(product);
           user.save(function(err) {
             // SEND NOTIFICATION TO STUDENT
-            app.mailer.send('emails/student-enroll-notification', {
+            app.mailer.send('emails/product-join-notification', {
               to: user.email,
               product: product,
-              subject: 'Welcome to ' + product.title,
+              subject: 'Welcome to ' + product.name,
               user: user
             }, function (err) {
               if (err) { console.log(err); return }
@@ -115,12 +113,11 @@ module.exports = function(app) {
           // SEND NOTIFICATION TO INSTRUCTOR
           User.findById(product.instructor, '+email').exec(function (err, instructor) {
             console.log(instructor)
-            app.mailer.send('emails/enroll-notification', {
+            app.mailer.send('emails/product-instructor-notification', {
               to: instructor.email,
-              subject: 'New Student: ' + user.first + " " + user.last,
+              subject: 'New Product Advisor: ' + product.name,
               instructor: instructor,
-              product: product,
-              student: user
+              product: product
             }, function (err) {
               if (err) { console.log(err); return }
             });
