@@ -35,18 +35,22 @@ module.exports = function(app) {
         course.save();
       })
 
-      // SEND NOTIFICATION TO INSTRUCTOR
-      User.findById(product.instructor, '+email').exec(function (err, instructor) {
-        console.log(instructor)
-        app.mailer.send('emails/product-instructor-notification', {
-          to: instructor.email,
-          subject: 'New Product Advisor: ' + product.name,
-          instructor: instructor,
-          product: product
-        }, function (err) {
-          if (err) { console.log(err); return }
-        });
-      })
+      User.findById(req.userId, '+email').exec(function (err, user) {
+        if (err) { return res.status(400).send(err) }
+        // SEND NOTIFICATION TO INSTRUCTOR
+        User.findById(product.instructor, '+email').exec(function (err, instructor) {
+          console.log(instructor)
+          app.mailer.send('emails/product-instructor-notification', {
+            to: instructor.email,
+            subject: 'New Product Advisor: ' + product.name,
+            instructor: instructor,
+            product: product,
+            contributor: user
+          }, function (err) {
+            if (err) { console.log(err); return }
+          });
+        })
+      });
 
       // ENROLL CREATOR
       User.findById(req.userId).exec(function(err, user) {
