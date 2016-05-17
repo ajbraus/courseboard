@@ -30,7 +30,9 @@
         h4(ng-show="product.course") Course
         a(href="courses/{{product.course._id}}") {{product.course.title}}
         h4 Contributors
-        a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors") {{contributor.username}}
+        a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors")
+          {{contributor.username}}
+          br
 
         h4 External Links
         button.btn.btn-default.btn-block(ng-click='goToUrl(product.githubUrl)' ng-disabled="!product.githubUrl") #[i.ion.ion-social-github] GitHub Repo
