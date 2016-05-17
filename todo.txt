@@ -29,17 +29,18 @@ DONE instructors are not "enrolled" in their own courses - when you create a cou
 
 -----------------------------------------
 
-create a "Product Team" that can be connected or independent from a course
-Product Team has 
-  - participants
+DONE create a "Product Team" that can be connected or independent from a course
+DONE Product Team has 
+  DONE - participants
 
-  - What problem are you solving?
-  - What is your unique value proposition?
-  - Who is your customer (who pays you $)?
-  - What are the assumptions that must be true for your product to succeed?
-  - Description of MVP
+  DONE - What problem are you solving?
+  DONE - What is your unique value proposition?
+  DONE - Who is your customer (who pays you $)?
+  DONE - What are the assumptions that must be true for your product to succeed?
+  DONE - Description of MVP
 
   DONE - github link
+  DONE - scrum board link
   DONE - live product link
   - updates
     - user interviews
@@ -47,10 +48,10 @@ Product Team has
     - user tests
     - code reviews
     - evaluations
+  DONE email advisor when product is created
+  DONE email team when new contributor joins
 
 leave product team
-email advisor when product is created
-email team when new contributor joins
 
 -----------------------------------------
 
