@@ -48,6 +48,10 @@ Product Team has
     - code reviews
     - evaluations
 
+leave product team
+email advisor when product is created
+email team when new contributor joins
+
 -----------------------------------------
 
 fix enroll on current courses (disable)

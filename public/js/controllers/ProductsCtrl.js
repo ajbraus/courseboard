@@ -72,7 +72,7 @@ angular.module('courseboard')
     $scope.join = function() {
       $http.put('/api/products/' + $routeParams.id + '/join').then(
         function (response) {
-          $scope.joined = true;
+          $scope.isContributor = true;
           $scope.product.contributors.push($rootScope.currentUser)
           GlobalAlert.add('success', "You've joined!", 3000);
         },
