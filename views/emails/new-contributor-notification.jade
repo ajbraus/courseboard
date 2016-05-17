@@ -1,0 +1,11 @@
+extends email-layout
+
+block body
+  p
+    strong Hi there #{instructor.first}, 
+  p A new contributor has joined #{product.name}
+  b New Contributor: 
+  | #{contributor.first} #{contributor.last}
+  br
+  b Product: 
+  a(href="#{baseUrl}/products/#{product._id}") #{product.name}

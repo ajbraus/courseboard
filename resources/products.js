@@ -35,6 +35,19 @@ module.exports = function(app) {
         course.save();
       })
 
+      // SEND NOTIFICATION TO INSTRUCTOR
+      User.findById(product.instructor, '+email').exec(function (err, instructor) {
+        console.log(instructor)
+        app.mailer.send('emails/product-instructor-notification', {
+          to: instructor.email,
+          subject: 'New Product Advisor: ' + product.name,
+          instructor: instructor,
+          product: product
+        }, function (err) {
+          if (err) { console.log(err); return }
+        });
+      })
+
       // ENROLL CREATOR
       User.findById(req.userId).exec(function(err, user) {
         product.contributors.push(req.userId);
@@ -87,7 +100,7 @@ module.exports = function(app) {
     })
   });
 
-  // ENROLL
+  // JOINS A PRODUCT TEAM
   app.put('/api/products/:id/join', auth.ensureAuthenticated, function (req, res) {
     Product.findById(req.params.id, function (err, product) {
       if (!product) { return res.status(400).send({message: 'Product not found' }) }
@@ -113,11 +126,12 @@ module.exports = function(app) {
           // SEND NOTIFICATION TO INSTRUCTOR
           User.findById(product.instructor, '+email').exec(function (err, instructor) {
             console.log(instructor)
-            app.mailer.send('emails/product-instructor-notification', {
+            app.mailer.send('emails/new-contributor-notification', {
               to: instructor.email,
-              subject: 'New Product Advisor: ' + product.name,
+              subject: 'New Product Member for ' + product.name + ': ' + user.first + " " + user.last,
               instructor: instructor,
-              product: product
+              product: product,
+              contributor: user
             }, function (err) {
               if (err) { console.log(err); return }
             });
