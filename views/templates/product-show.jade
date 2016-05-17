@@ -33,9 +33,9 @@
         a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors") {{contributor.username}}
 
         h4 External Links
-        .btn.btn-default.btn-block(ng-click='goToUrl(product.githubUrl)' ng-disabled="!product.githubUrl") #[i.ion.icon-github] GitHub Repo
-        .btn.btn-default.btn-block(ng-click='goToUrl(product.agileUrl)' ng-disabled="!product.agileUrl") Scrum Board
-        .btn.btn-default.btn-block(ng-click='goToUrl(product.liveUrl)' ng-disabled="!product.liveUrl") Live Site
+        button.btn.btn-default.btn-block(ng-click='goToUrl(product.githubUrl)' ng-disabled="!product.githubUrl") #[i.ion.ion-social-github] GitHub Repo
+        button.btn.btn-warning.btn-block(ng-click='goToUrl(product.agileUrl)' ng-disabled="!product.agileUrl") #[i.ion.ion-android-checkbox-outline] Scrum Board
+        button.btn.btn-primary.btn-block(ng-click='goToUrl(product.liveUrl)' ng-disabled="!product.liveUrl") #[i.ion.ion-android-wifi] Live Site
 
       a.btn.btn-default.btn-block(href="/products-edit/{{product._id}}" ng-show="isContributor") Edit Product
  

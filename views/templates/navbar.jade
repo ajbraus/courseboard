@@ -65,6 +65,8 @@ nav.navbar
 
         li(ng-show='currentUser')
           a(href="/course-catalog") Course Catalog
+        li(ng-show='currentUser')
+          a(href="/products") All Products
         li(ng-show="currentUser && currentUser.role != 'Student' ")
           a(href="/courses-new") New Course
         li(ng-show="currentUser")
