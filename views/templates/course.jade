@@ -1,5 +1,5 @@
 li.list-group-item
-  .col-sm-4 #[strong {{course.title | limitTo:22}}] #[span {{course.title.length > 22 ? '...' : ''}}] - {{course.instructor.fullname}}
+  .col-sm-4 #[strong {{course.title | limitTo:30}}] #[span {{course.title.length > 22 ? '...' : ''}}] - {{course.instructor.fullname}}
   .col-sm-2.col-xs-6
     span(ng-bind="course.startsOn | date:'MMM dd'")
     |  - 
