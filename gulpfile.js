@@ -25,6 +25,7 @@ var paths = {
             , 'public/vendor/jquery/dist/jquery.min.js'
             , 'public/vendor/bootstrap/dist/js/bootstrap.min.js'
             , 'public/vendor/ng-tags-input/ng-tags-input.min.js'
+            , 'public/vendor/ng-lodash/build/ng-lodash.min.js'
 
             // APP SCRIPTS
             , 'public/js/**/*.js' 
@@ -78,12 +79,13 @@ gulp.task('scripts', function() {
       .pipe(gulp.dest('public/dist'))
       .pipe(rename('all.min.js'))
       .pipe(uglify())
-      .pipe(gulp.dest('public/dist'));
+      .pipe(gulp.dest('public/dist')); 
 });
 
 gulp.task('watch', function() {
   console.log('watching')
   gulp.watch('public/css/*.css', ['styles']);
   gulp.watch('public/js/**/*.js', ['scripts', 'clean']);
+  gulp.watch('gulpfile.js', ['build']);
 });
 

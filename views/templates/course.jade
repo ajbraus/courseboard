@@ -1,27 +1,42 @@
-a.no-style(href="/courses/{{course._id}}")
-  .card.course
-    h4 {{course.title}}  
-    .text-muted {{course.instructor.fullname}}
-    p {{course.description | limitTo:120 }} ...
-    .row
-      .col-sm-6
-        ng-pluralize(count='course.students.length', 
-                     when="{'1': '1 participant', 'other': '{} participants' }")
-        br
-        span(ng-bind="course.startsOn | date:'MMM dd'")
-        |  - 
-        span(ng-bind="course.endsOn | date:'MMM dd'")
-      .col-sm-6
-        b Hours per Week: 
-        span(ng-bind="course.hours")
-        br
-        b Location: 
-        span {{course.location | limitTo:22}} #[span {{course.location.length > 22 ? '...' : ''}}]
-    //- br
-    //- .row
-    //-   .col-xs-12
-    //-     b Objectives: 
-    //-     ul
-    //-       li(ng-repeat='obj in course.objectives') {{obj}}
+li.list-group-item
+  .col-sm-4 #[strong {{course.title | limitTo:22}}] #[span {{course.title.length > 22 ? '...' : ''}}] - {{course.instructor.fullname}}
+  .col-sm-2.col-xs-6
+    span(ng-bind="course.startsOn | date:'MMM dd'")
+    |  - 
+    span(ng-bind="course.endsOn | date:'MMM dd'")
+  .col-sm-2.col-xs-6
+    ng-pluralize(count='course.students.length', 
+             when="{'1': '1 participant', 'other': '{} participants' }")
+  .col-sm-2.col-xs-6 {{course.location | limitTo:22}} #[span {{course.location.length > 22 ? '...' : ''}}]
+  .col-sm-2.col-xs-6
+    ng-pluralize(count='course.hours', 
+             when="{'1': '1 hour/week', 'other': '{} hours/week' }")
+
+
+//- .card.course
+
+//-   h4 {{course.title}}  
+//-   .text-muted {{course.instructor.fullname}}
+//-   p {{course.description | limitTo:120 }} ...
+//-   .row
+//-     .col-sm-6
+//-       ng-pluralize(count='course.students.length', 
+//-                    when="{'1': '1 participant', 'other': '{} participants' }")
+//-       br
+//-       span(ng-bind="course.startsOn | date:'MMM dd'")
+//-       |  - 
+//-       span(ng-bind="course.endsOn | date:'MMM dd'")
+//-     .col-sm-6
+//-       b Hours per Week: 
+//-       span(ng-bind="course.hours")
+//-       br
+//-       b Location: 
+//-       span {{course.location | limitTo:22}} #[span {{course.location.length > 22 ? '...' : ''}}]
+//-   //- br
+//-   //- .row
+//-   //-   .col-xs-12
+//-   //-     b Objectives: 
+//-   //-     ul
+//-   //-       li(ng-repeat='obj in course.objectives') {{obj}}
 
 
