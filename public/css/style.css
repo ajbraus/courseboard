@@ -18,6 +18,10 @@ a.no-style:hover {
   background-color: #eeeeee;
 }
 
+li.list-group-item.ng-scope {
+  height: 40px;
+}
+
 nav.navbar {
   padding-top: 10px;
 }
