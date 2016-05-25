@@ -39,6 +39,7 @@ var paths = {
              , 'public/vendor/highlightjs/styles/monokai.css'
              , 'public/vendor/angular-bootstrap/ui-bootstrap-csp.css'
              , 'public/vendor/ng-tags-input/ng-tags-input.min.css'
+             , 'public/vendor/ionicons/css/ionicons.css'
              , 'public/css/*.css'
             ]
 };
