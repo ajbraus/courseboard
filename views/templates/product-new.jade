@@ -1,8 +1,28 @@
 .container
   .row
-    .col-sm-8.col-sm-offset-2
+    .col-sm-8.col-sm-offset-2.col-md-offset-3.col-md-6
       legend New Product Information
       form(ng-submit="createProduct()")
-        div(ng-include="'templates/product-form'")
+        .row
+          .col-sm-12
+            .form-group
+              label Product Name or Codename*
+              input.form-control(type="text" ng-model="product.name" required)
+        .row
+          .col-sm-4
+            .form-group
+              label Advisor*
+              select.form-control(ng-model="product.instructor" required)
+                option(ng-repeat="instructor in instructors" value="{{instructor._id}}") {{instructor.fullname}}
+          .col-sm-8
+            .form-group
+              label Course
+              select.form-control(ng-model="product.course")
+                option(ng-repeat="course in courses" value="{{course._id}}") {{course.title}}
+        .row
+          .col-xs-12
+            .form-group
+              label What problem are you solving?*
+              input.form-control(type="text" ng-model="product.problem" required)
         .text-right
           button.btn.btn-primary(type="submit") Save New Product

@@ -1,3 +1,36 @@
-.col-xs-12
-  h3 Course Catalog
-.col-md-3.col-sm-6(ng-include="'templates/course'" ng-repeat="course in courses")
+.container
+  .row
+    h3 Available Courses
+
+  .row
+    .col-sm-4 
+      h5 Title
+    .col-sm-2.col-xs-6
+      h5 Dates
+    .col-sm-2.col-xs-6
+      h5 Participants
+    .col-sm-2.col-xs-6 
+      h5 Location
+    .col-sm-2.col-xs-6
+      h5 Commitment
+  .row
+    ul.list-group
+      a.no-style(href="/courses/{{course._id}}" ng-include="'templates/course'" ng-repeat="course in courses")
+
+  .row
+    h3 Current Courses
+
+  .row
+    .col-sm-4 
+      h5 Title
+    .col-sm-2.col-xs-6
+      h5 Dates
+    .col-sm-2.col-xs-6
+      h5 Participants
+    .col-sm-2.col-xs-6 
+      h5 Location
+    .col-sm-2.col-xs-6
+      h5 Commitment 
+  .row
+    ul.list-group
+      a.no-style(href="/courses/{{course._id}}" ng-include="'templates/course'" ng-repeat="course in currentCourses")

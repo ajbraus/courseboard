@@ -1,0 +1,11 @@
+extends email-layout
+
+block body
+  p 
+    strong Hi there #{instructor.first}, 
+  p #{contributor.first} #{contributor.last} has assigned you as the advisor of a new product:
+  b New Product: 
+  a(href="#{baseUrl}/products/#{product._id}") #{product.name}
+  br
+  b Problem: 
+  | #{product.problem}

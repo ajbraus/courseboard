@@ -1,0 +1,10 @@
+extends email-layout
+
+block body
+  p
+    strong Hi there #{user.first}, 
+  b New Product: 
+  a(href="#{baseUrl}/products/#{product._id}") #{product.name}
+  br
+  b Description: 
+  | #{product.problem}

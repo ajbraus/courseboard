@@ -1,46 +1,4 @@
-See draft courses ...
-  - your profile
-  - admin dashboard
-
-Loading spinner
-
-Course drafts vs. published - has start and end date or not or is past 
-publish a new course, send everyone an email
-
-DONE main navbar
-  DONE - catalog/my courses
-  DONE - move new course out of dropdown
-DONE add course location/room
-DONE redesign course catalog page
-  DONE - course index page should show partial description, # of students signed up and objectives
-DONE course displays num of students
-DONE add objectives/competencies to courses
-DONE edit objectives/compentencies to courses
-DONE BUG: date picker icon is there when you are not the instructor - only instructor posts assignments
-DONE BUG: when posting, it doesn't show up until refresh bc when we send back the ‘course’ object it doesn’t have the nested user subnode - add the currentUser as the ‘user’ subnode before pushing it into the array of ‘course.posts’ either on the server or the client
-DONE email checkbox to send email to all particpants in a course
-DONE clarification of assignment vs announcement when actually posting
-DONE links not turning into urls
-DONE change list to particpants in course page and automatically enroll instructor
-DONE BUG: fix reset password
-DONE login with email or username
-DONE hitting `enter` in the password field should be the same as clicking the `Login` button.
-DONE instructors are not "enrolled" in their own courses - when you create a course, enroll the instructor
-
------------------------------------------
-
-create a "Product Team" that can be connected or independent from a course
-Product Team has 
-  - participants
-
-  - What problem are you solving?
-  - What is your unique value proposition?
-  - Who is your customer (who pays you $)?
-  - What are the assumptions that must be true for your product to succeed?
-  - Description of MVP
-
-  DONE - github link
-  DONE - live product link
+Product updates
   - updates
     - user interviews
     - user narratives
@@ -48,7 +6,7 @@ Product Team has
     - code reviews
     - evaluations
 
------------------------------------------
+leave product team
 
 Character Competencies
   
@@ -102,6 +60,70 @@ Triplebyte's - http://blog.triplebyte.com/triplebyte-engineer-genome-project
 Technical Competencies
 
 3 tags (competencies) on courses & products
+=======
+
+Loading spinner
+
+Course drafts vs. published - has start and end date or not or is past 
+publish a new course, send everyone an email
+
+See draft courses ...
+  - your profile
+  - admin dashboard
+
+fix enroll on current courses 10 days after start (disable)
+
+---------------------------
+
+design tracking performance/mastery/partipation
+- 3 tags on courses & products
+- print a transcript
+- rubrics
+
+evaluation per mastery topic/competency based on mastery 
+
+0. no exposure
+1. initial mastery
+2. approaching mastery
+3. near mastery
+4. mastery
+5. innovator
+
+- Core
+  - Product managment (SCRUM & Agile)
+  - Product development (user interviewing etc)
+  - Producivity (task managment, calendar, work-life balance)
+  - communication
+  - resourcefulness
+  - problem solving
+  - algorithms & data structures
+  - code craftsmanship
+  - git/github
+  - TDD
+  - API design
+  - Deployment & Dev Ops
+- Elective
+  - ruby (backend)
+  - rails (backend)
+  - writing
+  - js (front end)
+  - jquery (front end)
+  - angular (front end)
+  - react (front end)
+  - ardino (hardware)
+  - python (backend)
+  - flask (backend)
+- Character (specific rubrics for each)
+  - teamwork
+  - leadership
+  - professionalism
+  - creativity
+  - emotional intellegence 
+
+participation transcript -> pdf
+
+focus group
+- eliel, kavin, mike, leslie, josh
 
 -----------------------------------------
 
@@ -185,3 +207,43 @@ DONE - posted by links to user profile
   DONE - enroll-confirmation student
   - new-post - when a new post gets created by anyone (there a checkbox "update (email everyone)" sendEmail)
 DONE - sticky footer
+
+------------------------------------------
+DONE main navbar
+  DONE - catalog/my courses
+  DONE - move new course out of dropdown
+DONE add course location/room
+DONE redesign course catalog page
+  DONE - course index page should show partial description, # of students signed up and objectives
+DONE course displays num of students
+DONE add objectives/competencies to courses
+DONE edit objectives/compentencies to courses
+DONE BUG: date picker icon is there when you are not the instructor - only instructor posts assignments
+DONE BUG: when posting, it doesn't show up until refresh bc when we send back the ‘course’ object it doesn’t have the nested user subnode - add the currentUser as the ‘user’ subnode before pushing it into the array of ‘course.posts’ either on the server or the client
+DONE email checkbox to send email to all particpants in a course
+DONE clarification of assignment vs announcement when actually posting
+DONE links not turning into urls
+DONE change list to particpants in course page and automatically enroll instructor
+DONE BUG: fix reset password
+DONE login with email or username
+DONE hitting `enter` in the password field should be the same as clicking the `Login` button.
+DONE instructors are not "enrolled" in their own courses - when you create a course, enroll the instructor
+
+----------------------------------------
+DONE create a "Product Team" that can be connected or independent from a course
+DONE Product Team has 
+  DONE - participants
+
+  DONE - What problem are you solving?
+  DONE - What is your unique value proposition?
+  DONE - Who is your customer (who pays you $)?
+  DONE - What are the assumptions that must be true for your product to succeed?
+  DONE - Description of MVP
+
+  DONE - github link
+  DONE - scrum board link
+  DONE - live product link
+  DONE email advisor when product is created
+  DONE email team when new contributor joins
+
+

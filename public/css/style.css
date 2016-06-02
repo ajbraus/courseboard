@@ -14,6 +14,18 @@ a.no-style, a.no-style:hover {
   text-decoration: inherit; /* no underline */
 }
 
+a.no-style:hover {
+  background-color: #eeeeee;
+}
+
+li.list-group-item.ng-scope {
+  height: 40px;
+}
+
+nav.navbar {
+  padding-top: 10px;
+}
+
 .page-wrap {
   min-height: 100%;
   /* equal to footer height */
@@ -96,7 +108,7 @@ a.no-style, a.no-style:hover {
 }
 
 .course {
-  min-height: 210px;
+  min-height: 230px;
   transition: all 0.2s ease-in-out;
 }
 

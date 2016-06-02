@@ -12,15 +12,20 @@ var ProductSchema = new Schema({
     createdAt     : { type: Date }
   , updatedAt     : { type: Date }
 
-  , name          : { type: String, required: true }
-  , description   : { type: String, required: true }
-  , githubUrl     : { type: String }
-  , agileUrl      : { type: String }
-  , liveUrl       : { type: String }
+  , name                : { type: String, required: true }
+  , problem             : { type: String, required: true }
+  , githubUrl           : { type: String }
+  , agileUrl            : { type: String }
+  , liveUrl             : { type: String }
+  , valueProp           : String
+  , customer            : String
+  , assumptions         : String
+  , finishedProduct     : String
+  , mvp                 : String
 
-  // , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true }
-  , instructor    : { type: Schema.Types.ObjectId, ref: 'User', required: true }
-  , contributors  : [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  , course              : { type: Schema.Types.ObjectId, ref: 'Course' }
+  , instructor          : { type: Schema.Types.ObjectId, ref: 'User', required: true }
+  , contributors        : [{ type: Schema.Types.ObjectId, ref: 'User' }]
   // , posts         : [{ type: Schema.Types.ObjectId, ref: 'Post' }]
 })
 
