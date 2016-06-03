@@ -16,19 +16,25 @@
   .col-sm-6
     .form-group
       label Start Date
-      p.input-group
-        input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.startsOn', is-open='starts.opened', close-text='Close', alt-input-formats='altInputFormats')
-        span.input-group-btn
-          button.btn.btn-default(type='button', ng-click='startsOpen()')
-            i.glyphicon.glyphicon-calendar
+      br
+      date-dropdown(month="course.startsOnMonth" day="course.startsOnDay" year="course.startsOnYear")
+
+      //- p.input-group
+      //-   input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.startsOn', is-open='starts.opened', close-text='Close', alt-input-formats='altInputFormats')
+      //-   span.input-group-btn
+      //-     button.btn.btn-default(type='button', ng-click='startsOpen()')
+      //-       i.glyphicon.glyphicon-calendar
   .col-sm-6
     .form-group
       label End Date
-      p.input-group
-        input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.endsOn', is-open='ends.opened', close-text='Close', alt-input-formats='altInputFormats')
-        span.input-group-btn
-          button.btn.btn-default(type='button', ng-click='endsOpen()')
-            i.glyphicon.glyphicon-calendar
+      br
+      date-dropDown(month="course.endsOnMonth" day="course.endsOnDay" year="course.endsOnYear")
+      //- p.input-group
+
+      //-   input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.endsOn', is-open='ends.opened', close-text='Close', alt-input-formats='altInputFormats')
+      //-   span.input-group-btn
+      //-     button.btn.btn-default(type='button', ng-click='endsOpen()')
+      //-       i.glyphicon.glyphicon-calendar
 .row
   .col-sm-6
     .form-group

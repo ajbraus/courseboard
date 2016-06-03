@@ -23,7 +23,7 @@
     .col-sm-3
       .card
         .btn.btn-primary.btn-block(ng-cloak ng-click="join()" ng-show="isProductsLoaded && !isContributor") Join
-        .btn.btn-success.btn-block(ng-show='isProductsLoaded && isContributor') Joined
+        .btn.btn-success.btn-block.no-hover(ng-show='isProductsLoaded && isContributor') Joined
         hr
         h4 Advisor
         a(href="users/{{product.instructor._id}}") {{product.instructor.fullname}}

@@ -15,11 +15,20 @@ var CourseSchema = new Schema({
   , title         : { type: String, required: true }
   , description   : { type: String, required: true }
   , instructor    : { type: String, set: toTitle }
-  , duration      : { type: String }
-  , startsOn      : { type: Date }
-  , endsOn        : { type: Date }
-  , hours         : { type: String }
-  , location      : { type: String }
+  , duration      : String
+
+  , startsOn      : Date
+  , startsOnDay   : String
+  , startsOnMonth : String
+  , startsOnYear  : String
+
+  , endsOn        : Date 
+  , endsOnDay     : String
+  , endsOnMonth   : String
+  , endsOnYear    : String
+
+  , hours         : String
+  , location      : String
   , objectives    : [String]
 
   , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true }

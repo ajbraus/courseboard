@@ -8,9 +8,9 @@ angular.module('courseboard')
       $scope.courses = response.data;
     });
 
-    $http.get('/api/current-courses').then(function(response) {
-      $scope.currentCourses = response.data;
-    });
+    // $http.get('/api/current-courses').then(function(response) {
+    //   $scope.currentCourses = response.data;
+    // });
 
     // $scope.upcomingCourses = function(c) {
     //   // return true if course havent started. currernt date > coures start date
@@ -34,6 +34,15 @@ angular.module('courseboard')
       instructor: $rootScope.currentUser.role == "Instructor" ? $rootScope.currentUser._id : null,
       objectives: ["", "", ""]
     }
+
+    // var monthNames = ["January", "February", "March", "April", "May", "June",
+    //   "July", "August", "September", "October", "November", "December"
+    // ];
+    // $scope.course.startsOnMonth = monthNames[new Date().getMonth()];
+    // $scope.course.startsOnDay = new Date().getDate().toString();
+    // $scope.course.startsOnYear = new Date().getFullYear().toString();
+
+
 
     $http.get('/api/instructors').then(function(response) {
       $scope.instructors = response.data;
@@ -64,18 +73,23 @@ angular.module('courseboard')
     };
 
     $scope.createCourse = function() {
-      // console.log($scope.course)
-      $http.post('/api/courses', $scope.course).then(
-        function (response) {
-          $scope.course = {};
-          $location.path('/courses');
-          GlobalAlert.add('success', "Create course request sent", 2000);
-        },
-        function (response) {
-          console.log(response);
-          GlobalAlert.add('warning', response.data.message, 2000);
-        }
-      );
+      $scope.course.endsOn = new Date($scope.course.endsOnMonth + " " + $scope.course.endsOnDay + " " + $scope.course.endsOnYear)
+      $scope.course.startsOn = new Date($scope.course.startsOnMonth + " " + $scope.course.startsOnDay + " " + $scope.course.startsOnYear)
+      if ($scope.course.endsOn > $scope.course.startsOn) {
+        $http.post('/api/courses', $scope.course).then(
+          function (response) {
+            $scope.course = {};
+            $location.path('/courses');
+            GlobalAlert.add('success', "Create course request sent", 2000);
+          },
+          function (response) {
+            console.log(response);
+            GlobalAlert.add('warning', response.data.message, 2000);
+          }
+        );
+      } else {
+        GlobalAlert.add('warning', "Course end date must be after start date", 2000);
+      }
     }
   }])
 
@@ -161,9 +175,22 @@ angular.module('courseboard')
   .controller('CoursesEditCtrl', ['$scope', '$http', '$routeParams', '$location', 'GlobalAlert', function($scope, $http, $routeParams, $location, GlobalAlert) {
     $http.get('/api/courses/' + $routeParams.id).then(
       function (response) {
+        
         $scope.course = response.data;
+        var monthNames = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+        $scope.course.startsOnMonth = monthNames[new Date($scope.course.startsOn).getMonth()];
+        $scope.course.startsOnDay = new Date($scope.course.startsOn).getDate().toString();
+        $scope.course.startsOnYear = new Date($scope.course.startsOn).getFullYear().toString();
+
+        $scope.course.endsOnMonth = monthNames[new Date($scope.course.endsOn).getMonth()];
+        $scope.course.endsOnDay = new Date($scope.course.endsOn).getDate().toString();
+        $scope.course.endsOnYear = new Date($scope.course.endsOn).getFullYear().toString();
+
         $scope.course.instructor = response.data.instructor._id 
       },
+
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
       }
@@ -193,6 +220,9 @@ angular.module('courseboard')
 
 
     $scope.updateCourse = function() {
+      $scope.course.endsOn = new Date($scope.course.endsOnMonth + " " + $scope.course.endsOnDay + " " + $scope.course.endsOnYear)
+      $scope.course.startsOn = new Date($scope.course.startsOnMonth + " " + $scope.course.startsOnDay + " " + $scope.course.startsOnYear)
+
       $http.put('/api/courses/' + $routeParams.id, $scope.course).then(
         function (response) {
           $location.path('/courses/' + $scope.course._id)

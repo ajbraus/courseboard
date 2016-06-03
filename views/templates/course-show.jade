@@ -36,7 +36,7 @@
         .form-group
           textarea.form-control(ng-model="post.body", placeholder="New announcement" autofocus="true")
         .row
-          .col-xs-6.col-xs-offset-6
+          .col-xs-12
             //- .form-group(ng-if="course.instructor._id === currentUser._id")
             //-   p.input-group
             //-     span.input-group-btn
@@ -50,7 +50,7 @@
                     input(type="checkbox" ng-model="post.emailParticipants")
                     .text-muted Email Participants 
               .pull-right
-                button.btn.btn-sm.btn-primary(type="submit") #[i.icon.ion-paper-airplane] Post
+                button.btn.btn-primary(type="submit") #[i.icon.ion-paper-airplane] Post
 
       hr
       div(ng-include="'templates/post'", ng-repeat="post in posts")
@@ -59,7 +59,7 @@
       //- STUDENTS
       .card
         .btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled") Enroll
-        .btn.btn-success.btn-block(ng-show='isCoursesLoaded && enrolled') Enrolled
+        .btn.btn-success.btn-block.no-hover(ng-show='isCoursesLoaded && enrolled') Enrolled
 
         hr
 

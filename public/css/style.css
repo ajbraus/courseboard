@@ -18,6 +18,11 @@ a.no-style:hover {
   background-color: #eeeeee;
 }
 
+.course-row {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
 li.list-group-item.ng-scope {
   height: 40px;
 }
@@ -31,14 +36,17 @@ nav.navbar {
   /* equal to footer height */
   margin-bottom: -142px; 
 }
+
 .page-wrap:after {
   content: "";
   display: block;
 }
+
 .site-footer, .page-wrap:after {
   height: 142px; 
   margin-top: 20px;
 }
+
 .site-footer {
   background: black;
 }
@@ -54,7 +62,13 @@ nav.navbar {
 }
 
 .btn {
-    border-radius: 0;
+  border-radius: 0;
+}
+
+.no-hover:hover {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  cursor: default;
 }
 
 .alert {
@@ -94,8 +108,11 @@ nav.navbar {
   background-color: #fff;
   transition: box-shadow .25s;
   border-radius: 2px;
-  border: 1px solid #eee;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.2),0 1px 2px rgba(0,0,0,0.1);
+}
+
+.card-no-style {
+  padding: 15px;
 }
 
 .card-header {

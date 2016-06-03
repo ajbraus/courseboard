@@ -4,6 +4,18 @@
 
 angular.module('courseboard.directives', ['courseboard.services'])
 
+  .directive('dateDropdown', [function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/date-dropdown.html',
+      scope: {
+        month: "=",
+        day: "=",
+        year: "="
+      }
+    }
+  }])
+
   .directive('capitalize', [function() {
      return {
        require: 'ngModel',

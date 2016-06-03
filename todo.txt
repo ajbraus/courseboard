@@ -1,3 +1,18 @@
+Courses 
+course-index
+  DONE - mobile responsivity 
+  - visual indication of the courses you can/cannot join.
+  DONE - alignment is screwy
+DONE Enrolled/Joined "button" should not have finger cursor or change color upon hover
+DONE date dropdown
+
+Profile
+ - make public/private users-show/profile
+ - announcement card in profile, put course title below small.text-muted
+ - Instructor profile 
+   - see courses (draft and live)
+   - see products you are advising
+
 Product updates
   - updates
     - user interviews
@@ -5,59 +20,10 @@ Product updates
     - user tests
     - code reviews
     - evaluations
-
 leave product team
+add all products to admin dashboard
 
-Character Competencies
-  
-- Wisdom
-Creativity
-Curiosity
-Judgment
-Love of Learning
-Perspective
-- Courage
-Bravery
-Perseverance
-Honesty
-Zest
-- Humanity
-Love
-Kindness
-Social Intelligence
-- Justice
-Teamwork
-Fairness
-Leadership
-- Temperance
-Forgiveness
-Humility
-Prudence
-Self-Regulation
-- Transcendence
-Apprec. of Beauty & Excellence
-Gratitude
-Hope
-Humor
-Spirituality
-
-Core Competencies 
-- Product Development
-- Product Management (SCRUM/Agile)
-- Teamwork
-- Communication
-- Teamwork
-- Design
-Triplebyte's - http://blog.triplebyte.com/triplebyte-engineer-genome-project
-- Applied problem solving
-- Algorithms knowledge
-- Professional code
-- Communication skill
-- Architecture Skill
-- Low-level systems understanding
-- Back-end web understanding
-
-Technical Competencies
+Competencies Tracking
 
 3 tags (competencies) on courses & products
 =======
