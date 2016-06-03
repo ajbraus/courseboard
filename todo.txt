@@ -8,6 +8,59 @@ Product updates
 
 leave product team
 
+Character Competencies
+  
+- Wisdom
+Creativity
+Curiosity
+Judgment
+Love of Learning
+Perspective
+- Courage
+Bravery
+Perseverance
+Honesty
+Zest
+- Humanity
+Love
+Kindness
+Social Intelligence
+- Justice
+Teamwork
+Fairness
+Leadership
+- Temperance
+Forgiveness
+Humility
+Prudence
+Self-Regulation
+- Transcendence
+Apprec. of Beauty & Excellence
+Gratitude
+Hope
+Humor
+Spirituality
+
+Core Competencies 
+- Product Development
+- Product Management (SCRUM/Agile)
+- Teamwork
+- Communication
+- Teamwork
+- Design
+Triplebyte's - http://blog.triplebyte.com/triplebyte-engineer-genome-project
+- Applied problem solving
+- Algorithms knowledge
+- Professional code
+- Communication skill
+- Architecture Skill
+- Low-level systems understanding
+- Back-end web understanding
+
+Technical Competencies
+
+3 tags (competencies) on courses & products
+=======
 
 Loading spinner
 
@@ -27,7 +80,15 @@ design tracking performance/mastery/partipation
 - print a transcript
 - rubrics
 
-evaluation per mastery topic/competency based on mastery (no mastery, initial mastery, approaching mastery, near mastery, mastery)
+evaluation per mastery topic/competency based on mastery 
+
+0. no exposure
+1. initial mastery
+2. approaching mastery
+3. near mastery
+4. mastery
+5. innovator
+
 - Core
   - Product managment (SCRUM & Agile)
   - Product development (user interviewing etc)
@@ -40,17 +101,18 @@ evaluation per mastery topic/competency based on mastery (no mastery, initial ma
   - git/github
   - TDD
   - API design
-  - Deployment
-- Technical
-  - ruby
-  - rails
-  - js
-  - jquery
-  - angular
-  - react
-  - ardino
-  - python
-  - flask
+  - Deployment & Dev Ops
+- Elective
+  - ruby (backend)
+  - rails (backend)
+  - writing
+  - js (front end)
+  - jquery (front end)
+  - angular (front end)
+  - react (front end)
+  - ardino (hardware)
+  - python (backend)
+  - flask (backend)
 - Character (specific rubrics for each)
   - teamwork
   - leadership
@@ -59,6 +121,9 @@ evaluation per mastery topic/competency based on mastery (no mastery, initial ma
   - emotional intellegence 
 
 participation transcript -> pdf
+
+focus group
+- eliel, kavin, mike, leslie, josh
 
 -----------------------------------------
 
@@ -90,6 +155,10 @@ comments on posts
 repeat a course? multiple start times? change the start time?
 Credits for attending courses
 Search
+
+-----------------------------------------
+
+generate a transcript
 
 -----------------------------------------
 
