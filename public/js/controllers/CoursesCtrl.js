@@ -34,7 +34,6 @@ angular.module('courseboard')
       instructor: $rootScope.currentUser.role == "Instructor" ? $rootScope.currentUser._id : null,
       objectives: ["", "", ""]
     }
-
     // var monthNames = ["January", "February", "March", "April", "May", "June",
     //   "July", "August", "September", "October", "November", "December"
     // ];
