@@ -22,6 +22,7 @@ Product updates
     - evaluations
 leave product team
 add all products to admin dashboard
+advisor should be considered a conributor?
 
 Competencies Tracking
 
