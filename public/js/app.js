@@ -99,7 +99,7 @@ angular.module('courseboard', [
 
       // USERS & PROFILE
       $routeProvider.when('/users/:id', {
-        templateUrl: 'templates/profile',
+        templateUrl: 'templates/public-profile',
         controller: 'UsersShowCtrl'
       });
 

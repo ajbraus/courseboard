@@ -211,7 +211,6 @@ angular.module('courseboard')
        formatYear: 'yy',
        maxDate: new Date(2020, 5, 22),
        minDate: new Date()
-       // startingDay: 1
     };
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
