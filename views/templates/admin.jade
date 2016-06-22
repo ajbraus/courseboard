@@ -5,12 +5,21 @@
     .list-group
       .list-group-item(ng-repeat="student in students")
         a.clearfix(href="/users/{{student._id}}")
-          {{student.first}} {{student.last}} - {{student.username}} {{student.email}}
+          {{student.first}} {{student.last}} - {{student.username}} - {{student.email}}
         br
-        ul(ng-show="student.courses.length > 0")
-          li(ng-repeat="course in student.courses")
-            a(href="/courses/{{course._id}}")
-              {{course.title}}
+        .row
+          .col-md-6
+            h4 Courses
+            ul(ng-show="student.courses.length > 0")
+              li(ng-repeat="course in student.courses")
+                a(href="/courses/{{course._id}}")
+                  {{course.title}}
+          .col-md-6
+            h4 Produts
+            ul(ng-show="student.products.length > 0")
+              li(ng-repeat="product in student.products")
+                a(href="/products/{{product._id}}")
+                  {{product.name}}
   
 .row
   .col-sm-10.col-sm-offset-1
@@ -18,7 +27,7 @@
       h3 Instructors
     .list-group
       a.clearfix.list-group-item(ng-repeat="instructor in instructors" href="/users/{{instructor._id}}")
-        {{instructor.first}} {{instructor.last}} - {{instructor.username}} {{instructor.email}}
+        {{instructor.first}} {{instructor.last}} - {{instructor.username}} - {{instructor.email}}
 
 .row
   .col-sm-10.col-sm-offset-1

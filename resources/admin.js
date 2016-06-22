@@ -13,6 +13,7 @@ module.exports = function(app) {
     User.find({ role: "Student" }, '+email')
         .sort([['first', 'ascending']])
         .populate({ path: 'courses', select: '_id title' })
+        .populate({ path: 'products', select: '_id name' })
         .exec(function (err, students) {
           res.send(students)
         });
