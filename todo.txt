@@ -7,7 +7,7 @@ DONE Enrolled/Joined "button" should not have finger cursor or change color upon
 DONE date dropdown
 
 Profile
- - make public/private users-show/profile
+ DONE - make public/private users-show/profile
  - announcement card in profile, put course title below small.text-muted
  - Instructor profile 
    - see courses (draft and live)
@@ -20,7 +20,7 @@ Product updates
     - user tests
     - code reviews
     - evaluations
-leave product team
+DONE leave product team
 add all products to admin dashboard
 advisor should be considered a conributor?
 
