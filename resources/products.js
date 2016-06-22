@@ -35,6 +35,12 @@ module.exports = function(app) {
         course.save();
       })
 
+      //ADD TO ADVISOR'S PRODUCTS
+      User.findById(product.instructor).exec(function(err, instructor) {
+        instructor.products.unshift(product);
+        instructor.save();
+      })
+
       User.findById(req.userId, '+email').exec(function (err, user) {
         if (err) { return res.status(400).send(err) }
         // SEND NOTIFICATION TO INSTRUCTOR
@@ -52,8 +58,9 @@ module.exports = function(app) {
         })
       });
 
-      // ENROLL CREATOR
+      // ENROLL CREATOR & ADVISOR
       User.findById(req.userId).exec(function(err, user) {
+        product.contributors.push(product.instructor);
         product.contributors.push(req.userId);
         product.save();
 

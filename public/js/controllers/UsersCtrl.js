@@ -12,6 +12,30 @@ angular.module('courseboard')
         $scope.posts = response.data;
       });
     });
+
+    $scope.unenroll = function(course) {
+      $http.put('/api/courses/' + course._id + '/unenroll').then(
+        function (response) {
+          course.enrolled = false;
+          GlobalAlert.add('success', "You've unenrolled!", 3000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 3000);
+        }
+      );
+    }
+
+    $scope.unjoin = function(product) {
+      $http.put('/api/products/' + product._id + '/unjoin').then(
+        function (response) {
+          product.joined = false;
+          GlobalAlert.add('success', "You've left the product team!", 3000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 3000);
+        }
+      );
+    }
   }])
 
   .controller('UsersShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $routeParams, $auth, Auth, GlobalAlert) {
@@ -46,33 +70,33 @@ angular.module('courseboard')
         })
     }
 
-    $scope.enroll = function(course) {
-      $http.put('/api/courses/' + course._id + '/enroll').then(
-        function (response) {
-          course.enrolled = true;
+    // $scope.enroll = function(course) {
+    //   $http.put('/api/courses/' + course._id + '/enroll').then(
+    //     function (response) {
+    //       course.enrolled = true;
 
-          // $scope.course.students.push($rootScope.currentUser)
-          GlobalAlert.add('success', "You've enrolled!", 3000);
-        },
-        function (response) {
-          GlobalAlert.add('warning', response.data.message, 3000);
-        }
-      );
-    }
+    //       // $scope.course.students.push($rootScope.currentUser)
+    //       GlobalAlert.add('success', "You've enrolled!", 3000);
+    //     },
+    //     function (response) {
+    //       GlobalAlert.add('warning', response.data.message, 3000);
+    //     }
+    //   );
+    // }
 
-    $scope.unenroll = function(course) {
-      $http.put('/api/courses/' + course._id + '/unenroll').then(
-        function (response) {
-          course.enrolled = false;
-          // var index = _.map($scope.course.students, '_id').indexOf($rootScope.currentUser._id)
-          // $scope.course.students.splice(index, 1)
-          GlobalAlert.add('success', "You've unenrolled!", 3000);
-        },
-        function (response) {
-          GlobalAlert.add('warning', response.data.message, 3000);
-        }
-      );
-    }
+    // $scope.unenroll = function(course) {
+    //   $http.put('/api/courses/' + course._id + '/unenroll').then(
+    //     function (response) {
+    //       course.enrolled = false;
+    //       // var index = _.map($scope.course.students, '_id').indexOf($rootScope.currentUser._id)
+    //       // $scope.course.students.splice(index, 1)
+    //       GlobalAlert.add('success', "You've unenrolled!", 3000);
+    //     },
+    //     function (response) {
+    //       GlobalAlert.add('warning', response.data.message, 3000);
+    //     }
+    //   );
+    // }
   }])
 
   .controller('PasswordNewCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', '$location', '$routeParams', function($scope, $http, $auth, Auth, GlobalAlert, $location, $routeParams) {

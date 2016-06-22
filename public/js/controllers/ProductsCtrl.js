@@ -27,6 +27,7 @@ angular.module('courseboard')
         function (response) {
           $scope.product = {};
           $location.path('/products/' + response.data._id);
+          console.log($scope.product.contributors);
           GlobalAlert.add('success', "Successfully created product", 2000);
         },
         function (response) {
@@ -134,7 +135,7 @@ angular.module('courseboard')
       $http.delete('/api/products/' + $routeParams.id).then(
         function (response) {
           $location.path('/products');
-          GlobalAlert.add('success', "Course deleted", 2000);
+          GlobalAlert.add('success', "Product deleted", 2000);
         },
         function (response) {
           GlobalAlert.add('warning', response.data.message, 2000);

@@ -136,3 +136,12 @@ nav.navbar {
 .margin-bottom {
   margin-bottom:7px;
 }
+
+.ion-android-cancel {
+  color: #d9534f;
+}
+
+.cancel-button:hover {
+  background-color: #FFFFFF;
+  cursor: pointer;
+}
