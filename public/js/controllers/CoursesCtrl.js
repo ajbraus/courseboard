@@ -79,7 +79,7 @@ angular.module('courseboard')
           function (response) {
             $scope.course = {};
             $location.path('/courses');
-            GlobalAlert.add('success', "Create course request sent", 2000);
+            GlobalAlert.add('success', "Course saved", 2000);
           },
           function (response) {
             console.log(response);

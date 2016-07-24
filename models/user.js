@@ -20,7 +20,8 @@ var UserSchema = new Schema({
   , last               : { type: String, trim: true, set: toTitle }
   , username           : { type: String, trim: true, set: toLower }
   , role               : { type: String }
-  , courses            : [{ type: Schema.Types.ObjectId, ref: 'Course' }]
+  , courses            : [{ type: Schema.Types.ObjectId, ref: 'Course' }] // YOU CREATED
+  , enrolledCourses    : [{ type: Schema.Types.ObjectId, ref: 'Course' }] // YOU ENROLLED IN
   , products           : [{ type: Schema.Types.ObjectId, ref: 'Product' }]
   , admin              : { type: Boolean, default: false }
   , confirmedAt        : { type: Date, default: undefined }

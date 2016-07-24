@@ -94,6 +94,12 @@ module.exports = function(app) {
       if (err) { return res.status(400).send(err) }
 
       courseId = course._id;
+    
+      User.findById(req.userId, '+email').exec(function (err, user) {
+        user.courses.splice(course.students.indexOf(req.userId), 1);
+        user.save();
+      });
+
       course.remove();
 
       res.send("Successfully removed course: " + courseId);
@@ -112,7 +118,7 @@ module.exports = function(app) {
 
             console.log(user)
 
-          user.courses.unshift(course);
+          user.enrolledCourses.unshift(course);
           user.save(function(err) {
             // SEND NOTIFICATION TO STUDENT
             app.mailer.send('emails/student-enroll-notification', {
@@ -159,7 +165,7 @@ module.exports = function(app) {
         User.findById(req.userId).exec(function (err, user) {
           if (err) { return res.status(400).send(err) }
 
-          user.courses.splice(user.courses.indexOf(course._id), 1);
+          user.enrolledCourses.splice(user.enrolledCourses.indexOf(course._id), 1);
           user.save();
         })
       }

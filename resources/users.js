@@ -21,6 +21,7 @@ module.exports = function(app) {
   // GET USER
   app.get('/api/users/:id', auth.ensureAuthenticated, function (req, res) {
     User.findById(req.params.id)
+      .populate('enrolledCourses')
       .populate('courses')
       .populate('products')
       .exec(function (err, user) {
@@ -32,6 +33,7 @@ module.exports = function(app) {
   // CURRENT USER
   app.get('/api/me', auth.ensureAuthenticated, function (req, res) {
     User.findById(req.userId, '+email')
+      .populate('enrolledCourses')
       .populate('courses')
       .populate('products')
       .exec(function (err, user) {
