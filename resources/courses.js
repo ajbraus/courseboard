@@ -15,7 +15,7 @@ module.exports = function(app) {
     var d = new Date();
     // d.setDate(d.getDate()-10);
 
-    Course.find({ "endsOn": { "$gte": d } })
+    Course.find({ "endsOn": { "$gte": d }, "publishedAt": { "$ne": null } })
           .populate({ path: 'instructor', select: 'fullname first last' })
           .exec(function(err, courses) {
             // {"created_on": {"$gte": new Date(2012, 7, 14), "$lt": new Date(2012, 7, 15)}})
@@ -174,4 +174,30 @@ module.exports = function(app) {
       res.send(course);
     });
   });
+
+  // PUBLISH
+  app.put('/api/courses/:id/publish', auth.ensureAuthenticated, function (req, res) {
+    Course.findById(req.params.id, function (err, course) {
+      if (!course) { return res.status(400).send({message: 'Course not found' }) }
+      
+      course.publishedAt = new Date();
+      course.save()
+
+      res.send(course);
+    });
+  });
+
+  // UNPUBLISH
+  app.put('/api/courses/:id/unpublish', auth.ensureAuthenticated, function (req, res) {
+    Course.findById(req.params.id, function (err, course) {
+      if (!course) { return res.status(400).send({message: 'Course not found' }) }
+      
+      course.publishedAt = null;
+      course.save()
+
+      res.send(course);
+    });
+  });
+
+
 }

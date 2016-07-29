@@ -30,11 +30,13 @@ module.exports = function(app) {
       if (err) { return res.status(400).send(err) }
 
       // ADD TO COURSE
-      Course.findById(req.body.course).exec(function(err, course) {
-        course.products.unshift(product);
-        course.save();
-      })
-
+      if (req.body.course) {
+        Course.findById(req.body.course).exec(function(err, course) {
+          course.products.unshift(product);
+          course.save();
+        })
+      }
+      
       //ADD TO ADVISOR'S PRODUCTS
       User.findById(product.instructor).exec(function(err, instructor) {
         instructor.products.unshift(product);
