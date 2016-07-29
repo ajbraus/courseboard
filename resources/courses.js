@@ -15,7 +15,7 @@ module.exports = function(app) {
     var d = new Date();
     // d.setDate(d.getDate()-10);
 
-    Course.find({ "endsOn": { "$gte": d } })
+    Course.find({ "endsOn": { "$gte": d }, "publishedAt": { "$ne": null } })
           .populate({ path: 'instructor', select: 'fullname first last' })
           .exec(function(err, courses) {
             // {"created_on": {"$gte": new Date(2012, 7, 14), "$lt": new Date(2012, 7, 15)}})
@@ -94,6 +94,12 @@ module.exports = function(app) {
       if (err) { return res.status(400).send(err) }
 
       courseId = course._id;
+    
+      User.findById(req.userId, '+email').exec(function (err, user) {
+        user.courses.splice(course.students.indexOf(req.userId), 1);
+        user.save();
+      });
+
       course.remove();
 
       res.send("Successfully removed course: " + courseId);
@@ -112,7 +118,7 @@ module.exports = function(app) {
 
             console.log(user)
 
-          user.courses.unshift(course);
+          user.enrolledCourses.unshift(course);
           user.save(function(err) {
             // SEND NOTIFICATION TO STUDENT
             app.mailer.send('emails/student-enroll-notification', {
@@ -159,7 +165,7 @@ module.exports = function(app) {
         User.findById(req.userId).exec(function (err, user) {
           if (err) { return res.status(400).send(err) }
 
-          user.courses.splice(user.courses.indexOf(course._id), 1);
+          user.enrolledCourses.splice(user.enrolledCourses.indexOf(course._id), 1);
           user.save();
         })
       }
@@ -168,4 +174,30 @@ module.exports = function(app) {
       res.send(course);
     });
   });
+
+  // PUBLISH
+  app.put('/api/courses/:id/publish', auth.ensureAuthenticated, function (req, res) {
+    Course.findById(req.params.id, function (err, course) {
+      if (!course) { return res.status(400).send({message: 'Course not found' }) }
+      
+      course.publishedAt = new Date();
+      course.save()
+
+      res.send(course);
+    });
+  });
+
+  // UNPUBLISH
+  app.put('/api/courses/:id/unpublish', auth.ensureAuthenticated, function (req, res) {
+    Course.findById(req.params.id, function (err, course) {
+      if (!course) { return res.status(400).send({message: 'Course not found' }) }
+      
+      course.publishedAt = null;
+      course.save()
+
+      res.send(course);
+    });
+  });
+
+
 }

@@ -9,10 +9,6 @@
       select.form-control(ng-model="course.instructor")
         option(ng-repeat="instructor in instructors" value="{{instructor._id}}") {{instructor.fullname}}
 .row
-  .col-xs-12
-    .text-muted
-      | *Setting a Start and End Date will publish your course
-.row
   .col-sm-6
     .form-group
       label Start Date
@@ -42,7 +38,7 @@
       input.form-control(ng-model='course.location')
   .col-sm-6
     .form-group
-      label Hours per Week
+      label Commitment per Week
       select.form-control(ng-model="course.hours")
         option(value="1") 1 Hour
         option(value="2") 2 Hours

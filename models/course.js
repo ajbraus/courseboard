@@ -11,9 +11,10 @@ function toTitle(v) {
 var CourseSchema = new Schema({
     createdAt     : { type: Date }
   , updatedAt     : { type: Date }
+  , publishedAt   : { type: Date }
 
   , title         : { type: String, required: true }
-  , description   : { type: String, required: true }
+  , description   : { type: String }
   , instructor    : { type: String, set: toTitle }
   , duration      : String
 
@@ -32,7 +33,7 @@ var CourseSchema = new Schema({
   , objectives    : [String]
 
   , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true }
-  , instructor    : { type: Schema.Types.ObjectId, ref: 'User', required: true }
+  , instructor    : { type: Schema.Types.ObjectId, ref: 'User' }
   , students      : [{ type: Schema.Types.ObjectId, ref: 'User' }]
   , posts         : [{ type: Schema.Types.ObjectId, ref: 'Post' }]
   , products      : [{ type: Schema.Types.ObjectId, ref: 'Product' }]

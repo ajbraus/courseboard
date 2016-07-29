@@ -41,8 +41,6 @@ angular.module('courseboard')
     // $scope.course.startsOnDay = new Date().getDate().toString();
     // $scope.course.startsOnYear = new Date().getFullYear().toString();
 
-
-
     $http.get('/api/instructors').then(function(response) {
       $scope.instructors = response.data;
     });
@@ -74,12 +72,12 @@ angular.module('courseboard')
     $scope.createCourse = function() {
       $scope.course.endsOn = new Date($scope.course.endsOnMonth + " " + $scope.course.endsOnDay + " " + $scope.course.endsOnYear)
       $scope.course.startsOn = new Date($scope.course.startsOnMonth + " " + $scope.course.startsOnDay + " " + $scope.course.startsOnYear)
-      if ($scope.course.endsOn > $scope.course.startsOn) {
+      if ($scope.course.endsOn && $scope.course.startsOn && $scope.course.endsOn > $scope.course.startsOn) {
         $http.post('/api/courses', $scope.course).then(
           function (response) {
             $scope.course = {};
             $location.path('/courses');
-            GlobalAlert.add('success', "Create course request sent", 2000);
+            GlobalAlert.add('success', "Course saved", 2000);
           },
           function (response) {
             console.log(response);

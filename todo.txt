@@ -10,7 +10,11 @@ Profile
  DONE - make public/private users-show/profile
  - announcement card in profile, put course title below small.text-muted
  - Instructor profile 
-   - see courses (draft and live)
+   - see courses (draft and live) in instructor profile
+   - only display courses to students where publishedAt is present
+   - user.enrolledCourses is enrolled courses, user.courses is courses you created
+     DONE - upon create and enroll
+     - populating the correct one
    - see products you are advising
 
 Product updates

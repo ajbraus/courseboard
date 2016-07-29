@@ -36,6 +36,30 @@ angular.module('courseboard')
         }
       );
     }
+
+    $scope.publishCourse = function(course) {
+      $http.put('/api/courses/' + course._id + '/publish').then(
+        function (response) {
+          course.publishedAt = new Date();
+          GlobalAlert.add('success', "Course published!", 3000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 3000);
+        }
+      );
+    }
+
+    $scope.unPublishCourse = function(course) {
+      $http.put('/api/courses/' + course._id + '/unpublish').then(
+        function (response) {
+          course.publishedAt = null;
+          GlobalAlert.add('success', "Course unpublished!", 3000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 3000);
+        }
+      );
+    }
   }])
 
   .controller('UsersShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $routeParams, $auth, Auth, GlobalAlert) {
