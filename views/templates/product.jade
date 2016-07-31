@@ -1,12 +1,15 @@
 a.no-style(href="/products/{{product._id}}")
   .card
     h4 {{product.name}}  
-    .text-muted {{product.instructor.fullname}}
-    p {{product.problem | limitTo:180 }} ...
+    p {{product.problem | limitTo:180 }}
     .row
-      .col-sm-6
+      .col-sm-12
         ng-pluralize(count='product.contributors.length', 
                      when="{'1': '1 contributor', 'other': '{} contributors' }")
+    .row 
+      .col-sm-12
+        b Advisor
+        |: {{product.instructor.fullname}}
       //- .col-sm-6
       //-   b Hours per Week: 
       //-   span(ng-bind="course.hours")

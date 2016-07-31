@@ -30,7 +30,7 @@ module.exports = function(app) {
     var d = new Date();
     // d.setDate(d.getDate()-10);
 
-    Course.find({ "startsOn": { "$lte": d }, "endsOn": { "$gte": d }})
+    Course.find({ "endsOn": { "$gte": d }, "publishedAt": { "$ne": null } })
           .populate({ path: 'instructor', select: 'fullname first last' })
           .exec(function(err, courses) {
             // {"created_on": {"$gte": new Date(2012, 7, 14), "$lt": new Date(2012, 7, 15)}})

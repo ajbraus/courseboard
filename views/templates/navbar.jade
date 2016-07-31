@@ -15,6 +15,8 @@ nav.navbar
           a(href="/products") Products
         li(ng-show='currentUser')
           a(href="/profile") Profile
+        li(ng-show="currentUser.role == 'Instructor'")
+          a(href="/instructor-dashboard") Instructor Dashboard
         li.dropdown(ng-show='currentUser')
           a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
             span.caret

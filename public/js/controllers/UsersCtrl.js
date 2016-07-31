@@ -3,6 +3,36 @@
 /* USER Controllers */
 
 angular.module('courseboard')
+  .controller('InstructorDashboardCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
+    $http.get('/api/me').then(function(response) {
+      $scope.user = response.data;
+    });
+
+    $scope.publishCourse = function(course) {
+      $http.put('/api/courses/' + course._id + '/publish').then(
+        function (response) {
+          course.publishedAt = new Date();
+          GlobalAlert.add('success', "Course published!", 3000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 3000);
+        }
+      );
+    }
+
+    $scope.unPublishCourse = function(course) {
+      $http.put('/api/courses/' + course._id + '/unpublish').then(
+        function (response) {
+          course.publishedAt = null;
+          GlobalAlert.add('success', "Course unpublished!", 3000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 3000);
+        }
+      );
+    }
+  }])
+
   .controller('ProfileCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
     $http.get('/api/me').then(function(response) {
       $scope.user = response.data;
@@ -30,30 +60,6 @@ angular.module('courseboard')
         function (response) {
           product.joined = false;
           GlobalAlert.add('success', "You've left the product team!", 3000);
-        },
-        function (response) {
-          GlobalAlert.add('warning', response.data.message, 3000);
-        }
-      );
-    }
-
-    $scope.publishCourse = function(course) {
-      $http.put('/api/courses/' + course._id + '/publish').then(
-        function (response) {
-          course.publishedAt = new Date();
-          GlobalAlert.add('success', "Course published!", 3000);
-        },
-        function (response) {
-          GlobalAlert.add('warning', response.data.message, 3000);
-        }
-      );
-    }
-
-    $scope.unPublishCourse = function(course) {
-      $http.put('/api/courses/' + course._id + '/unpublish').then(
-        function (response) {
-          course.publishedAt = null;
-          GlobalAlert.add('success', "Course unpublished!", 3000);
         },
         function (response) {
           GlobalAlert.add('warning', response.data.message, 3000);

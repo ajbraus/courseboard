@@ -1,9 +1,6 @@
 .card
   .row
     .col-xs-11
-      .card-header(ng-show="profile")
-        a(href="/courses/{{post.course._id}}") {{post.course.title}}
-      hr(ng-show="profile")
       p(ng-bind-html="post.body | linky:'_blank'")
     .col-xs-1
       .text-muted.pull-right.text-large.dropdown.corner-icon(ng-hide="profile || post.user._id != currentUser._id")
@@ -20,3 +17,5 @@
     small.text-danger.pull-right(ng-show="post.dueDate")
       i.icon.ion-ios-list-outline
       |  Due on #[span(ng-bind="post.dueDate | date:'EEE MMMM dd'")]
+  .clearfix
+    a.small(href="/courses/{{post.course._id}}" ng-show="profile") {{post.course.title}}

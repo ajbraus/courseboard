@@ -1,43 +1,37 @@
 .container
   .row
     .col-sm-offset-1.col-sm-7
-      //- PRODUCT INFO
-      .page-header
-        h2 {{product.name}}
-      h4 What problem are you solving?
-      p {{product.problem}}
-      
-      hr
-      h4 Unique Value Proposition
-      p {{product.valueProp}}
-      h4 Customer
-      p {{product.customer}}
-      h4 Assumptions about the World
-      p {{product.assumptions}}
-      h4 Your Finished Product
-      p {{product.finishedProduct}}
-      h4 Your MVP
-      p {{product.mvp}}
-
+      .card 
+        //- PRODUCT INFO
+        h3 {{product.name}}
+        hr
+        dl
+          dt What problem are you solving?
+          dd {{product.problem}}
+          dt What is your unique value proposition?
+          dd {{product.valueProp}}
+          dt Who is your customer?
+          dd {{product.customer}}
+          dt What assumptions does your product make about the world?
+          dd {{product.assumptions}}
+          dt Describe your finished product 
+          dd {{product.finishedProduct}}
+          dt Describe an absolute minimum viable product that you will build and ship first
+          dd {{product.mvp}}
 
     .col-sm-3
-      .card
-        .btn.btn-primary.btn-block(ng-cloak ng-click="join()" ng-show="isProductsLoaded && !isContributor") Join
-        .btn.btn-success.btn-block.no-hover(ng-show='isProductsLoaded && isContributor') Joined
-        hr
-        h4 Advisor
-        a(href="users/{{product.instructor._id}}") {{product.instructor.fullname}}
-        h4(ng-show="product.course") Course
-        a(href="courses/{{product.course._id}}") {{product.course.title}}
-        h4 Contributors
-        a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors")
-          {{contributor.username}}
-          br
-
-        h4 External Links
-        button.btn.btn-default.btn-block(ng-click='goToUrl(product.githubUrl)' ng-disabled="!product.githubUrl") #[i.ion.ion-social-github] GitHub Repo
-        button.btn.btn-warning.btn-block(ng-click='goToUrl(product.agileUrl)' ng-disabled="!product.agileUrl") #[i.ion.ion-android-checkbox-outline] Scrum Board
-        button.btn.btn-primary.btn-block(ng-click='goToUrl(product.liveUrl)' ng-disabled="!product.liveUrl") #[i.ion.ion-android-wifi] Live Site
-
-      a.btn.btn-default.btn-block(href="/products-edit/{{product._id}}" ng-show="isContributor") Edit Product
- 
+      .btn.btn-primary.btn-block(ng-cloak ng-click="join()" ng-show="isProductsLoaded && !isContributor") Join
+      .btn.btn-success.btn-block.no-hover(ng-show='isProductsLoaded && isContributor') Joined
+      hr
+      h4 Contributors
+      a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors")
+        {{contributor.username}}
+        br
+      h4 Advisor
+      a(href="users/{{product.instructor._id}}") {{product.instructor.fullname}}
+      h4(ng-show="product.course") Course
+      a(href="courses/{{product.course._id}}") {{product.course.title}}
+      hr
+      button.btn.btn-default.btn-block(ng-click='goToUrl(product.githubUrl)' ng-disabled="!product.githubUrl") #[i.ion.ion-social-github] GitHub Repo
+      button.btn.btn-warning.btn-block(ng-click='goToUrl(product.agileUrl)' ng-disabled="!product.agileUrl") #[i.ion.ion-android-checkbox-outline] Scrum Board
+      button.btn.btn-primary.btn-block(ng-click='goToUrl(product.liveUrl)' ng-disabled="!product.liveUrl") #[i.ion.ion-android-wifi] Live Site

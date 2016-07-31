@@ -1,23 +1,15 @@
+Bugs
+  - on mobile can't see navbar dropdown toggle
+
 Courses 
-course-index
-  DONE - mobile responsivity 
-  - visual indication of the courses you can/cannot join.
-  DONE - alignment is screwy
-DONE Enrolled/Joined "button" should not have finger cursor or change color upon hover
-DONE date dropdown
 
 Profile
- DONE - make public/private users-show/profile
- - announcement card in profile, put course title below small.text-muted
- - Instructor profile 
-   - see courses (draft and live) in instructor profile
-   - only display courses to students where publishedAt is present
-   - user.enrolledCourses is enrolled courses, user.courses is courses you created
-     DONE - upon create and enroll
-     - populating the correct one
-   - see products you are advising
+ - style instructor dashboard better
+ - Remove unenroll from products in profile 
+ - fix "joined" button hover when already joined
 
-Product updates
+Product 
+  - completion bar/wizard % complete -> fill out the basic info, add user interviews, narratives, tests, code reviews, evaluations
   - updates
     - user interviews
     - user narratives
@@ -60,18 +52,20 @@ evaluation per mastery topic/competency based on mastery
 4. mastery
 5. innovator
 
-- Core
-  - Product managment (SCRUM & Agile)
-  - Product development (user interviewing etc)
+- Core (required mastery to be recommended for an internship)
+  - Communication
+  - Resourcefulness
   - Producivity (task managment, calendar, work-life balance)
-  - communication
-  - resourcefulness
-  - problem solving
-  - algorithms & data structures
-  - code craftsmanship
-  - git/github
+  - Code Craftsmanship
+  - Pair Programming
+  - Solo Programming
+  - Product managment (SCRUM & Agile)
+  - Product development (lean MVP scoping, user interviewing, narratives, paper wireframing, user testing, etc)
+  - Problem Solving
+  - Algorithms & Data Structures
+  - Git/Github
   - TDD
-  - API design
+  - API Design
   - Deployment & Dev Ops
 - Elective
   - ruby (backend)
@@ -218,3 +212,21 @@ DONE Product Team has
   DONE email team when new contributor joins
 
 
+
+ DONE - make public/private users-show/profile
+ DONE - announcement card in profile, put course title below small.text-muted
+ - Instructor profile 
+   DONE - see courses (draft and live) in instructor profile
+   DONE - only display courses to students where publishedAt is present
+   DONE - user.enrolledCourses is enrolled courses, user.courses is courses you created
+     DONE - upon create and enroll
+     DONE - populating the correct one
+   DONE - see products you are advising
+
+
+course-index
+  DONE - mobile responsivity 
+  - visual indication of the courses you can/cannot join.
+  DONE - alignment is screwy
+DONE Enrolled/Joined "button" should not have finger cursor or change color upon hover
+DONE date dropdown

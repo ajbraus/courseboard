@@ -1,30 +1,5 @@
 .container
   .row
-    .col-sm-10.col-sm-offset-1
-      h4 Instructor Dashboard
-      .card
-        table.table
-          tr
-            th Title
-            th Dates
-            th Status
-            th Update
-          tr(ng-repeat="course in user.courses")
-            td {{course.title}}
-            td
-              span(ng-bind="course.startsOn | date:'MMM dd'")
-              |  - 
-              span(ng-bind="course.endsOn | date:'MMM dd'")
-            td {{course.publishedAt ? 'Live': 'Draft'}}
-            td 
-              .btn-toolbar
-                .btn-group
-                  a.btn.btn-success.btn-sm(ng-hide="course.publishedAt" ng-click="publishCourse(course)") Publish
-                  a.btn.btn-danger.btn-sm(ng-show="course.publishedAt" ng-click="unPublishCourse(course)") Unpublish
-                .btn-group
-                  a.btn.btn-default.btn-sm(href="/courses-edit/{{course._id}}") Edit
-  hr 
-  .row
     .col-sm-4.col-sm-offset-1
       .card
         h3 {{user.first}} {{user.last}} #[small {{user.username}}]
@@ -32,14 +7,14 @@
       
       hr
       
-      h3 Courses
+      h3 Your Courses
       p(ng-repeat="course in user.enrolledCourses" ng-show="course.enrolled")
         a(href="courses/{{course._id}}") {{course.title}} 
         btn.btn-default.cancel-button(ng-init="course.enrolled = true" ng-click="unenroll(course)" ng-show="course.enrolled")
           i.ion-android-cancel
       hr
       
-      h3 Products
+      h3 Your Products
       p(ng-repeat="product in user.products" ng-show="product.joined")
         a(href="products/{{product._id}}") {{product.name}} 
         btn.btn-default.cancel-button(ng-init="product.joined = true" ng-click="unjoin(product)" ng-show="product.joined")
