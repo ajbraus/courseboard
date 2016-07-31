@@ -85,10 +85,6 @@ nav.navbar
 
         li(ng-show="currentUser")
           .btn-toolbar
-            .btn-group(ng-show="currentUser.role == 'Instructor' || currentUser.role == 'Staff'")
-              p.navbar-btn
-                a.btn.btn-default(href="/courses-new") New Course
             .btn-group
               p.navbar-btn
-                a.btn.btn-primary(href="/product-new") New Product
-br
+                a.btn.btn-primary(href="/product-new") Start New Product

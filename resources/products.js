@@ -160,7 +160,7 @@ module.exports = function(app) {
   });
 
   // UNENROLL
-  app.put('/api/products/:id/unjoin', auth.ensureAuthenticated, function (req, res) {
+  app.put('/api/products/:id/leave', auth.ensureAuthenticated, function (req, res) {
     Product.findById(req.params.id, function (err, product) {
       if (!product) { return res.status(400).send({message: 'Product not found' }) }
 

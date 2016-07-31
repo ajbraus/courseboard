@@ -20,8 +20,10 @@
           dd {{product.mvp}}
 
     .col-sm-3
-      .btn.btn-primary.btn-block(ng-cloak ng-click="join()" ng-show="isProductsLoaded && !isContributor") Join
-      .btn.btn-success.btn-block.no-hover(ng-show='isProductsLoaded && isContributor') Joined
+      .btn.btn-primary.btn-block(ng-click="join()" ng-show="!isContributor") Join
+      .btn.btn-success.btn-block.no-hover(ng-show='isContributor') Joined
+      .text-right
+        a(href="" ng-click="leave(product)") Leave Product Team
       hr
       h4 Contributors
       a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors")

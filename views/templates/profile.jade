@@ -8,21 +8,20 @@
       hr
       
       h3 Your Courses
-      p(ng-repeat="course in user.enrolledCourses" ng-show="course.enrolled")
+      //- INSTRUCTOR'S COURSES
+      p(ng-repeat="course in user.courses")
         a(href="courses/{{course._id}}") {{course.title}} 
-        btn.btn-default.cancel-button(ng-init="course.enrolled = true" ng-click="unenroll(course)" ng-show="course.enrolled")
-          i.ion-android-cancel
+      //- STUDENT'S ENROLLED COURSES
+      p(ng-repeat="course in user.enrolledCourses")
+        a(href="courses/{{course._id}}") {{course.title}} 
       hr
       
       h3 Your Products
-      p(ng-repeat="product in user.products" ng-show="product.joined")
+      p(ng-repeat="product in user.products")
         a(href="products/{{product._id}}") {{product.name}} 
-        btn.btn-default.cancel-button(ng-init="product.joined = true" ng-click="unjoin(product)" ng-show="product.joined")
-          i.ion-android-cancel 
     
     .col-sm-5.col-sm-offset-1
-      h3 Announcements
-      hr
+      h4 Announcements
       div(ng-init="profile = true" ng-include="'templates/post'", ng-repeat="post in posts")
 
 

@@ -1,11 +1,20 @@
 Bugs
+  - unjoin is bad naming - what is the opposite of "to join"?
   - on mobile can't see navbar dropdown toggle
 
 Courses 
+  - publish a new course, send everyone in the organization an email
+  - in new course form - default start and end dates to today
+  - fix enroll on current courses 10 days after start (disable)
+  - allow instructors to unenroll students from a course
 
-Profile
- - style instructor dashboard better
- - Remove unenroll from products in profile 
+Admin Dashboard 
+  - See draft courses in admin dashboard
+
+Instructor Dashboard
+  - style instructor dashboard better
+
+Public Profile
  - fix "joined" button hover when already joined
 
 Product 
@@ -18,30 +27,16 @@ Product
     - evaluations
 DONE leave product team
 add all products to admin dashboard
-advisor should be considered a conributor?
 
 Competencies Tracking
-
-3 tags (competencies) on courses & products
-=======
-
-Loading spinner
-
-Course drafts vs. published - has start and end date or not or is past 
-publish a new course, send everyone an email
-
-See draft courses ...
-  - your profile
-  - admin dashboard
-
-fix enroll on current courses 10 days after start (disable)
 
 ---------------------------
 
 design tracking performance/mastery/partipation
-- 3 tags on courses & products
-- print a transcript
-- rubrics
+- see competencies (most masterful on top)
+- see rubrics 
+- See course-level competences you've accrewed
+- See current and total hours of attending courses/products
 
 evaluation per mastery topic/competency based on mastery 
 
@@ -85,19 +80,16 @@ evaluation per mastery topic/competency based on mastery
   - creativity
   - emotional intellegence 
 
-participation transcript -> pdf
-
 focus group
 - eliel, kavin, mike, leslie, josh
+
+Enhancements
+ - Loading spinner
+ - participation transcript -> pdf
 
 -----------------------------------------
 
 write tests (API & Angularjs)
-
------------------------------------------
-
-Gulp tasks
-  - minify css and javascripts
 
 -----------------------------------------
 
@@ -106,30 +98,44 @@ plan classes by objective
     - date/time (calendar stuff - set dates and times of classes)
     - class objectives
 
-add gulp to minify all css and js
 list students alphabetically?? list my courses alphabetically??
-date picker left side numbers - what are these? (week in the year - get rid of this)
 add admin so they can set all classes and assign instructors (i.e. at beginning of term) and remove setting instructor for all other accounts when creating courses
-manage my courses as instructor
-  - see courses you are an instructor for in left col (profile)
-  - separate section only for instructor profile pages
-tags/categories for courses
-unenroll is very unintuitive
 archiving courses
 comments on posts
 repeat a course? multiple start times? change the start time?
-Credits for attending courses
-Search
 
 -----------------------------------------
-
-generate a transcript
-
------------------------------------------
-
 
 Organizations
+
+-----------------------------------------
+
 add personal objectives to user
+
+-----------------------------------------
+
+Search
+  - courses
+  - announcements
+
+-----------------------------------------
+
+  Unenroll from a course
+     btn.btn-default.cancel-button(ng-init="course.enrolled = true" ng-click="unenroll(course)" ng-show="course.enrolled")
+          i.ion-android-cancel
+  - Request unenroll form
+    - What reason would you like to unenroll from this course? 
+      - I do not have prequisite preparation
+      - The class work is moving too slowly
+      - The class times interfere with something outside of Make School
+      - The class times interfere with another PA course I am enrolled in
+      - 
+    - I've spoken with my instructor about these concerns
+    - They said:
+
+-----------------------------------------
+
+
 
 DONE Courses CRUD
 DONE Associate couress with user

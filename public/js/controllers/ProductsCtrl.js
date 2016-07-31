@@ -83,6 +83,18 @@ angular.module('courseboard')
       );
     }
 
+    $scope.leave = function(product) {
+      $http.put('/api/products/' + product._id + '/leave').then(
+        function (response) {
+          product.joined = false;
+          GlobalAlert.add('success', "You've left the product team!", 3000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 3000);
+        }
+      );
+    }
+
   }])
 
   .controller('ProductsEditCtrl', ['$scope', '$http', '$routeParams', '$location', 'GlobalAlert', function($scope, $http, $routeParams, $location, GlobalAlert) {
