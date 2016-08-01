@@ -167,6 +167,19 @@ angular.module('courseboard')
         }
       )
     }
+
+    // INSTRUCTORS CAN UNENROLL STUDENTS (WITH CONFIRM)
+    $scope.unenroll = function(course) {
+      $http.put('/api/courses/' + course._id + '/unenroll').then(
+        function (response) {
+          course.enrolled = false;
+          GlobalAlert.add('success', "You've unenrolled!", 3000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 3000);
+        }
+      );
+    }
   }])
 
   .controller('CoursesEditCtrl', ['$scope', '$http', '$routeParams', '$location', 'GlobalAlert', function($scope, $http, $routeParams, $location, GlobalAlert) {

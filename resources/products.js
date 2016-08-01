@@ -47,7 +47,6 @@ module.exports = function(app) {
         if (err) { return res.status(400).send(err) }
         // SEND NOTIFICATION TO INSTRUCTOR
         User.findById(product.instructor, '+email').exec(function (err, instructor) {
-          console.log(instructor)
           app.mailer.send('emails/product-instructor-notification', {
             to: instructor.email,
             subject: 'New Product Advisor: ' + product.name,
@@ -62,8 +61,10 @@ module.exports = function(app) {
 
       // ENROLL CREATOR & ADVISOR
       User.findById(req.userId).exec(function(err, user) {
-        product.contributors.push(product.instructor);
         product.contributors.push(req.userId);
+        if (req.userId != product.instructor) {
+          product.contributors.push(product.instructor);
+        }
         product.save();
 
         user.products.unshift(product);
@@ -159,7 +160,7 @@ module.exports = function(app) {
   });
 
   // UNENROLL
-  app.put('/api/products/:id/unjoin', auth.ensureAuthenticated, function (req, res) {
+  app.put('/api/products/:id/leave', auth.ensureAuthenticated, function (req, res) {
     Product.findById(req.params.id, function (err, product) {
       if (!product) { return res.status(400).send({message: 'Product not found' }) }
 

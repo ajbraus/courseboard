@@ -69,6 +69,7 @@ nav.navbar {
   background-color: #5cb85c;
   border-color: #4cae4c;
   cursor: default;
+  opacity:1;
 }
 
 .alert {
@@ -148,4 +149,12 @@ nav.navbar {
 .cancel-button:hover {
   background-color: #FFFFFF;
   cursor: pointer;
+}
+
+dd {
+  margin-bottom: 10px;
+}
+
+.table tbody tr th {
+  border-top: none;
 }

@@ -1,0 +1,40 @@
+.container
+  .row
+    .col-sm-10.col-sm-offset-1
+      .clearfix
+        .pull-left
+          h4 Your Courses
+        .pull-right
+          .btn-group(ng-show="currentUser.role == 'Instructor' || currentUser.role == 'Staff'")
+            p.navbar-btn
+              a.btn.btn-sm.btn-default(href="/courses-new") Plan New Course
+
+      .card
+        table.table
+          tr
+            th Title
+            th Dates
+            th Status
+            th Update
+          tr(ng-repeat="course in user.courses")
+            td {{course.title}}
+            td
+              span(ng-bind="course.startsOn | date:'MMM dd'")
+              |  - 
+              span(ng-bind="course.endsOn | date:'MMM dd'")
+            td {{course.publishedAt ? 'Live': 'Draft'}}
+            td 
+              .btn-toolbar
+                .btn-group
+                  a.btn.btn-success.btn-sm(ng-hide="course.publishedAt" ng-click="publishCourse(course)") Publish
+                  a.btn.btn-danger.btn-sm(ng-show="course.publishedAt" ng-click="unPublishCourse(course)") Unpublish
+                .btn-group
+                  a.btn.btn-default.btn-sm(href="/courses-edit/{{course._id}}") Edit
+
+      hr
+
+      h4 Products You Are Advising 
+      .row
+        .col-sm-4(ng-repeat="product in user.products")
+          .card
+            a(href="products/{{product._id}}") {{product.name}} 

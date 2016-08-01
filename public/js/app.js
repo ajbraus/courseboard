@@ -103,6 +103,11 @@ angular.module('courseboard', [
         controller: 'UsersShowCtrl'
       });
 
+      $routeProvider.when('/instructor-dashboard', {
+        templateUrl: 'templates/instructor-dashboard',
+        controller: 'InstructorDashboardCtrl'
+      });
+
       $routeProvider.when('/profile', {
         templateUrl: 'templates/profile',
         controller: 'ProfileCtrl'
