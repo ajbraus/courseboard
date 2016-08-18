@@ -72,7 +72,15 @@ angular.module('courseboard')
       }
     );
 
-    $scope.kinds = ['User Interview', 'User Narrative', 'User Testing', 'User Evaluation', 'Code Review']
+    if ($scope.isContributor) {
+      $scope.kinds = ['User Interview', 'User Narrative', 'User Testing', 'User Evaluation', 'Code Review']  
+    } else {
+      $scope.kinds = ['User Evaluation', 'Code Review']  
+    }
+
+    // $scope.$watch($scope.update.kind, function() {
+      
+    // })
 
     // CREATE UPDATE 
     $scope.createUpdate = function() {

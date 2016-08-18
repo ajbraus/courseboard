@@ -4,6 +4,8 @@
       .card 
         //- PRODUCT INFO
         h3 {{product.name}}
+        .text-right(ng-if="isContributor")
+          a(href="/products-edit/{{product._id}}") Edit Product
         hr
         dl
           dt What problem are you solving?
