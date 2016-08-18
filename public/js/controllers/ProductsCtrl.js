@@ -73,9 +73,9 @@ angular.module('courseboard')
     );
 
     if ($scope.isContributor) {
-      $scope.kinds = ['User Interview', 'User Narrative', 'User Testing', 'User Evaluation', 'Code Review']  
+      $scope.kinds = ['User Interview', 'User Narrative', 'User Testing', 'User Evaluation', 'Feedback', 'Code Review']  
     } else {
-      $scope.kinds = ['User Evaluation', 'Code Review']  
+      $scope.kinds = ['User Evaluation', 'Feedback', 'Code Review']  
     }
 
     // $scope.$watch($scope.update.kind, function() {

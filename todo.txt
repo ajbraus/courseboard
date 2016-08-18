@@ -5,6 +5,7 @@ add product updates
   - DONE populate udpates of products in show
   - DONE show who wrote the update
   - add template text for each type of product update (don't update it if the text box has any characters)
+  - email product colaborators if someone submits feedback, code review, etc
   - put update form into modal or separate page
   - delete updates on product (with confirm)
   - pull updates into profile announcements/updates

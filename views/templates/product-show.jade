@@ -8,16 +8,16 @@
           a(href="/products-edit/{{product._id}}") Edit Product
         hr
         dl
-          dt What problem are you solving?
-          dd {{product.problem}}
-          dt Who is your customer?
-          dd {{product.customer}}
-          dt What assumptions does your product make about the world?
-          dd {{product.assumptions}}
-          dt Describe your finished product.
-          dd {{product.finishedProduct}}
-          dt Describe the absolute minimum product that you will build and ship first.
-          dd {{product.mvp}}
+          dt(ng-if="product.problem") What problem are you solving?
+          dd(ng-if="product.problem") {{product.problem}}
+          dt(ng-if="product.customer") Who is your customer?
+          dd(ng-if="product.customer") {{product.customer}}
+          dt(ng-if="product.assumptions") What assumptions does your product make about the world?
+          dd(ng-if="product.assumptions") {{product.assumptions}}
+          dt(ng-if="product.finishedProduct") Describe your finished product.
+          dd(ng-if="product.finishedProduct") {{product.finishedProduct}}
+          dt(ng-if="product.mvp") Describe the absolute minimum product that you will build and ship first.
+          dd(ng-if="product.mvp") {{product.mvp}}
       br   
       legend New Product Update
       form(ng-submit="createUpdate()")
