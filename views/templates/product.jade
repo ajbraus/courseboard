@@ -4,23 +4,15 @@ a.no-style(href="/products/{{product._id}}")
     p {{product.problem | limitTo:180 }}
     .row
       .col-sm-12
-        ng-pluralize(count='product.contributors.length', 
-                     when="{'1': '1 contributor', 'other': '{} contributors' }")
+        b Contributors 
+        p 
+          span(ng-repeat="contributor in product.contributors") {{contributor.username}} 
     .row 
       .col-sm-12
         b Advisor
         |: {{product.instructor.fullname}}
-      //- .col-sm-6
-      //-   b Hours per Week: 
-      //-   span(ng-bind="course.hours")
-      //-   br
-      //-   b Location: 
-      //-   span {{course.location | limitTo:22}} #[span {{course.location.length > 22 ? '...' : ''}}]
-    //- br
-    //- .row
-    //-   .col-xs-12
-    //-     b Objectives: 
-    //-     ul
-    //-       li(ng-repeat='obj in course.objectives') {{obj}}
-
+    .row
+      .col-sm-12
+        .text-muted Created on 
+          span(ng-bind="product.createdAt | date:'MMM dd, yyyy'")
 

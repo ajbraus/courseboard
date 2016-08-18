@@ -9,19 +9,22 @@
       
       h3 Your Courses
       //- INSTRUCTOR'S COURSES
-      p(ng-repeat="course in user.courses")
-        a(href="courses/{{course._id}}") {{course.title}} 
+      a.no-style(href="courses/{{course._id}}")
+        .card(ng-repeat="course in user.courses")
+          {{course.title}} 
       //- STUDENT'S ENROLLED COURSES
-      p(ng-repeat="course in user.enrolledCourses")
-        a(href="courses/{{course._id}}") {{course.title}} 
+      a.no-style(href="courses/{{course._id}}")
+        .card(ng-repeat="course in user.enrolledCourses")
+          {{course.title}} 
       hr
       
       h3 Your Products
-      p(ng-repeat="product in user.products")
-        a(href="products/{{product._id}}") {{product.name}} 
+      a.no-style(href="products/{{product._id}}")
+        .card(ng-repeat="product in user.products")
+          {{product.name}} 
     
     .col-sm-5.col-sm-offset-1
-      h4 Announcements
+      h4 Recent Announcements
       div(ng-init="profile = true" ng-include="'templates/post'", ng-repeat="post in posts")
 
 

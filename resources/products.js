@@ -14,7 +14,8 @@ module.exports = function(app) {
   app.get('/api/products', function (req, res) {
     Product.find()
           .populate({ path: 'instructor', select: 'fullname first last' })
-          .sort("createdAt")
+          .populate({ path: 'contributors', select: 'username' })
+          .sort("-createdAt")
           .exec(function(err, products) {
             if (err) { return res.status(400).send(err) }
 
@@ -80,8 +81,8 @@ module.exports = function(app) {
   app.get('/api/products/:id', function (req, res) {
     Product.findById(req.params.id)
           .populate('user')
-          .populate('contributors')
-          // .populate('posts')
+          .populate({ path: 'contributors', select: '_id username' })
+          // .populate('updates')
           .populate({ path: 'instructor', select: 'fullname first last' })
           .populate({ path: 'course', select: 'title' })
           .exec(function (err, product) {
@@ -159,7 +160,7 @@ module.exports = function(app) {
     });
   });
 
-  // UNENROLL
+  // LEAVE A PRODUCT TEAM
   app.put('/api/products/:id/leave', auth.ensureAuthenticated, function (req, res) {
     Product.findById(req.params.id, function (err, product) {
       if (!product) { return res.status(400).send({message: 'Product not found' }) }

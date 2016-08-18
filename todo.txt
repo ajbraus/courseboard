@@ -1,12 +1,26 @@
+fix unenroll
+add product updates
+  - DONE separate update model
+  - DONE create
+  - DONE populate udpates of products in show
+  - DONE show who wrote the update
+  - add template text for each type of product update (don't update it if the text box has any characters)
+  - put update form into modal or separate page
+  - delete updates on product (with confirm)
+  - pull updates into profile announcements/updates
+
+other product questions & edit product (only contributors)
+Leave product team should be in profile
+instructors can unenroll students
+
+
 Bugs
-  - unjoin is bad naming - what is the opposite of "to join"?
   - on mobile can't see navbar dropdown toggle
 
 Courses 
-  - publish a new course, send everyone in the organization an email
   - in new course form - default start and end dates to today
   - fix enroll on current courses 10 days after start (disable)
-  - allow instructors to unenroll students from a course
+  - allow instructors to unenroll students from a course (but this is very hard)
 
 Admin Dashboard 
   - See draft courses in admin dashboard
@@ -47,38 +61,38 @@ evaluation per mastery topic/competency based on mastery
 4. mastery
 5. innovator
 
-- Core (required mastery to be recommended for an internship)
-  - Communication
-  - Resourcefulness
-  - Producivity (task managment, calendar, work-life balance)
+Core Competencies
+  - Product management (SCRUM & Agile, Git/Github)
+  - Product development & Entrepreneurship (user interviewing, pivot or preserver, etc) 
+  - Productivity (task management, calendar, work-life balance) 
+  - Communication (spoken and written) 
+  - Critical Thinking & Problem solving
+  - Algorithms & Data Structures
   - Code Craftsmanship
+  - Information and Data Analysis 
   - Pair Programming
   - Solo Programming
-  - Product managment (SCRUM & Agile)
-  - Product development (lean MVP scoping, user interviewing, narratives, paper wireframing, user testing, etc)
-  - Problem Solving
-  - Algorithms & Data Structures
-  - Git/Github
-  - TDD
-  - API Design
-  - Deployment & Dev Ops
-- Elective
-  - ruby (backend)
-  - rails (backend)
-  - writing
-  - js (front end)
-  - jquery (front end)
-  - angular (front end)
-  - react (front end)
-  - ardino (hardware)
-  - python (backend)
-  - flask (backend)
-- Character (specific rubrics for each)
-  - teamwork
-  - leadership
-  - professionalism
-  - creativity
-  - emotional intellegence 
+Character Competencies
+  - Teamwork 
+  - Resourcefulness, Initiative, Agility, and Adaptability 
+  - Emotional Intelligence 
+  - Curiosity and Creativity 
+  - Leadership
+Elective Competencies
+  - Internet Fundamentals and Networking
+  - iOS
+  - Ruby & Ruby on Rails (backend)
+  - JavaScript, Node, npm, ExpressJS
+  - Front End Build Systems
+  - JavaScript, Front End Frameworks
+  - Python & Flask
+  - Data Science
+  - Data Visualization
+  - Machine Learning
+  - Embedded Systems
+  - SQL Databases 
+  - NoSQL Databases
+  - Writing 
 
 focus group
 - eliel, kavin, mike, leslie, josh

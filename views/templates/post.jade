@@ -16,6 +16,6 @@
       | Posted by #[a(href="/users/{{post.user._id}}") {{post.user.username}}] on #[span(ng-bind="post.createdAt | date:'EEE MMMM dd'")]
     small.text-danger.pull-right(ng-show="post.dueDate")
       i.icon.ion-ios-list-outline
-      |  Due on #[span(ng-bind="post.dueDate | date:'EEE MMMM dd'")]
+      |  Due on #[span(ng-bind="post.dueDate | date:'EEE MMM dd'")]
   .clearfix
     a.small(href="/courses/{{post.course._id}}" ng-show="profile") {{post.course.title}}

@@ -7,7 +7,7 @@
   "dependencies": {
     "angular": "latest",
     "angular-resource": "~1.4.7",
-    "angular-route": "~1.4.8",
+    "angular-route": "~1.4.8", 
     "angular-moment": "~0.10.3",
     "bootstrap": "latest",
     "satellizer": "~0.12.5",

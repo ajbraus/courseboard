@@ -13,20 +13,22 @@ var ProductSchema = new Schema({
   , updatedAt     : { type: Date }
 
   , name                : { type: String, required: true }
-  , problem             : { type: String, required: true }
   , githubUrl           : { type: String }
   , agileUrl            : { type: String }
   , liveUrl             : { type: String }
-  , valueProp           : String
+  , problem             : { type: String, required: true }
   , customer            : String
   , assumptions         : String
   , finishedProduct     : String
   , mvp                 : String
 
+  , marketFit           : Number
+  , nps                 : Number
+
   , course              : { type: Schema.Types.ObjectId, ref: 'Course' }
   , instructor          : { type: Schema.Types.ObjectId, ref: 'User', required: true }
   , contributors        : [{ type: Schema.Types.ObjectId, ref: 'User' }]
-  // , posts         : [{ type: Schema.Types.ObjectId, ref: 'Post' }]
+  , updates             : [{ type: Schema.Types.ObjectId, ref: 'Update' }]
 })
 
 // Compound index

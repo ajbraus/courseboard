@@ -8,9 +8,9 @@
         a(href="/users/{{course.instructor._id}}") {{course.instructor.fullname}}
         br
         b Date 
-        span(ng-bind="course.startsOn | date:'MMMM dd, yyyy'")
+        span(ng-bind="course.startsOn | date:'EEE MMM dd, yyyy'")
         |  - 
-        span(ng-bind="course.endsOn | date:'MMMM dd, yyyy'")
+        span(ng-bind="course.endsOn | date:'EEE MMM dd, yyyy'")
         br
         b Hours per Week: 
         span {{course.hours}}

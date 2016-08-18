@@ -181,7 +181,9 @@ module.exports = function(app) {
       if (!course) { return res.status(400).send({message: 'Course not found' }) }
       
       course.publishedAt = new Date();
-      course.save()
+      course.save();
+
+      // EMAIL ALL STUDENTS NEW COURSE
 
       res.send(course);
     });

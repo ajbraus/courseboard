@@ -17,7 +17,8 @@
             th Status
             th Update
           tr(ng-repeat="course in user.courses")
-            td {{course.title}}
+            td 
+              a(href="/courses/{{course._id}}") {{course.title}}
             td
               span(ng-bind="course.startsOn | date:'MMM dd'")
               |  - 
@@ -38,3 +39,4 @@
         .col-sm-4(ng-repeat="product in user.products")
           .card
             a(href="products/{{product._id}}") {{product.name}} 
+            {{product.problem}}

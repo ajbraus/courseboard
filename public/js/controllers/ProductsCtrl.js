@@ -40,7 +40,8 @@ angular.module('courseboard')
 
   .controller('ProductsShowCtrl', ['$scope', '$rootScope', 'lodash', '$http', '$routeParams', '$window', '$location', 'GlobalAlert', function($scope, $rootScope, lodash, $http, $routeParams, $window, $location, GlobalAlert) {
     $scope.isProductsLoaded = false;
-    
+
+    // GET PRODUCT
     $http.get('/api/products/' + $routeParams.id).then(
       function (response) {
         $scope.product = response.data;
@@ -61,15 +62,32 @@ angular.module('courseboard')
       $window.open(url);
     }
 
-    // $http.get('/api/products/' + $routeParams.id + "/posts").then(
-    //   function (response) {
-    //     $scope.posts = response.data;
-    //   },
-    //   function (response) {
-    //     GlobalAlert.add('warning', response.data.message, 2000);
-    //   }
-    // );
+    // GET PRODUCT UPDATES
+    $http.get('/api/products/' + $routeParams.id + "/updates").then(
+      function (response) {
+        $scope.updates = response.data;
+      },
+      function (response) {
+        GlobalAlert.add('warning', response.data.message, 2000);
+      }
+    );
 
+    $scope.kinds = ['User Interview', 'User Narrative', 'User Testing', 'User Evaluation', 'Code Review']
+
+    // CREATE UPDATE 
+    $scope.createUpdate = function() {
+      $http.post('/api/products/' + $routeParams.id + "/updates", $scope.update).then(
+        function (response) {
+          $scope.product.updates.unshift(response.data);
+          $scope.update = {};
+          GlobalAlert.add('success', "Update Created", 2000);
+        }, 
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 2000);
+        });
+    }
+
+    // JOIN PRODUCT CONTRIBUTORS
     $scope.join = function() {
       $http.put('/api/products/' + $routeParams.id + '/join').then(
         function (response) {
@@ -83,10 +101,15 @@ angular.module('courseboard')
       );
     }
 
+    // LEAVE PRODUCT CONTRIBUTORS
     $scope.leave = function(product) {
       $http.put('/api/products/' + product._id + '/leave').then(
         function (response) {
-          product.joined = false;
+          // REMOVE CURRENT USER FROM PRODUCT CONTRIBUTORS
+          $scope.isContributor = false;
+          var index = _.map($scope.product.contributors, '_id').indexOf($rootScope.currentUser._id)
+          $scope.product.contributors.splice(index, 1)
+
           GlobalAlert.add('success', "You've left the product team!", 3000);
         },
         function (response) {

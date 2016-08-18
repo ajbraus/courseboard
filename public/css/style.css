@@ -1,5 +1,5 @@
 body {
-  background: #fcfcfc;
+  background: #f3f3f3;
 }
 
 * {
@@ -157,4 +157,8 @@ dd {
 
 .table tbody tr th {
   border-top: none;
+}
+
+.btn-default[disabled] {
+  background-color: grey;
 }
