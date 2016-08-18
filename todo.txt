@@ -1,22 +1,32 @@
-fix unenroll
-add product updates
+Instructors can unenroll students from their courses
+Leave product team should be in profile
+
+Bugs
+  - on mobile can't see navbar dropdown toggle
+
+Product 
   - DONE separate update model
   - DONE create
   - DONE populate udpates of products in show
   - DONE show who wrote the update
-  - add template text for each type of product update (don't update it if the text box has any characters)
-  - email product colaborators if someone submits feedback, code review, etc
+  - other product questions & edit product (only contributors)
   - put update form into modal or separate page
   - delete updates on product (with confirm)
-  - pull updates into profile announcements/updates
+  - add template text for each type of product update (don't update it if the text box has any characters)
+  - email product colaborators if someone submits feedback, code review, etc
+  - pull product updates into profile announcements/updates
+  - product completion bar progress bar
+  - add all products to admin dashboard
 
-other product questions & edit product (only contributors)
-Leave product team should be in profile
-instructors can unenroll students
 
+Competencies Tracking
+  - user narratives, template design
+  - define rubrics
+  - admins can create new competencies
+  - instructors can set competency levels with qualitative evaluation/proof
+  - see competencies in profile
+  - download participation transcript -> pdf of projects (with code and live links), competencies
 
-Bugs
-  - on mobile can't see navbar dropdown toggle
 
 Courses 
   - in new course form - default start and end dates to today
@@ -27,23 +37,9 @@ Admin Dashboard
   - See draft courses in admin dashboard
 
 Instructor Dashboard
-  - style instructor dashboard better
 
 Public Profile
- - fix "joined" button hover when already joined
-
-Product 
-  - completion bar/wizard % complete -> fill out the basic info, add user interviews, narratives, tests, code reviews, evaluations
-  - updates
-    - user interviews
-    - user narratives
-    - user tests
-    - code reviews
-    - evaluations
-DONE leave product team
-add all products to admin dashboard
-
-Competencies Tracking
+  - paginate announcements 
 
 ---------------------------
 
@@ -100,7 +96,6 @@ focus group
 
 Enhancements
  - Loading spinner
- - participation transcript -> pdf
 
 -----------------------------------------
 
