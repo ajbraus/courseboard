@@ -98,6 +98,21 @@ angular.module('courseboard')
         });
     }
 
+    // DESTROY UPDATE
+    $scope.deleteUpdate = function(update) {
+      $http.delete('/api/updates/' + update._id).then(
+        function (response) {
+          var index = _.map($scope.product.contributors, '_id').indexOf($rootScope.currentUser._id)
+          $scope.product.contributors.splice(index, 1)
+
+          GlobalAlert.add('success', "Update Created", 2000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 2000);
+        }
+      )
+    }
+
     // JOIN PRODUCT CONTRIBUTORS
     $scope.join = function() {
       $http.put('/api/products/' + $routeParams.id + '/join').then(

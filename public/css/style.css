@@ -18,6 +18,9 @@ a.no-style:hover {
   background-color: #eeeeee;
 }
 
+.text-small {
+  font-size:80%;
+}
 .course-row {
   padding-top: 3px;
   padding-bottom: 3px;

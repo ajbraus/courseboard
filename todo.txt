@@ -1,4 +1,4 @@
-Instructors can unenroll students from their courses
+Only instructors and staff can unenroll students from their courses
 Leave product team should be in profile
 
 Bugs

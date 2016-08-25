@@ -31,9 +31,18 @@
           button.btn.btn-sm.btn-primary(type='button', data-toggle='modal', data-target='#newUpdate' ng-if="isContributor")
             | New Product Update
       .card(ng-repeat="update in updates")
+        .pull-right
+          .dropdown.text-small
+            a#dropdownMenu1.dropdown-toggle(data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+              i.icon.ion-chevron-down
+            ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+              li
+                a(href='#' ng-click="deleteUpdate(update)") Delete
         h5 {{update.kind}}
         small.text-muted posted on #[span(ng-bind="update.createdAt | date:'EEE MMM dd, yy'")] by {{update.user.username}}
         p {{update.body}}
+        
+
     .col-sm-3
       .btn.btn-primary.btn-block(ng-click="join()" ng-show="!isContributor") Join
       .btn.btn-success.btn-block.no-hover(ng-show='isContributor') Joined
