@@ -4,12 +4,16 @@
       .card 
         //- PRODUCT INFO
         h3 {{product.name}}
-        .text-right(ng-if="isContributor")
-          a(href="/products-edit/{{product._id}}") Edit/Improve Product
         hr
         dl
           dt(ng-if="product.problem") What problem are you solving?
           dd(ng-if="product.problem") {{product.problem}}
+      a.btn.btn-block.btn-lg.btn-success(href="/products-plan/{{product._id}}" ng-hide="product.customer || product.assumptions || product.finshedProduct || product.mvp")
+        | Add Product Plan
+      br
+      div(ng-show="product.customer || product.assumptions || product.finshedProduct || product.mvp")
+        h4 Product Plan
+        .card
           dt(ng-if="product.customer") Who is your customer?
           dd(ng-if="product.customer") {{product.customer}}
           dt(ng-if="product.assumptions") What assumptions does your product make about the world?
@@ -18,7 +22,7 @@
           dd(ng-if="product.finishedProduct") {{product.finishedProduct}}
           dt(ng-if="product.mvp") Describe the absolute minimum product that you will build and ship first.
           dd(ng-if="product.mvp") {{product.mvp}}
-      hr
+      br
       .clearfix
         h4.pull-left Product Updates
         .pull-right
@@ -48,6 +52,10 @@
       button.btn.btn-default.btn-block(ng-click='goToUrl(product.githubUrl)' ng-disabled="!product.githubUrl") #[i.ion.ion-social-github] GitHub Repo
       button.btn.btn-warning.btn-block(ng-click='goToUrl(product.agileUrl)' ng-disabled="!product.agileUrl") #[i.ion.ion-android-checkbox-outline] Scrum Board
       button.btn.btn-primary.btn-block(ng-click='goToUrl(product.liveUrl)' ng-disabled="!product.liveUrl") #[i.ion.ion-android-wifi] Live Site
+      br
+      .text-right(ng-if="isContributor")
+        a(href="/products-edit/{{product._id}}") Product Settings
+
 
 .modal.fade#newUpdate(tabindex='-1', role='dialog')
   .modal-dialog(role='document')

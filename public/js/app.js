@@ -84,6 +84,11 @@ angular.module('courseboard', [
         controller: 'ProductsEditCtrl'
       });
 
+      $routeProvider.when('/products-plan/:id', {
+        templateUrl: 'templates/product-plan',
+        controller: 'ProductsEditCtrl'
+      });
+
       // PASSWORD
       $routeProvider.when('/password-edit', {
         templateUrl: 'templates/password-edit',

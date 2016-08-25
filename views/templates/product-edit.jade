@@ -39,23 +39,3 @@
             .form-group
               label Live Site URL
               input.form-control(ng-model='product.liveUrl')
-
-        br
-        legend Product Plan #[small.text-muted (Its natural for these answers to change as you learn more)]
-        .form-group
-          label Who is your customer? Who pays you $?
-          input.form-control(type="text" ng-model="product.customer")
-        .form-group
-          label What assumptions about the world must be true for your product to succeed?
-          textarea.form-control(type="text" ng-model="product.assumptions" rows="3")
-        .form-group
-          label Describe your product when it is 100% finished.
-          textarea.form-control(type="text" ng-model="product.finishedProduct" rows="3")
-        .form-group
-          label In contrast, describe your absoulte (absolute!) minimum viable product.
-          textarea.form-control(type="text" ng-model="product.mvp" rows="3")
-        .btn-toolbar.pull-right
-          .btn-group
-            .btn.btn-danger(ng-click="deleteProduct()") Delete Product
-          .btn-group
-            button.btn.btn-primary(type="submit") Update Product
