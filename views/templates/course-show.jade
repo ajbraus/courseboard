@@ -35,22 +35,21 @@
 
 
       hr
-
-      //- STUDENTS
-      h4 Participants
-        .card
-          a(href="users/{{student._id}}" ng-repeat="student in course.students") 
-            {{student.username}}
-            br
-
-      hr
-
-      //- PRODUCTS
-      h4 Products
-      .card
-        a(href="products/{{product._id}}" ng-repeat="product in course.products")
-          {{product.name}}
-          br      
+      .row
+        .col-sm-6
+          //- STUDENTS
+          h4 Participants
+            .card
+              a(href="users/{{student._id}}" ng-repeat="student in course.students") 
+                {{student.username}}
+                br
+        .col-sm-6
+          //- PRODUCTS
+          h4 Products
+          .card
+            a(href="products/{{product._id}}" ng-repeat="product in course.products")
+              {{product.name}}
+              br      
     
     .col-md-5
       //- ANNOUNCMENTS

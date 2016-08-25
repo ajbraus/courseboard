@@ -11,7 +11,7 @@ Product
   - DONE show who wrote the update
   - DONE other product questions & edit product (only contributors)
   - DONE put update form into modal or separate page
-  - delete updates on product (with confirm)
+  - DONE delete updates on product (with confirm)
   - add template text for each type of product update (don't update it if the text box has any characters)
   - email product colaborators if someone submits feedback, code review, etc
   - pull product updates into profile announcements/updates

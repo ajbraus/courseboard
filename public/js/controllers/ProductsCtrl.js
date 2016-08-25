@@ -102,8 +102,8 @@ angular.module('courseboard')
     $scope.deleteUpdate = function(update) {
       $http.delete('/api/updates/' + update._id).then(
         function (response) {
-          var index = _.map($scope.product.contributors, '_id').indexOf($rootScope.currentUser._id)
-          $scope.product.contributors.splice(index, 1)
+          var index = $scope.updates.indexOf(update);
+          $scope.updates.splice(index, 1);
 
           GlobalAlert.add('success', "Update Created", 2000);
         },

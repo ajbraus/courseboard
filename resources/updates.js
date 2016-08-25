@@ -45,7 +45,7 @@ module.exports = function(app) {
   });
 
   // DELETE
-  app.delete('/api/products/:productId/updates/:id', auth.ensureAuthenticated, function (req, res) {
+  app.delete('/api/updates/:id', auth.ensureAuthenticated, function (req, res) {
     Update.findById(req.params.id).exec(function (err, update) {
       if (err) { return res.status(400).send(err) }
 
@@ -53,7 +53,7 @@ module.exports = function(app) {
       //   product.update({})
       // })
 
-      Product.update({ _id: req.params.productId }, { $pull: { updates: update._id } }, function(err, product) {
+      Product.update({ _id: update.product }, { $pull: { updates: update._id } }, function(err, product) {
         if (err) { return res.status(400).send(err) }
 
         update.remove();
