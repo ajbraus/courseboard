@@ -66,6 +66,7 @@ module.exports = function(app) {
   app.get('/api/products/:id/updates', function (req, res) {
     Update.find({ product: req.params.id })
           .populate({ path: 'user', select: '_id username' })
+          .sort("-createdAt")
           // .populate({ path: 'product', select: 'title' })
           .exec(function (err, updates) {
             

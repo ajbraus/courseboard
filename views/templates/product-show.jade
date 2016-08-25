@@ -5,7 +5,7 @@
         //- PRODUCT INFO
         h3 {{product.name}}
         .text-right(ng-if="isContributor")
-          a(href="/products-edit/{{product._id}}") Edit Product
+          a(href="/products-edit/{{product._id}}") Edit/Improve Product
         hr
         dl
           dt(ng-if="product.problem") What problem are you solving?
@@ -18,25 +18,18 @@
           dd(ng-if="product.finishedProduct") {{product.finishedProduct}}
           dt(ng-if="product.mvp") Describe the absolute minimum product that you will build and ship first.
           dd(ng-if="product.mvp") {{product.mvp}}
-      br   
-      legend New Product Update
-      form(ng-submit="createUpdate()")
-        .form-group
-          label Update Type
-          select.form-control(ng-model="update.kind" required)
-            option(ng-repeat="kind in kinds") {{kind}}
-        .form-group
-          label Details
-          textarea.form-control(ng-model="update.body", rows=7 placeholder="Update Details")
-        .text-right
-          button.btn.btn-primary Create Update
       hr
+      .clearfix
+        h4.pull-left Product Updates
+        .pull-right
+          button.btn.btn-sm.btn-primary(type='button', data-toggle='modal', data-target='#newUpdate' ng-if="!isContributor")
+            | Leave Product Feedback
+          button.btn.btn-sm.btn-primary(type='button', data-toggle='modal', data-target='#newUpdate' ng-if="isContributor")
+            | New Product Update
       .card(ng-repeat="update in updates")
         h5 {{update.kind}}
         small.text-muted posted on #[span(ng-bind="update.createdAt | date:'EEE MMM dd, yy'")] by {{update.user.username}}
         p {{update.body}}
-        
-
     .col-sm-3
       .btn.btn-primary.btn-block(ng-click="join()" ng-show="!isContributor") Join
       .btn.btn-success.btn-block.no-hover(ng-show='isContributor') Joined
@@ -55,3 +48,23 @@
       button.btn.btn-default.btn-block(ng-click='goToUrl(product.githubUrl)' ng-disabled="!product.githubUrl") #[i.ion.ion-social-github] GitHub Repo
       button.btn.btn-warning.btn-block(ng-click='goToUrl(product.agileUrl)' ng-disabled="!product.agileUrl") #[i.ion.ion-android-checkbox-outline] Scrum Board
       button.btn.btn-primary.btn-block(ng-click='goToUrl(product.liveUrl)' ng-disabled="!product.liveUrl") #[i.ion.ion-android-wifi] Live Site
+
+.modal.fade#newUpdate(tabindex='-1', role='dialog')
+  .modal-dialog(role='document')
+    .modal-content
+      form(ng-submit="createUpdate()")
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title New Product Update
+        .modal-body
+          .form-group
+            label Update Type
+            select.form-control(ng-model="update.kind" required)
+              option(ng-repeat="kind in kinds") {{kind}}
+          .form-group
+            label Details
+            textarea.form-control(ng-model="update.body", rows=7 placeholder="Update Details")
+        .modal-footer
+          a.btn.btn-default(href="#" data-dismiss='modal') Close
+          button.btn.btn-primary Create Update

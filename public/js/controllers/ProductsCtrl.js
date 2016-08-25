@@ -51,6 +51,12 @@ angular.module('courseboard')
         // Find out if current user is a contributor
         var index = _.map($scope.product.contributors, '_id').indexOf($rootScope.currentUser._id)
         $scope.isContributor = index > -1
+
+        if ($scope.isContributor) {
+          $scope.kinds = ['User Interview', 'User Narrative', 'User Testing', 'User Evaluation', 'Feedback', 'Code Review']  
+        } else {
+          $scope.kinds = ['User Evaluation', 'Feedback', 'Code Review']  
+        }
       },
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
@@ -72,12 +78,6 @@ angular.module('courseboard')
       }
     );
 
-    if ($scope.isContributor) {
-      $scope.kinds = ['User Interview', 'User Narrative', 'User Testing', 'User Evaluation', 'Feedback', 'Code Review']  
-    } else {
-      $scope.kinds = ['User Evaluation', 'Feedback', 'Code Review']  
-    }
-
     // $scope.$watch($scope.update.kind, function() {
       
     // })
@@ -86,8 +86,11 @@ angular.module('courseboard')
     $scope.createUpdate = function() {
       $http.post('/api/products/' + $routeParams.id + "/updates", $scope.update).then(
         function (response) {
-          $scope.product.updates.unshift(response.data);
+          $scope.updates.unshift(response.data);
           $scope.update = {};
+
+          $('#newUpdate').modal('toggle');
+
           GlobalAlert.add('success', "Update Created", 2000);
         }, 
         function (response) {
@@ -101,6 +104,7 @@ angular.module('courseboard')
         function (response) {
           $scope.isContributor = true;
           $scope.product.contributors.push($rootScope.currentUser)
+          
           GlobalAlert.add('success', "You've joined!", 3000);
         },
         function (response) {
