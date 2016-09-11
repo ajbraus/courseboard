@@ -5,8 +5,10 @@
         .pull-left
           h4 Your Courses
         .pull-right
-          .btn-group(ng-show="currentUser.role == 'Instructor' || currentUser.role == 'Staff'")
-            p.navbar-btn
+          .btn-toolbar
+            .btn-group
+              a.btn.btn-sm.btn-warning(href="/competencies") Update Competence Levels
+            .btn-group
               a.btn.btn-sm.btn-default(href="/courses-new") Plan New Course
 
       .card

@@ -7,7 +7,7 @@
       
       hr
       
-      h3 Your Courses
+      h3 Courses
       //- INSTRUCTOR'S COURSES
       a.no-style(href="courses/{{course._id}}")
         .card(ng-repeat="course in user.courses")
@@ -18,10 +18,25 @@
           {{course.title}} 
       hr
       
-      h3 Your Products
+      h3 Products
       a.no-style(href="products/{{product._id}}")
         .card(ng-repeat="product in user.products")
           {{product.name}} 
+      hr
+
+      h3 Competences
+      div(ng-repeat="competence in user.competences")
+        {{competence.name}} 
+        span(ng-switch="competence.level")
+          span(ng-switch-when="1") (Beginning)
+          span(ng-switch-when="2") (Undertaking)
+          span(ng-switch-when="3") (Approaching)
+          span(ng-switch-when="4") (Overtaking)
+          span(ng-switch-when="5") (Innovating)
+        .progress
+          .progress-bar(role='progressbar', aria-valuenow='{{competence.level/5*100}}', aria-valuemin='0', aria-valuemax='5', style='width: {{competence.level/5*100}}%;')
+      a.btn.btn-primary(href="users/{{user._id}}/competences") Update Competences
+
     
     .col-sm-5.col-sm-offset-1
       h4 Recent Announcements

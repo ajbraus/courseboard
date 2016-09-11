@@ -1,0 +1,10 @@
+.container
+  .row
+    .col-sm-8.col-sm-offset-2
+      .row(ng-repeat="competence in competences")
+        .col-xs-1.text-center
+          .icon.ion-plus-circled(ng-click="incrementCompetence(competence.name)")
+          {{competence.level}}
+          .icon.ion-minus-circled(ng-click="decrementCompetence(competence.name)")
+        .col-xs-9
+          h3 {{competence.name}} 

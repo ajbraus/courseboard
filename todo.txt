@@ -4,34 +4,97 @@ Leave product team should be in profile
 Bugs
   - on mobile can't see navbar dropdown toggle
 
-Product 
-  - DONE separate update model
-  - DONE create
-  - DONE populate udpates of products in show
-  - DONE show who wrote the update
-  - DONE other product questions & edit product (only contributors)
-  - DONE put update form into modal or separate page
-  - DONE delete updates on product (with confirm)
-  - add template text for each type of product update (don't update it if the text box has any characters)
-  - email product colaborators if someone submits feedback, code review, etc
-  - pull product updates into profile announcements/updates
-  - product completion bar progress bar
-  - add all products to admin dashboard
-
-
 Competencies Tracking
   - user narratives, template design
+    - A student comes in the first day and sees that they have all 0's for competence. They want to get some initial competence. They approach an instructor and ask to be levelled up. They show proof that they have advanced iOS knowledge and want to be set at a level of "approaching competence (3)". The instructor agrees. 
+
+    "Certification Option"
+    The instructor goes to the instructor dashboard and click's "Update Student Mastery". 
+    They autocomplete the student's name and then add the competence tag and the level. 
+    They can do multiple at once and provide one reason or project with URL that proves that competence. 
+    Then they log those competences. 
+    The competences are then visible on the student's profile, when they were logged, for what reason and by whom.
+      - a certification has one instructor and one student, many competences, and each competence has a level
+      var certification = {
+        createdAt: '',
+        updatedAt: '',
+        student: '_id',
+        instructor: '_id',
+        note: '',
+        competences [
+          { name: 'iOS', level: 3 }
+          { name: 'Flask', level: 1 }
+          { name: 'Python', level: 2 }
+        ]
+      }
+      var certification2
+      iOS => 4
+      var user = {
+        ...
+        competences: [
+          { name: 'iOS', level: 3 }
+          { name: 'Flask', level: 1 }
+          { name: 'Python', level: 2 }
+        ]
+      }
+      certification.competences 
+      => [competences]
+      var user = User.findById(_id).populate('certifications')
+      user.competences
+      => [competences]
+
+      _.map(user.certifications, function(certs) {
+        _.flatten(certs)
+      })
+
+    "Mastery Table Option"
+    The instructor goes to the instructor dashboard and click's "Update Student Mastery".
+    They look up the student and the entire table of competence levels appears
+    They look over the student's competences and the rubrics and make all the necessary updates
+    They give a reason for competences, and save.
+    Admins can create a new competency from the admin dashboard
+    Embed the competency in the user
+      var user = {
+        competences [
+          { updatedAt: "", name: "iOS", level: 3, instructor: "_id", note: "blah blah" }
+        ]
+      }
+
+
+  student profile
+    DONE - display competences ordered by level, displayed in progress bars
+    DONE- instructor sees "update student competence"
+    DONE - competences.jade (user._id) 'user/:id/competences'
+      - table of competences with that user's levels highlighted (radios?)
+      - table of numbers ng-click="updateCompetence(competence.name, 4)"
+      - complex form, multiple competence rows/dropdowns 
+      DONE - +|- buttons next to each competence
+    - see user competence levels
+  competences-index
+    - display the currentUser's competence levels
+    - when increment/decrement save competence levels to db
+    - when increment/decrement update competence levels in view
+
+
+
+
+
   - define rubrics
   - admins can create new competencies
   - instructors can set competency levels with qualitative evaluation/proof
   - see competencies in profile
   - download participation transcript -> pdf of projects (with code and live links), competencies
 
+Product 
+  - add template text for each type of product update (don't update it if the text box has any characters)
+  - email product colaborators if someone submits feedback, code review, etc
+  - pull product updates into profile announcements/updates
+  - product completion bar progress bar
+  - add all products to admin dashboard
 
 Courses 
   - in new course form - default start and end dates to today
   - fix enroll on current courses 10 days after start (disable)
-  - allow instructors to unenroll students from a course (but this is very hard)
 
 Admin Dashboard 
   - See draft courses in admin dashboard
@@ -43,19 +106,19 @@ Public Profile
 
 ---------------------------
 
-design tracking performance/mastery/partipation
+design tracking performance/competence/partipation
 - see competencies (most masterful on top)
 - see rubrics 
 - See course-level competences you've accrewed
 - See current and total hours of attending courses/products
 
-evaluation per mastery topic/competency based on mastery 
+evaluation per competence topic/competency based on competence 
 
 0. no exposure
-1. initial mastery
-2. approaching mastery
-3. near mastery
-4. mastery
+1. initial competence
+2. approaching competence
+3. near competence
+4. competence
 5. innovator
 
 Core Competencies
@@ -246,3 +309,12 @@ course-index
   DONE - alignment is screwy
 DONE Enrolled/Joined "button" should not have finger cursor or change color upon hover
 DONE date dropdown
+
+Product
+  - DONE separate update model
+  - DONE create
+  - DONE populate udpates of products in show
+  - DONE show who wrote the update
+  - DONE other product questions & edit product (only contributors)
+  - DONE put update form into modal or separate page
+  - DONE delete updates on product (with confirm)
