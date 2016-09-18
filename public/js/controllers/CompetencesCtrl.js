@@ -32,9 +32,9 @@ angular.module('courseboard')
 
         // ELECTIVE
         { name: 'iOS', level:0 , kind: 'elective'},
-        { name: 'JavaScript, Node, npm, ExpressJS', level:0 , kind: 'elective'},
-        { name: 'JavaScript, Front End Frameworks', level:0 , kind: 'elective'},
-        { name: 'Ruby & Ruby on Rails (backend)', level:0 , kind: 'elective'},
+        { name: 'JavaScript, Backend', level:0 , kind: 'elective'},
+        { name: 'JavaScript, Frontend', level:0 , kind: 'elective'},
+        { name: 'Ruby & Ruby on Rails', level:0 , kind: 'elective'},
         { name: 'Python & Flask', level:0 , kind: 'elective'},
         { name: 'Devices/Embedded Systems', level:0 , kind: 'elective'},
         { name: 'Machine Learning', level:0 , kind: 'elective'},
@@ -43,10 +43,6 @@ angular.module('courseboard')
         { name: 'NoSQL Databases', level:0 , kind: 'elective'},
         { name: 'Deployment & Dev Ops', level:0 , kind: 'elective'},
         { name: 'TDD', level:0 , kind: 'elective'},
-        { name: 'Writing', level:0 , kind: 'elective'},
-        { name: 'Public Speaking & Pitching', level:0 , kind: 'elective'},
-        { name: 'Growth and Marketing', level:0 , kind: 'elective'},
-        { name: 'Internet and Networking Fundamentals', level:0 , kind: 'elective'},
         { name: 'API Design', level:0 , kind: 'elective'},
         { name: 'Graphic Design', level:0, kind: 'elective' }
       ]

@@ -8,7 +8,7 @@
         dl
           dt(ng-if="product.problem") What problem are you solving?
           dd(ng-if="product.problem") {{product.problem}}
-      a.btn.btn-block.btn-lg.btn-success(href="/products-plan/{{product._id}}" ng-hide="product.customer || product.assumptions || product.finshedProduct || product.mvp")
+      a.btn.btn-block.btn-success(href="/products-plan/{{product._id}}" ng-hide="product.customer || product.assumptions || product.finshedProduct || product.mvp")
         | Add Product Plan
       br
       div(ng-show="product.customer || product.assumptions || product.finshedProduct || product.mvp")
@@ -47,7 +47,7 @@
     .col-sm-3
       .btn.btn-primary.btn-block(ng-click="join()" ng-show="!isContributor") Join
       .btn.btn-success.btn-block.no-hover(ng-show='isContributor') Joined
-      .text-right
+      .text-right(ng-show="isContributor")
         a(href="" ng-click="leave(product)") Leave Product Team
       hr
       h4 Contributors
