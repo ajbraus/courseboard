@@ -84,11 +84,11 @@ Competencies Tracking
       - core
     DONE - see competencies in profile
 
-  - search students in competences-index
-  - define rubrics
+  DONE - search students in competences-index
   
-  - admins can create new competencies
-  - instructors can set competency levels with qualitative evaluation/proof
+  - define rubrics
+  - admins can create new competences
+  - instructors can set competence levels with qualitative evaluation/proof
   - download participation transcript -> pdf of projects (with code and live links), competencies
 
 Product 

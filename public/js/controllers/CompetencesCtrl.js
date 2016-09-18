@@ -4,7 +4,14 @@
 
 angular.module('courseboard')
   .controller('CompetencesIndexCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
-    $http.get('/api/me').then(function (response) {
+    $http.get('/api/students').then(function (response) { 
+      // students full names & _id
+      $scope.userList = response.data;
+    })
+  }])
+
+  .controller('CompetencesShowCtrl', ['$scope', '$http', '$auth', '$routeParams', 'Auth', 'GlobalAlert', function($scope, $http, $auth, $routeParams, Auth, GlobalAlert) {
+    $http.get('/api/users/' + $routeParams.id).then(function (response) {
       $scope.user = response.data;
 
       $scope.competences = [
@@ -55,7 +62,7 @@ angular.module('courseboard')
           }
         })
       });
-    });
+    })
 
     $scope.updateCompetence = function(competenceName, level, kind) {
       if (level >= 0 && level <= 5) {

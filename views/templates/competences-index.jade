@@ -1,17 +1,12 @@
 .container
   .row
-    .col-sm-12
-      legend {{user.fullname}} ({{user.username}})
-      .row
-        .col-sm-6
-          .card
-            h4 Character
-            ng-include(src="'templates/competence-selector'" ng-repeat="competence in competences | filter: { kind: 'character' }")
-          .card
-            h4 Core
-            ng-include(src="'templates/competence-selector'" ng-repeat="competence in competences | filter: { kind: 'core' }")
-        .col-sm-6
-          .card
-            h4 Elective
-            ng-include(src="'templates/competence-selector'" ng-repeat="competence in competences | filter: { kind: 'elective' }")
-          
+    .col-sm-10.col-sm-offset-1
+      form(ng-submit="findStudent()")
+        .input-group
+          input.form-control(ng-model="term.fullname")
+          span.input-group-btn
+            button.btn.btn-primary(type="submit") Search
+      hr
+      .list-group
+        a.list-group-item(ng-repeat="user in userList | filter:term", href="users/{{user._id}}/competences")
+          h4 {{user.fullname}}
