@@ -104,7 +104,7 @@ angular.module('courseboard', [
 
       // USERS & PROFILE
       $routeProvider.when('/users/:id', {
-        templateUrl: 'templates/public-profile',
+        templateUrl: 'templates/profile',
         controller: 'UsersShowCtrl'
       });
 

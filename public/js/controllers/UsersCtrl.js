@@ -44,55 +44,6 @@ angular.module('courseboard')
     });
   }])
 
-  .controller('CompetencesIndexCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
-    $http.get('/api/me').then(function (response) {
-      $scope.user = response.data;
-    });
-
-    // $http.get('/api/competences').then(function (response) {
-    //   console.log(response)
-    //   $scope.competences = response.data;
-    // })
-
-    $scope.incrementCompetence = function(competenceName) {
-      $http.put('/api/users/' + $scope.user._id + '/competences', { name: competenceName }).then(function (response) {
-        $scope.user = response.data;
-      })
-    }
-
-    $scope.competences = [
-      { name: 'Professionalism', level:0 },
-      { name: 'Teamwork', level:0 },
-      { name: 'Energy & Agility', level:0 },
-      { name: 'Leadership', level:0 },
-      { name: 'Emotional Intelligence', level:0 },
-      { name: 'Communication', level:0 },
-      { name: 'Productivity', level:0 },
-      { name: 'Product Management', level:0 },
-      { name: 'Code Craftsmanship', level:0 },
-      { name: 'Computer Science Fundamentals', level:0 },
-      { name: 'Product Development & Entrepreneurship', level:0 },
-      { name: 'iOS', level:0 },
-      { name: 'JavaScript, Node, npm, ExpressJS', level:0 },
-      { name: 'JavaScript, Front End Frameworks', level:0 },
-      { name: 'Ruby & Ruby on Rails (backend)', level:0 },
-      { name: 'Python & Flask', level:0 },
-      { name: 'Devices/Embedded Systems', level:0 },
-      { name: 'Machine Learning', level:0 },
-      { name: 'Data Science & Visualization', level:0 },
-      { name: 'SQL Databases', level:0 },
-      { name: 'NoSQL Databases', level:0 },
-      { name: 'Deployment & Dev Ops', level:0 },
-      { name: 'TDD', level:0 },
-      { name: 'Writing', level:0 },
-      { name: 'Public Speaking & Pitching', level:0 },
-      { name: 'Growth and Marketing', level:0 },
-      { name: 'Internet and Networking Fundamentals', level:0 },
-      { name: 'API Design', level:0 },
-      { name: 'Graphic Design', level:0 }
-    ]
-  }])
-
   .controller('UsersShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $routeParams, $auth, Auth, GlobalAlert) {
     $http.get('/api/users/' + $routeParams.id).then(
       function (response) {

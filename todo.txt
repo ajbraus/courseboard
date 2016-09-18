@@ -69,20 +69,26 @@ Competencies Tracking
       - table of numbers ng-click="updateCompetence(competence.name, 4)"
       - complex form, multiple competence rows/dropdowns 
       DONE - +|- buttons next to each competence
-    - see user competence levels
+    DONE - see user competence levels
+    DONE - hide update competence button to non-instructors
   competences-index
-    - display the currentUser's competence levels
-    - when increment/decrement save competence levels to db
-    - when increment/decrement update competence levels in view
+    DONE - display the currentUser's competence levels
+    DONE - when increment/decrement save competence levels to db
+    DONE - when increment/decrement update competence levels in view
+    DONE - duplicates in $scope.competences
+    DONE - order currentuser's competence levels by alphabetical
+      DONE - splice in user competence in for generic competence to perserve alphabetical order
+    DONE- break out competences by
+      - character
+      - elective
+      - core
+    DONE - see competencies in profile
 
-
-
-
-
+  - search students in competences-index
   - define rubrics
+  
   - admins can create new competencies
   - instructors can set competency levels with qualitative evaluation/proof
-  - see competencies in profile
   - download participation transcript -> pdf of projects (with code and live links), competencies
 
 Product 

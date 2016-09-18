@@ -3,7 +3,6 @@
     .col-sm-4.col-sm-offset-1
       .card
         h3 {{user.first}} {{user.last}} #[small {{user.username}}]
-        a.small(href="/settings") Account Settings
       
       hr
       
@@ -25,7 +24,7 @@
       hr
 
       h3 Competences
-      div(ng-repeat="competence in user.competences")
+      div(ng-repeat="competence in user.competences | orderBy: ['-level'] ")
         {{competence.name}} 
         span(ng-switch="competence.level")
           span(ng-switch-when="1") (Beginning)
@@ -35,7 +34,7 @@
           span(ng-switch-when="5") (Innovating)
         .progress
           .progress-bar(role='progressbar', aria-valuenow='{{competence.level/5*100}}', aria-valuemin='0', aria-valuemax='5', style='width: {{competence.level/5*100}}%;')
-      a.btn.btn-primary(href="users/{{user._id}}/competences") Update Competences
+      a.btn.btn-primary(href="users/{{user._id}}/competences" ng-show="currentUser.role == 'Instructor'") Update Competences
 
     
     .col-sm-5.col-sm-offset-1

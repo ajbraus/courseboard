@@ -1,10 +1,17 @@
 .container
   .row
-    .col-sm-8.col-sm-offset-2
-      .row(ng-repeat="competence in competences")
-        .col-xs-1.text-center
-          .icon.ion-plus-circled(ng-click="incrementCompetence(competence.name)")
-          {{competence.level}}
-          .icon.ion-minus-circled(ng-click="decrementCompetence(competence.name)")
-        .col-xs-9
-          h3 {{competence.name}} 
+    .col-sm-12
+      legend {{user.fullname}} ({{user.username}})
+      .row
+        .col-sm-6
+          .card
+            h4 Character
+            ng-include(src="'templates/competence-selector'" ng-repeat="competence in competences | filter: { kind: 'character' }")
+          .card
+            h4 Core
+            ng-include(src="'templates/competence-selector'" ng-repeat="competence in competences | filter: { kind: 'core' }")
+        .col-sm-6
+          .card
+            h4 Elective
+            ng-include(src="'templates/competence-selector'" ng-repeat="competence in competences | filter: { kind: 'elective' }")
+          

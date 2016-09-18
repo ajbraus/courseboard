@@ -19,6 +19,7 @@ var CompetenceSchema = new Schema({
       
   , name                : { type: String, required: true }
   , level               : { type: Number, required: true }
+  , kind                : { type: String, required: true }
   , note                : { type: String }
 
   , instructor          : { type: Schema.Types.ObjectId, ref: 'User', required: true}
