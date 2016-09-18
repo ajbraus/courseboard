@@ -18,6 +18,14 @@ module.exports = function(app) {
     });
   });
 
+  // GET STUDENTS (INDEX)
+  app.get('/api/students', auth.ensureAuthenticated, function (req, res) {
+    User.find({ role: "Student" }).exec(function (err, students) {
+      res.send(students);
+    });      
+  });
+
+
   // GET USER
   app.get('/api/users/:id', auth.ensureAuthenticated, function (req, res) {
     User.findById(req.params.id)

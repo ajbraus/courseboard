@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     bcrypt = require('bcryptjs'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    Competence = require('./competence.js')
 
 // GETTER
 function toLower (v) {
@@ -11,6 +12,30 @@ function toTitle(v) {
   return v.charAt(0).toUpperCase() + v.slice(1);
 }
 
+// COMPETENCE SCHEMA
+var CompetenceSchema = new Schema({
+    createdAt           : { type: Date }
+  , updatedAt           : { type: Date }
+      
+  , name                : { type: String, required: true }
+  , level               : { type: Number, required: true }
+  , kind                : { type: String, required: true }
+  , note                : { type: String }
+
+  , instructor          : { type: Schema.Types.ObjectId, ref: 'User', required: true}
+})
+
+CompetenceSchema.pre('save', function(next){
+  // SET createdAt AND updatedAt
+  now = new Date();
+  this.updatedAt = now;
+  if ( !this.createdAt ) {
+    this.createdAt = now;
+  }
+  next();
+});
+
+// USER SCHEMA
 var UserSchema = new Schema({
     createdAt          : Date
   , updatedAt          : Date
@@ -27,6 +52,8 @@ var UserSchema = new Schema({
   , confirmedAt        : { type: Date, default: undefined }
   , resetPasswordToken : String
   , resetPasswordExp   : Date
+
+  , competences         : [CompetenceSchema]
 }, {
   toObject: {
   virtuals: true

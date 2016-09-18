@@ -104,9 +104,20 @@ angular.module('courseboard', [
 
       // USERS & PROFILE
       $routeProvider.when('/users/:id', {
-        templateUrl: 'templates/public-profile',
+        templateUrl: 'templates/profile',
         controller: 'UsersShowCtrl'
       });
+
+      $routeProvider.when('/competences', {
+        templateUrl: 'templates/competences-index',
+        controller: 'CompetencesIndexCtrl'
+      });
+
+      $routeProvider.when('/users/:id/competences', {
+        templateUrl: 'templates/competences-show',
+        controller: 'CompetencesShowCtrl'
+      });
+
 
       $routeProvider.when('/instructor-dashboard', {
         templateUrl: 'templates/instructor-dashboard',

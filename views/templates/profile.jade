@@ -1,31 +1,45 @@
 .container
   .row
-    .col-sm-4.col-sm-offset-1
+    .col-sm-4
       .card
         h3 {{user.first}} {{user.last}} #[small {{user.username}}]
-        a.small(href="/settings") Account Settings
-      
-      hr
-      
-      h3 Your Courses
+
+      h4 Courses
       //- INSTRUCTOR'S COURSES
-      a.no-style(href="courses/{{course._id}}")
-        .card(ng-repeat="course in user.courses")
+      .list-group
+        a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.courses")
           {{course.title}} 
       //- STUDENT'S ENROLLED COURSES
-      a.no-style(href="courses/{{course._id}}")
-        .card(ng-repeat="course in user.enrolledCourses")
+      .list-group
+        a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses")
           {{course.title}} 
-      hr
       
-      h3 Your Products
-      a.no-style(href="products/{{product._id}}")
-        .card(ng-repeat="product in user.products")
+      h4 Products
+      .list-group
+        a.list-group-item(href="products/{{product._id}}" ng-repeat="product in user.products")
           {{product.name}} 
-    
-    .col-sm-5.col-sm-offset-1
-      h4 Recent Announcements
+
+    .col-sm-4
+      h4 Announcements
       div(ng-init="profile = true" ng-include="'templates/post'", ng-repeat="post in posts")
+    
+    .col-sm-4
+
+      h4 Competences
+      a.btn.btn-block.btn-warning.btn-sm(href="users/{{user._id}}/competences" ng-show="currentUser.role == 'Instructor'") Update Competence Levels
+      br
+
+      div(ng-repeat="competence in user.competences | orderBy: ['-level'] ")
+        {{competence.name}} 
+        span(ng-switch="competence.level")
+          span(ng-switch-when="0") (Waiting)
+          span(ng-switch-when="1") (Beginning)
+          span(ng-switch-when="2") (Undertaking)
+          span(ng-switch-when="3") (Approaching)
+          span(ng-switch-when="4") (Overtaking)
+          span(ng-switch-when="5") (Innovating)
+        .progress
+          .progress-bar(role='progressbar', aria-valuenow='{{competence.level/5*100}}', aria-valuemin='0', aria-valuemax='5', style='width: {{competence.level/5*100}}%;')
 
 
 .btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled") Enroll
