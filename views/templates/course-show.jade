@@ -45,7 +45,7 @@
         .col-sm-6
           //- PRODUCTS
           h4 Products
-          .card(ng-show="course.products")
+          .card(ng-show="course.products.length > 0")
             p(ng-repeat="product in course.products")
               a(href="products/{{product._id}}") {{product.name}}
     
