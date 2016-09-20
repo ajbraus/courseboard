@@ -35,6 +35,12 @@ Course Board is a platform that provides faster and easier course creation and m
   ```
   brew install node
   ```
+  
+1. Install mongo
+
+  ```
+  brew install mongo
+  ```
 
 1. Install nodemon
 

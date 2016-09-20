@@ -1,3 +1,18 @@
+OS Issues (delete me if this makes 0 sense to you)
+  - trouble getting mongo running on MacOS
+    - cd to Macintosh HD > etc > nano hosts
+      - ##
+        # Host Database
+        #
+        # localhost is used to configure the loopback interface
+        # when the system is booting.  Do not change this entry.
+        ##
+        127.0.0.1       localhost
+        ---> 127.0.0.1       [computer_name] <--- IMPORTANT LINE TO ADD
+        255.255.255.255 broadcasthost
+        ::1             localhost
+    - Done! Now you can run mongod in project folder
+
 Bugs
   - on mobile can't see navbar dropdown toggle
 
@@ -6,25 +21,25 @@ Competencies Tracking
   - instructors can set competence levels with qualitative evaluation/proof
   - download participation transcript -> pdf of projects (with code and live links), competencies
 
-Product 
+Product
   - add template text for each type of product update (don't update it if the text box has any characters)
   - email product colaborators if someone submits feedback, code review, etc
   - pull product updates into profile announcements/updates
   - product completion bar progress bar
   - add all products to admin dashboard
 
-Courses 
+Courses
   - in new course form - default start and end dates to today
   - fix enroll on current courses 10 days after start (disable)
 
-Admin Dashboard 
+Admin Dashboard
   - See draft courses in admin dashboard
   - See leaderboard of student's by competence
 
 Instructor Dashboard
 
 Public Profile
-  - paginate announcements 
+  - paginate announcements
 
 ---------------------------
 
@@ -38,7 +53,7 @@ write tests (API & Angularjs)
 -----------------------------------------
 
 plan classes by objective
-  - courses have class 
+  - courses have class
     - date/time (calendar stuff - set dates and times of classes)
     - class objectives
 
@@ -64,12 +79,12 @@ Search
 -----------------------------------------
 
   - Request unenroll form
-    - What reason would you like to unenroll from this course? 
+    - What reason would you like to unenroll from this course?
       - I do not have prequisite preparation
       - The class work is moving too slowly
       - The class times interfere with something outside of Make School
       - The class times interfere with another PA course I am enrolled in
-      - 
+      -
     - I've spoken with my instructor about these concerns
     - They said:
 
@@ -101,7 +116,7 @@ DONE  - populate post on profile.jade
 GO LIVE
 
 critical to mvp
-DONE - remove splash page - go directly to course-index page  
+DONE - remove splash page - go directly to course-index page
 DONE - upcoming courses in course-index
 DONE - students link to their profiles - public profile
 DONE - public vs. private - do you need to be logged in to see course details? user details? (No)
@@ -142,7 +157,7 @@ DONE instructors are not "enrolled" in their own courses - when you create a cou
 
 ----------------------------------------
 DONE create a "Product Team" that can be connected or independent from a course
-DONE Product Team has 
+DONE Product Team has
   DONE - participants
 
   DONE - What problem are you solving?
@@ -161,7 +176,7 @@ DONE Product Team has
 
  DONE - make public/private users-show/profile
  DONE - announcement card in profile, put course title below small.text-muted
- - Instructor profile 
+ - Instructor profile
    DONE - see courses (draft and live) in instructor profile
    DONE - only display courses to students where publishedAt is present
    DONE - user.enrolledCourses is enrolled courses, user.courses is courses you created
@@ -171,7 +186,7 @@ DONE Product Team has
 
 
 course-index
-  DONE - mobile responsivity 
+  DONE - mobile responsivity
   - visual indication of the courses you can/cannot join.
   DONE - alignment is screwy
 DONE Enrolled/Joined "button" should not have finger cursor or change color upon hover
@@ -189,13 +204,13 @@ Product
 
 
   - user narratives, template design
-    - A student comes in the first day and sees that they have all 0's for competence. They want to get some initial competence. They approach an instructor and ask to be levelled up. They show proof that they have advanced iOS knowledge and want to be set at a level of "approaching competence (3)". The instructor agrees. 
+    - A student comes in the first day and sees that they have all 0's for competence. They want to get some initial competence. They approach an instructor and ask to be levelled up. They show proof that they have advanced iOS knowledge and want to be set at a level of "approaching competence (3)". The instructor agrees.
 
     "Certification Option"
-    The instructor goes to the instructor dashboard and click's "Update Student Mastery". 
-    They autocomplete the student's name and then add the competence tag and the level. 
-    They can do multiple at once and provide one reason or project with URL that proves that competence. 
-    Then they log those competences. 
+    The instructor goes to the instructor dashboard and click's "Update Student Mastery".
+    They autocomplete the student's name and then add the competence tag and the level.
+    They can do multiple at once and provide one reason or project with URL that proves that competence.
+    Then they log those competences.
     The competences are then visible on the student's profile, when they were logged, for what reason and by whom.
       - a certification has one instructor and one student, many competences, and each competence has a level
       var certification = {
@@ -220,7 +235,7 @@ Product
           { name: 'Python', level: 2 }
         ]
       }
-      certification.competences 
+      certification.competences
       => [competences]
       var user = User.findById(_id).populate('certifications')
       user.competences
@@ -250,7 +265,7 @@ Product
     DONE - competences.jade (user._id) 'user/:id/competences'
       - table of competences with that user's levels highlighted (radios?)
       - table of numbers ng-click="updateCompetence(competence.name, 4)"
-      - complex form, multiple competence rows/dropdowns 
+      - complex form, multiple competence rows/dropdowns
       DONE - +|- buttons next to each competence
     DONE - see user competence levels
     DONE - hide update competence button to non-instructors
@@ -273,11 +288,11 @@ Product
 
 design tracking performance/competence/partipation
 - see competencies (most masterful on top)
-- see rubrics 
+- see rubrics
 - See course-level competences you've accrewed
 - See current and total hours of attending courses/products
 
-evaluation per competence topic/competency based on competence 
+evaluation per competence topic/competency based on competence
 
 0. no exposure
 1. initial competence
@@ -288,20 +303,20 @@ evaluation per competence topic/competency based on competence
 
 Core Competencies
   - Product management (SCRUM & Agile, Git/Github)
-  - Product development & Entrepreneurship (user interviewing, pivot or preserver, etc) 
-  - Productivity (task management, calendar, work-life balance) 
-  - Communication (spoken and written) 
+  - Product development & Entrepreneurship (user interviewing, pivot or preserver, etc)
+  - Productivity (task management, calendar, work-life balance)
+  - Communication (spoken and written)
   - Critical Thinking & Problem solving
   - Algorithms & Data Structures
   - Code Craftsmanship
-  - Information and Data Analysis 
+  - Information and Data Analysis
   - Pair Programming
   - Solo Programming
 Character Competencies
-  - Teamwork 
-  - Resourcefulness, Initiative, Agility, and Adaptability 
-  - Emotional Intelligence 
-  - Curiosity and Creativity 
+  - Teamwork
+  - Resourcefulness, Initiative, Agility, and Adaptability
+  - Emotional Intelligence
+  - Curiosity and Creativity
   - Leadership
 Elective Competencies
   - Internet Fundamentals and Networking
@@ -315,9 +330,9 @@ Elective Competencies
   - Data Visualization
   - Machine Learning
   - Embedded Systems
-  - SQL Databases 
+  - SQL Databases
   - NoSQL Databases
-  - Writing 
+  - Writing
 
 focus group
 - eliel, kavin, mike, leslie, josh
