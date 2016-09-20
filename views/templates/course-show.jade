@@ -40,16 +40,14 @@
           //- STUDENTS
           h4 Participants
             .card
-              a(href="users/{{student._id}}" ng-repeat="student in course.students") 
-                {{student.fullname}}
-                br
+              p(ng-repeat="student in course.students")
+                a(href="users/{{student._id}}") {{student.fullname}}
         .col-sm-6
           //- PRODUCTS
           h4 Products
-          .card
-            a(href="products/{{product._id}}" ng-repeat="product in course.products")
-              {{product.name}}
-              br      
+          .card(ng-show="course.products")
+            p(ng-repeat="product in course.products")
+              a(href="products/{{product._id}}") {{product.name}}
     
     .col-md-5
       //- ANNOUNCMENTS
