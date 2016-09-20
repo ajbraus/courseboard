@@ -1,3 +1,6 @@
+# of participants in course-show
+Don't show unpublished courses in instructors courses on profile
+  Break up "instructing" and "taking"
 Only instructors and staff can unenroll students from their courses
 Leave product team should be in profile
 
