@@ -81,7 +81,7 @@ module.exports = function(app) {
   app.get('/api/products/:id', function (req, res) {
     Product.findById(req.params.id)
           .populate('user')
-          .populate({ path: 'contributors', select: '_id username' })
+          .populate({ path: 'contributors', select: '_id fullname username' })
           // .populate('updates')
           .populate({ path: 'instructor', select: 'fullname first last' })
           .populate({ path: 'course', select: 'title' })

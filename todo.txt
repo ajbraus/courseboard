@@ -1,9 +1,3 @@
-# of participants in course-show
-Don't show unpublished courses in instructors courses on profile
-  Break up "instructing" and "taking"
-Only instructors and staff can unenroll students from their courses
-Leave product team should be in profile
-
 Bugs
   - on mobile can't see navbar dropdown toggle
 
@@ -25,6 +19,7 @@ Courses
 
 Admin Dashboard 
   - See draft courses in admin dashboard
+  - See leaderboard of student's by competence
 
 Instructor Dashboard
 
@@ -32,57 +27,6 @@ Public Profile
   - paginate announcements 
 
 ---------------------------
-
-design tracking performance/competence/partipation
-- see competencies (most masterful on top)
-- see rubrics 
-- See course-level competences you've accrewed
-- See current and total hours of attending courses/products
-
-evaluation per competence topic/competency based on competence 
-
-0. no exposure
-1. initial competence
-2. approaching competence
-3. near competence
-4. competence
-5. innovator
-
-Core Competencies
-  - Product management (SCRUM & Agile, Git/Github)
-  - Product development & Entrepreneurship (user interviewing, pivot or preserver, etc) 
-  - Productivity (task management, calendar, work-life balance) 
-  - Communication (spoken and written) 
-  - Critical Thinking & Problem solving
-  - Algorithms & Data Structures
-  - Code Craftsmanship
-  - Information and Data Analysis 
-  - Pair Programming
-  - Solo Programming
-Character Competencies
-  - Teamwork 
-  - Resourcefulness, Initiative, Agility, and Adaptability 
-  - Emotional Intelligence 
-  - Curiosity and Creativity 
-  - Leadership
-Elective Competencies
-  - Internet Fundamentals and Networking
-  - iOS
-  - Ruby & Ruby on Rails (backend)
-  - JavaScript, Node, npm, ExpressJS
-  - Front End Build Systems
-  - JavaScript, Front End Frameworks
-  - Python & Flask
-  - Data Science
-  - Data Visualization
-  - Machine Learning
-  - Embedded Systems
-  - SQL Databases 
-  - NoSQL Databases
-  - Writing 
-
-focus group
-- eliel, kavin, mike, leslie, josh
 
 Enhancements
  - Loading spinner
@@ -102,7 +46,6 @@ list students alphabetically?? list my courses alphabetically??
 add admin so they can set all classes and assign instructors (i.e. at beginning of term) and remove setting instructor for all other accounts when creating courses
 archiving courses
 comments on posts
-repeat a course? multiple start times? change the start time?
 
 -----------------------------------------
 
@@ -120,9 +63,6 @@ Search
 
 -----------------------------------------
 
-  Unenroll from a course
-     btn.btn-default.cancel-button(ng-init="course.enrolled = true" ng-click="unenroll(course)" ng-show="course.enrolled")
-          i.ion-android-cancel
   - Request unenroll form
     - What reason would you like to unenroll from this course? 
       - I do not have prequisite preparation
@@ -329,3 +269,55 @@ Product
 
   DONE - search students in competences-index
   DONE - define rubrics
+
+
+design tracking performance/competence/partipation
+- see competencies (most masterful on top)
+- see rubrics 
+- See course-level competences you've accrewed
+- See current and total hours of attending courses/products
+
+evaluation per competence topic/competency based on competence 
+
+0. no exposure
+1. initial competence
+2. approaching competence
+3. near competence
+4. competence
+5. innovator
+
+Core Competencies
+  - Product management (SCRUM & Agile, Git/Github)
+  - Product development & Entrepreneurship (user interviewing, pivot or preserver, etc) 
+  - Productivity (task management, calendar, work-life balance) 
+  - Communication (spoken and written) 
+  - Critical Thinking & Problem solving
+  - Algorithms & Data Structures
+  - Code Craftsmanship
+  - Information and Data Analysis 
+  - Pair Programming
+  - Solo Programming
+Character Competencies
+  - Teamwork 
+  - Resourcefulness, Initiative, Agility, and Adaptability 
+  - Emotional Intelligence 
+  - Curiosity and Creativity 
+  - Leadership
+Elective Competencies
+  - Internet Fundamentals and Networking
+  - iOS
+  - Ruby & Ruby on Rails (backend)
+  - JavaScript, Node, npm, ExpressJS
+  - Front End Build Systems
+  - JavaScript, Front End Frameworks
+  - Python & Flask
+  - Data Science
+  - Data Visualization
+  - Machine Learning
+  - Embedded Systems
+  - SQL Databases 
+  - NoSQL Databases
+  - Writing 
+
+focus group
+- eliel, kavin, mike, leslie, josh

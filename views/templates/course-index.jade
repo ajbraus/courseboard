@@ -1,23 +1,9 @@
 .container
   .col-md-offset-1.col-md-10
-    .row
-      .col-sm-12
-        .card-no-style
-          .col-sm-5.col-xs-6.hidden-xs
-            h5 Title
-          .col-sm-3.col-xs-6.hidden-xs
-            h5 Dates
+    h4 Course Catalogue
+    .list-group
+      a.list-group-item(href="/courses/{{course._id}}" ng-include="'templates/course'", ng-repeat="course in courses")
           
-          .col-sm-2.col-xs-6.hidden-xs
-            h5 Location
-          .col-sm-1.col-xs-6.hidden-xs
-            h5 Hours
-          .col-sm-1.col-xs-6.hidden-xs
-            h5 
-    .row
-      .col-sm-12
-        .course-row(ng-repeat="course in courses")
-          a.no-style.course(href="/courses/{{course._id}}" ng-include="'templates/course'")
 
 
   //- .row

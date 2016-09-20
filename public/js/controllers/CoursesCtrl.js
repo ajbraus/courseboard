@@ -70,9 +70,15 @@ angular.module('courseboard')
     };
 
     $scope.createCourse = function() {
-      $scope.course.endsOn = new Date($scope.course.endsOnMonth + " " + $scope.course.endsOnDay + " " + $scope.course.endsOnYear)
-      $scope.course.startsOn = new Date($scope.course.startsOnMonth + " " + $scope.course.startsOnDay + " " + $scope.course.startsOnYear)
-      if ($scope.course.endsOn && $scope.course.startsOn && $scope.course.endsOn > $scope.course.startsOn) {
+      if ($scope.course.endsOn) {
+        $scope.course.endsOn = new Date($scope.course.endsOnMonth + " " + $scope.course.endsOnDay + " " + $scope.course.endsOnYear)
+      }
+      if ($scope.course.startsOn) {
+        $scope.course.startsOn = new Date($scope.course.startsOnMonth + " " + $scope.course.startsOnDay + " " + $scope.course.startsOnYear)
+      } 
+      if (($scope.course.endsOn && $scope.course.startsOn) && $scope.course.endsOn < $scope.course.startsOn) {
+        GlobalAlert.add('warning', "Course end date must be after start date", 2000);
+      } else {
         $http.post('/api/courses', $scope.course).then(
           function (response) {
             $scope.course = {};
@@ -84,8 +90,6 @@ angular.module('courseboard')
             GlobalAlert.add('warning', response.data.message, 2000);
           }
         );
-      } else {
-        GlobalAlert.add('warning', "Course end date must be after start date", 2000);
       }
     }
   }])

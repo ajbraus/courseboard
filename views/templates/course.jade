@@ -1,34 +1,31 @@
-.card.clearfix
-  .col-sm-5 #[strong {{course.title | limitTo:30}}] #[span {{course.title.length > 22 ? '...' : ''}}] - {{course.instructor.fullname}}
+.row
+  .col-sm-12 
+    h4 {{course.title | limitTo:30}} #[span {{course.title.length > 55 ? '...' : ''}}]
+.row
   .col-sm-3.col-xs-6
+    {{course.instructor.fullname}}
+    br
+    ng-pluralize(count='course.students.length', 
+                 when="{'1': '1 Participant', 'other': '{} Participants' }") 
+  .col-sm-3.col-xs-6
+    | {{course.location | limitTo:22}} #[span {{course.location.length > 22 ? '...' : ''}}]
+    br
     span(ng-bind="course.startsOn | date:'MMM dd'")
     |  - 
     span(ng-bind="course.endsOn | date:'MMM dd'")
-  
-    //- ng-pluralize(count='course.students.length', 
-    //-          when="{'1': '1 participant', 'other': '{} participants' }")
-    //- }
-  .col-sm-2.col-xs-6 {{course.location | limitTo:22}} #[span {{course.location.length > 22 ? '...' : ''}}]
-  .col-sm-1.col-xs-6
-    {{course.hours}} 
-    i.icon.ion-ios-time
-  .col-sm-1.col-xs-6
-    {{course.students.length}} 
-    i.icon.ion-person
-    //- ng-pluralize(count='course.hours', 
-    //-          when="{'1': '1 hour/week', 'other': '{} hours/week' }")
-    //- }
+  .col-sm-3.col-xs-6
+  .col-sm-3.col-xs-6
+    ng-pluralize(count='course.hours', 
+                 when="{'1': '1 hr/week', 'other': '{} hrs/week' }")
+    br
 
 
 //- .card.course
-
 //-   h4 {{course.title}}  
 //-   .text-muted {{course.instructor.fullname}}
 //-   p {{course.description | limitTo:120 }} ...
 //-   .row
 //-     .col-sm-6
-//-       ng-pluralize(count='course.students.length', 
-//-                    when="{'1': '1 participant', 'other': '{} participants' }")
 //-       br
 //-       span(ng-bind="course.startsOn | date:'MMM dd'")
 //-       |  - 
