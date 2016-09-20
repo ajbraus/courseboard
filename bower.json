@@ -7,7 +7,7 @@
   "dependencies": {
     "angular": "latest",
     "angular-resource": "~1.4.7",
-    "angular-route": "~1.4.8", 
+    "angular-route": "~1.4.8",
     "angular-moment": "~0.10.3",
     "bootstrap": "latest",
     "satellizer": "~0.12.5",
@@ -21,6 +21,7 @@
     "animate.css": "~3.5.0",
     "ionicons": "~2.0.1",
     "lodash": "^4.7.0",
-    "ng-lodash": "^0.4.0"
+    "ng-lodash": "^0.4.0",
+    "ng-tags-input": "^3.1.1"
   }
 }
