@@ -1,6 +1,6 @@
 .row
   .col-sm-12 
-    h4 {{course.title | limitTo:30}} #[span {{course.title.length > 55 ? '...' : ''}}]
+    h4 {{course.title}}
 .row
   .col-sm-3.col-xs-6
     {{course.instructor.fullname}}
@@ -8,7 +8,8 @@
     ng-pluralize(count='course.students.length', 
                  when="{'1': '1 Participant', 'other': '{} Participants' }") 
   .col-sm-3.col-xs-6
-    | {{course.location | limitTo:22}} #[span {{course.location.length > 22 ? '...' : ''}}]
+    | {{course.location}}
+    span(ng-show='!course.location') TBA
     br
     span(ng-bind="course.startsOn | date:'MMM dd'")
     |  - 
