@@ -76,33 +76,33 @@ angular.module('courseboard')
         })
     }
 
-    // $scope.enroll = function(course) {
-    //   $http.put('/api/courses/' + course._id + '/enroll').then(
-    //     function (response) {
-    //       course.enrolled = true;
+    $scope.enroll = function(course) {
+      $http.put('/api/courses/' + course._id + '/enroll').then(
+        function (response) {
+          course.enrolled = true;
 
-    //       // $scope.course.students.push($rootScope.currentUser)
-    //       GlobalAlert.add('success', "You've enrolled!", 3000);
-    //     },
-    //     function (response) {
-    //       GlobalAlert.add('warning', response.data.message, 3000);
-    //     }
-    //   );
-    // }
+          // $scope.course.students.push($rootScope.currentUser)
+          GlobalAlert.add('success', "You've enrolled!", 3000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 3000);
+        }
+      );
+    }
 
-    // $scope.unenroll = function(course) {
-    //   $http.put('/api/courses/' + course._id + '/unenroll').then(
-    //     function (response) {
-    //       course.enrolled = false;
-    //       // var index = _.map($scope.course.students, '_id').indexOf($rootScope.currentUser._id)
-    //       // $scope.course.students.splice(index, 1)
-    //       GlobalAlert.add('success', "You've unenrolled!", 3000);
-    //     },
-    //     function (response) {
-    //       GlobalAlert.add('warning', response.data.message, 3000);
-    //     }
-    //   );
-    // }
+    $scope.unenroll = function(course) {
+      $http.put('/api/courses/' + course._id + '/unenroll').then(
+        function (response) {
+          course.enrolled = false;
+          // var index = _.map($scope.course.students, '_id').indexOf($rootScope.currentUser._id)
+          // $scope.course.students.splice(index, 1)
+          GlobalAlert.add('success', "You've unenrolled!", 3000);
+        },
+        function (response) {
+          GlobalAlert.add('warning', response.data.message, 3000);
+        }
+      );
+    }
   }])
 
   .controller('PasswordNewCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', '$location', '$routeParams', function($scope, $http, $auth, Auth, GlobalAlert, $location, $routeParams) {

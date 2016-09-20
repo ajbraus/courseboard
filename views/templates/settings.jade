@@ -34,10 +34,15 @@
               br
               a.btn.btn-link.link-text(href="/profile") Cancel
               button.btn.btn-danger(type="submit") Update Account
-    //- .col-md-4.col-sm-6
-    //-   legend My Courses
-    //-   .well(ng-repeat="course in user.courses")
-    //-     h5 {{course.title}}
-    //-     .text-right
-    //-       button.btn.btn-sm.btn-danger(ng-init="course.enrolled = true" ng-click="unenroll(course)" ng-show="course.enrolled") Unenroll
-    //-       button.btn.btn-sm.btn-primary(ng-click="enroll(course)" ng-show="!course.enrolled") Re-enroll
+
+      legend My Courses
+      .row
+        .col-sm-6
+          .card(ng-repeat="course in user.enrolledCourses")
+            h4 {{course.title}}
+            .text-right
+              button.btn.btn-sm.btn-danger(ng-init="course.enrolled = true" ng-click="unenroll(course)" ng-show="course.enrolled") Unenroll
+              button.btn.btn-sm.btn-primary(ng-click="enroll(course)" ng-show="!course.enrolled") Re-enroll
+
+
+
