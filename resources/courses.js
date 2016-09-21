@@ -67,8 +67,8 @@ module.exports = function(app) {
   app.get('/api/courses/:id', function (req, res) {
     Course.findById(req.params.id)
           .populate('user')
-          .populate('students')
           .populate('posts')
+          .populate({ path: 'students', select: 'fullname first last', options: { sort: { 'first': 1, 'last': 1 } } })
           .populate({ path: 'instructor', select: 'fullname first last' })
           .populate({ path: 'products', select: 'name' })
           .exec(function (err, course) {
