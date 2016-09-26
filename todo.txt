@@ -4,6 +4,7 @@ Bugs
 Admin Dashboard 
   - See draft courses in admin dashboard
   - See leaderboard of student's by competence
+  - See batch students by year
 
 Competencies Tracking
   - rename "competencies"

@@ -159,18 +159,19 @@ module.exports = function(app) {
     Course.findById(req.params.id, function (err, course) {
       if (!course) { return res.status(400).send({message: 'Course not found' }) }
 
+      User.findById(req.userId).exec(function (err, user) {
+        if (err) { return res.status(400).send(err) }
+
+        user.enrolledCourses.splice(user.enrolledCourses.indexOf(course._id), 1);
+        user.save();
+      })
+
       var index = course.students.indexOf(req.userId);
-    
       if (index > -1) {
         course.students.splice(index, 1);
-        User.findById(req.userId).exec(function (err, user) {
-          if (err) { return res.status(400).send(err) }
-
-          user.enrolledCourses.splice(user.enrolledCourses.indexOf(course._id), 1);
-          user.save();
-        })
+        course.save();
       }
-      course.save()
+      
 
       res.send(course);
     });
