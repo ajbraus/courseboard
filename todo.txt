@@ -2,8 +2,9 @@ Bugs
   - on mobile can't see navbar dropdown toggle
 
 Competencies Tracking
+  - rename competencies
   - admins can create new competences
-  - instructors can set competence levels with qualitative evaluation/proof
+  - instructors can set competencey levels with qualitative evaluation/proof
   - download participation transcript -> pdf of projects (with code and live links), competencies
 
 Product 
