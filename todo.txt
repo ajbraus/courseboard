@@ -1,8 +1,12 @@
 Bugs
   - on mobile can't see navbar dropdown toggle
 
+Admin Dashboard 
+  - See draft courses in admin dashboard
+  - See leaderboard of student's by competence
+
 Competencies Tracking
-  - rename competencies
+  - rename "competencies"
   - admins can create new competences
   - instructors can set competencey levels with qualitative evaluation/proof
   - download participation transcript -> pdf of projects (with code and live links), competencies
@@ -17,10 +21,6 @@ Product
 Courses 
   - in new course form - default start and end dates to today
   - fix enroll on current courses 10 days after start (disable)
-
-Admin Dashboard 
-  - See draft courses in admin dashboard
-  - See leaderboard of student's by competence
 
 Instructor Dashboard
 
