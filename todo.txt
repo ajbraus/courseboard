@@ -4,7 +4,7 @@ Bugs
 Admin Dashboard 
   - See draft courses in admin dashboard
   - See leaderboard of student's by competence
-  - See batch students by year
+  - Batch students by year - set startYear to current year when signup
 
 Competencies Tracking
   - rename "competencies"
