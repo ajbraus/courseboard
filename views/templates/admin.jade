@@ -8,18 +8,18 @@
           {{student.first}} {{student.last}} - {{student.username}} - {{student.email}}
         br
         .row
-          .col-md-6
+          .col-md-5
             h5 Courses
-            ul(ng-show="student.enrolledCourses.length > 0")
-              li(ng-repeat="course in student.enrolledCourses")
-                a(href="/courses/{{course._id}}")
-                  {{course.title}}
-          .col-md-6
+            a(href="/courses/{{course._id}}" ng-repeat="course in student.enrolledCourses")
+              {{course.title}}
+          .col-md-4
             h5 Products
-            ul(ng-show="student.products.length > 0")
-              li(ng-repeat="product in student.products")
-                a(href="/products/{{product._id}}")
-                  {{product.name}}
+            a(href="/products/{{product._id}}" ng-repeat="product in student.products")
+              {{product.name}}
+          .col-md-3
+            h5 Competencies
+            div(ng-repeat="competence in student.competences | orderBy: ['-level']")
+              {{competence.level}} - {{competence.name}} 
   
 .row
   .col-sm-10.col-sm-offset-1
