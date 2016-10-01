@@ -10,8 +10,15 @@
       .page-header
         h3 Courses
       .list-group
-        a.clearfix.list-group-item(ng-repeat="course in courses" href="/courses/{{course._id}}")
+        .clearfix.list-group-item(ng-repeat="course in courses | orderBy: ['publishedAt']")
+          a(href="/courses-edit/{{course._id}}") Edit 
+          | | 
+          a(href="/courses/{{course._id}}") View 
+          | -   
           {{course.title}} - {{course.instructor.fullname}}
+          | - 
+          b.text-danger(ng-if="!course.publishedAt") Draft
+          b.text-success(ng-if="course.publishedAt") Live
 
   .row
     .col-sm-12
