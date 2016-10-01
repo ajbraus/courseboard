@@ -1,24 +1,30 @@
 .container
   .row
-    .col-sm-6
-      .page-header
-        h3 Instructors
-      .list-group
-        a.clearfix.list-group-item(ng-repeat="instructor in instructors" href="/users/{{instructor._id}}")
-          {{instructor.first}} {{instructor.last}} - {{instructor.username}} - {{instructor.email}}
-    .col-sm-6
+    .col-sm-12
       .page-header
         h3 Courses
-      .list-group
-        .clearfix.list-group-item(ng-repeat="course in courses | orderBy: ['publishedAt']")
-          a(href="/courses-edit/{{course._id}}") Edit 
-          | | 
-          a(href="/courses/{{course._id}}") View 
-          | -   
-          {{course.title}} - {{course.instructor.fullname}}
-          | - 
-          b.text-danger(ng-if="!course.publishedAt") Draft
-          b.text-success(ng-if="course.publishedAt") Live
+      .card
+        table.table
+          tr
+            th Title
+            th Dates
+            th Status
+            th Update
+          tr(ng-repeat="course in courses | orderBy: ['publishedAt']")
+            td 
+              a(href="/courses/{{course._id}}") {{course.title}}
+            td
+              span(ng-bind="course.startsOn | date:'MMM dd'")
+              |  - 
+              span(ng-bind="course.endsOn | date:'MMM dd'")
+            td {{course.publishedAt ? 'Live': 'Draft'}}
+            td 
+              .btn-toolbar
+                .btn-group
+                  a.btn.btn-success.btn-sm(ng-hide="course.publishedAt" ng-click="publishCourse(course)") Publish Now
+                  a.btn.btn-link.btn-sm(ng-show="course.publishedAt" ng-click="unPublishCourse(course)") Unpublish
+                .btn-group
+                  a.btn.btn-default.btn-sm(href="/courses-edit/{{course._id}}") Edit
 
   .row
     .col-sm-12
@@ -42,3 +48,11 @@
               h5 Competencies
               div(ng-repeat="competence in student.competences | orderBy: ['-level']")
                 {{competence.level}} - {{competence.name}} 
+  
+  .row
+    .col-sm-12
+      .page-header
+        h3 Instructors
+      .list-group
+        a.clearfix.list-group-item(ng-repeat="instructor in instructors" href="/users/{{instructor._id}}")
+          {{instructor.first}} {{instructor.last}} - {{instructor.username}} - {{instructor.email}}
