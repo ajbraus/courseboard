@@ -18,7 +18,7 @@
             th Dates
             th Status
             th Update
-          tr(ng-repeat="course in user.courses")
+          tr(ng-repeat="course in user.courses | orderBy: ['publishedAt']")
             td 
               a(href="/courses/{{course._id}}") {{course.title}}
             td

@@ -6,19 +6,22 @@
       .card
         table.table
           tr
-            th Title
-            th Dates
-            th Status
-            th Update
+            th.text-center Title
+            th.text-center Instructor(s)
+            th.text-center Dates
+            th.text-center Status
+            th.text-center 
           tr(ng-repeat="course in courses | orderBy: ['publishedAt']")
             td 
               a(href="/courses/{{course._id}}") {{course.title}}
             td
+              {{course.instructor.fullname}}
+            td
               span(ng-bind="course.startsOn | date:'MMM dd'")
               |  - 
               span(ng-bind="course.endsOn | date:'MMM dd'")
-            td {{course.publishedAt ? 'Live': 'Draft'}}
-            td 
+            td.text-center {{course.publishedAt ? 'Live': 'Draft'}}
+            td
               .btn-toolbar
                 .btn-group
                   a.btn.btn-success.btn-sm(ng-hide="course.publishedAt" ng-click="publishCourse(course)") Publish Now
@@ -32,9 +35,13 @@
         h3 Students
       .list-group
         .list-group-item(ng-repeat="student in students")
-          a.clearfix(href="/users/{{student._id}}")
-            {{student.first}} {{student.last}} - {{student.username}} - {{student.email}}
-          br
+          .row
+            .col-sm-2
+              b
+                a.no-style.clearfix(href="/users/{{student._id}}")
+                  {{student.fullname}}
+            .col-sm-3
+              span {{student.username}} - {{student.email}}
           .row
             .col-md-5
               h5 Courses
@@ -45,9 +52,9 @@
               a(href="/products/{{product._id}}" ng-repeat="product in student.products")
                 {{product.name}}
             .col-md-3
-              h5 Competencies
-              div(ng-repeat="competence in student.competences | orderBy: ['-level']")
-                {{competence.level}} - {{competence.name}} 
+              h5 Competencies (#[a(href="/users/{{student._id}}/competencies") edit])
+              div(ng-repeat="competency in student.competencies | orderBy: ['-level']")
+                {{competency.level}} - {{competency.name}} 
   
   .row
     .col-sm-12
