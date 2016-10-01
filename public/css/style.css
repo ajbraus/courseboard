@@ -77,12 +77,12 @@ nav.navbar {
 
 .alert {
   position: fixed;
-  top:72px;
-  width:100%;
+  top: 0;
   text-align: center;
-  height:40px;
-  line-height: 10px;
-  z-index: 10000;
+  z-index: 20;
+  right: 0;
+  height: 71px;
+  line-height: 39px;
 }
 
 .dropdown-toggle {

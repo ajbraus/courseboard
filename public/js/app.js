@@ -108,14 +108,14 @@ angular.module('courseboard', [
         controller: 'UsersShowCtrl'
       });
 
-      $routeProvider.when('/competences', {
-        templateUrl: 'templates/competences-index',
-        controller: 'CompetencesIndexCtrl'
+      $routeProvider.when('/competencies', {
+        templateUrl: 'templates/competencies',
+        controller: 'CompetenciesIndexCtrl'
       });
 
-      $routeProvider.when('/users/:id/competences', {
-        templateUrl: 'templates/competences-show',
-        controller: 'CompetencesShowCtrl'
+      $routeProvider.when('/users/:id/competencies', {
+        templateUrl: 'templates/competencies-show',
+        controller: 'CompetenciesShowCtrl'
       });
 
 

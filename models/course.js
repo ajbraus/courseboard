@@ -30,6 +30,7 @@ var CourseSchema = new Schema({
 
   , hours         : String
   , location      : String
+  , capacity      : Number
   , objectives    : [String]
 
   , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true }

@@ -8,5 +8,5 @@
             button.btn.btn-primary(type="submit") Search
       hr
       .list-group
-        a.list-group-item(ng-repeat="user in userList | filter:term", href="users/{{user._id}}/competences")
+        a.list-group-item(ng-repeat="user in userList | filter:term", href="users/{{user._id}}/competencies")
           h4 {{user.fullname}}

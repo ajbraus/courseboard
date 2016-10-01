@@ -3,7 +3,7 @@ extends layout
 block body
   .page-wrap
     ng-include(src="'templates/navbar'")
-    alert(ng-repeat='alert in globalAlerts', class='alert', type='{{alert.type}}', close='alert.close()', ng-cloak='') {{alert.msg}}
+    alert.col-sm-4.col-sm-offset-8(ng-repeat='alert in globalAlerts', class='alert', type='{{alert.type}}', close='alert.close()', ng-cloak='') {{alert.msg}}
     .min-height(ng-view)
   
 
