@@ -36,11 +36,11 @@
       .list-group
         .list-group-item(ng-repeat="student in students")
           .row
-            .col-sm-2
+            .col-sm-3
               b
                 a.no-style.clearfix(href="/users/{{student._id}}")
                   {{student.fullname}}
-            .col-sm-3
+            .col-sm-4
               span {{student.username}} - {{student.email}}
           .row
             .col-md-5
