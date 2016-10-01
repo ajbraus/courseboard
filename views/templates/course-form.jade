@@ -32,19 +32,13 @@
       //-     button.btn.btn-default(type='button', ng-click='endsOpen()')
       //-       i.glyphicon.glyphicon-calendar
 .row
-  .col-sm-7
+  .col-sm-6
     .form-group
       label Location
       input.form-control(ng-model='course.location')
-  
-  .col-sm-2
+  .col-sm-6
     .form-group
-      label Capacity
-      input.form-control(ng-model="course.capacity" type="number" value="26")
-
-  .col-sm-3
-    .form-group
-      label Hrs/Week
+      label Commitment per Week
       select.form-control(ng-model="course.hours")
         option(value="1") 1 Hour
         option(value="2") 2 Hours
