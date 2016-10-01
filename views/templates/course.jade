@@ -5,8 +5,7 @@
   .col-sm-3.col-xs-6
     {{course.instructor.fullname}}
     br
-    ng-pluralize(count='course.students.length', 
-                 when="{'1': '1 Participant', 'other': '{} Participants' }") 
+    {{course.students.length}}/{{course.capacity || course.students.length}} Participants
   .col-sm-3.col-xs-6
     | {{course.location}}
     span(ng-show='!course.location') TBA

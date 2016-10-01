@@ -49,11 +49,8 @@ module.exports = function(app) {
     course.save(function(err, course) {
       if (err) { return res.status(400).send(err) }
 
-      // ENROLL INSTRUCTOR
+      // ADD COURSE TO INSTRUCTOR'S COURSES
       User.findById(course.instructor).exec(function(err, user) {
-        course.students.push(req.userId);
-        course.save();
-
         user.courses.unshift(course);
         user.save();
 
@@ -101,6 +98,8 @@ module.exports = function(app) {
         user.save();
       });
 
+      //TODO REMOVE COURSEID FROM ALL STUDENTS ENROLLEDCOURSES??
+
       course.remove();
 
       res.send("Successfully removed course: " + courseId);
@@ -116,8 +115,6 @@ module.exports = function(app) {
         course.students.push(req.userId);
         User.findById(req.userId, '+email').exec(function (err, user) {
           if (err) { return res.status(400).send(err) }
-
-            console.log(user)
 
           user.enrolledCourses.unshift(course);
           user.save(function(err) {

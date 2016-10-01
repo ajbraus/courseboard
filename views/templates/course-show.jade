@@ -1,14 +1,17 @@
 .container
   .row
+    .col-xs-12.text-center
+      h3(ng-show="isCoursesLoaded && !course.publishedAt").text-danger
+        b Draft
+      h2 {{course.title}} 
+      .lead Facilitated by 
+        a(href="/users/{{course.instructor._id}}") {{course.instructor.fullname}}
+  .row
     .col-md-6
       
       //- COURSE INFO
       .card
-        h3 {{course.title}} 
-        b Instructor: 
-        a(href="/users/{{course.instructor._id}}") {{course.instructor.fullname}}
-        br
-        b Date 
+        b Dates: 
         span(ng-bind="course.startsOn | date:'EEE MMM dd, yyyy'")
         |  - 
         span(ng-bind="course.endsOn | date:'EEE MMM dd, yyyy'")
@@ -18,20 +21,19 @@
         br  
         b Location: 
         span {{course.location}}
-        .text-right
-          a.btn.btn-sm.btn-default(href="/courses-edit/{{course._id}}" ng-show='currentUser._id === course.user._id || currentUser._id === course.instructor._id') Edit Course
-
-        hr
-
-        h5 Objectives
+        br  
+        b Capacity: 
+        span {{course.capacity || 26}}
+        br
+        b Learning Objectives
         ul
           li(ng-repeat="objective in course.objectives") {{objective}}
-
-        h5 Description
+        b Description
         | {{course.description}}
       
-      .btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled") Enroll
-      .btn.btn-success.btn-block.no-hover(ng-show='isCoursesLoaded && enrolled') Enrolled
+      .btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled" ng-disabled="course.instructor._id != currentUser.id") Enroll
+      .btn.btn-success.btn-block.no-hover(ng-show='isCoursesLoaded && enrolled && course.instructor._id != currentUser.id') Enrolled
+      .btn.btn-default.btn-block(ng-disabled="true" ng-show='course.students.length >= course.capacity') Course Full
 
 
       hr
@@ -40,6 +42,8 @@
           //- STUDENTS
           h4 Participants
             .card
+              p
+                a(href="users/{{course.instructor._id}}") {{course.instructor.fullname}}
               p(ng-repeat="student in course.students")
                 a(href="users/{{student._id}}") {{student.fullname}}
         .col-sm-6

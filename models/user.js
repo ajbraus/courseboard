@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     bcrypt = require('bcryptjs'),
     Schema = mongoose.Schema,
-    Competence = require('./competence.js')
+    Competency = require('./competency.js')
 
 // GETTER
 function toLower (v) {
@@ -13,7 +13,7 @@ function toTitle(v) {
 }
 
 // COMPETENCE SCHEMA
-var CompetenceSchema = new Schema({
+var CompetencySchema = new Schema({
     createdAt           : { type: Date }
   , updatedAt           : { type: Date }
       
@@ -25,7 +25,7 @@ var CompetenceSchema = new Schema({
   , instructor          : { type: Schema.Types.ObjectId, ref: 'User', required: true}
 })
 
-CompetenceSchema.pre('save', function(next){
+CompetencySchema.pre('save', function(next){
   // SET createdAt AND updatedAt
   now = new Date();
   this.updatedAt = now;
@@ -54,7 +54,7 @@ var UserSchema = new Schema({
   , resetPasswordExp   : Date
   , startYear          : { type: String }
 
-  , competences         : [CompetenceSchema]
+  , competencies         : [CompetencySchema]
 }, {
   toObject: {
   virtuals: true

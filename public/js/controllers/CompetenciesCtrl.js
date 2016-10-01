@@ -3,18 +3,18 @@
 /* COMPETENCE Controllers */
 
 angular.module('courseboard')
-  .controller('CompetencesIndexCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
+  .controller('CompetenciesIndexCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
     $http.get('/api/students').then(function (response) { 
       // students full names & _id
       $scope.userList = response.data;
     })
   }])
 
-  .controller('CompetencesShowCtrl', ['$scope', '$http', '$auth', '$routeParams', 'Auth', 'GlobalAlert', function($scope, $http, $auth, $routeParams, Auth, GlobalAlert) {
+  .controller('CompetenciesShowCtrl', ['$scope', '$http', '$auth', '$routeParams', 'Auth', 'GlobalAlert', function($scope, $http, $auth, $routeParams, Auth, GlobalAlert) {
     $http.get('/api/users/' + $routeParams.id).then(function (response) {
       $scope.user = response.data;
 
-      $scope.competences = [
+      $scope.competencies = [
         // CHARACTER
         { name: 'Professionalism', level:0, kind: 'character'},
         { name: 'Teamwork', level:0, kind: 'character'},
@@ -47,24 +47,24 @@ angular.module('courseboard')
         { name: 'Graphic Design', level:0, kind: 'elective' }
       ]
 
-      $scope.competences = _.sortBy($scope.competences, ['name']);
-      // for each of $scope.competences
-      _.each($scope.competences, function (competence) { 
-        _.each($scope.user.competences, function (userCompetence) {
+      $scope.competencies = _.sortBy($scope.competencies, ['name']);
+      // for each of $scope.competencies
+      _.each($scope.competencies, function (competency) { 
+        _.each($scope.user.competencies, function (userCompetency) {
           // if their names match, replace it
-          if (competence.name == userCompetence.name) {
-            var index = _.findIndex($scope.competences, competence);
-            $scope.competences[index] = userCompetence;
+          if (competency.name == userCompetency.name) {
+            var index = _.findIndex($scope.competencies, competency);
+            $scope.competencies[index] = userCompetency;
           }
         })
       });
     })
 
-    $scope.updateCompetence = function(competenceName, level, kind) {
+    $scope.updateCompetency = function(competencyName, level, kind) {
       if (level >= 0 && level <= 5) {
-        $http.put('/api/users/' + $scope.user._id + '/competences', { name: competenceName, level: level, kind: kind }).then(function (response) {
-          var competence = _.find($scope.competences, { 'name': competenceName });
-          competence.level = level;
+        $http.put('/api/users/' + $scope.user._id + '/competencies', { name: competencyName, level: level, kind: kind }).then(function (response) {
+          var competency = _.find($scope.competencies, { 'name': competencyName });
+          competency.level = level;
         })        
       }
     }

@@ -3,13 +3,13 @@ Bugs
 
 Admin Dashboard 
   - See draft courses in admin dashboard
-  - See leaderboard of student's by competence
+  - See leaderboard of student's by competency
   - Batch students by year - set startYear to current year when signup
 
 Competencies Tracking
-  - rename "competencies"
-  - admins can create new competences
-  - instructors can set competencey levels with qualitative evaluation/proof
+  DONE - rename "competencies"
+  - admins can create new competencies
+  - instructors can set competency levels with qualitative evaluation/proof
   - download participation transcript -> pdf of projects (with code and live links), competencies
 
 Product 
@@ -191,22 +191,22 @@ Product
 
 
   - user narratives, template design
-    - A student comes in the first day and sees that they have all 0's for competence. They want to get some initial competence. They approach an instructor and ask to be levelled up. They show proof that they have advanced iOS knowledge and want to be set at a level of "approaching competence (3)". The instructor agrees. 
+    - A student comes in the first day and sees that they have all 0's for competency. They want to get some initial competency. They approach an instructor and ask to be levelled up. They show proof that they have advanced iOS knowledge and want to be set at a level of "approaching competency (3)". The instructor agrees. 
 
     "Certification Option"
     The instructor goes to the instructor dashboard and click's "Update Student Mastery". 
-    They autocomplete the student's name and then add the competence tag and the level. 
-    They can do multiple at once and provide one reason or project with URL that proves that competence. 
-    Then they log those competences. 
-    The competences are then visible on the student's profile, when they were logged, for what reason and by whom.
-      - a certification has one instructor and one student, many competences, and each competence has a level
+    They autocomplete the student's name and then add the competency tag and the level. 
+    They can do multiple at once and provide one reason or project with URL that proves that competency. 
+    Then they log those competencies. 
+    The competencies are then visible on the student's profile, when they were logged, for what reason and by whom.
+      - a certification has one instructor and one student, many competencies, and each competency has a level
       var certification = {
         createdAt: '',
         updatedAt: '',
         student: '_id',
         instructor: '_id',
         note: '',
-        competences [
+        competencies [
           { name: 'iOS', level: 3 }
           { name: 'Flask', level: 1 }
           { name: 'Python', level: 2 }
@@ -216,17 +216,17 @@ Product
       iOS => 4
       var user = {
         ...
-        competences: [
+        competencies: [
           { name: 'iOS', level: 3 }
           { name: 'Flask', level: 1 }
           { name: 'Python', level: 2 }
         ]
       }
-      certification.competences 
-      => [competences]
+      certification.competencies 
+      => [competencies]
       var user = User.findById(_id).populate('certifications')
-      user.competences
-      => [competences]
+      user.competencies
+      => [competencies]
 
       _.map(user.certifications, function(certs) {
         _.flatten(certs)
@@ -234,58 +234,58 @@ Product
 
     "Mastery Table Option"
     The instructor goes to the instructor dashboard and click's "Update Student Mastery".
-    They look up the student and the entire table of competence levels appears
-    They look over the student's competences and the rubrics and make all the necessary updates
-    They give a reason for competences, and save.
+    They look up the student and the entire table of competency levels appears
+    They look over the student's competencies and the rubrics and make all the necessary updates
+    They give a reason for competencies, and save.
     Admins can create a new competency from the admin dashboard
     Embed the competency in the user
       var user = {
-        competences [
+        competencies [
           { updatedAt: "", name: "iOS", level: 3, instructor: "_id", note: "blah blah" }
         ]
       }
 
 
   student profile
-    DONE - display competences ordered by level, displayed in progress bars
-    DONE- instructor sees "update student competence"
-    DONE - competences.jade (user._id) 'user/:id/competences'
-      - table of competences with that user's levels highlighted (radios?)
-      - table of numbers ng-click="updateCompetence(competence.name, 4)"
-      - complex form, multiple competence rows/dropdowns 
-      DONE - +|- buttons next to each competence
-    DONE - see user competence levels
-    DONE - hide update competence button to non-instructors
-  competences-index
-    DONE - display the currentUser's competence levels
-    DONE - when increment/decrement save competence levels to db
-    DONE - when increment/decrement update competence levels in view
-    DONE - duplicates in $scope.competences
-    DONE - order currentuser's competence levels by alphabetical
-      DONE - splice in user competence in for generic competence to perserve alphabetical order
-    DONE- break out competences by
+    DONE - display competencies ordered by level, displayed in progress bars
+    DONE- instructor sees "update student competency"
+    DONE - competencies.jade (user._id) 'user/:id/competencies'
+      - table of competencies with that user's levels highlighted (radios?)
+      - table of numbers ng-click="updateCompetence(competency.name, 4)"
+      - complex form, multiple competency rows/dropdowns 
+      DONE - +|- buttons next to each competency
+    DONE - see user competency levels
+    DONE - hide update competency button to non-instructors
+  competencies-index
+    DONE - display the currentUser's competency levels
+    DONE - when increment/decrement save competency levels to db
+    DONE - when increment/decrement update competency levels in view
+    DONE - duplicates in $scope.competencies
+    DONE - order currentuser's competency levels by alphabetical
+      DONE - splice in user competency in for generic competency to perserve alphabetical order
+    DONE- break out competencies by
       - character
       - elective
       - core
     DONE - see competencies in profile
 
-  DONE - search students in competences-index
+  DONE - search students in competencies-index
   DONE - define rubrics
 
 
-design tracking performance/competence/partipation
+design tracking performance/competency/partipation
 - see competencies (most masterful on top)
 - see rubrics 
-- See course-level competences you've accrewed
+- See course-level competencies you've accrewed
 - See current and total hours of attending courses/products
 
-evaluation per competence topic/competency based on competence 
+evaluation per competency topic/competency based on competency 
 
 0. no exposure
-1. initial competence
-2. approaching competence
-3. near competence
-4. competence
+1. initial competency
+2. approaching competency
+3. near competency
+4. competency
 5. innovator
 
 Core Competencies

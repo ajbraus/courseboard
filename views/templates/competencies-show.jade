@@ -11,11 +11,11 @@
         .col-sm-6
           .card
             h4 Character
-            ng-include(src="'templates/competence-selector'" ng-repeat="competence in competences | filter: { kind: 'character' }")
+            ng-include(src="'templates/competency-selector'" ng-repeat="competency in competencies | filter: { kind: 'character' }")
           .card
             h4 Core
-            ng-include(src="'templates/competence-selector'" ng-repeat="competence in competences | filter: { kind: 'core' }")
+            ng-include(src="'templates/competency-selector'" ng-repeat="competency in competencies | filter: { kind: 'core' }")
         .col-sm-6
           .card
             h4 Elective
-            ng-include(src="'templates/competence-selector'" ng-repeat="competence in competences | filter: { kind: 'elective' }")
+            ng-include(src="'templates/competency-selector'" ng-repeat="competency in competencies | filter: { kind: 'elective' }")
