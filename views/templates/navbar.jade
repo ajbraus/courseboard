@@ -17,15 +17,14 @@ nav.navbar
           a(href="/profile") Profile
         li(ng-show="currentUser.role == 'Instructor'")
           a(href="/instructor-dashboard") Instructor Dashboard
+        li
+          a(href='/settings') Settings
         li.dropdown(ng-show='currentUser')
           a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-            | More 
             span.caret
           ul.dropdown-menu
-            li
-              a(href='/settings') Account Settings
             li(ng-show="currentUser.admin")
-              a(href='/admin') Admin Settings
+              a(href='/admin') Admin Dashboard
             li.divider(role='separator')
             li
               a(ng-click='logout()') Logout

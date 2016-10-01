@@ -82,7 +82,7 @@ angular.module('courseboard')
         $http.post('/api/courses', $scope.course).then(
           function (response) {
             $scope.course = {};
-            $location.path('/courses');
+            $location.path('/courses/' + response.data._id);
             GlobalAlert.add('success', "Course saved", 2000);
           },
           function (response) {
