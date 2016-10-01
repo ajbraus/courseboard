@@ -31,6 +31,7 @@ angular.module('courseboard')
   .controller('CoursesNewCtrl', ['$scope', '$rootScope', '$http', 'GlobalAlert', '$location', function($scope, $rootScope, $http, GlobalAlert, $location) {
     $scope.course = {
       duration: 0,
+      capacity: 26,
       instructor: $rootScope.currentUser.role == "Instructor" ? $rootScope.currentUser._id : null,
       objectives: ["", "", ""]
     }
@@ -72,25 +73,28 @@ angular.module('courseboard')
     $scope.createCourse = function() {
       if ($scope.course.endsOn) {
         $scope.course.endsOn = new Date($scope.course.endsOnMonth + " " + $scope.course.endsOnDay + " " + $scope.course.endsOnYear)
-      }
-      if ($scope.course.startsOn) {
-        $scope.course.startsOn = new Date($scope.course.startsOnMonth + " " + $scope.course.startsOnDay + " " + $scope.course.startsOnYear)
-      } 
-      if (($scope.course.endsOn && $scope.course.startsOn) && $scope.course.endsOn < $scope.course.startsOn) {
-        GlobalAlert.add('warning', "Course end date must be after start date", 2000);
-      } else {
-        $http.post('/api/courses', $scope.course).then(
-          function (response) {
-            $scope.course = {};
-            $location.path('/courses');
-            GlobalAlert.add('success', "Course saved", 2000);
-          },
-          function (response) {
-            console.log(response);
-            GlobalAlert.add('warning', response.data.message, 2000);
+        
+        if ($scope.course.startsOn) {
+          $scope.course.startsOn = new Date($scope.course.startsOnMonth + " " + $scope.course.startsOnDay + " " + $scope.course.startsOnYear)
+
+          if (($scope.course.endsOn && $scope.course.startsOn) && $scope.course.endsOn < $scope.course.startsOn) {
+            GlobalAlert.add('warning', "Course end date must be after start date", 2000);
+          } else {
+            $http.post('/api/courses', $scope.course).then(
+              function (response) {
+                $scope.course = {};
+                $location.path('/courses');
+                GlobalAlert.add('success', "Course saved", 2000);
+              },
+              function (response) {
+                console.log(response);
+                GlobalAlert.add('warning', response.data.message, 2000);
+              }
+            );
           }
-        );
+        } 
       }
+      
     }
   }])
 
@@ -233,18 +237,27 @@ angular.module('courseboard')
 
 
     $scope.updateCourse = function() {
-      $scope.course.endsOn = new Date($scope.course.endsOnMonth + " " + $scope.course.endsOnDay + " " + $scope.course.endsOnYear)
-      $scope.course.startsOn = new Date($scope.course.startsOnMonth + " " + $scope.course.startsOnDay + " " + $scope.course.startsOnYear)
+      if ($scope.course.endsOn) {
+        $scope.course.endsOn = new Date($scope.course.endsOnMonth + " " + $scope.course.endsOnDay + " " + $scope.course.endsOnYear)
+        
+        if ($scope.course.startsOn) {
+          $scope.course.startsOn = new Date($scope.course.startsOnMonth + " " + $scope.course.startsOnDay + " " + $scope.course.startsOnYear)
 
-      $http.put('/api/courses/' + $routeParams.id, $scope.course).then(
-        function (response) {
-          $location.path('/courses/' + $scope.course._id)
-          GlobalAlert.add('success', "Course updated", 2000);
-        },
-        function (response) {
-          GlobalAlert.add('warning', response.data.message, 2000);
+          if (($scope.course.endsOn && $scope.course.startsOn) && $scope.course.endsOn < $scope.course.startsOn) {
+            GlobalAlert.add('warning', "Course end date must be after start date", 200000);
+          } else {
+            $http.put('/api/courses/' + $routeParams.id, $scope.course).then(
+              function (response) {
+                $location.path('/courses/' + $scope.course._id)
+                GlobalAlert.add('success', "Course updated", 2000);
+              },
+              function (response) {
+                GlobalAlert.add('warning', response.data.message, 2000);
+              }
+            );
+          }
         }
-      );
+      }
     }
 
     $scope.deleteCourse = function() {

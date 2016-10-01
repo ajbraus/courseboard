@@ -52,6 +52,7 @@ var UserSchema = new Schema({
   , confirmedAt        : { type: Date, default: undefined }
   , resetPasswordToken : String
   , resetPasswordExp   : Date
+  , startYear          : { type: String }
 
   , competences         : [CompetenceSchema]
 }, {
