@@ -45,12 +45,14 @@
           .row
             .col-md-5
               h5 Courses
-              a(href="/courses/{{course._id}}" ng-repeat="course in student.enrolledCourses")
-                {{course.title}}
+              div(ng-repeat="course in student.enrolledCourses")
+                a(href="/courses/{{course._id}}")
+                  {{course.title}}
             .col-md-4
               h5 Products
-              a(href="/products/{{product._id}}" ng-repeat="product in student.products")
-                {{product.name}}
+              div(ng-repeat="product in student.products")
+                a(href="/products/{{product._id}}")
+                  {{product.name}}
             .col-md-3
               h5 Competencies (#[a(href="/users/{{student._id}}/competencies") edit])
               div(ng-repeat="competency in student.competencies | orderBy: ['-level']")

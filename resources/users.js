@@ -8,6 +8,7 @@ var User = require('../models/user.js')
   , config = require('../config.js')
   , moment = require('moment')
   , auth = require('./auth')
+  , _ = require('lodash')
 
 module.exports = function(app) {
 
@@ -86,6 +87,16 @@ module.exports = function(app) {
     });
   });
 
+  app.get('/update-user-years', function (req, res) {
+    User.find().exec(function(err, users) {
+      _.each(users, function(u) {
+        u.year = u.createdAt.getFullYear();
+        u.save();
+      })
+      res.send("success");
+    })
+  })
+
   // SIGNUP 
   app.post('/auth/signup', function (req, res) {
     User.findOne({ email: req.body.email }, '+password', function (err, emailUser) {
@@ -99,6 +110,8 @@ module.exports = function(app) {
           return res.status(409).send({ message: 'Username is already taken' });
         }
         var user = new User(req.body);
+        user.year = new Date().getFullYear()
+
         user.save(function(err) {
           if (err) { return res.status(400).send(err) }
 
