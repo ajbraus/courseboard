@@ -42,3 +42,32 @@
           .card
             a(href="products/{{product._id}}") {{product.name}} 
             {{product.problem}}
+      hr
+      .row
+        .col-sm-12
+          .page-header
+            h3 2016 Students
+          .list-group
+            .list-group-item(ng-repeat="student in students | filter: { year: '2016' }")
+              .row
+                .col-sm-3
+                  b
+                    a.no-style.clearfix(href="/users/{{student._id}}")
+                      {{student.fullname}}
+                .col-sm-4
+                  span {{student.username}} - {{student.email}}
+              .row
+                .col-md-5
+                  h5 Courses
+                  div(ng-repeat="course in student.enrolledCourses")
+                    a(href="/courses/{{course._id}}")
+                      {{course.title}}
+                .col-md-4
+                  h5 Products
+                  div(ng-repeat="product in student.products")
+                    a(href="/products/{{product._id}}")
+                      {{product.name}}
+                .col-md-3
+                  h5 Competencies (#[a(href="/users/{{student._id}}/competencies") edit])
+                  div(ng-repeat="competency in student.competencies | orderBy: ['-level']")
+                    {{competency.level}} - {{competency.name}} 

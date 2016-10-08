@@ -25,7 +25,7 @@ nav.navbar
           ul.dropdown-menu
             li(ng-show="currentUser.admin")
               a(href='/admin') Admin Dashboard
-            li.divider(role='separator')
+            li.divider(role='separator' ng-show="currentUser.admin")
             li
               a(ng-click='logout()') Logout
       //- form.navbar-form.navbar-left(ng-submit="search(term)" style="z-index: 0;" ng-show='currentUser')

@@ -7,14 +7,6 @@ angular.module('courseboard')
     if (!$scope.currentUser.admin) {
       $location.path('/');
     } else {
-      $http.get('/api/admin/students')
-        .success(function (response) {
-          $scope.students = response;
-        })
-        .error(function (response) {
-          GlobalAlert.add('warning', response.data.message, 2000);
-        });
-
       $http.get('/api/admin/instructors')
         .success(function (response) {
           $scope.instructors = response;
