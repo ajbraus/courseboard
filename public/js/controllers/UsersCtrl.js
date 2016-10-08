@@ -4,9 +4,14 @@
 
 angular.module('courseboard')
   .controller('InstructorDashboardCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
-    $http.get('/api/me').then(function(response) {
-      $scope.user = response.data;
-    });
+    $http.get('/api/me')
+      .success(function (response) {
+        $scope.user = response;
+      })
+      .error(function (response) {
+        GlobalAlert.add('warning', response.data.message, 2000);
+      });
+
 
     $http.get('/api/admin/students')
       .success(function (response) {

@@ -120,16 +120,18 @@ angular.module('courseboard')
     );
 
     $scope.enroll = function() {
-      $http.put('/api/courses/' + $routeParams.id + '/enroll').then(
-        function (response) {
-          $scope.enrolled = true;
-          $scope.course.students.push($rootScope.currentUser)
-          GlobalAlert.add('success', "You've enrolled!", 3000);
-        },
-        function (response) {
-          GlobalAlert.add('warning', response.data.message, 3000);
-        }
-      );
+      if (course.instructor._id != currentUser.id) {
+        $http.put('/api/courses/' + $routeParams.id + '/enroll').then(
+          function (response) {
+            $scope.enrolled = true;
+            $scope.course.students.push($rootScope.currentUser)
+            GlobalAlert.add('success', "You've enrolled!", 3000);
+          },
+          function (response) {
+            GlobalAlert.add('warning', response.data.message, 3000);
+          }
+        );
+      }
     }
 
     $scope.open1 = function() {
@@ -186,7 +188,7 @@ angular.module('courseboard')
     }
   }])
 
-  .controller('CoursesEditCtrl', ['$scope', '$http', '$routeParams', '$location', 'GlobalAlert', function($scope, $http, $routeParams, $location, GlobalAlert) {
+  .controller('CoursesEditCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$location', 'GlobalAlert', function($scope, $rootScope, $http, $routeParams, $location, GlobalAlert) {
     $http.get('/api/courses/' + $routeParams.id).then(
       function (response) {
         
@@ -250,7 +252,12 @@ angular.module('courseboard')
     $scope.deleteCourse = function() {
       $http.delete('/api/courses/' + $routeParams.id).then(
         function (response) {
-          $location.path('/courses');
+          _.remove($rootScope.currentUser.courses, function(course) {
+            return $routeParams._id == course._id;
+          })
+          
+          $location.path('/instructor-dashboard');
+
           GlobalAlert.add('success', "Course deleted", 2000);
         },
         function (response) {

@@ -31,7 +31,7 @@
         b Description
         | {{course.description}}
       
-      .btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled" ng-disabled="course.instructor._id != currentUser.id") Enroll
+      .btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled" ng-disabled="course.instructor._id == currentUser.id") Enroll
       .btn.btn-success.btn-block.no-hover(ng-show='isCoursesLoaded && enrolled && course.instructor._id != currentUser.id') Enrolled
       .btn.btn-default.btn-block(ng-disabled="true" ng-show='course.students.length >= course.capacity') Course Full
 

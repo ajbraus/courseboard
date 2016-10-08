@@ -93,12 +93,20 @@ module.exports = function(app) {
 
       courseId = course._id;
     
+      // REMOVE COURESID FROM INSTRUCTORS COURESES
       User.findById(req.userId, '+email').exec(function (err, user) {
         user.courses.splice(course.students.indexOf(req.userId), 1);
         user.save();
       });
 
-      //TODO REMOVE COURSEID FROM ALL STUDENTS ENROLLEDCOURSES??
+      //REMOVE COURSEID FROM ALL STUDENTS ENROLLEDCOURSES
+
+      User.find({ enrolledCourses: courseId }).exec(function (err, users) {
+        _.each(users, function(user) {
+          user.enrolledCourses.splice(user.enrolledCourses.indexOf(course._id), 1);
+          user.save();
+        });
+      });
 
       course.remove();
 
