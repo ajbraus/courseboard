@@ -32,9 +32,9 @@
   .row
     .col-sm-12
       .page-header
-        h3 Students
+        h3 2016 Students
       .list-group
-        .list-group-item(ng-repeat="student in students | orderBy: ['year']")
+        .list-group-item(ng-repeat="student in students | filter: {'year': "2016" }")
           .row
             .col-sm-3
               b
