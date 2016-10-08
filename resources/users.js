@@ -87,16 +87,6 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/update-user-years', function (req, res) {
-    User.find().exec(function(err, users) {
-      _.each(users, function(u) {
-        u.year = u.createdAt.getFullYear();
-        u.save();
-      })
-      res.send("success");
-    })
-  })
-
   // SIGNUP 
   app.post('/auth/signup', function (req, res) {
     User.findOne({ email: req.body.email }, '+password', function (err, emailUser) {
