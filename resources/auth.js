@@ -15,8 +15,8 @@ module.exports = {
 	},
 
 	ensureAdmin: function(req, res, next) {
-		User.findById(req.userId).select('admin').exec(function (err, user) {
-		  if (user.admin) {
+		User.findById(req.userId).select('role admin').exec(function (err, user) {
+		  if (user.admin || user.role == "Instructor") {
 		  	next();
 		  } else {
 		  	return res.status(401).send({ message: 'Unauthorized' });

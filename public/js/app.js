@@ -108,16 +108,15 @@ angular.module('courseboard', [
         controller: 'UsersShowCtrl'
       });
 
-      $routeProvider.when('/competencies', {
-        templateUrl: 'templates/competencies',
-        controller: 'CompetenciesIndexCtrl'
+      $routeProvider.when('/students', {
+        templateUrl: 'templates/students',
+        controller: 'StudentsIndexCtrl'
       });
 
-      $routeProvider.when('/users/:id/competencies', {
-        templateUrl: 'templates/competencies-show',
-        controller: 'CompetenciesShowCtrl'
+      $routeProvider.when('/users/:id/feedback', {
+        templateUrl: 'templates/feedback-new',
+        controller: 'FeedbackNewCtrl'
       });
-
 
       $routeProvider.when('/instructor-dashboard', {
         templateUrl: 'templates/instructor-dashboard',

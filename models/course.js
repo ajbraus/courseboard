@@ -2,11 +2,9 @@ var mongoose = require('mongoose')
   , mongoosePaginate = require('mongoose-paginate')
   , Schema = mongoose.Schema;
 
-
 function toTitle(v) {
   return v.charAt(0).toUpperCase() + v.slice(1);
 }
-
 
 var CourseSchema = new Schema({
     createdAt     : { type: Date }

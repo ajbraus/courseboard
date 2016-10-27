@@ -1,7 +1,5 @@
 
 var User = require('../models/user.js')
-  , Question = require('../models/question.js')
-  , Answer = require('../models/answer.js')
   , qs = require('querystring')
   , jwt = require('jwt-simple')
   , request = require('request')
@@ -45,6 +43,7 @@ module.exports = function(app) {
       .populate('enrolledCourses')
       .populate('courses')
       .populate('products')
+      .populate('feedbacks')
       .exec(function (err, user) {
         res.send(user);
       }

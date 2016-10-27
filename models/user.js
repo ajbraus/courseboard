@@ -12,29 +12,6 @@ function toTitle(v) {
   return v.charAt(0).toUpperCase() + v.slice(1);
 }
 
-// COMPETENCE SCHEMA
-var CompetencySchema = new Schema({
-    createdAt           : { type: Date }
-  , updatedAt           : { type: Date }
-      
-  , name                : { type: String, required: true }
-  , level               : { type: Number, required: true }
-  , kind                : { type: String, required: true }
-  , note                : { type: String }
-
-  , instructor          : { type: Schema.Types.ObjectId, ref: 'User', required: true}
-})
-
-CompetencySchema.pre('save', function(next){
-  // SET createdAt AND updatedAt
-  now = new Date();
-  this.updatedAt = now;
-  if ( !this.createdAt ) {
-    this.createdAt = now;
-  }
-  next();
-});
-
 // USER SCHEMA
 var UserSchema = new Schema({
     createdAt          : Date
@@ -54,7 +31,8 @@ var UserSchema = new Schema({
   , resetPasswordExp   : Date
   , year               : String
 
-  , competencies         : [CompetencySchema]
+  , competencies         : [Competency.schema]
+  , feedbacks            : [{ type: Schema.Types.ObjectId, ref: 'Feedback' }]
 }, {
   toObject: {
   virtuals: true

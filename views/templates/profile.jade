@@ -4,7 +4,7 @@
       .pull-left
         h3 {{user.first}} {{user.last}} #[small {{user.username}}]
       .pull-right
-        a.btn.btn-warning(href="users/{{user._id}}/competencies" ng-show="currentUser.role == 'Instructor'") Update Competencies
+        a.btn.btn-warning(href="users/{{user._id}}/feedback" ng-show="currentUser.role == 'Instructor'") Provide Feedback
   .row
     .col-sm-4
       h4 Courses
@@ -27,7 +27,12 @@
       div(ng-init="profile = true" ng-include="'templates/post'", ng-repeat="post in posts")
     
     .col-sm-4
-      h4 Competencies
+      h4 Skills & Feedback
+      .card(ng-show="user.feedbacks.length > 0")
+        div "{{user.feedbacks[0].body | limitTo:400 }}"
+        .text-right
+          i.text-muted(ng-bind="user.feedbacks[0].createdAt | date:'EEE MMM dd, yyyy'")
+      hr
       div(ng-repeat="competency in user.competencies | orderBy: ['-level'] ")
         {{competency.name}} 
         span(ng-switch="competency.level")
@@ -39,7 +44,7 @@
           span(ng-switch-when="5") (Innovating)
         .progress
           .progress-bar(role='progressbar', aria-valuenow='{{competency.level/5*100}}', aria-valuemin='0', aria-valuemax='5', style='width: {{competency.level/5*100}}%;')
-
+      h4
 
 .btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled") Enroll
         .btn.btn-success.btn-block.no-hover(ng-show='isCoursesLoaded && enrolled') Enrolled

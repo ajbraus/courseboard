@@ -2,10 +2,10 @@
   .col-xs-4.col-sm-4.col-md-3
     .row
       .col-xs-4
-        .icon.ion-plus-circled(ng-disabled="competency.level > 5", ng-click="updateCompetency(competency.name, competency.level + 1, competency.kind)")
+        .icon.ion-minus-circled(ng-click="competency.level > 0 ? competency.level = competency.level - 1 : ''")
       .col-xs-4
         {{competency.level}}
       .col-xs-4
-        .icon.ion-minus-circled(ng-disabled="competency.level == 0", ng-click="updateCompetency(competency.name, competency.level - 1, competency.kind)")
+        .icon.ion-plus-circled(ng-click="competency.level < 5 ? competency.level = competency.level + 1 : ''")
   .col-xs-8.col-sm-8.col-md-9
     {{competency.name}} 
