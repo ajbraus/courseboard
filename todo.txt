@@ -1,9 +1,6 @@
-DONE Feedback model
-DONE feedback controller 
-  DONE - create
-  DONE not saving properly
-DONE show feedback in profile (if current student)
-DONe Show feedback in profile from admit
+product thumbnails with default thumnail and label
+send email when feedback created
+update Competencies(edit) link
 
 Bugs
   - on mobile can't see navbar dropdown toggle
@@ -332,3 +329,10 @@ Elective Competencies
 
 focus group
 - eliel, kavin, mike, leslie, josh
+
+DONE Feedback model
+DONE feedback controller 
+  DONE - create
+  DONE not saving properly
+DONE show feedback in profile (if current student)
+DONe Show feedback in profile from admit
