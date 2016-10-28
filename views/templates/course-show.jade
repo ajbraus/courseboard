@@ -80,4 +80,5 @@
       h4(ng-show="course.products.length > 0") Products
       .card(ng-repeat="product in course.products")
         a(href="products/{{product._id}}") {{product.name}}
+        .text-right.text-muted Team of {{product.contributors.length}}
   
