@@ -1,5 +1,6 @@
+Course days of week & times
+Course - quarter (instead of stars on ends on)
 
-feedback - see feedback in profile if currentUser
 send email when feedback created
 
 Groups of 2, 3, 4, 5, split class in half

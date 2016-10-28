@@ -49,7 +49,7 @@
       div(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
         .card(ng-repeat="feedback in user.feedbacks")
           p
-            span.label.label-primary(ng-repeat="c in feedback.competencies" style="display:inline-block") {{c.level}} | {{c.name}} 
+            span.label.label-primary(ng-repeat="c in feedback.competencies" style="display:inline-block; margin-right:3px") {{c.level}} | {{c.name}} 
           | "{{feedback.body}}"
           .text-right
             i.text-muted(ng-bind="feedback.createdAt | date:'EEE MMM dd, yyyy'")
