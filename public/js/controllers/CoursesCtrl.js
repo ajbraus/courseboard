@@ -69,11 +69,20 @@ angular.module('courseboard')
       opened: false
     };
 
+    $scope.dateOptions = {
+       formatYear: 'yy',
+       maxDate: new Date(2020, 5, 22),
+       minDate: new Date()
+    };
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[0];
+    $scope.altInputFormats = ['M!/d!/yyyy'];
+
     $scope.createCourse = function() {
-      if ($scope.course.endsOn) {
+      if ($scope.course.endsOnMonth && $scope.course.endsOnDay && $scope.course.endsOnYear) {
         $scope.course.endsOn = new Date($scope.course.endsOnMonth + " " + $scope.course.endsOnDay + " " + $scope.course.endsOnYear)
       }
-      if ($scope.course.startsOn) {
+      if ($scope.course.startsOnMonth && $scope.course.startsOnDay && $scope.course.startsOnYear) {
         $scope.course.startsOn = new Date($scope.course.startsOnMonth + " " + $scope.course.startsOnDay + " " + $scope.course.startsOnYear)
       } 
       if (($scope.course.endsOn && $scope.course.startsOn) && $scope.course.endsOn < $scope.course.startsOn) {

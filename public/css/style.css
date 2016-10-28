@@ -180,3 +180,11 @@ dd {
     margin-left: 5px;
     margin-top: 4px;
 }
+
+.navbar-toggle .icon-bar{ background-color: #2780e3;}
+
+.nav > li {
+    position: relative;
+    display: block;
+    text-align: center;
+}

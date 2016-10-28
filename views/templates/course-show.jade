@@ -1,8 +1,8 @@
 .container
   .row
     .col-xs-12.text-center
-      h3(ng-show="isCoursesLoaded && !course.publishedAt").text-danger
-        b Draft
+      h3(ng-show="isCoursesLoaded && !course.publishedAt")
+        a.text-danger(href="/courses-edit/{{course._id}}") Draft
       h2 {{course.title}} 
       .lead Facilitated by 
         a(href="/users/{{course.instructor._id}}") {{course.instructor.fullname}}

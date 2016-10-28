@@ -1,12 +1,9 @@
-product thumbnails with default thumnail and label
 send email when feedback created
 
 Groups of 2, 3, 4, 5, split class in half
 
 formatted text for course descriptions - bower install textAngular
 https://github.com/fraywing/textAngular
-
-dates don't stick when saving course
 
 Bugs
   - on mobile can't see navbar dropdown toggle
