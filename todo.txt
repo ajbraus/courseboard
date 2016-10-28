@@ -2,7 +2,8 @@ product thumbnails with default thumnail and label
 send email when feedback created
 update Competencies(edit) link
 
-formatted text for course descriptions
+formatted text for course descriptions - bower install textAngular
+https://github.com/fraywing/textAngular
 
 don't allow registering for more than 4 courses
 
