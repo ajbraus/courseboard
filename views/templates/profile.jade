@@ -27,12 +27,12 @@
       div(ng-init="profile = true" ng-include="'templates/post'", ng-repeat="post in posts")
     
     .col-sm-4
-      h4 Skills & Feedback
-      .card(ng-show="user.feedbacks.length > 0")
+      h4 Skills #[span(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body") & Feedback]
+      .card(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
         div "{{user.feedbacks[0].body | limitTo:400 }}"
         .text-right
           i.text-muted(ng-bind="user.feedbacks[0].createdAt | date:'EEE MMM dd, yyyy'")
-      hr
+      hr(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
       div(ng-repeat="competency in user.competencies | orderBy: ['-level'] ")
         {{competency.name}} 
         span(ng-switch="competency.level")
@@ -44,7 +44,12 @@
           span(ng-switch-when="5") (Innovating)
         .progress
           .progress-bar(role='progressbar', aria-valuenow='{{competency.level/5*100}}', aria-valuemin='0', aria-valuemax='5', style='width: {{competency.level/5*100}}%;')
-      h4
-
-.btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled") Enroll
-        .btn.btn-success.btn-block.no-hover(ng-show='isCoursesLoaded && enrolled') Enrolled
+      hr(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
+      h4(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body") Feedback
+      div(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
+        .card(ng-repeat="feedback in user.feedbacks")
+          p
+            span.label.label-primary(ng-repeat="c in feedback.competencies" style="display:inline-block") {{c.level}} | {{c.name}} 
+          | "{{feedback.body}}"
+          .text-right
+            i.text-muted(ng-bind="feedback.createdAt | date:'EEE MMM dd, yyyy'")
