@@ -175,3 +175,8 @@ dd {
     font-size: 14px;
     line-height: 20px;
 }
+
+.btn-toolbar > .btn, .btn-toolbar > .btn-group.participant, .btn-toolbar > .input-group {
+    margin-left: 5px;
+    margin-top: 4px;
+}

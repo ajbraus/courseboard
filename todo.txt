@@ -2,6 +2,12 @@ product thumbnails with default thumnail and label
 send email when feedback created
 update Competencies(edit) link
 
+formatted text for course descriptions
+
+don't allow registering for more than 4 courses
+
+dates don't stick when saving course
+
 Bugs
   - on mobile can't see navbar dropdown toggle
 
