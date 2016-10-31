@@ -56,6 +56,12 @@ angular.module('courseboard')
         $scope.posts = response.data;
       });
     });
+    
+    $scope.greaterThan = function(prop){
+        return function(item){
+          return item[prop] > new Date();
+        }
+    }
   }])
 
   .controller('UsersShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $routeParams, $auth, Auth, GlobalAlert) {
@@ -66,6 +72,12 @@ angular.module('courseboard')
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
       });
+
+    $scope.greaterThan = function(prop){
+        return function(item){
+          return item[prop] > new Date();
+        }
+    }
 
     // POSTS
     $http.get('/api/users/' + $routeParams.id + '/posts').then(function(response) {

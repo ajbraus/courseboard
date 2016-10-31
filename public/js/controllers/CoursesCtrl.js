@@ -129,7 +129,7 @@ angular.module('courseboard')
     );
 
     $scope.enroll = function() {
-      if (course.instructor._id != currentUser.id) {
+      if ($scope.course.instructor._id != $rootScope.currentUser.id) {
         $http.put('/api/courses/' + $routeParams.id + '/enroll').then(
           function (response) {
             $scope.enrolled = true;

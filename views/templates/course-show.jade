@@ -32,7 +32,7 @@
 
       h4 Learning Objectives
       ul.list-group
-        li.list-group-item(ng-repeat="objective in course.objectives") {{objective}}
+        li.list-group-item(ng-repeat="objective in course.objectives track by $index") {{objective}}
 
     .col-md-5
       //- ANNOUNCMENTS

@@ -8,13 +8,9 @@
   .row
     .col-sm-4
       h4 Courses
-      //- INSTRUCTOR'S COURSES
-      .list-group
-        a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.courses")
-          {{course.title}} 
       //- STUDENT'S ENROLLED COURSES
       .list-group
-        a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses")
+        a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses | filter: greaterThan('startsOn')")
           {{course.title}} 
       
       h4 Products
