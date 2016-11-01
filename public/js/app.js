@@ -35,16 +35,19 @@ angular.module('courseboard', [
       // });
 
       // COURSES
-      $routeProvider.when('/', {
-        templateUrl: 'templates/course-index',
-        controller: 'CoursesIndexCtrl',
+      $routeProvider.when('/welcome', {
+        templateUrl: 'templates/splash',
         publicAccess: true
+      });
+
+      $routeProvider.when('/', {
+        templateUrl: 'templates/profile',
+        controller: 'ProfileCtrl'
       });
 
       $routeProvider.when('/course-catalog', {
         templateUrl: 'templates/course-index',
-        controller: 'CoursesIndexCtrl',
-        publicAccess: true
+        controller: 'CoursesIndexCtrl'
       });
 
       $routeProvider.when('/courses-new', {
@@ -121,11 +124,6 @@ angular.module('courseboard', [
       $routeProvider.when('/instructor-dashboard', {
         templateUrl: 'templates/instructor-dashboard',
         controller: 'InstructorDashboardCtrl'
-      });
-
-      $routeProvider.when('/profile', {
-        templateUrl: 'templates/profile',
-        controller: 'ProfileCtrl'
       });
 
       $routeProvider.when('/settings', {

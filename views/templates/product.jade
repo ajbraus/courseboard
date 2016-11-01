@@ -6,7 +6,7 @@ a.no-style(href="/products/{{product._id}}")
       .col-sm-12
         b Contributors 
         p 
-          span(ng-repeat="contributor in product.contributors") {{contributor.username}} 
+          span(ng-repeat="contributor in product.contributors track by $index") {{contributor.username}} 
     .row 
       .col-sm-12
         b Advisor

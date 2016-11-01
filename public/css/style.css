@@ -188,3 +188,8 @@ dd {
     display: block;
     text-align: center;
 }
+
+.jumbotron {
+  margin-top: -21px;
+  padding:90px;
+}

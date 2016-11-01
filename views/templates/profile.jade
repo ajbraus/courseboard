@@ -11,12 +11,13 @@
       //- STUDENT'S ENROLLED COURSES
       .list-group
         a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses")
-          {{course.title}} 
+          h4 {{course.title}} 
       
       h4 Products
-      .list-group
-        a.list-group-item(href="products/{{product._id}}" ng-repeat="product in user.products")
-          {{product.name}} 
+      .card(ng-repeat="product in user.products")
+        a.no-style(href="products/{{product._id}}")
+          h3 {{product.name}}
+          p {{product.problem}}
 
     .col-sm-4
       h4 Announcements

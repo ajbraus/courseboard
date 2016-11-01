@@ -17,7 +17,6 @@ angular.module('courseboard')
     $scope.user = {};
 
     $scope.isAuthenticated = function() {
-
       $http.get('/api/me').then(
         function (response) {
           if (!!response.data) {
@@ -35,6 +34,8 @@ angular.module('courseboard')
 
     if ($auth.isAuthenticated()) {
       $scope.isAuthenticated();
+    } else {
+      $location.path('/welcome')
     }
 
     $scope.signup = function() {
@@ -50,6 +51,7 @@ angular.module('courseboard')
         })
         .catch(function (response) {
           $('.dropdown.open .dropdown-toggle').dropdown('toggle');
+          $scope.user = {};
           GlobalAlert.add('warning', response.data.message, 2000);
         });
     };
@@ -62,10 +64,13 @@ angular.module('courseboard')
           $auth.setToken(response.data.token);
           $scope.isAuthenticated();
           $scope.user = {};
+          $location.path('/')
+
           GlobalAlert.add('success', "Logged In", 2000);
         })
         .catch(function (response) {
           $('.dropdown.open .dropdown-toggle').dropdown('toggle');
+          $scope.user = {};
           GlobalAlert.add('warning', response.data.message, 2000);
         });
     };
