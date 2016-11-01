@@ -134,6 +134,7 @@ module.exports = function(app) {
       user.save(function (err) {
         // Send Email
         console.log(user.email)
+
         app.mailer.send('emails/new-password', {
           to: user.email,
           subject: 'New Password Request',
