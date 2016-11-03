@@ -47,7 +47,12 @@ angular.module('courseboard')
     }
   }])
 
-  .controller('ProfileCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
+  .controller('ProfileCtrl', ['$scope', '$http', '$auth', '$location', 'Auth', 'GlobalAlert', function($scope, $http, $auth, $location, Auth, GlobalAlert) {
+
+    if (!$auth.isAuthenticated()) {
+      $location.path('/welcome')
+    }
+
     $http.get('/api/me').then(function(response) {
       $scope.user = response.data;
 
@@ -138,7 +143,7 @@ angular.module('courseboard')
       $http.post('/auth/passwords', $scope.user).then(
         function (response) {
           $scope.user = {};
-          $location.path('/'); 
+          $location.path('/splash'); 
           GlobalAlert.add('success', "Password reset instructions sent", 2000);
         },
         function (response) {
@@ -153,7 +158,7 @@ angular.module('courseboard')
     $scope.updatePassword = function() {
       $http.put('/auth/passwords/edit/' + $routeParams.token, $scope.user).then(
         function (response) {
-          $location.path('/');
+          $location.path('/splash');
           GlobalAlert.add('success', "Password updated", 2000);
         },
         function (response) {

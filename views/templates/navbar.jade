@@ -6,7 +6,8 @@ nav.navbar
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/') Course Board
+      a.navbar-brand(href='/' ng-show="currentUser") Course Board
+      a.navbar-brand(href='/welcome' ng-show="!currentUser") Course Board
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav
         

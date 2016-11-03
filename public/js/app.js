@@ -21,7 +21,7 @@ angular.module('courseboard', [
         if (!next.publicAccess && !loggedIn) {
           $rootScope.returnToState = next.url;
           $rootScope.returnToStateParams = next.params.Id;
-          $location.path('/');
+          $location.path('/welcome');
           GlobalAlert.add('warning', "Please log in to see this resource", 2000);
         }
       });
@@ -98,7 +98,7 @@ angular.module('courseboard', [
         controller: 'PasswordEditCtrl',
         publicAccess: true
       });
-
+  
       $routeProvider.when('/password-new', {
         templateUrl: 'templates/password-new',
         controller: 'PasswordNewCtrl',

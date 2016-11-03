@@ -1,3 +1,5 @@
+
+
 Course days of week & times
 Course - quarter (instead of stars on ends on)
 
