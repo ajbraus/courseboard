@@ -12,7 +12,7 @@
       .list-group
         a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses")
           h4 {{course.title}} 
-          p {{course}}
+          p {{course.students.length}}/26
       
       h4 Products
       .card(ng-repeat="product in user.products")
