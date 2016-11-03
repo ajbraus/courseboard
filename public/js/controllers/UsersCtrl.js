@@ -126,7 +126,7 @@ angular.module('courseboard')
       $http.post('/auth/passwords', $scope.user).then(
         function (response) {
           $scope.user = {};
-          $location.path('/'); 
+          $location.path('/');
           GlobalAlert.add('success', "Password reset instructions sent", 2000);
         },
         function (response) {
@@ -138,6 +138,7 @@ angular.module('courseboard')
 
   .controller('PasswordEditCtrl', ['$scope', '$http', '$auth', 'Auth', '$routeParams', '$location', 'GlobalAlert', function($scope, $http, $auth, Auth, $routeParams, $location, GlobalAlert) {
     console.log('in password edit ctrl');
+
     $scope.updatePassword = function() {
       $http.put('/auth/passwords/edit/' + $routeParams.token, $scope.user).then(
         function (response) {

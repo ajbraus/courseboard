@@ -37,7 +37,7 @@ nav.navbar {
 .page-wrap {
   min-height: 100%;
   /* equal to footer height */
-  margin-bottom: -142px; 
+  margin-bottom: -142px;
 }
 
 .page-wrap:after {
@@ -46,7 +46,7 @@ nav.navbar {
 }
 
 .site-footer, .page-wrap:after {
-  height: 142px; 
+  height: 142px;
   margin-top: 20px;
 }
 
@@ -174,4 +174,8 @@ dd {
 .progress .progress-bar {
     font-size: 14px;
     line-height: 20px;
+}
+
+.label {
+    margin:0 .2em;
 }

@@ -1,12 +1,11 @@
 .container
   .row
-    .col-sm-12
-      .pull-left
-        h3 {{user.first}} {{user.last}} #[small {{user.username}}]
-      .pull-right
-        a.btn.btn-warning(href="users/{{user._id}}/feedback" ng-show="currentUser.role == 'Instructor'") Provide Feedback
-  .row
     .col-sm-4
+      h4 {{user.first}} {{user.last}} #[span.text-muted ({{user.username}})]
+      .text-right(ng-show="currentUser.role == 'Instructor'")
+        a(href="users/{{user._id}}/feedback") Provide Feedback
+      hr
+
       h4 Courses
       //- INSTRUCTOR'S COURSES
       .list-group
@@ -33,6 +32,21 @@
         .text-right
           i.text-muted(ng-bind="user.feedbacks[0].createdAt | date:'EEE MMM dd, yyyy'")
       hr
+      
+      h4(ng-repeat="competency in user.competencies | orderBy: ['-level']" 
+         style="display:inline-block;")
+          span.label(ng-class="{ 'label-primary': competency.level == 1, 'text-large': giant }")
+        //-   'label-danger': competency.level == 0, 
+        //-   'label-warning': competency.level == 1,
+        //-   'label-deafault': competency.level == 2,
+        //-   'label-info': competency.level == 3,
+        //-   'label-success': competency.level == 5,
+        //-   'label-primary': competency.level == 4,
+            span.level
+              {{competency.level}} | 
+            {{competency.name}} 
+        
+      
       div(ng-repeat="competency in user.competencies | orderBy: ['-level'] ")
         {{competency.name}} 
         span(ng-switch="competency.level")
