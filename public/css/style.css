@@ -82,7 +82,7 @@ nav.navbar {
   text-align: center;
   height:40px;
   line-height: 10px;
-  z-index: 10000;
+  z-index: 1000;
 }
 
 .dropdown-toggle {
@@ -192,4 +192,8 @@ dd {
 .jumbotron {
   margin-top: -21px;
   padding:90px;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  z-index: 10000;
 }

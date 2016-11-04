@@ -10,9 +10,12 @@
     | {{course.location}}
     span(ng-show='!course.location') TBA
     br
-    span(ng-bind="course.startsOn | date:'MMM dd'")
-    |  - 
-    span(ng-bind="course.endsOn | date:'MMM dd'")
+    | {{course.weekDays}}
+    br
+    | {{course.startTime}}
+    //- span(ng-bind="course.startsOn | date:'MMM dd'")
+    //- |  - 
+    //- span(ng-bind="course.endsOn | date:'MMM dd'")
   .col-sm-3.col-xs-6
   .col-sm-3.col-xs-6
     ng-pluralize(count='course.hours', 

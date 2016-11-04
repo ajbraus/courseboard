@@ -4,10 +4,11 @@
       .pull-left
         h3 {{user.first}} {{user.last}} #[small {{user.username}}]
       .pull-right
-        a.btn.btn-warning(href="users/{{user._id}}/feedback" ng-show="currentUser.role == 'Instructor'") Provide Feedback
+        a.btn.btn-success(href="users/{{user._id}}/feedback" ng-show="currentUser.role == 'Instructor'") Provide Feedback
   .row
     .col-sm-4
       h4 Courses
+      a(href="/course-catalog" ng-show="user.enrolledCourses.length == 0") Go to Course Catalog
       //- STUDENT'S ENROLLED COURSES
       .list-group
         a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses")
@@ -15,6 +16,7 @@
           p {{course.students.length}}/26 Participants
       
       h4 Products
+      a(href="/product-new" ng-show="user.products.length == 0") Start New Product
       .card(ng-repeat="product in user.products")
         a.no-style(href="products/{{product._id}}")
           h3 {{product.name}}

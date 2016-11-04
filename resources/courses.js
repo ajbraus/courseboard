@@ -15,7 +15,7 @@ module.exports = function(app) {
     var d = new Date();
     // d.setDate(d.getDate()-10);
 
-    Course.find({ "endsOn": { "$gte": d }, "publishedAt": { "$ne": null } })
+    Course.find({"publishedAt": { "$ne": null } })
           .sort("title")
           .populate({ path: 'instructor', select: 'fullname first last' })
           .exec(function(err, courses) {

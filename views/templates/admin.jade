@@ -6,20 +6,20 @@
       .card
         table.table
           tr
-            th.text-center Title
-            th.text-center Instructor(s)
-            th.text-center Dates
-            th.text-center Status
-            th.text-center 
+            th Q
+            th Title
+            th Week Days
+            th Instructor
+            th Start Time
+            th Status
+            th Update
           tr(ng-repeat="course in courses | orderBy: ['publishedAt']")
+            td {{course.quarter}}
             td 
               a(href="/courses/{{course._id}}") {{course.title}}
-            td
-              {{course.instructor.fullname}}
-            td
-              span(ng-bind="course.startsOn | date:'MMM dd'")
-              |  - 
-              span(ng-bind="course.endsOn | date:'MMM dd'")
+            td {{course.instructor.fullname}}
+            td {{course.weekDays}}
+            td {{course.startTime}}
             td.text-center {{course.publishedAt ? 'Live': 'Draft'}}
             td
               .btn-toolbar

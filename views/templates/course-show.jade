@@ -2,7 +2,7 @@
   .row
     .col-xs-12.text-center
       h3(ng-show="isCoursesLoaded && !course.publishedAt")
-        a.text-danger(href="/courses-edit/{{course._id}}") Draft
+        a.text-danger(href="/courses-edit/{{course._id}}") Draft (edit)
       h2 {{course.title}} 
       .lead Quarter {{course.quarter}} - Facilitated by 
         a(href="/users/{{course.instructor._id}}") {{course.instructor.fullname}}
@@ -11,14 +11,14 @@
       
       //- COURSE INFO
       .card
+        b Instructor: 
+        | {{course.instructor.fullname}}
+        br
         b Days: 
         | {{course.weekDays}}
         br
         b Start Time: 
         | {{course.startTime}}
-        //- span(ng-bind="course.startsOn | date:'EEE MMM dd, yyyy'")
-        //- |  - 
-        //- span(ng-bind="course.endsOn | date:'EEE MMM dd, yyyy'")
         br  
         b Location: 
         span {{course.location}}
@@ -65,7 +65,7 @@
       
       hr
       //- STUDENTS
-      h4 Participants
+      h4 {{course.students.length}}/26 Participants
       .card
         .btn-toolbar
           .btn-group.participant

@@ -7,24 +7,25 @@
         .pull-right
           .btn-toolbar
             .btn-group
-              a.btn.btn-sm.btn-warning(href="/students") Update Competencies
+              a.btn.btn-success(href="/students") Leave Feedback
             .btn-group
-              a.btn.btn-sm.btn-default(href="/courses-new") New Course
+              a.btn.btn-default(href="/courses-new") New Course
 
       .card
         table.table
           tr
+            th Q
             th Title
-            th Dates
+            th Week Days
+            th Start Time
             th Status
             th Update
           tr(ng-repeat="course in user.courses | orderBy: ['publishedAt']")
+            td {{course.quarter}}
             td 
               a(href="/courses/{{course._id}}") {{course.title}}
-            td
-              span(ng-bind="course.startsOn | date:'MMM dd'")
-              |  - 
-              span(ng-bind="course.endsOn | date:'MMM dd'")
+            td {{course.weekDays}}
+            td {{course.startTime}}
             td {{course.publishedAt ? 'Live': 'Draft'}}
             td 
               .btn-toolbar
@@ -56,9 +57,14 @@
               .row
                 .col-md-5
                   h5 Courses
-                  div(ng-repeat="course in student.enrolledCourses")
-                    a(href="/courses/{{course._id}}")
-                      {{course.title}}
+                  p(ng-repeat="course in student.enrolledCourses | filter: { quarter: 1 }")
+                    a(href="/courses/{{course._id}}") Q{{course.quarter}} - {{course.title}}
+                  p(ng-repeat="course in student.enrolledCourses | filter: { quarter: 2 }")
+                    a(href="/courses/{{course._id}}") Q{{course.quarter}} - {{course.title}}
+                  p(ng-repeat="course in student.enrolledCourses | filter: { quarter: 3 }")
+                    a(href="/courses/{{course._id}}") Q{{course.quarter}} - {{course.title}}
+                  p(ng-repeat="course in student.enrolledCourses | filter: { quarter: 4 }")
+                    a(href="/courses/{{course._id}}") Q{{course.quarter}} - {{course.title}}
                 .col-md-4
                   h5 Products
                   div(ng-repeat="product in student.products")
