@@ -176,10 +176,59 @@ dd {
     line-height: 20px;
 }
 
-/* Alex's temporary style*/
-/*.label {
-    margin:0 .2em;
-}*/
+/**********************************/
+/*                                */
+/* Styles for Competencies Chips  */
+/*                                */
+/**********************************/
+.chip {
+    display: inline-block;
+    padding: 2.5px 25px;
+    height: auto;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    line-height: 25px;
+    border-radius: 25px;
+    /*background-color: blue;*/
+    margin: 0 0.25em;
+}
+
+.competency-level {
+    float: left;
+    margin: 0 10px 0 -25px;
+    padding: 0 20px;
+    height: 100%;
+    width: 25px;
+    border-radius: 50%;
+    text-align: center;
+    /*background-color: black;*/
+}
+
+.competency-name {
+    display: inline;
+}
+
+.chip-character {
+    background: linear-gradient(to left, #00C9FF , #92FE9D);
+    color: black;
+}
+
+.chip-core {
+    background: linear-gradient(to left,  #E5E5BE, #003973);
+}
+
+.chip-elective {
+    background: linear-gradient(to left, #A1FFCE , #FAFFD1);
+    color: black;
+}
+/**********************************/
+/*                                */
+/*              End               */
+/*                                */
+/**********************************/
+
+
 
 .btn-toolbar > .btn, .btn-toolbar > .btn-group.participant, .btn-toolbar > .input-group {
     margin-left: 5px;

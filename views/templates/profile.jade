@@ -36,5 +36,6 @@
       
       h4(ng-repeat="competency in user.competencies | orderBy: ['-level']" 
          style="display:inline-block;")
-          span.label(ng-class="{ 'label-primary': competency.kind == 'core', 'label-success': competency.kind == 'character', 'label-warning': competency.kind == 'elective' }")
-            span.level {{competency.level}} | {{competency.name}} 
+          .chip(ng-class="{ 'chip-core': competency.kind == 'core', 'chip-character': competency.kind == 'character', 'chip-elective': competency.kind == 'elective' }")
+            p.competency-level {{competency.level}}
+            p.competency-name {{competency.name}} 
