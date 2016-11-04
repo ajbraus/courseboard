@@ -14,20 +14,22 @@ var CourseSchema = new Schema({
   , title         : { type: String, required: true }
   , description   : { type: String }
   , instructor    : { type: String, set: toTitle }
-  , duration      : String
 
-  , startsOn      : Date
-  , startsOnDay   : String
-  , startsOnMonth : String
-  , startsOnYear  : String
-
-  , endsOn        : Date 
-  , endsOnDay     : String
-  , endsOnMonth   : String
-  , endsOnYear    : String
-
-  , hours         : String
+  , quarter       : String
+  , weekDays      : String
+  , startTime     : String
   , location      : String
+
+  // , startsOn      : Date
+  // , startsOnDay   : String
+  // , startsOnMonth : String
+  // , startsOnYear  : String
+
+  // , endsOn        : Date 
+  // , endsOnDay     : String
+  // , endsOnMonth   : String
+  // , endsOnYear    : String
+
   , objectives    : [String]
 
   , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true }

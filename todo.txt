@@ -1,5 +1,6 @@
 
 
+Admin - see that students have enrolled in courses (table?)
 Course days of week & times
 Course - quarter (instead of stars on ends on)
 

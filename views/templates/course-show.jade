@@ -4,26 +4,24 @@
       h3(ng-show="isCoursesLoaded && !course.publishedAt")
         a.text-danger(href="/courses-edit/{{course._id}}") Draft
       h2 {{course.title}} 
-      .lead Facilitated by 
+      .lead Quarter {{course.quarter}} - Facilitated by 
         a(href="/users/{{course.instructor._id}}") {{course.instructor.fullname}}
   .row
     .col-md-4
       
       //- COURSE INFO
       .card
-        b Dates: 
-        span(ng-bind="course.startsOn | date:'EEE MMM dd, yyyy'")
-        |  - 
-        span(ng-bind="course.endsOn | date:'EEE MMM dd, yyyy'")
+        b Days: 
+        | {{course.weekDays}}
         br
-        b Hours per Week: 
-        span {{course.hours}}
+        b Start Time: 
+        | {{course.startTime}}
+        //- span(ng-bind="course.startsOn | date:'EEE MMM dd, yyyy'")
+        //- |  - 
+        //- span(ng-bind="course.endsOn | date:'EEE MMM dd, yyyy'")
         br  
         b Location: 
         span {{course.location}}
-        br  
-        b Capacity: 
-        span {{course.capacity || 26}}
 
         h4 
           b Description

@@ -9,47 +9,64 @@
       select.form-control(ng-model="course.instructor")
         option(ng-repeat="instructor in instructors" value="{{instructor._id}}") {{instructor.fullname}}
 .row
-  .col-sm-6
-    .form-group
-      label Start Date
-      br
-      date-dropdown(month="course.startsOnMonth" day="course.startsOnDay" year="course.startsOnYear")
+  //- .col-sm-6
+  //-   .form-group
+  //-     label Start Date
+  //-     br
+  //-     date-dropdown(month="course.startsOnMonth" day="course.startsOnDay" year="course.startsOnYear")
 
-      //- p.input-group
-      //-   input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.startsOn', is-open='starts.opened', close-text='Close', alt-input-formats='altInputFormats')
-      //-   span.input-group-btn
-      //-     button.btn.btn-default(type='button', ng-click='startsOpen()')
-      //-       i.glyphicon.glyphicon-calendar
-  .col-sm-6
-    .form-group
-      label End Date
-      br
-      date-dropDown(month="course.endsOnMonth" day="course.endsOnDay" year="course.endsOnYear")
-      //- p.input-group
+  //- p.input-group
+  //-   input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.startsOn', is-open='starts.opened', close-text='Close', alt-input-formats='altInputFormats')
+  //-   span.input-group-btn
+  //-     button.btn.btn-default(type='button', ng-click='startsOpen()')
+  //-       i.glyphicon.glyphicon-calendar
+  //- .col-sm-6
+  //-   .form-group
+  //-     label End Date
+  //-     br
+  //-     date-dropDown(month="course.endsOnMonth" day="course.endsOnDay" year="course.endsOnYear")
+  //- p.input-group
 
-      //-   input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.endsOn', is-open='ends.opened', close-text='Close', alt-input-formats='altInputFormats')
-      //-   span.input-group-btn
-      //-     button.btn.btn-default(type='button', ng-click='endsOpen()')
-      //-       i.glyphicon.glyphicon-calendar
+  //-   input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='course.endsOn', is-open='ends.opened', close-text='Close', alt-input-formats='altInputFormats')
+  //-   span.input-group-btn
+  //-     button.btn.btn-default(type='button', ng-click='endsOpen()')
+  //-       i.glyphicon.glyphicon-calendar
 .row
-  .col-sm-6
+  .col-sm-5
     .form-group
       label Location
       input.form-control(ng-model='course.location')
-  .col-sm-6
+
+  .col-sm-2
     .form-group
-      label Commitment per Week
-      select.form-control(ng-model="course.hours")
-        option(value="1") 1 Hour
-        option(value="2") 2 Hours
-        option(value="3") 3 Hours
-        option(value="4") 4 Hours
-        option(value="5") 5 Hours
-        option(value="6") 6 Hours
-        option(value="7") 7 Hours
-        option(value="8") 8 Hours
-        option(value="9") 9 Hours
-        option(value="10") 10 Hours
+      label Week Days
+      select.form-control(ng-model="course.weekDays")
+        option(value="") 
+        option M/W/F
+        option Tu/Th
+        option M/W
+        option M/F
+        option W/F
+        option M/Th
+        option Tu/F
+        
+  .col-sm-3
+    .form-group
+      label Quarter
+      select.form-control(ng-model="course.quarter")
+        option(value="") 
+        option(value="1") Quarter 1
+        option(value="2") Quarter 2
+        option(value="3") Quarter 3
+        option(value="4") Quarter 4
+
+  .col-sm-2
+    .form-group
+      label Start Time
+      select.form-control(ng-model="course.startTime")
+        option(value="") 
+        option(value="10:30am") 10:30am
+        option(value="1:30pm") 1:30pm
 
 .form-group
   label Description
