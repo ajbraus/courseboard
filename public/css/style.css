@@ -176,6 +176,25 @@ dd {
     line-height: 20px;
 }
 
-.label {
+/* Alex's temporary style*/
+/*.label {
     margin:0 .2em;
+}*/
+
+.btn-toolbar > .btn, .btn-toolbar > .btn-group.participant, .btn-toolbar > .input-group {
+    margin-left: 5px;
+    margin-top: 4px;
+}
+
+.navbar-toggle .icon-bar{ background-color: #2780e3;}
+
+.nav > li {
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+.jumbotron {
+  margin-top: -21px;
+  padding:90px;
 }

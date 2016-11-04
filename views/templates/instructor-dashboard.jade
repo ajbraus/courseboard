@@ -65,6 +65,6 @@
                     a(href="/products/{{product._id}}")
                       {{product.name}}
                 .col-md-3
-                  h5 Competencies (#[a(href="/users/{{student._id}}/competencies") edit])
+                  h5 Competencies (#[a(href="/users/{{student._id}}/feedback") edit])
                   div(ng-repeat="competency in student.competencies | orderBy: ['-level']")
                     {{competency.level}} - {{competency.name}} 

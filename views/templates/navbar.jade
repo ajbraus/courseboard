@@ -6,28 +6,11 @@ nav.navbar
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/') Course Board
+      a.navbar-brand(href='/' ng-show="currentUser") Course Board
+      a.navbar-brand(href='/welcome' ng-show="!currentUser") Course Board
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav
-        li(ng-show='currentUser')
-          a(href="/course-catalog") Course Catalog
-        li(ng-show='currentUser')
-          a(href="/products") Products
-        li(ng-show='currentUser')
-          a(href="/profile") Profile
-        li(ng-show="currentUser.role == 'Instructor'")
-          a(href="/instructor-dashboard") Instructor Dashboard
-        li
-          a(href='/settings') Settings
-        li.dropdown(ng-show='currentUser')
-          a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-            span.caret
-          ul.dropdown-menu
-            li(ng-show="currentUser.admin")
-              a(href='/admin') Admin Dashboard
-            li.divider(role='separator' ng-show="currentUser.admin")
-            li
-              a(ng-click='logout()') Logout
+        
       //- form.navbar-form.navbar-left(ng-submit="search(term)" style="z-index: 0;" ng-show='currentUser')
       //-   .input-group
       //-     input.form-control(type='text' ng-model="term" placeholder='Search all the questions!')
@@ -35,6 +18,23 @@ nav.navbar
       //-       button.btn.btn-default(type='submit') Search
 
       ul.nav.navbar-nav.navbar-right
+        li(ng-show="currentUser.role == 'Instructor'")
+          a(href="/instructor-dashboard") Dashboard
+        li(ng-show='currentUser')
+          a(href="/course-catalog") Course Catalog
+        li(ng-show='currentUser')
+          a(href="/products") All Products
+        li.dropdown(ng-show='currentUser')
+          a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+            span.caret
+          ul.dropdown-menu
+            li
+              a(href='/settings') Settings
+            li(ng-show="currentUser.admin")
+              a(href='/admin') Admin Dashboard
+            li.divider(role='separator')
+            li
+              a(ng-click='logout()') Logout
         li.dropdown(ng-show='!currentUser')
           a#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown')
             | Login
@@ -84,7 +84,5 @@ nav.navbar
                 button.btn.btn-danger(type='submit', ng-click='signup()') Sign Up
 
         li(ng-show="currentUser")
-          .btn-toolbar
-            .btn-group
-              p.navbar-btn
-                a.btn.btn-primary(href="/product-new") New Product
+          p.navbar-btn
+            a.btn.btn-primary(href="/product-new") New Product

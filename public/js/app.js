@@ -21,7 +21,7 @@ angular.module('courseboard', [
         if (!next.publicAccess && !loggedIn) {
           $rootScope.returnToState = next.url;
           $rootScope.returnToStateParams = next.params.Id;
-          $location.path('/');
+          $location.path('/welcome');
           GlobalAlert.add('warning', "Please log in to see this resource", 2000);
         }
       });
@@ -35,16 +35,19 @@ angular.module('courseboard', [
       // });
 
       // COURSES
-      $routeProvider.when('/', {
-        templateUrl: 'templates/course-index',
-        controller: 'CoursesIndexCtrl',
+      $routeProvider.when('/welcome', {
+        templateUrl: 'templates/splash',
         publicAccess: true
+      });
+
+      $routeProvider.when('/', {
+        templateUrl: 'templates/profile',
+        controller: 'ProfileCtrl'
       });
 
       $routeProvider.when('/course-catalog', {
         templateUrl: 'templates/course-index',
-        controller: 'CoursesIndexCtrl',
-        publicAccess: true
+        controller: 'CoursesIndexCtrl'
       });
 
       $routeProvider.when('/courses-new', {
@@ -95,7 +98,7 @@ angular.module('courseboard', [
         controller: 'PasswordEditCtrl',
         publicAccess: true
       });
-
+  
       $routeProvider.when('/password-new', {
         templateUrl: 'templates/password-new',
         controller: 'PasswordNewCtrl',
@@ -121,11 +124,6 @@ angular.module('courseboard', [
       $routeProvider.when('/instructor-dashboard', {
         templateUrl: 'templates/instructor-dashboard',
         controller: 'InstructorDashboardCtrl'
-      });
-
-      $routeProvider.when('/profile', {
-        templateUrl: 'templates/profile',
-        controller: 'ProfileCtrl'
       });
 
       $routeProvider.when('/settings', {

@@ -47,7 +47,12 @@ angular.module('courseboard')
     }
   }])
 
-  .controller('ProfileCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
+  .controller('ProfileCtrl', ['$scope', '$http', '$auth', '$location', 'Auth', 'GlobalAlert', function($scope, $http, $auth, $location, Auth, GlobalAlert) {
+
+    if (!$auth.isAuthenticated()) {
+      $location.path('/welcome')
+    }
+
     $http.get('/api/me').then(function(response) {
       $scope.user = response.data;
 
@@ -56,6 +61,12 @@ angular.module('courseboard')
         $scope.posts = response.data;
       });
     });
+
+    $scope.greaterThan = function(prop){
+        return function(item){
+          return item[prop] > new Date();
+        }
+    }
   }])
 
   .controller('UsersShowCtrl', ['$scope', '$http', '$routeParams', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $routeParams, $auth, Auth, GlobalAlert) {
@@ -66,6 +77,12 @@ angular.module('courseboard')
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
       });
+
+    $scope.greaterThan = function(prop){
+        return function(item){
+          return item[prop] > new Date();
+        }
+    }
 
     // POSTS
     $http.get('/api/users/' + $routeParams.id + '/posts').then(function(response) {
@@ -126,7 +143,7 @@ angular.module('courseboard')
       $http.post('/auth/passwords', $scope.user).then(
         function (response) {
           $scope.user = {};
-          $location.path('/');
+          $location.path('/welcome');
           GlobalAlert.add('success', "Password reset instructions sent", 2000);
         },
         function (response) {
@@ -142,7 +159,7 @@ angular.module('courseboard')
     $scope.updatePassword = function() {
       $http.put('/auth/passwords/edit/' + $routeParams.token, $scope.user).then(
         function (response) {
-          $location.path('/');
+          $location.path('/welcome');
           GlobalAlert.add('success', "Password updated", 2000);
         },
         function (response) {
