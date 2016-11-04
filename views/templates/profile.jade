@@ -1,12 +1,11 @@
 .container
   .row
-    .col-sm-12
-      .pull-left
-        h3 {{user.first}} {{user.last}} #[small {{user.username}}]
-      .pull-right
-        a.btn.btn-success(href="users/{{user._id}}/feedback" ng-show="currentUser.role == 'Instructor'") Provide Feedback
-  .row
     .col-sm-4
+      h4 {{user.first}} {{user.last}} #[span.text-muted ({{user.username}})]
+      .text-right(ng-show="currentUser.role == 'Instructor'")
+        a(href="users/{{user._id}}/feedback") Provide Feedback
+      hr
+
       h4 Courses
       a(href="/course-catalog" ng-show="user.enrolledCourses.length == 0") Go to Course Catalog
       //- STUDENT'S ENROLLED COURSES
@@ -32,24 +31,10 @@
         div "{{user.feedbacks[0].body | limitTo:400 }}"
         .text-right
           i.text-muted(ng-bind="user.feedbacks[0].createdAt | date:'EEE MMM dd, yyyy'")
+
       hr(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
-      div(ng-repeat="competency in user.competencies | orderBy: ['-level'] ")
-        {{competency.name}} 
-        span(ng-switch="competency.level")
-          span(ng-switch-when="0") (Waiting)
-          span(ng-switch-when="1") (Beginning)
-          span(ng-switch-when="2") (Undertaking)
-          span(ng-switch-when="3") (Approaching)
-          span(ng-switch-when="4") (Overtaking)
-          span(ng-switch-when="5") (Innovating)
-        .progress
-          .progress-bar(role='progressbar', aria-valuenow='{{competency.level/5*100}}', aria-valuemin='0', aria-valuemax='5', style='width: {{competency.level/5*100}}%;')
-      hr(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
-      h4(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body") Feedback
-      div(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
-        .card(ng-repeat="feedback in user.feedbacks")
-          p
-            span.label.label-primary(ng-repeat="c in feedback.competencies" style="display:inline-block; margin-right:3px") {{c.level}} | {{c.name}} 
-          | "{{feedback.body}}"
-          .text-right
-            i.text-muted(ng-bind="feedback.createdAt | date:'EEE MMM dd, yyyy'")
+      
+      h4(ng-repeat="competency in user.competencies | orderBy: ['-level']" 
+         style="display:inline-block;")
+          span.label(ng-class="{ 'label-primary': competency.kind == 'core', 'label-success': competency.kind == 'character', 'label-warning': competency.kind == 'elective' }")
+            span.level {{competency.level}} | {{competency.name}} 

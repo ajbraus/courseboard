@@ -1,4 +1,23 @@
 
+//profile.jade
+
+
+//-       h4
+//- 
+//- .btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled") Enroll
+//-         .btn.btn-success.btn-block.no-hover(ng-show='isCoursesLoaded && enrolled') Enrolled
+
+      //- hr(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
+      //- h4(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body") Feedback
+      //- div(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
+      //-   .card(ng-repeat="feedback in user.feedbacks")
+      //-     p
+      //-       span.label.label-primary(ng-repeat="c in feedback.competencies" style="display:inline-block; margin-right:3px") {{c.level}} | {{c.name}} 
+      //-     | "{{feedback.body}}"
+      //-     .text-right
+      //-       i.text-muted(ng-bind="feedback.createdAt | date:'EEE MMM dd, yyyy'")
+
+
 
 Admin - see that students have enrolled in courses (table?)
 Course days of week & times
