@@ -35,8 +35,8 @@
               a.btn.btn-link.link-text(href="/profile") Cancel
               button.btn.btn-danger(type="submit") Update Account
 
-      legend My Courses
-      .row
+      legend(ng-show="currentUser.role == 'Student'") My Courses
+      .row(ng-show="currentUser.role == 'Student'")
         h4.col-sm-6 2nd Quarter
         h4.col-sm-6 1st Quarter
         .col-sm-6(ng-repeat="course in user.enrolledCourses | filter: { quarter: 2} | orderBy: ['title']")
