@@ -1,0 +1,39 @@
+.container
+  .row
+    .col-md-10.col-md-offset-1.col-sm-12
+      .clearfix
+        .pull-left
+          h4 {{user.first}} {{user.last}} #[span.text-muted ({{user.username}})]
+        .pull-right(ng-show="currentUser.role == 'Instructor'")
+          a(href="users/{{user._id}}/feedback") Provide Feedback
+      hr
+
+    .col-md-6.col-md-offset-1.col-sm-6
+      h3 Courses
+
+      h4 1st Quarter
+      .card
+        table.table
+          tr
+            th Q
+            th Title
+            th Instructor
+            th Week Days
+            th Time
+            th Participants
+          tr(ng-repeat="course in user.enrolledCourses | orderBy: ['quarter', 'title']")
+            td {{course.quarter}}
+            td 
+              a(href="/courses/{{course._id}}") {{course.title}}
+            td {{course.instructor.fullname}}
+            td {{course.weekDays}}
+            td {{course.startTime}}
+            td {{course.students.length}}/26
+
+    .col-md-4.col-sm-6
+      h3 Products
+      a(href="/product-new" ng-show="user.products.length == 0") Start New Product
+      .card(ng-repeat="product in user.products")
+        a.no-style(href="products/{{product._id}}")
+          h3 {{product.name}}
+          p {{product.problem}}

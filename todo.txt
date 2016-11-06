@@ -20,8 +20,6 @@
 
 
 Admin - see that students have enrolled in courses (table?)
-Course days of week & times
-Course - quarter (instead of stars on ends on)
 
 send email when feedback created
 
@@ -31,10 +29,8 @@ formatted text for course descriptions - bower install textAngular
 https://github.com/fraywing/textAngular
 
 Bugs
-  - on mobile can't see navbar dropdown toggle
-
+  
 Admin Dashboard 
-  - See draft courses in admin dashboard
   - See leaderboard of student's by competency
   - Batch students by year - set startYear to current year when signup
   - See leaderboard of student's by competence
@@ -367,3 +363,10 @@ DONe Show feedback in profile from admit
 
 DONE don't allow registering for more than 4 courses
 DONE update Competencies(edit) link
+
+DONE Course days of week & times
+DONE Course - quarter (instead of stars on ends on)
+
+
+DONE - on mobile can't see navbar dropdown toggle
+DONE - See draft courses in admin dashboard
