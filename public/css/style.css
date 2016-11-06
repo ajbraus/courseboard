@@ -93,14 +93,41 @@ nav.navbar {
   color: white;
 }
 
+/**********************************/
+/*                                */
+/*        Styles for NavBar       */
+/*                                */
+/**********************************/
 .navbar {
   border-radius: 0;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   background: white;
-  padding-bottom: 10px;
   border-bottom: 1px solid #cccbcb;
 }
+
+nav.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.navbar-brand {
+    margin: 10px 0 10px 0
+}
+
+.navbar-nav > li > a {
+    padding-top: 24.5px;
+    padding-bottom: 24.5px;
+}
+
+nav .btn {
+    margin-top: 10px;
+}
+/**********************************/
+/*                                */
+/*              End               */
+/*                                */
+/**********************************/
 
 .corner-icon {
   margin-top: -5px;
