@@ -183,7 +183,7 @@ dd {
 /**********************************/
 .chip {
     display: inline-block;
-    padding: 2.5px 25px;
+    padding: 2.5px 12.5px 2.5px 25px;
     height: auto;
     font-size: 15px;
     font-weight: 500;
@@ -192,12 +192,13 @@ dd {
     border-radius: 25px;
     /*background-color: blue;*/
     margin: 0 0.25em;
+    transition: 0.3s
 }
 
 .competency-level {
     float: left;
-    margin: 0 10px 0 -25px;
-    padding: 0 20px;
+    margin: 0 5px 0 -27.5px;
+    padding: 0 0 0 10px;
     height: 100%;
     width: 25px;
     border-radius: 50%;
@@ -209,19 +210,92 @@ dd {
     display: inline;
 }
 
-.chip-character {
-    background: linear-gradient(to left, #00C9FF , #92FE9D);
-    color: black;
+/* Character Colors */
+.chip-character-1 {
+    /*background: linear-gradient(to left, #00C9FF , #92FE9D);*/
+    background-color: #b2dfdb;
+    color: #616161;
+}
+.chip-character-2 {
+    /*background: linear-gradient(to left, #00C9FF , #92FE9D);*/
+    background-color: #80cbc4;
+    color: #9e9e9e;
+}
+.chip-character-3 {
+    /*background: linear-gradient(to left, #00C9FF , #92FE9D);*/
+    background-color: #4db6ac;
+    color: #f5f5f5;
+}
+.chip-character-4 {
+    /*background: linear-gradient(to left, #00C9FF , #92FE9D);*/
+    background-color: #26a69a;
+    /*color: black;*/
+}
+.chip-character-5 {
+    /*background: linear-gradient(to left, #00C9FF , #92FE9D);*/
+    background-color: #009688;
+    /*color: black;*/
+}
+/* END */
+
+/* Core Colors */
+.chip-core-1 {
+    /*background: linear-gradient(to left,  #E5E5BE, #003973);*/
+    background-color: #b2ebf2;
+    color: #616161;
+}
+.chip-core-2 {
+    /*background: linear-gradient(to left,  #E5E5BE, #003973);*/
+    background-color: #80deea;
+    color: #9e9e9e;
+}
+.chip-core-3 {
+    /*background: linear-gradient(to left,  #E5E5BE, #003973);*/
+    background-color: #4dd0e1;
+    color: #f5f5f5;
+}
+.chip-core-4 {
+    /*background: linear-gradient(to left,  #E5E5BE, #003973);*/
+    background-color: #26c6da;
+}
+.chip-core-5 {
+    /*background: linear-gradient(to left,  #E5E5BE, #003973);*/
+    background-color: #00bcd4;
+}
+/* END */
+
+/* Elective Colors */
+.chip-elective-1 {
+    /*background: linear-gradient(to left, #A1FFCE , #FAFFD1);*/
+    background-color: #c8e6c9;
+    color: #616161;
+}
+.chip-elective-2 {
+    /*background: linear-gradient(to left, #A1FFCE , #FAFFD1);*/
+    background-color: #a5d6a7;
+    color: #9e9e9e ;
+}
+.chip-elective-3 {
+    /*background: linear-gradient(to left, #A1FFCE , #FAFFD1);*/
+    background-color: #81c784;
+    color: #f5f5f5;
+}
+.chip-elective-4 {
+    /*background: linear-gradient(to left, #A1FFCE , #FAFFD1);*/
+    background-color: #66bb6a;
+    /*color: black;*/
+}
+.chip-elective-5 {
+    /*background: linear-gradient(to left, #A1FFCE , #FAFFD1);*/
+    background-color: #4caf50;
+    /*color: black;*/
 }
 
-.chip-core {
-    background: linear-gradient(to left,  #E5E5BE, #003973);
+.chip:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.chip-elective {
-    background: linear-gradient(to left, #A1FFCE , #FAFFD1);
-    color: black;
-}
+/* END */
 /**********************************/
 /*                                */
 /*              End               */
