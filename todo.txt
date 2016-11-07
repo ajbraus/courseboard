@@ -1,3 +1,4 @@
+send email when feedback created
 
 //profile.jade
 
@@ -17,12 +18,6 @@
       //-     .text-right
       //-       i.text-muted(ng-bind="feedback.createdAt | date:'EEE MMM dd, yyyy'")
 
-
-
-Admin - see that students have enrolled in courses (table?)
-
-send email when feedback created
-
 Groups of 2, 3, 4, 5, split class in half
 
 formatted text for course descriptions - bower install textAngular
@@ -31,7 +26,8 @@ https://github.com/fraywing/textAngular
 Bugs
   
 Admin Dashboard 
-  - See leaderboard of student's by competency
+  DONE - dredge up students who haven't signed up for courses
+  - See leaderboard of student's by competency (totalTechLevel, totalCharLevel, totalCoreLevel)
   - Batch students by year - set startYear to current year when signup
   - See leaderboard of student's by competence
   - See batch students by year

@@ -1,0 +1,15 @@
+extends email-layout
+
+block body
+  p
+    strong Hi there #{user.first}, 
+  p You have received some feedback!
+  b Feedback
+  | "#{feedback.body}"
+  br
+  if feedback.competencies.length > 0
+    b New Levels
+    - each c in feedback.competencies
+      p
+        b c.
+        = stuff.sentence

@@ -20,7 +20,7 @@ module.exports = function(app) {
       if (err) { return res.status(400).send(err) }
       
       // update users's embedded competencies
-      User.findById(req.params.id).exec(function (err, user) {
+      User.findById(req.params.id, '+email').exec(function (err, user) {
 
         // add feedback to embedded user.feedbacks 
         user.feedbacks.push(feedback)
@@ -30,11 +30,26 @@ module.exports = function(app) {
 
         // save user
         user.save(function (err, user) {
-          console.log(user);
           if (err) { return res.status(400).send(err) }
+
+          if (feedback.competencies.length > 0) {
+            var subject = "You Leveled Up!"  
+          } else {
+            var subject = "Feedback for you"
+          }
+          
+          // SEND FEEDBACK TO STUDENT BY EMAIL
+          app.mailer.send('emails/feedback', {
+            to: user.email,
+            feedback: feedback,
+            subject: subject,
+            user: user
+          }, function (err) {
+            if (err) { console.log(err); return }
+          });
+
           res.send(feedback);
         });
-
       });
     });
   });
