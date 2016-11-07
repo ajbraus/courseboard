@@ -35,14 +35,20 @@
               a.btn.btn-link.link-text(href="/profile") Cancel
               button.btn.btn-danger(type="submit") Update Account
 
-      legend My Courses
-      .row
-        .col-sm-6(ng-repeat="course in user.enrolledCourses")
+      legend(ng-show="currentUser.role == 'Student'") My Courses
+      .row(ng-show="currentUser.role == 'Student'")
+        h4.col-sm-6 2nd Quarter
+        h4.col-sm-6 1st Quarter
+        .col-sm-6(ng-repeat="course in user.enrolledCourses | filter: { quarter: 2} | orderBy: ['title']")
           .card
             h4 {{course.title}}
             .text-right
               button.btn.btn-sm.btn-danger(ng-init="course.enrolled = true" ng-click="unenroll(course)" ng-show="course.enrolled") Unenroll
               button.btn.btn-sm.btn-primary(ng-click="enroll(course)" ng-show="!course.enrolled") Re-enroll
-
-
-
+              
+        .col-sm-6(ng-repeat="course in user.enrolledCourses | filter: { quarter: 1} | orderBy: ['title']")
+            .card
+              h4 {{course.title}}
+              .text-right
+                button.btn.btn-sm.btn-danger(ng-init="course.enrolled = true" ng-click="unenroll(course)" ng-show="course.enrolled") Unenroll
+                button.btn.btn-sm.btn-primary(ng-click="enroll(course)" ng-show="!course.enrolled") Re-enroll

@@ -25,24 +25,25 @@ angular.module('courseboard.services', [])
         { name: 'Productivity', level:0, kind: 'core' },
         { name: 'Product Management', level:0, kind: 'core' },
         { name: 'Code Craftsmanship', level:0, kind: 'core' },
-        { name: 'Computer Science Fundamentals', level:0, kind: 'core' },
-        { name: 'Product Development & Entrepreneurship', level:0, kind: 'core' },
+        { name: 'CS Fundamentals', level:0, kind: 'core' },
+        { name: 'Product Dev', level:0, kind: 'core' },
 
         // ELECTIVE
         { name: 'iOS', level:0 , kind: 'elective'},
-        { name: 'JavaScript, Backend', level:0 , kind: 'elective'},
-        { name: 'JavaScript, Frontend', level:0 , kind: 'elective'},
-        { name: 'Ruby & Ruby on Rails', level:0 , kind: 'elective'},
-        { name: 'Python & Flask', level:0 , kind: 'elective'},
+        { name: 'Backend JS', level:0 , kind: 'elective'},
+        { name: 'Frontend JS', level:0 , kind: 'elective'},
+        { name: 'Ruby on Rails', level:0 , kind: 'elective'},
+        { name: 'Flask', level:0 , kind: 'elective'},
+        { name: 'Python', level:0 , kind: 'elective'},
         { name: 'Devices/Embedded Systems', level:0 , kind: 'elective'},
-        { name: 'Machine Learning', level:0 , kind: 'elective'},
+        { name: 'ML & AI', level:0 , kind: 'elective'},
         { name: 'Data Science & Visualization', level:0 , kind: 'elective'},
-        { name: 'SQL Databases', level:0 , kind: 'elective'},
-        { name: 'NoSQL Databases', level:0 , kind: 'elective'},
-        { name: 'Deployment & Dev Ops', level:0 , kind: 'elective'},
+        { name: 'SQL DB', level:0 , kind: 'elective'},
+        { name: 'NoSQL DB', level:0 , kind: 'elective'},
+        { name: 'Dev Ops', level:0 , kind: 'elective'},
         { name: 'TDD', level:0 , kind: 'elective'},
         { name: 'API Design', level:0 , kind: 'elective'},
-        { name: 'UI/UX Design', level:0, kind: 'elective' }
+        { name: 'UI/UX', level:0, kind: 'elective' }
       ]
     }
   }])
@@ -75,10 +76,10 @@ angular.module('courseboard.services', [])
             return alertService.closeAlert(this);
           }
         });
-        if (timeout) { 
-          $timeout(function(){ 
-            alertService.closeAlert(this); 
-          }, timeout); 
+        if (timeout) {
+          $timeout(function(){
+            alertService.closeAlert(this);
+          }, timeout);
         }
       },
       closeAlert: function(alert) {

@@ -9,10 +9,19 @@
       h4 Courses
       a(href="/course-catalog" ng-show="user.enrolledCourses.length == 0") Go to Course Catalog
       //- STUDENT'S ENROLLED COURSES
+      
+      h5 2st Quarter
       .list-group
-        a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses")
+        a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses | filter: { quarter: 2} | orderBy: ['title']")
+            h4 {{course.title}} 
+            p {{course.students.length}}/26 Participants
+      
+      h5 1st Quarter
+      .list-group
+        a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses | filter: { quarter: 1} | orderBy: ['title']")
           h4 {{course.title}} 
           p {{course.students.length}}/26 Participants
+          
       
       h4 Products
       a(href="/product-new" ng-show="user.products.length == 0") Start New Product
@@ -36,6 +45,6 @@
       
       h4(ng-repeat="competency in user.competencies | orderBy: ['-level']" 
          style="display:inline-block;")
-          .chip(ng-class="{ 'chip-core': competency.kind == 'core', 'chip-character': competency.kind == 'character', 'chip-elective': competency.kind == 'elective' }")
+          .chip(ng-class="{ 'chip-core-1': competency.kind == 'core' && competency.level == 1, 'chip-core-2': competency.kind == 'core' && competency.level == 2, 'chip-core-3': competency.kind == 'core' && competency.level == 3, 'chip-core-4': competency.kind == 'core' && competency.level == 4, 'chip-core-1': competency.kind == 'core' && competency.level == 5, 'chip-character-1': competency.kind == 'character' && competency.level == 1, 'chip-character-2': competency.kind == 'character' && competency.level == 2, 'chip-character-3': competency.kind == 'character' && competency.level == 3, 'chip-character-4': competency.kind == 'character' && competency.level == 4, 'chip-character-5': competency.kind == 'character' && competency.level == 5, 'chip-elective-1': competency.kind == 'elective' && competency.level == 1, 'chip-elective-2': competency.kind == 'elective' && competency.level == 2, 'chip-elective-3': competency.kind == 'elective' && competency.level == 3, 'chip-elective-4': competency.kind == 'elective' && competency.level == 4, 'chip-elective-5': competency.kind == 'elective' && competency.level == 5 }")
             p.competency-level {{competency.level}}
             p.competency-name {{competency.name}} 
