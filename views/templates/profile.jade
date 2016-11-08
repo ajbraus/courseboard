@@ -9,12 +9,19 @@
       //- STUDENT'S ENROLLED COURSES
       a(href="/course-catalog" ng-show="user.enrolledCourses.length == 0") Go to Course Catalog
       //- INSTRUCTOR'S ENROLLED COURSES
-      
+      .list-group
+        a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.courses | orderBy: ['quarter', 'title']")
+          h4 {{course.title}} 
+          p 
+            | Q{{course.quarter}} - {{course.weekDays}}, {{course.startTime}} in {{course.location}}
+            .text-right.text-muted {{course.students.length}}/26 Participants
+
+
       .list-group
         a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses | orderBy: ['quarter', 'title']")
           h4 {{course.title}} 
           p 
-            Q {{course.quarter}} - {{course.weekDays}}, {{course.startTime}} in {{course.location}}
+            | Q{{course.quarter}} - {{course.weekDays}}, {{course.startTime}} in {{course.location}}
             .text-right.text-muted {{course.students.length}}/26 Participants
 
           
