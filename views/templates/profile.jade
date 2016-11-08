@@ -8,18 +8,17 @@
           a.btn.btn-warning(href="users/{{user._id}}/feedback" ng-show="currentUser.role == 'Instructor'") Provide Feedback
       
       
-  .row
-    .col-xs-12
-      h4 Product Portfolio
-  .row    
-    .col-sm-3(ng-repeat="product in user.products")  
-      .card
-        a.no-style(href="products/{{product._id}}")
-          h3 {{product.name}}
-          p {{product.problem}}
+  //- .row
+  //-   .col-xs-12
+  //-     h4 Product Portfolio
+  //- .row    
+  //-   .col-sm-3(ng-repeat="product in user.products")  
+  //-     .card
+  //-       a.no-style(href="products/{{product._id}}")
+  //-         h3 {{product.name}}
+  //-         p {{product.problem}}
+
   hr
-
-
   .row
     .col-sm-4
       h4 Courses
@@ -39,8 +38,15 @@
             | Q{{course.quarter}} - {{course.weekDays}}, {{course.startTime}} in {{course.location}}
 
     .col-sm-4
-      h4 Course Announcements
-      div(ng-init="profile = true" ng-include="'templates/post'", ng-repeat="post in posts")
+      h4 Product Portfolio
+      .card(ng-repeat="product in user.products")  
+        a.no-style(href="products/{{product._id}}")
+          h3 {{product.name}}
+          p {{product.problem}}
+
+
+      //- h4 Course Announcements
+      //- div(ng-init="profile = true" ng-include="'templates/post'", ng-repeat="post in posts")
 
     .col-sm-4
       h4 Skills #[span(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body") & Feedback]
