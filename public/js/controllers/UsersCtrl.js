@@ -40,9 +40,9 @@ angular.module('courseboard')
       $scope.user = response.data;
 
       // POSTS
-      $http.get('/api/users/' + $scope.user._id + '/posts').then(function(response) {
-        $scope.posts = response.data;
-      });
+      // $http.get('/api/users/' + $scope.user._id + '/posts').then(function(response) {
+      //   $scope.posts = response.data;
+      // });
     });
 
   }])
