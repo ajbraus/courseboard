@@ -50,24 +50,29 @@
       //- div(ng-init="profile = true" ng-include="'templates/post'", ng-repeat="post in posts")
 
     .col-sm-4
-      h4 Skills #[span(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body") & Feedback] 
-      .card(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
+      h4 Recent Feedback
+      .card
         div "{{user.feedbacks[0].body | limitTo:400 }}"
         .text-right
           i.text-muted(ng-bind="user.feedbacks[0].createdAt | date:'EEE MMM dd, yyyy'")
 
       hr(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
+
+      h4 Skills & Competencies
+      .col-xs-4.legend-el.core CORE
+      .col-xs-4.legend-el.character CHARACETR
+      .col-xs-4.legend-el.elective ELECTIVE
       
-      div.tooltip-container(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
-        h6.tooltip-right Hover me for Skills Legend
-            span.tooltiptext 
-                h6(style="font-weight: 400; text-align: left") Skills Legend
-                div.core CORE
-                div.character CHARACETR
-                div.elective ELECTIVE
-      
-      h4(ng-repeat="competency in user.competencies | orderBy: ['-level']" 
+      h4.small-margin(ng-repeat="competency in user.competencies | orderBy: ['-level']" 
          style="display:inline-block;")
-          .chip(ng-class="{ 'chip-core-1': competency.kind == 'core' && competency.level == 1, 'chip-core-2': competency.kind == 'core' && competency.level == 2, 'chip-core-3': competency.kind == 'core' && competency.level == 3, 'chip-core-4': competency.kind == 'core' && competency.level == 4, 'chip-core-1': competency.kind == 'core' && competency.level == 5, 'chip-character-1': competency.kind == 'character' && competency.level == 1, 'chip-character-2': competency.kind == 'character' && competency.level == 2, 'chip-character-3': competency.kind == 'character' && competency.level == 3, 'chip-character-4': competency.kind == 'character' && competency.level == 4, 'chip-character-5': competency.kind == 'character' && competency.level == 5, 'chip-elective-1': competency.kind == 'elective' && competency.level == 1, 'chip-elective-2': competency.kind == 'elective' && competency.level == 2, 'chip-elective-3': competency.kind == 'elective' && competency.level == 3, 'chip-elective-4': competency.kind == 'elective' && competency.level == 4, 'chip-elective-5': competency.kind == 'elective' && competency.level == 5 }")
+          //- .chip(ng-class="{ 'chip-core-1': competency.kind == 'core' && competency.level == 1, 'chip-core-2': competency.kind == 'core' && competency.level == 2, 'chip-core-3': competency.kind == 'core' && competency.level == 3, 'chip-core-4': competency.kind == 'core' && competency.level == 4, 'chip-core-1': competency.kind == 'core' && competency.level == 5, 'chip-character-1': competency.kind == 'character' && competency.level == 1, 'chip-character-2': competency.kind == 'character' && competency.level == 2, 'chip-character-3': competency.kind == 'character' && competency.level == 3, 'chip-character-4': competency.kind == 'character' && competency.level == 4, 'chip-character-5': competency.kind == 'character' && competency.level == 5, 'chip-elective-1': competency.kind == 'elective' && competency.level == 1, 'chip-elective-2': competency.kind == 'elective' && competency.level == 2, 'chip-elective-3': competency.kind == 'elective' && competency.level == 3, 'chip-elective-4': competency.kind == 'elective' && competency.level == 4, 'chip-elective-5': competency.kind == 'elective' && competency.level == 5 }")
+          .chip(style="opacity: {{.2 + competency.level * .2}} " ng-class="{ 'core': competency.kind == 'core', 'character': competency.kind == 'character', 'elective': competency.kind == 'elective' }")
             p.competency-level {{competency.level}}
             p.competency-name {{competency.name}} 
+
+      hr
+      h4 Feedback
+      .card(ng-repeat="fb in user.feedbacks")
+        div "{{fb.body}}"
+        .text-right
+          i.text-muted(ng-bind="fb.createdAt | date:'EEE MMM dd, yyyy'")
