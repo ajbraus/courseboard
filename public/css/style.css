@@ -18,6 +18,11 @@ a.no-style:hover {
   background-color: #eeeeee;
 }
 
+a .card:hover {
+    box-shadow: 0 6px 16px 0 rgba(0,0,0,0.3);
+    transition: 0.5s;
+}
+
 .text-small {
   font-size:80%;
 }
@@ -209,6 +214,90 @@ dd {
 /* Styles for Competencies Chips  */
 /*                                */
 /**********************************/
+/* Tooltip */
+.tooltip-container {
+    display: block;
+}
+
+.tooltip-right {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+/* Tooltip text */
+.tooltip-right .tooltiptext {
+    visibility: hidden;
+    width: 150%;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 5px 0 0 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 107.5%;
+
+    /* Fade In */
+    opacity: 0;
+    transition: opacity 1s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+}
+
+.tooltip-right .tooltiptext h6 {
+    padding: 0 10px;
+}
+
+.tooltip-right .tooltiptext .core {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to right, #b2ebf2 , #00bcd4);
+}
+
+.tooltip-right .tooltiptext .character {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to right, #b2dfdb , #009688);
+}
+
+.tooltip-right .tooltiptext .elective {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to right, #c8e6c9 , #4caf50);
+}
+
+.tooltip-right .tooltiptext div {
+    padding: 20px 10px;
+    color: black;
+    font-weight: 500;
+    text-align: left;
+}
+
+.tooltip-right .tooltiptext div:last-child {
+    border-radius: 0 0 6px 6px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip-right:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-right .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 6.25%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent white transparent transparent;
+}
+/* End */
+
 .chip {
     display: inline-block;
     padding: 2.5px 12.5px 2.5px 25px;
@@ -319,9 +408,9 @@ dd {
     /*color: black;*/
 }
 
-.chip:hover {
+/*.chip:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+}*/
 
 /* END */
 /**********************************/
