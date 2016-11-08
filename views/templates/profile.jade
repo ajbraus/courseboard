@@ -1,28 +1,20 @@
 .container
   .row
     .col-sm-4
-      h4 {{user.first}} {{user.last}} #[span.text-muted ({{user.username}})]
-      .text-right(ng-show="currentUser.role == 'Instructor'")
-        a(href="users/{{user._id}}/feedback") Provide Feedback
+      h3 {{user.first}} {{user.last}} #[span.text-muted ({{user.username}})]
+      a(href="users/{{user._id}}/feedback" ng-show="currentUser.role == 'Instructor'") Provide Feedback
       hr
 
       h4 Courses
-      a(href="/course-catalog" ng-show="user.enrolledCourses.length == 0") Go to Course Catalog
       //- STUDENT'S ENROLLED COURSES
+      a(href="/course-catalog" ng-show="user.enrolledCourses.length == 0") Go to Course Catalog
+      //- INSTRUCTOR'S ENROLLED COURSES
       
-      h5 2st Quarter
       .list-group
-        a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses | filter: { quarter: 2} | orderBy: ['title']")
-            h4 {{course.title}} 
-            p {{course.students.length}}/26 Participants
-      
-      h5 1st Quarter
-      .list-group
-        a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses | filter: { quarter: 1} | orderBy: ['title']")
+        a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses | orderBy: ['quarter', 'title']")
           h4 {{course.title}} 
           p {{course.students.length}}/26 Participants
           
-      
       h4 Products
       a(href="/product-new" ng-show="user.products.length == 0") Start New Product
       .card(ng-repeat="product in user.products")

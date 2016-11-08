@@ -30,8 +30,8 @@
             td 
               .btn-toolbar
                 .btn-group
-                  a.btn.btn-success.btn-sm(ng-hide="course.publishedAt" ng-click="publishCourse(course)") Publish
-                  a.btn.btn-danger.btn-sm(ng-show="course.publishedAt" ng-click="unPublishCourse(course)") Unpublish
+                  a.btn.btn-success.btn-sm(ng-hide="course.publishedAt" ng-click="publish(course)") Publish
+                  a.btn.btn-danger.btn-sm(ng-show="course.publishedAt" ng-click="unpublish(course)") Unpublish
                 .btn-group
                   a.btn.btn-default.btn-sm(href="/courses-edit/{{course._id}}") Edit
 

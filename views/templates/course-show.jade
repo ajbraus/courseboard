@@ -1,8 +1,10 @@
 .container
   .row
     .col-xs-12.text-center
-      h3(ng-show="isCoursesLoaded && !course.publishedAt")
-        a.text-danger(href="/courses-edit/{{course._id}}") Draft (edit)
+      div(ng-show="isCoursesLoaded && !course.publishedAt")
+        h3.text-danger Draft   
+        a(href="/courses-edit/{{course._id}}") Edit | 
+        a(href="#" ng-click="publish(course)") Publish
       h2 {{course.title}} 
       .lead Quarter {{course.quarter}} - Facilitated by 
         a(href="/users/{{course.instructor._id}}") {{course.instructor.fullname}}

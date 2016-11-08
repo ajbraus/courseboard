@@ -104,7 +104,7 @@ angular.module('courseboard')
     }
   }])
 
-  .controller('CoursesShowCtrl', ['$scope', '$rootScope', 'lodash', '$http', '$routeParams', 'GlobalAlert', function($scope, $rootScope, lodash, $http, $routeParams, GlobalAlert) {
+  .controller('CoursesShowCtrl', ['$scope', '$rootScope', 'lodash', '$http', '$routeParams', 'Course', 'GlobalAlert', function($scope, $rootScope, lodash, $http, $routeParams, Course, GlobalAlert) {
     $scope.isCoursesLoaded = false;
     
     $http.get('/api/courses/' + $routeParams.id).then(
@@ -119,6 +119,14 @@ angular.module('courseboard')
         GlobalAlert.add('warning', response.data.message, 2000);
       }
     );
+
+    $scope.publish = function(course) {
+      Course.publish(course);
+    }
+
+    $scope.unpublish = function(course) {
+      Course.unpublish(course);
+    }
 
     $http.get('/api/courses/' + $routeParams.id + "/posts").then(
       function (response) {
