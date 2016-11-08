@@ -13,9 +13,9 @@
       .list-group
         a.list-group-item(href="courses/{{course._id}}" ng-repeat="course in user.enrolledCourses | orderBy: ['quarter', 'title']")
           h4 {{course.title}} 
-          p.clearfix
-          .pull-left Q {{course.quarter}} - {{course.weekDays}}, {{course.startTime}} in {{course.location}}
-          .pull-right.text-muted {{course.students.length}}/26 Participants
+          p 
+            Q {{course.quarter}} - {{course.weekDays}}, {{course.startTime}} in {{course.location}}
+            .text-right.text-muted {{course.students.length}}/26 Participants
 
           
       h4 Products
