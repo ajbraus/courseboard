@@ -4,12 +4,12 @@ block body
   p
     strong Hi there #{user.first}, 
   p You have received some feedback!
-  b Feedback
-  | "#{feedback.body}"
+  b Feedback:
+  p "#{feedback.body}"
   br
   if feedback.competencies.length > 0
     b New Levels
     - each c in feedback.competencies
-      p
-        b c.
-        = stuff.sentence
+      div #{c.name} - #{c.level}
+
+  p Keep up the good work. With hard work and perseverance, you can achieve your goals.

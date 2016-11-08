@@ -1,23 +1,3 @@
-send email when feedback created
-
-//profile.jade
-
-
-//-       h4
-//- 
-//- .btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled") Enroll
-//-         .btn.btn-success.btn-block.no-hover(ng-show='isCoursesLoaded && enrolled') Enrolled
-
-      //- hr(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
-      //- h4(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body") Feedback
-      //- div(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
-      //-   .card(ng-repeat="feedback in user.feedbacks")
-      //-     p
-      //-       span.label.label-primary(ng-repeat="c in feedback.competencies" style="display:inline-block; margin-right:3px") {{c.level}} | {{c.name}} 
-      //-     | "{{feedback.body}}"
-      //-     .text-right
-      //-       i.text-muted(ng-bind="feedback.createdAt | date:'EEE MMM dd, yyyy'")
-
 Groups of 2, 3, 4, 5, split class in half
 
 formatted text for course descriptions - bower install textAngular
@@ -29,8 +9,6 @@ Admin Dashboard
   DONE - dredge up students who haven't signed up for courses
   - See leaderboard of student's by competency (totalTechLevel, totalCharLevel, totalCoreLevel)
   - Batch students by year - set startYear to current year when signup
-  - See leaderboard of student's by competence
-  - See batch students by year
 
 Competencies Tracking
   DONE - rename "competencies"
@@ -366,3 +344,5 @@ DONE Course - quarter (instead of stars on ends on)
 
 DONE - on mobile can't see navbar dropdown toggle
 DONE - See draft courses in admin dashboard
+
+DONE send email when feedback created

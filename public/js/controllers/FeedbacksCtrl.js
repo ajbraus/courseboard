@@ -44,8 +44,8 @@ angular.module('courseboard')
       $http.post('/api/user/' + $scope.user.id + '/feedback', $scope.feedback).then(
         function (response) {
           $scope.feedback = {};
-          $location.path('/users/' + $scope.user._id);
-          GlobalAlert.add('success', "Feedback saved", 2000);
+          $location.path('/');
+          GlobalAlert.add('success', "Feedback logged and sent", 2000);
         },
         function (response) {
           console.log(response);
