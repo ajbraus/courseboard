@@ -5,6 +5,13 @@ https://github.com/fraywing/textAngular
 
 Bugs
   
+Product - Portfolio site.
+  - add template text for each type of product update (don't update it if the text box has any characters)
+  - email product colaborators if someone submits feedback, code review, etc
+  - pull product updates into profile announcements/updates
+  - product completion bar progress bar
+  - add all products to admin dashboard
+
 Admin Dashboard 
   DONE - dredge up students who haven't signed up for courses
   - See leaderboard of student's by competency (totalTechLevel, totalCharLevel, totalCoreLevel)
@@ -12,20 +19,11 @@ Admin Dashboard
 
 Competencies Tracking
   DONE - rename "competencies"
-  - admins can create new competencies
-  - instructors can set competency levels with qualitative evaluation/proof
+  DONE - instructors can set competency levels with qualitative evaluation/proof
   - download participation transcript -> pdf of projects (with code and live links), competencies
 
-Product 
-  - add template text for each type of product update (don't update it if the text box has any characters)
-  - email product colaborators if someone submits feedback, code review, etc
-  - pull product updates into profile announcements/updates
-  - product completion bar progress bar
-  - add all products to admin dashboard
-
 Courses 
-  - in new course form - default start and end dates to today
-  - fix enroll on current courses 10 days after start (disable)
+  - 
 
 Instructor Dashboard
 
