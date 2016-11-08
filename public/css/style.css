@@ -233,7 +233,7 @@ dd {
     color: black;
     text-align: center;
     padding: 5px 0 0 0;
-    border-radius: 6px;
+    border-radius: 2px;
 
     /* Position the tooltip text - see examples below! */
     position: absolute;
@@ -277,7 +277,7 @@ dd {
 }
 
 .tooltip-right .tooltiptext div:last-child {
-    border-radius: 0 0 6px 6px;
+    border-radius: 2px;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
