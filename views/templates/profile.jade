@@ -39,6 +39,7 @@
 
     .col-sm-4
       h4 Product Portfolio
+      a.btn.btn-block.btn-primary(href="/product-new") New Portfolio Product
       .card(ng-repeat="product in user.products")  
         a.no-style(href="products/{{product._id}}")
           h3 {{product.name}}
