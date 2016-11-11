@@ -13,8 +13,8 @@
       
       //- COURSE INFO
       .card
-        b Instructor: 
-        | {{course.instructor.fullname}}
+        b Instructor(s): 
+        | {{course.instructor.fullname}} #[span(ng-show="course.coInstructor") {{", " + course.coInstructor.fullname}}]
         br
         b Days: 
         | {{course.weekDays}}
