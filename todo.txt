@@ -1,3 +1,6 @@
+
+PRODUCT PORTFOLIO
+
 Groups of 2, 3, 4, 5, split class in half
 
 formatted text for course descriptions - bower install textAngular
