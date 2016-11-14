@@ -59,18 +59,20 @@ angular.module('courseboard.services', [])
         { name: 'iOS', level:0 , kind: 'elective'},
         { name: 'Backend JS', level:0 , kind: 'elective'},
         { name: 'Frontend JS', level:0 , kind: 'elective'},
+        { name: 'HTML/CSS/JS', level:0 , kind: 'elective'},
+        { name: 'API Design', level:0 , kind: 'elective'},
         { name: 'Ruby on Rails', level:0 , kind: 'elective'},
         { name: 'Flask', level:0 , kind: 'elective'},
         { name: 'Python', level:0 , kind: 'elective'},
-        { name: 'Devices/Embedded Systems', level:0 , kind: 'elective'},
+        { name: 'Devices/IoT', level:0 , kind: 'elective'},
         { name: 'ML & AI', level:0 , kind: 'elective'},
-        { name: 'Data Science & Visualization', level:0 , kind: 'elective'},
+        { name: 'Data Science', level:0 , kind: 'elective'},
         { name: 'SQL DB', level:0 , kind: 'elective'},
         { name: 'NoSQL DB', level:0 , kind: 'elective'},
         { name: 'Dev Ops', level:0 , kind: 'elective'},
         { name: 'TDD', level:0 , kind: 'elective'},
-        { name: 'API Design', level:0 , kind: 'elective'},
-        { name: 'UI/UX', level:0, kind: 'elective' }
+        { name: 'UI/UX', level:0, kind: 'elective' },
+        { name: 'Writing', level:0, kind: 'elective' }
       ]
     }
   }])
