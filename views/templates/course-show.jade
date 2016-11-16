@@ -60,8 +60,8 @@
       div(ng-include="'templates/post'", ng-repeat="post in posts")
     .col-md-3
       br
-      .btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled" ng-disabled="course.instructor._id == currentUser.id") Enroll
-      .btn.btn-success.btn-block.no-hover(ng-show='isCoursesLoaded && enrolled && course.instructor._id != currentUser.id') Enrolled
+      .btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled" ng-disabled="course.instructor._id == currentUser.id && course.coInstructor._id == currentUser.id") Enroll
+      .btn.btn-success.btn-block.no-hover(ng-show='isCoursesLoaded && enrolled && course.instructor._id != currentUser.id && course.coInstructor._id != currentUser.id') Enrolled
       .btn.btn-default.btn-block(ng-disabled="true" ng-show='course.students.length >= course.capacity') Course Full
       //- .btn.btn-default.btn-block(ng-cloak ng-show="(isCoursesLoaded && !enrolled && currentUser.enrolledCourses.length >= 4)") Your Courseload Is Full
       
@@ -72,6 +72,8 @@
         .btn-toolbar
           .btn-group.participant
             a.btn.btn-sm.btn-primary(href="users/{{course.instructor._id}}") {{course.instructor.fullname}}
+          .btn-group.participant
+            a.btn.btn-sm.btn-primary(href="users/{{course.coInstructor._id}}") {{course.coInstructor.fullname}}
           .btn-group.participant(ng-repeat="student in course.students")
             a.btn.btn-sm.btn-primary(href="users/{{student._id}}") {{student.fullname}}
       hr

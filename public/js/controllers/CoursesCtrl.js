@@ -57,7 +57,7 @@ angular.module('courseboard')
     $scope.startsOpen = function() {
       $scope.starts.opened = true;
     };
-    
+
     $scope.starts = {
       opened: false
     };
@@ -65,7 +65,7 @@ angular.module('courseboard')
     $scope.endsOpen = function() {
       $scope.ends.opened = true;
     };
-    
+
     $scope.ends = {
       opened: false
     };
@@ -85,7 +85,7 @@ angular.module('courseboard')
       }
       if ($scope.course.startsOnMonth && $scope.course.startsOnDay && $scope.course.startsOnYear) {
         $scope.course.startsOn = new Date($scope.course.startsOnMonth + " " + $scope.course.startsOnDay + " " + $scope.course.startsOnYear)
-      } 
+      }
       if (($scope.course.endsOn && $scope.course.startsOn) && $scope.course.endsOn < $scope.course.startsOn) {
         GlobalAlert.add('warning', "Course end date must be after start date", 2000);
       } else {
@@ -106,7 +106,7 @@ angular.module('courseboard')
 
   .controller('CoursesShowCtrl', ['$scope', '$rootScope', 'lodash', '$http', '$routeParams', 'Course', 'GlobalAlert', function($scope, $rootScope, lodash, $http, $routeParams, Course, GlobalAlert) {
     $scope.isCoursesLoaded = false;
-    
+
     $http.get('/api/courses/' + $routeParams.id).then(
       function (response) {
         $scope.course = response.data;
@@ -138,7 +138,7 @@ angular.module('courseboard')
     );
 
     $scope.enroll = function() {
-      if ($scope.course.instructor._id != $rootScope.currentUser.id) {
+      if ($scope.course.instructor._id != $rootScope.currentUser.id || $scope.course.coInstructor._id != $rootScope.currentUser.id) {
         $http.put('/api/courses/' + $routeParams.id + '/enroll').then(
           function (response) {
             $scope.enrolled = true;
@@ -209,7 +209,7 @@ angular.module('courseboard')
   .controller('CoursesEditCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$location', 'GlobalAlert', function($scope, $rootScope, $http, $routeParams, $location, GlobalAlert) {
     $http.get('/api/courses/' + $routeParams.id).then(
       function (response) {
-        
+
         $scope.course = response.data;
         var monthNames = ["January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November", "December"
@@ -222,7 +222,8 @@ angular.module('courseboard')
         $scope.course.endsOnDay = new Date($scope.course.endsOn).getDate().toString();
         $scope.course.endsOnYear = new Date($scope.course.endsOn).getFullYear().toString();
 
-        $scope.course.instructor = response.data.instructor._id 
+        $scope.course.instructor = response.data.instructor._id
+        $scope.course.coInstructor = response.data.coInstructor._id
       },
 
       function (response) {
@@ -237,7 +238,7 @@ angular.module('courseboard')
     $scope.rmObjectiveField = function(index) {
       $scope.course.objectives.splice(index, 1)
     }
-    
+
     $http.get('/api/instructors').then(function(response) {
       $scope.instructors = response.data;
     });
@@ -273,7 +274,7 @@ angular.module('courseboard')
           _.remove($rootScope.currentUser.courses, function(course) {
             return $routeParams._id == course._id;
           })
-          
+
           $location.path('/instructor-dashboard');
 
           GlobalAlert.add('success', "Course deleted", 2000);

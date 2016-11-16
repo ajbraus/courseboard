@@ -54,9 +54,17 @@ module.exports = function(app) {
       User.findById(course.instructor).exec(function(err, user) {
         user.courses.unshift(course);
         user.save();
-
-        res.send(course);
       });
+
+      // ADD COURSE TO COINSTRUCTOR'S COURSES
+      if (course.coInstructor) {
+        User.findById(course.coInstructor).exec(function(err, user) {
+          user.courses.unshift(course);
+          user.save();
+        });
+      }
+
+      res.send(course);
     });
 
   });
@@ -152,6 +160,23 @@ module.exports = function(app) {
               if (err) { console.log(err); return }
             });
           })
+
+          // SEND NOTIFICATION TO COINSTRUCTOR
+          if(course.coInstructor) {
+            User.findById(course.coInstructor, '+email').exec(function (err, coInstructor) {
+              console.log(coInstructor)
+              app.mailer.send('emails/enroll-notification', {
+                to: coInstructor.email,
+                subject: 'New Student: ' + user.first + " " + user.last,
+                instructor: coInstructor,
+                course: course,
+                student: user
+              }, function (err) {
+                if (err) { console.log(err); return }
+              });
+            })
+          }
+
         })
       }
       else { return res.status(400).send({message: 'Already enrolled!'})}
