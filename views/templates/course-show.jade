@@ -72,7 +72,7 @@
         .btn-toolbar
           .btn-group.participant
             a.btn.btn-sm.btn-primary(href="users/{{course.instructor._id}}") {{course.instructor.fullname}}
-          .btn-group.participant
+          .btn-group.participant(ng-show="course.coInstructor")
             a.btn.btn-sm.btn-primary(href="users/{{course.coInstructor._id}}") {{course.coInstructor.fullname}}
           .btn-group.participant(ng-repeat="student in course.students")
             a.btn.btn-sm.btn-primary(href="users/{{student._id}}") {{student.fullname}}
