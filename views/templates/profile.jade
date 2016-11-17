@@ -59,17 +59,34 @@
       hr(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
 
       h4 Skills & Competencies
-      .col-xs-4.legend-el.core CORE
-      .col-xs-4.legend-el.character CHARACTER
-      .col-xs-4.legend-el.elective ELECTIVE
       
-      h4.small-margin(ng-repeat="competency in user.competencies | orderBy: ['-level']" 
+      
+      
+      .col-xs-12.legend-el.core CORE            
+      h4.small-margin(ng-repeat="competency in user.competencies | filter: {kind: 'core'} | orderBy: ['kind', '-level']" 
          style="display:inline-block;")
           //- .chip(ng-class="{ 'chip-core-1': competency.kind == 'core' && competency.level == 1, 'chip-core-2': competency.kind == 'core' && competency.level == 2, 'chip-core-3': competency.kind == 'core' && competency.level == 3, 'chip-core-4': competency.kind == 'core' && competency.level == 4, 'chip-core-1': competency.kind == 'core' && competency.level == 5, 'chip-character-1': competency.kind == 'character' && competency.level == 1, 'chip-character-2': competency.kind == 'character' && competency.level == 2, 'chip-character-3': competency.kind == 'character' && competency.level == 3, 'chip-character-4': competency.kind == 'character' && competency.level == 4, 'chip-character-5': competency.kind == 'character' && competency.level == 5, 'chip-elective-1': competency.kind == 'elective' && competency.level == 1, 'chip-elective-2': competency.kind == 'elective' && competency.level == 2, 'chip-elective-3': competency.kind == 'elective' && competency.level == 3, 'chip-elective-4': competency.kind == 'elective' && competency.level == 4, 'chip-elective-5': competency.kind == 'elective' && competency.level == 5 }")
           .chip(style="opacity: {{.2 + competency.level * .2}} " ng-class="{ 'core': competency.kind == 'core', 'character': competency.kind == 'character', 'elective': competency.kind == 'elective' }")
             p.competency-level {{competency.level}}
             p.competency-name {{competency.name}} 
 
+      .col-xs-12.legend-el.elective TECHNICAL
+      h4.small-margin(ng-repeat="competency in user.competencies | filter: {kind: 'elective'} | orderBy: ['kind', '-level']" 
+         style="display:inline-block;")
+          //- .chip(ng-class="{ 'chip-core-1': competency.kind == 'core' && competency.level == 1, 'chip-core-2': competency.kind == 'core' && competency.level == 2, 'chip-core-3': competency.kind == 'core' && competency.level == 3, 'chip-core-4': competency.kind == 'core' && competency.level == 4, 'chip-core-1': competency.kind == 'core' && competency.level == 5, 'chip-character-1': competency.kind == 'character' && competency.level == 1, 'chip-character-2': competency.kind == 'character' && competency.level == 2, 'chip-character-3': competency.kind == 'character' && competency.level == 3, 'chip-character-4': competency.kind == 'character' && competency.level == 4, 'chip-character-5': competency.kind == 'character' && competency.level == 5, 'chip-elective-1': competency.kind == 'elective' && competency.level == 1, 'chip-elective-2': competency.kind == 'elective' && competency.level == 2, 'chip-elective-3': competency.kind == 'elective' && competency.level == 3, 'chip-elective-4': competency.kind == 'elective' && competency.level == 4, 'chip-elective-5': competency.kind == 'elective' && competency.level == 5 }")
+          .chip(style="opacity: {{.2 + competency.level * .2}} " ng-class="{ 'core': competency.kind == 'core', 'character': competency.kind == 'character', 'elective': competency.kind == 'elective' }")
+            p.competency-level {{competency.level}}
+            p.competency-name {{competency.name}} 
+      
+      .col-xs-12.legend-el.character CHARACTER
+      h4.small-margin(ng-repeat="competency in user.competencies | filter: {kind: 'character'} | orderBy: ['kind', '-level']" 
+         style="display:inline-block;")
+          //- .chip(ng-class="{ 'chip-core-1': competency.kind == 'core' && competency.level == 1, 'chip-core-2': competency.kind == 'core' && competency.level == 2, 'chip-core-3': competency.kind == 'core' && competency.level == 3, 'chip-core-4': competency.kind == 'core' && competency.level == 4, 'chip-core-1': competency.kind == 'core' && competency.level == 5, 'chip-character-1': competency.kind == 'character' && competency.level == 1, 'chip-character-2': competency.kind == 'character' && competency.level == 2, 'chip-character-3': competency.kind == 'character' && competency.level == 3, 'chip-character-4': competency.kind == 'character' && competency.level == 4, 'chip-character-5': competency.kind == 'character' && competency.level == 5, 'chip-elective-1': competency.kind == 'elective' && competency.level == 1, 'chip-elective-2': competency.kind == 'elective' && competency.level == 2, 'chip-elective-3': competency.kind == 'elective' && competency.level == 3, 'chip-elective-4': competency.kind == 'elective' && competency.level == 4, 'chip-elective-5': competency.kind == 'elective' && competency.level == 5 }")
+          .chip(style="opacity: {{.2 + competency.level * .2}} " ng-class="{ 'core': competency.kind == 'core', 'character': competency.kind == 'character', 'elective': competency.kind == 'elective' }")
+            p.competency-level {{competency.level}}
+            p.competency-name {{competency.name}} 
+      
+      
       hr
       h4 Feedback
       .card(ng-repeat="fb in user.feedbacks")
