@@ -1,16 +1,34 @@
 .container
   .row
-    .col-sm-offset-1.col-sm-7
+    .col-sm-5
+      h3 {{product.name}}
+      p Collaborators: 
+        a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors") {{contributor.username}} 
+      p Advisor: 
+        a(href="users/{{product.instructor._id}}") {{product.instructor.fullname}}
+      a(href="#" ng-click="join()" ng-show="!isContributor") Join Team
+      a(href="" ng-click="leave(product)") Leave Product Team
+      p(ng-show="product.course") Course: 
+        a(href="courses/{{product.course._id}}") {{product.course.title}}
+
       .card 
-        //- PRODUCT INFO
-        h3 {{product.name}}
-        hr
+        .btn-toolbar
+          .btn-group
+            button.btn.btn-default.btn-block(ng-click='goToUrl(product.githubUrl)' ng-disabled="!product.githubUrl") #[i.ion.ion-social-github] GitHub Repo
+          .btn-group
+            button.btn.btn-warning.btn-block(ng-click='goToUrl(product.agileUrl)' ng-disabled="!product.agileUrl") #[i.ion.ion-android-checkbox-outline] Scrum Board
+          .btn-group
+            button.btn.btn-primary.btn-block(ng-click='goToUrl(product.liveUrl)' ng-disabled="!product.liveUrl") #[i.ion.ion-android-wifi] Live Site
+        br
+        p(ng-if="isContributor")
+          a(href="/products-edit/{{product._id}}") Update Product Details and Links
+      .card
+        h3 Product Plan
+        p 
+          a(href="/products-plan/{{product._id}}") Update Product Plan
         dl
           dt(ng-if="product.problem") What problem are you solving?
           dd(ng-if="product.problem") {{product.problem}}
-      a.btn.btn-block.btn-success(href="/products-plan/{{product._id}}" ng-hide="!isProductsLoaded || product.customer || product.assumptions || product.finshedProduct || product.mvp")
-        | Add Product Plan
-      br
       div(ng-show="product.customer || product.assumptions || product.finshedProduct || product.mvp")
         h4 Product Plan
         .card
@@ -22,14 +40,17 @@
           dd(ng-if="product.finishedProduct") {{product.finishedProduct}}
           dt(ng-if="product.mvp") Describe the absolute minimum product that you will build and ship first.
           dd(ng-if="product.mvp") {{product.mvp}}
-      br
-      .clearfix
-        h4.pull-left Product Updates
-        .pull-right
-          button.btn.btn-sm.btn-primary(type='button', data-toggle='modal', data-target='#newUpdate' ng-if="!isContributor")
-            | Leave Product Feedback
-          button.btn.btn-sm.btn-primary(type='button', data-toggle='modal', data-target='#newUpdate' ng-if="isContributor")
-            | New Product Update
+    .col-sm-7
+      form(ng-submit="createUpdate()")
+
+        .form-group
+          select.form-control(ng-model="update.kind" required)
+            option(value="" disabled selected) Update Type
+            option(ng-repeat="kind in kinds") {{kind}}
+        .form-group
+          textarea.form-control(ng-model="update.body", rows=5 placeholder="Update Details")
+        .text-right
+          button.btn.btn-primary Save Update
       .card(ng-repeat="update in updates")
         .pull-right(ng-show="isContributor")
           .dropdown.text-small
@@ -42,47 +63,3 @@
         p {{update.body}}
         .text-right
           small.text-muted Posted by {{update.user.username}} on #[span(ng-bind="update.createdAt | date:'EEE MMM dd'")]
-        
-
-    .col-sm-3
-      .btn.btn-primary.btn-block(ng-click="join()" ng-show="!isContributor") Join Team
-      .btn.btn-success.btn-block.no-hover(ng-show='isContributor') Joined
-      .text-right(ng-show="isContributor")
-        a(href="" ng-click="leave(product)") Leave Product Team
-      hr
-      h4 Contributors
-      a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors")
-        {{contributor.username}}
-        br
-      h4 Advisor
-      a(href="users/{{product.instructor._id}}") {{product.instructor.fullname}}
-      h4(ng-show="product.course") Course
-      a(href="courses/{{product.course._id}}") {{product.course.title}}
-      hr
-      button.btn.btn-default.btn-block(ng-click='goToUrl(product.githubUrl)' ng-disabled="!product.githubUrl") #[i.ion.ion-social-github] GitHub Repo
-      button.btn.btn-warning.btn-block(ng-click='goToUrl(product.agileUrl)' ng-disabled="!product.agileUrl") #[i.ion.ion-android-checkbox-outline] Scrum Board
-      button.btn.btn-primary.btn-block(ng-click='goToUrl(product.liveUrl)' ng-disabled="!product.liveUrl") #[i.ion.ion-android-wifi] Live Site
-      br
-      .text-right(ng-if="isContributor")
-        a(href="/products-edit/{{product._id}}") Product Settings
-
-
-.modal.fade#newUpdate(tabindex='-1', role='dialog')
-  .modal-dialog(role='document')
-    .modal-content
-      form(ng-submit="createUpdate()")
-        .modal-header
-          button.close(type='button', data-dismiss='modal', aria-label='Close')
-            span(aria-hidden='true') ×
-          h4.modal-title New Product Update
-        .modal-body
-          .form-group
-            label Update Type
-            select.form-control(ng-model="update.kind" required)
-              option(ng-repeat="kind in kinds") {{kind}}
-          .form-group
-            label Details
-            textarea.form-control(ng-model="update.body", rows=7 placeholder="Update Details")
-        .modal-footer
-          a.btn.btn-default(href="#" data-dismiss='modal') Close
-          button.btn.btn-primary Create Update

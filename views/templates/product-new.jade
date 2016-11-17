@@ -4,15 +4,18 @@
       legend New Product Information
       form(ng-submit="createProduct()")
         .row
-          .col-sm-12
+          .col-xs-12
             .form-group
               label Product Name or Codename*
               input.form-control(type="text" ng-model="product.name" required)
+            .form-group
+              label What problem are you solving?*
+              input.form-control(type="text" ng-model="product.problem" required)
         .row
           .col-sm-4
             .form-group
-              label Advisor*
-              select.form-control(ng-model="product.instructor" required)
+              label Advisor
+              select.form-control(ng-model="product.instructor")
                 option(ng-repeat="instructor in instructors" value="{{instructor._id}}") {{instructor.fullname}}
           .col-sm-8
             .form-group
@@ -20,9 +23,19 @@
               select.form-control(ng-model="product.course")
                 option(ng-repeat="course in courses" value="{{course._id}}") {{course.title}}
         .row
-          .col-xs-12
+          .col-sm-12
             .form-group
-              label What problem are you solving?*
-              input.form-control(type="text" ng-model="product.problem" required)
+              label What are some assumptions about the world must be true for your product to succeed?
+              textarea.form-control(type="text" ng-model="product.assumptions" rows="3")
+            .form-group
+              label Describe your minimum viable product.
+              textarea.form-control(type="text" ng-model="product.mvp" rows="3")
+            .form-group
+              label Describe your product when it is 100% finished.
+              textarea.form-control(type="text" ng-model="product.finishedProduct" rows="3")
+            .form-group
+              label Who is your customer? Who pays you $?
+              input.form-control(type="text" ng-model="product.customer")
+
         .text-right
           button.btn.btn-primary(type="submit") Save New Product
