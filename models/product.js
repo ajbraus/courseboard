@@ -12,6 +12,8 @@ var ProductSchema = new Schema({
     createdAt     : { type: Date }
   , updatedAt     : { type: Date }
 
+  , lastUpdatedAt       : { type: Date }
+
   , name                : { type: String, required: true }
   , githubUrl           : { type: String }
   , agileUrl            : { type: String }

@@ -1,6 +1,15 @@
 
 PRODUCT PORTFOLIO
 
+- update product-plan form
+- add "Business Model Canvas" questions
+
+- only show products with a live link in /product-showcase, show all in profile (live vs. work in progress)
+- sort products by lastUpdatedAt, after update create, after editing product plan, after new contributor joins.
+- send invite to join product team
+- blow in og tag values
+- "archive" product
+
 Groups of 2, 3, 4, 5, split class in half
 
 formatted text for course descriptions - bower install textAngular

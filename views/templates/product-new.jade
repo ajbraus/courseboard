@@ -16,23 +16,22 @@
             .form-group
               label Advisor
               select.form-control(ng-model="product.instructor")
+                option(value="") 
                 option(ng-repeat="instructor in instructors" value="{{instructor._id}}") {{instructor.fullname}}
           .col-sm-8
             .form-group
               label Course
               select.form-control(ng-model="product.course")
+                option(value="") 
                 option(ng-repeat="course in courses" value="{{course._id}}") {{course.title}}
         .row
           .col-sm-12
             .form-group
-              label What are some assumptions about the world must be true for your product to succeed?
+              label What are the critical assumptions or hypotheses that you are making that must be true for your product to create value and make money?
               textarea.form-control(type="text" ng-model="product.assumptions" rows="3")
             .form-group
-              label Describe your minimum viable product.
+              label Describe your absolute minimum viable product. (e.g. for Twitter, a site that publishes 140 microposts and lets you follow other people)
               textarea.form-control(type="text" ng-model="product.mvp" rows="3")
-            .form-group
-              label Describe your product when it is 100% finished.
-              textarea.form-control(type="text" ng-model="product.finishedProduct" rows="3")
             .form-group
               label Who is your customer? Who pays you $?
               input.form-control(type="text" ng-model="product.customer")

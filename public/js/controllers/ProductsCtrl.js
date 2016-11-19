@@ -53,9 +53,9 @@ angular.module('courseboard')
         $scope.isContributor = index > -1
 
         if ($scope.isContributor) {
-          $scope.kinds = ['User Interview', 'User Narrative', 'User Testing', 'User Evaluation', 'Feedback', 'Code Review']  
+          $scope.kinds = ['User Interview', 'User Testing', 'Market Research', 'User Narrative', 'Feedback', 'Code Review']  
         } else {
-          $scope.kinds = ['User Evaluation', 'Feedback', 'Code Review']  
+          $scope.kinds = ['Feedback', 'Code Review']  
         }
       },
       function (response) {

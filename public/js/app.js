@@ -71,7 +71,7 @@ angular.module('courseboard', [
         controller: 'ProductsNewCtrl'
       });
 
-      $routeProvider.when('/products', {
+      $routeProvider.when('/product-showcase', {
         templateUrl: 'templates/product-index',
         controller: 'ProductsIndexCtrl',
         publicAccess: true

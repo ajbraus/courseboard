@@ -7,7 +7,7 @@
       p Advisor: 
         a(href="users/{{product.instructor._id}}") {{product.instructor.fullname}}
       a(href="#" ng-click="join()" ng-show="!isContributor") Join Team
-      a(href="" ng-click="leave(product)") Leave Product Team
+      a(href="" ng-click="leave(product)" ng-show="isContributor") Leave Product Team
       p(ng-show="product.course") Course: 
         a(href="courses/{{product.course._id}}") {{product.course.title}}
 
@@ -29,9 +29,6 @@
         dl
           dt(ng-if="product.problem") What problem are you solving?
           dd(ng-if="product.problem") {{product.problem}}
-      div(ng-show="product.customer || product.assumptions || product.finshedProduct || product.mvp")
-        h4 Product Plan
-        .card
           dt(ng-if="product.customer") Who is your customer?
           dd(ng-if="product.customer") {{product.customer}}
           dt(ng-if="product.assumptions") What assumptions does your product make about the world?
@@ -41,8 +38,8 @@
           dt(ng-if="product.mvp") Describe the absolute minimum product that you will build and ship first.
           dd(ng-if="product.mvp") {{product.mvp}}
     .col-sm-7
+      h5 Product Updates
       form(ng-submit="createUpdate()")
-
         .form-group
           select.form-control(ng-model="update.kind" required)
             option(value="" disabled selected) Update Type
@@ -51,6 +48,7 @@
           textarea.form-control(ng-model="update.body", rows=5 placeholder="Update Details")
         .text-right
           button.btn.btn-primary Save Update
+      br
       .card(ng-repeat="update in updates")
         .pull-right(ng-show="isContributor")
           .dropdown.text-small
@@ -59,7 +57,6 @@
             ul.dropdown-menu(aria-labelledby='dropdownMenu1')
               li
                 a(href='#' ng-click="deleteUpdate(update)") Delete
-        h5 {{update.kind}}
+        p 
+          small.text-muted {{update.kind}} posted by {{update.user.username}} on #[span(ng-bind="update.createdAt | date:'EEE MMM dd'")]
         p {{update.body}}
-        .text-right
-          small.text-muted Posted by {{update.user.username}} on #[span(ng-bind="update.createdAt | date:'EEE MMM dd'")]
