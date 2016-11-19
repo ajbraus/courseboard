@@ -1,0 +1,37 @@
+.container
+  .row
+    .col-sm-8.col-sm-offset-2
+      legend Business Model Canvas
+      form(ng-submit="updateProduct()")
+        .row
+          .col-sm-12
+            .form-group
+              label 1. Who are your customer segments? Who is your customer? Who pays you money?
+              textarea.form-control(type="text" ng-model="product.customer" rows="3")
+            .form-group
+              label 2. What is your value proposition you bring to these customers?
+              textarea.form-control(type="text" ng-model="product.valueProposition" rows="3")
+            .form-group
+              label 3. What communication or marketing channels will you use to reach your customers with your value proposition?
+              textarea.form-control(type="text" ng-model="product.channels" rows="3")
+            .form-group
+              label 4. What sorts of relationships will you form with these customers?
+              textarea.form-control(type="text" ng-model="product.customerRelationships" rows="3")
+            .form-group
+              label 5. What streams of revenue will you receive?
+              textarea.form-control(type="text" ng-model="product.revenueStreams" rows="3")
+            .form-group
+              label 6. What Key Activities will you engage in to run and grow your product?
+              textarea.form-control(type="text" ng-model="product.keyActivities" rows="3")
+            .form-group
+              label 7. What Key Resources will you require to engage in those activities?
+              textarea.form-control(type="text" ng-model="product.keyResources" rows="3")
+            .form-group
+              label 8. What Key Partners do you want or need?
+              textarea.form-control(type="text" ng-model="product.keyPartners" rows="3")
+            .form-group
+              label 9. What are your key costs?
+              textarea.form-control(type="text" ng-model="product.costStructure" rows="3")
+
+        .text-right
+          button.btn.btn-primary(type="submit") Save New Product

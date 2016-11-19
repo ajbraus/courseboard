@@ -12,6 +12,7 @@
         a(href="courses/{{product.course._id}}") {{product.course.title}}
 
       .card 
+        h4 Product Links
         .btn-toolbar
           .btn-group
             button.btn.btn-default.btn-block(ng-click='goToUrl(product.githubUrl)' ng-disabled="!product.githubUrl") #[i.ion.ion-social-github] GitHub Repo
@@ -23,20 +24,44 @@
         p(ng-if="isContributor")
           a(href="/products-edit/{{product._id}}") Update Product Details and Links
       .card
-        h3 Product Plan
+        h4 Product Basics
         p 
           a(href="/products-plan/{{product._id}}") Update Product Plan
         dl
           dt(ng-if="product.problem") What problem are you solving?
           dd(ng-if="product.problem") {{product.problem}}
-          dt(ng-if="product.customer") Who is your customer?
-          dd(ng-if="product.customer") {{product.customer}}
+          //- dt(ng-if="product.customer") Who is your customer?
+          //- dd(ng-if="product.customer") {{product.customer}}
           dt(ng-if="product.assumptions") What assumptions does your product make about the world?
           dd(ng-if="product.assumptions") {{product.assumptions}}
           dt(ng-if="product.finishedProduct") Describe your finished product.
           dd(ng-if="product.finishedProduct") {{product.finishedProduct}}
           dt(ng-if="product.mvp") Describe the absolute minimum product that you will build and ship first.
           dd(ng-if="product.mvp") {{product.mvp}}
+      .card
+        h4 Business Model Canvas
+        p 
+          a(href="/products/{{product._id}}/business-model-canvas") Update Business Model Canvas
+        dl
+          dt(ng-if="product.customer") Who is your customer?
+          dd(ng-if="product.customer") {{product.customer}}
+          dt(ng-if="product.valueProposition") What is your value proposition?
+          dd(ng-if="product.valueProposition") {{product.valueProposition}}
+          dt(ng-if="product.channels") What channels will you use to reach them?
+          dd(ng-if="product.channels") {{product.channels}}
+          dt(ng-if="product.customerRelationships") What relationships will you form with them?
+          dd(ng-if="product.customerRelationships") {{product.customerRelationships}}
+          dt(ng-if="product.revenueStreams") What are your revenue streams? How does your product make money?
+          dd(ng-if="product.revenueStreams") {{product.revenueStreams}}
+          dt(ng-if="product.keyActivities") What are the Key Activities you will engage in?
+          dd(ng-if="product.keyActivities") {{product.keyActivities}}
+          dt(ng-if="product.keyResources") What are the Key Resources you will need?
+          dd(ng-if="product.keyResources") {{product.keyResources}}
+          dt(ng-if="product.keyPartners") Who are your Key Partners?
+          dd(ng-if="product.keyPartners") {{product.keyPartners}}
+          dt(ng-if="product.costStructure") What are your costs?
+          dd(ng-if="product.costStructure") {{product.costStructure}}
+
     .col-sm-7
       h5 Product Updates
       form(ng-submit="createUpdate()")

@@ -19,13 +19,22 @@ var ProductSchema = new Schema({
   , agileUrl            : { type: String }
   , liveUrl             : { type: String }
   , problem             : { type: String, required: true }
-  , customer            : String
   , assumptions         : String
   , finishedProduct     : String
   , mvp                 : String
 
   , marketFit           : Number
   , nps                 : Number
+
+  , customer                : String
+  , valueProposition        : String
+  , channels                : String
+  , customerRelationships   : String
+  , revenueStreams          : String
+  , keyActivities           : String
+  , keyResources            : String
+  , keyPartners             : String
+  , costStructure           : String
 
   , course              : { type: Schema.Types.ObjectId, ref: 'Course' }
   , instructor          : { type: Schema.Types.ObjectId, ref: 'User', required: true }

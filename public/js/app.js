@@ -92,6 +92,11 @@ angular.module('courseboard', [
         controller: 'ProductsEditCtrl'
       });
 
+      $routeProvider.when('/products/:id/business-model-canvas', {
+        templateUrl: 'templates/business-model-canvas',
+        controller: 'ProductsEditCtrl'
+      });
+
       // PASSWORD
       $routeProvider.when('/password-edit', {
         templateUrl: 'templates/password-edit',

@@ -3,15 +3,12 @@
     .col-md-10.col-md-offset-1.col-sm-12
       .clearfix
         .pull-left
-          h4 {{user.first}} {{user.last}} #[span.text-muted ({{user.username}})]
+          h3 {{user.first}} {{user.last}} #[span.text-muted ({{user.username}})]
         .pull-right(ng-show="currentUser.role == 'Instructor'")
-          a(href="users/{{user._id}}/feedback") Provide Feedback
-      hr
+          a.btn.btn-success(href="users/{{user._id}}/feedback") Provide Feedback
 
     .col-md-6.col-md-offset-1.col-sm-6
       h3 Courses
-
-      h4 1st Quarter
       .card
         table.table
           tr
