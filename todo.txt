@@ -1,14 +1,12 @@
 
 PRODUCT PORTFOLIO
-
-- update product-plan form
-- add "Business Model Canvas" questions
-
+- "archive" product
 - only show products with a live link in /product-showcase, show all in profile (live vs. work in progress)
+
 - sort products by lastUpdatedAt, after update create, after editing product plan, after new contributor joins.
 - send invite to join product team
 - blow in og tag values
-- "archive" product
+
 
 Instructor user-show should show the classes they teach and the products they are working on (not advising)
 
