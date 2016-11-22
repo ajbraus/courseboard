@@ -12,15 +12,27 @@ var User = require('../models/user.js')
 module.exports = function(app) {
   // INDEX
   app.get('/api/products', function (req, res) {
-    Product.find()
-          .populate({ path: 'instructor', select: 'fullname first last' })
-          .populate({ path: 'contributors', select: 'username' })
-          .sort("-createdAt")
-          .exec(function(err, products) {
-            if (err) { return res.status(400).send(err) }
+    if (req.query["live"] == "true") {
+      Product.find({ liveUrl: { $ne: null } })
+            .populate({ path: 'instructor', select: 'fullname first last' })
+            .populate({ path: 'contributors', select: 'username' })
+            .sort("-createdAt")
+            .exec(function(err, products) {
+              if (err) { return res.status(400).send(err) }
 
-            res.send(products);
-          });
+              res.send(products);
+            });
+    } else {
+      Product.find()
+            .populate({ path: 'instructor', select: 'fullname first last' })
+            .populate({ path: 'contributors', select: 'username' })
+            .sort("-createdAt")
+            .exec(function(err, products) {
+              if (err) { return res.status(400).send(err) }
+
+              res.send(products);
+            });
+    }
   });
 
   // CREATE
@@ -37,7 +49,7 @@ module.exports = function(app) {
           course.save();
         })
       }
-      
+
       //ADD TO ADVISOR'S PRODUCTS
       User.findById(product.instructor).exec(function(err, instructor) {
         instructor.products.unshift(product);
@@ -86,7 +98,7 @@ module.exports = function(app) {
           .populate({ path: 'instructor', select: 'fullname first last' })
           .populate({ path: 'course', select: 'title' })
           .exec(function (err, product) {
-            
+
       if (err) { return res.status(400).send(err) }
 
       res.send(product);
@@ -166,7 +178,7 @@ module.exports = function(app) {
       if (!product) { return res.status(400).send({message: 'Product not found' }) }
 
       var index = product.contributors.indexOf(req.userId);
-    
+
       if (index > -1) {
         product.contributors.splice(index, 1);
         User.findById(req.userId).exec(function (err, user) {

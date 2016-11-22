@@ -25,7 +25,7 @@ nav.navbar
           a(href="/course-catalog") Course Catalog
         li(ng-show='currentUser')
           a(href="/product-showcase") Product Showcase
-        li
+        li(ng-show='currentUser')
           a(href='/settings') Settings
         li(ng-show="currentUser.admin")
           a(href='/admin') Admin

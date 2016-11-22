@@ -13,7 +13,6 @@ var CourseSchema = new Schema({
 
   , title         : { type: String, required: true }
   , description   : { type: String }
-  , instructor    : { type: String, set: toTitle }
 
   , quarter       : String
   , weekDays      : String
@@ -25,7 +24,7 @@ var CourseSchema = new Schema({
   // , startsOnMonth : String
   // , startsOnYear  : String
 
-  // , endsOn        : Date 
+  // , endsOn        : Date
   // , endsOnDay     : String
   // , endsOnMonth   : String
   // , endsOnYear    : String
@@ -34,6 +33,7 @@ var CourseSchema = new Schema({
 
   , user          : { type: Schema.Types.ObjectId, ref: 'User', required: true }
   , instructor    : { type: Schema.Types.ObjectId, ref: 'User' }
+  , coInstructor  : { type: Schema.Types.ObjectId, ref: 'User' }
   , students      : [{ type: Schema.Types.ObjectId, ref: 'User' }]
   , posts         : [{ type: Schema.Types.ObjectId, ref: 'Post' }]
   , products      : [{ type: Schema.Types.ObjectId, ref: 'Product' }]

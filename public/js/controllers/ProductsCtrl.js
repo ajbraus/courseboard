@@ -4,7 +4,7 @@
 
 angular.module('courseboard')
   .controller('ProductsIndexCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
-    $http.get('/api/products').then(function(response) {
+    $http.get('/api/products?live=true').then(function(response) {
       $scope.products = response.data;
     });
 
@@ -20,7 +20,7 @@ angular.module('courseboard')
     $http.get('/api/current-courses').then(function(response) {
       $scope.courses = response.data;
     });
-   
+
     $scope.createProduct = function() {
       console.log($scope.product)
       $http.post('/api/products', $scope.product).then(
@@ -47,15 +47,15 @@ angular.module('courseboard')
         $scope.product = response.data;
         $scope.isProductsLoaded = true;
 
-        
+
         // Find out if current user is a contributor
         var index = _.map($scope.product.contributors, '_id').indexOf($rootScope.currentUser._id)
         $scope.isContributor = index > -1
 
         if ($scope.isContributor) {
-          $scope.kinds = ['User Interview', 'User Testing', 'Market Research', 'User Narrative', 'Feedback', 'Code Review']  
+          $scope.kinds = ['User Interview', 'User Testing', 'Market Research', 'User Narrative', 'Feedback', 'Code Review']
         } else {
-          $scope.kinds = ['Feedback', 'Code Review']  
+          $scope.kinds = ['Feedback', 'Code Review']
         }
       },
       function (response) {
@@ -79,10 +79,10 @@ angular.module('courseboard')
     );
 
     // $scope.$watch($scope.update.kind, function() {
-      
+
     // })
 
-    // CREATE UPDATE 
+    // CREATE UPDATE
     $scope.createUpdate = function() {
       $http.post('/api/products/' + $routeParams.id + "/updates", $scope.update).then(
         function (response) {
@@ -92,7 +92,7 @@ angular.module('courseboard')
           $('#newUpdate').modal('toggle');
 
           GlobalAlert.add('success', "Update Created", 2000);
-        }, 
+        },
         function (response) {
           GlobalAlert.add('warning', response.data.message, 2000);
         });
@@ -119,7 +119,7 @@ angular.module('courseboard')
         function (response) {
           $scope.isContributor = true;
           $scope.product.contributors.push($rootScope.currentUser)
-          
+
           GlobalAlert.add('success', "You've joined!", 3000);
         },
         function (response) {
@@ -151,7 +151,7 @@ angular.module('courseboard')
     $http.get('/api/products/' + $routeParams.id).then(
       function (response) {
         $scope.product = response.data;
-        $scope.product.instructor = response.data.instructor._id 
+        $scope.product.instructor = response.data.instructor._id
       },
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
@@ -165,7 +165,7 @@ angular.module('courseboard')
     $scope.rmObjectiveField = function(index) {
       $scope.product.objectives.splice(index, 1)
     }
-    
+
     $http.get('/api/instructors').then(function(response) {
       $scope.instructors = response.data;
     });

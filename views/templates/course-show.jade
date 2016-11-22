@@ -8,13 +8,16 @@
       h2 {{course.title}} 
       .lead Quarter {{course.quarter}} - Facilitated by 
         a(href="/users/{{course.instructor._id}}") {{course.instructor.fullname}}
+        span(ng-show="course.coInstructor")
+          | ,
+          a(href="/users/{{course.coInstructor._id}}") {{course.coInstructor.fullname}}
   .row
     .col-md-4
       
       //- COURSE INFO
       .card
-        b Instructor: 
-        | {{course.instructor.fullname}}
+        b Instructor(s): 
+        | {{course.instructor.fullname}} #[span(ng-show="course.coInstructor") {{", " + course.coInstructor.fullname}}]
         br
         b Days: 
         | {{course.weekDays}}
@@ -31,7 +34,7 @@
       hr
 
       h4 Learning Objectives
-      .card(ng-repeat="objective in course.objectives track by $index") {{objective}}
+      .card(ng-repeat="objective in course.objectives track by $index" ng-show="objective") {{objective}}
 
     .col-md-5
       //- ANNOUNCMENTS
@@ -60,18 +63,15 @@
       div(ng-include="'templates/post'", ng-repeat="post in posts")
     .col-md-3
       br
-      .btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled" ng-disabled="course.instructor._id == currentUser.id") Enroll
-      .btn.btn-success.btn-block.no-hover(ng-show='isCoursesLoaded && enrolled && course.instructor._id != currentUser.id') Enrolled
+      .btn.btn-primary.btn-block(ng-cloak ng-click="enroll()" ng-show="isCoursesLoaded && !enrolled" ng-disabled="course.instructor._id == currentUser.id && course.coInstructor._id == currentUser.id") Enroll
+      .btn.btn-success.btn-block.no-hover(ng-show='isCoursesLoaded && enrolled && course.instructor._id != currentUser.id && course.coInstructor._id != currentUser.id') You are Enrolled
       .btn.btn-default.btn-block(ng-disabled="true" ng-show='course.students.length >= course.capacity') Course Full
       //- .btn.btn-default.btn-block(ng-cloak ng-show="(isCoursesLoaded && !enrolled && currentUser.enrolledCourses.length >= 4)") Your Courseload Is Full
-      
-      hr
+
       //- STUDENTS
-      h4 {{course.students.length}}/26 Participants
+      h4(ng-pluralize count="course.students.length" when="{'0': '0/26 Participants', 'one': '1/26 Participant', 'other': '{}/26 Participants'}")
       .card
         .btn-toolbar
-          .btn-group.participant
-            a.btn.btn-sm.btn-primary(href="users/{{course.instructor._id}}") {{course.instructor.fullname}}
           .btn-group.participant(ng-repeat="student in course.students")
             a.btn.btn-sm.btn-primary(href="users/{{student._id}}") {{student.fullname}}
       hr

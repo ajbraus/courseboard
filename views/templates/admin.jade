@@ -18,6 +18,7 @@
             td 
               a(href="/courses/{{course._id}}") {{course.title}}
             td {{course.instructor.fullname}}
+            //- td(ng-show="course.coInstructor") {{course.coInstructor.fullname}}
             td {{course.weekDays}}
             td {{course.startTime}}
             td.text-center {{course.publishedAt ? 'Live': 'Draft'}}

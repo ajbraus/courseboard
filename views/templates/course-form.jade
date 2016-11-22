@@ -1,13 +1,19 @@
 .row
-  .col-sm-8
+  .col-sm-6
     .form-group
       label Title*
       input.form-control(type="text" ng-model="course.title" autofocus="true" required)
-  .col-sm-4
+  .col-sm-3
     .form-group
       label Instructor
       select.form-control(ng-model="course.instructor")
-        option(ng-repeat="instructor in instructors" value="{{instructor._id}}") {{instructor.fullname}}
+        option(ng-repeat="instructor in instructors" value="{{instructor._id}}" ng-disabled="course.coInstructor == instructor._id") {{instructor.fullname}}
+        
+  .col-sm-3
+    .form-group
+      label Co-Instructor
+      select.form-control(ng-model="course.coInstructor")
+        option(ng-repeat="instructor in instructors" value="{{instructor._id}}" ng-disabled="course.instructor == instructor._id") {{instructor.fullname}}
 .row
   //- .col-sm-6
   //-   .form-group
