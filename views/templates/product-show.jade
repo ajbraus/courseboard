@@ -1,17 +1,17 @@
 .container
   .row
     .col-sm-5
-      h3 {{product.name}}
-      p Collaborators: 
-        a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors") {{contributor.username}} 
-      p Advisor: 
-        a(href="users/{{product.instructor._id}}") {{product.instructor.fullname}}
-      a(href="#" ng-click="join()" ng-show="!isContributor") Join Team
-      a(href="" ng-click="leave(product)" ng-show="isContributor") Leave Product Team
-      p(ng-show="product.course") Course: 
-        a(href="courses/{{product.course._id}}") {{product.course.title}}
-
       .card 
+        h3 {{product.name}}
+        p Collaborators: 
+          a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors") {{contributor.username}} 
+        p Advisor: 
+          a(href="users/{{product.instructor._id}}") {{product.instructor.fullname}}
+        a(href="#" ng-click="join()" ng-show="!isContributor") Join Team
+        a(href="" ng-click="leave(product)" ng-show="isContributor") Leave Product Team
+        p(ng-show="product.course") Course: 
+          a(href="courses/{{product.course._id}}") {{product.course.title}}
+
         h4 Product Links
         .btn-toolbar
           .btn-group
