@@ -18,6 +18,7 @@ module.exports = function(app) {
     Course.find({"publishedAt": { "$ne": null } })
           .sort("title")
           .populate({ path: 'instructor', select: 'fullname first last' })
+          .populate({ path: 'coInstructor', select: 'fullname first last' })
           .exec(function(err, courses) {
             // {"created_on": {"$gte": new Date(2012, 7, 14), "$lt": new Date(2012, 7, 15)}})
             if (err) { return res.status(400).send(err) }
@@ -53,9 +54,17 @@ module.exports = function(app) {
       User.findById(course.instructor).exec(function(err, user) {
         user.courses.unshift(course);
         user.save();
-
-        res.send(course);
       });
+
+      // ADD COURSE TO COINSTRUCTOR'S COURSES
+      if (course.coInstructor) {
+        User.findById(course.coInstructor).exec(function(err, user) {
+          user.courses.unshift(course);
+          user.save();
+        });
+      }
+
+      res.send(course);
     });
 
   });
@@ -67,9 +76,10 @@ module.exports = function(app) {
           .populate('posts')
           .populate({ path: 'students', select: 'fullname first last', options: { sort: { 'first': 1, 'last': 1 } } })
           .populate({ path: 'instructor', select: 'fullname first last' })
+          .populate({ path: 'coInstructor', select: 'fullname first last' })
           .populate({ path: 'products', select: 'name contributors' })
           .exec(function (err, course) {
-            
+
       if (err) { return res.status(400).send(err) }
 
       res.send(course);
@@ -92,7 +102,7 @@ module.exports = function(app) {
       if (err) { return res.status(400).send(err) }
 
       courseId = course._id;
-    
+
       // REMOVE COURESID FROM INSTRUCTORS COURESES
       User.findById(req.userId, '+email').exec(function (err, user) {
         user.courses.splice(course.students.indexOf(req.userId), 1);
@@ -150,6 +160,23 @@ module.exports = function(app) {
               if (err) { console.log(err); return }
             });
           })
+
+          // SEND NOTIFICATION TO COINSTRUCTOR
+          if(course.coInstructor) {
+            User.findById(course.coInstructor, '+email').exec(function (err, coInstructor) {
+              console.log(coInstructor)
+              app.mailer.send('emails/enroll-notification', {
+                to: coInstructor.email,
+                subject: 'New Student: ' + user.first + " " + user.last,
+                instructor: coInstructor,
+                course: course,
+                student: user
+              }, function (err) {
+                if (err) { console.log(err); return }
+              });
+            })
+          }
+
         })
       }
       else { return res.status(400).send({message: 'Already enrolled!'})}
@@ -176,7 +203,7 @@ module.exports = function(app) {
         course.students.splice(index, 1);
         course.save();
       }
-      
+
 
       res.send(course);
     });
@@ -186,7 +213,7 @@ module.exports = function(app) {
   app.put('/api/courses/:id/publish', auth.ensureAuthenticated, function (req, res) {
     Course.findById(req.params.id, function (err, course) {
       if (!course) { return res.status(400).send({message: 'Course not found' }) }
-      
+
       course.publishedAt = new Date();
       course.save();
 
@@ -200,7 +227,7 @@ module.exports = function(app) {
   app.put('/api/courses/:id/unpublish', auth.ensureAuthenticated, function (req, res) {
     Course.findById(req.params.id, function (err, course) {
       if (!course) { return res.status(400).send({message: 'Course not found' }) }
-      
+
       course.publishedAt = null;
       course.save()
 

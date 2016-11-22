@@ -9,7 +9,7 @@
           tr
             th Q
             th Title
-            th Instructor
+            th Instructor(s)
             th Week Days
             th Time
             th Participants
@@ -17,7 +17,7 @@
             td {{course.quarter}}
             td 
               a(href="/courses/{{course._id}}") {{course.title}}
-            td {{course.instructor.fullname}}
+            td {{course.instructor.fullname}} #[span(ng-show="course.coInstructor") {{", " + course.coInstructor.fullname}}]
             td {{course.weekDays}}
             td {{course.startTime}}
             td {{course.students.length}}/26
@@ -28,7 +28,7 @@
           tr
             th Q
             th Title
-            th Instructor
+            th Instructor(s)
             th Week Days
             th Time
             th Participants
@@ -36,7 +36,7 @@
             td {{course.quarter}}
             td 
               a(href="/courses/{{course._id}}") {{course.title}}
-            td {{course.instructor.fullname}}
+            td {{course.instructor.fullname}} #[span(ng-show="course.coInstructor") {{", " + course.coInstructor.fullname}}]
             td {{course.weekDays}}
             td {{course.startTime}}
             td {{course.students.length}}/26
