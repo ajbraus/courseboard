@@ -51,25 +51,30 @@ module.exports = function(app) {
       }
 
       //ADD TO ADVISOR'S PRODUCTS
-      User.findById(product.instructor).exec(function(err, instructor) {
-        instructor.products.unshift(product);
-        instructor.save();
-      })
+      if (product.instructor) {
+        User.findById(product.instructor).exec(function(err, instructor) {
+          instructor.products.unshift(product);
+          instructor.save();
+        })
+      }
 
       User.findById(req.userId, '+email').exec(function (err, user) {
         if (err) { return res.status(400).send(err) }
         // SEND NOTIFICATION TO INSTRUCTOR
-        User.findById(product.instructor, '+email').exec(function (err, instructor) {
-          app.mailer.send('emails/product-instructor-notification', {
-            to: instructor.email,
-            subject: 'New Product Advisor: ' + product.name,
-            instructor: instructor,
-            product: product,
-            contributor: user
-          }, function (err) {
-            if (err) { console.log(err); return }
-          });
-        })
+        if (product.instructor) {
+          User.findById(product.instructor, '+email').exec(function (err, instructor) {
+            app.mailer.send('emails/product-instructor-notification', {
+              to: instructor.email,
+              subject: 'New Product Advisor: ' + product.name,
+              instructor: instructor,
+              product: product,
+              contributor: user
+            }, function (err) {
+              if (err) { console.log(err); return }
+            });
+          })
+        }
+
       });
 
       // ENROLL CREATOR & ADVISOR
@@ -107,12 +112,37 @@ module.exports = function(app) {
 
   // UPDATE
   app.put('/api/products/:id', auth.ensureAuthenticated, function (req, res) {
-    console.log(req.body)
-    Product.findByIdAndUpdate(req.body._id, req.body, function (err, product) {
+    console.log(req.body);
+    Product.findById(req.body._id, function (err, product) {
+      if (err) { return error; }
+      
       if (!product) { return res.status(400).send({message: 'Product not found' }) }
 
+      var shipping = false;
+
+      if (!product.liveUrl && req.body.liveUrl) {
+        var shipping = true;
+      }
+
+      product = req.body;
+      console.log(product);
+      product.save(function (err) {
+        if (err) { return error; }
+
+        if (shipping) {
+          console.log("TEST");
+          // create "shipped" update
+          // email the advisor (if there is one)
+          // email the collaborators (if there are any)
+        }
+      });
       res.status(200).send(product);
     });
+    // Product.findByIdAndUpdate(req.body._id, req.body, function (err, product) {
+    //   if (!product) { return res.status(400).send({message: 'Product not found' }) }
+    //
+    //   res.status(200).send(product);
+    // });
   });
 
   // DELETE

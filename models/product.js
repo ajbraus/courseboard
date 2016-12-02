@@ -17,7 +17,7 @@ var ProductSchema = new Schema({
   , name                : { type: String, required: true }
   , githubUrl           : { type: String }
   , agileUrl            : { type: String }
-  , liveUrl             : { type: String }
+  , liveUrl             : { type: String } 
   , problem             : { type: String, required: true }
   , assumptions         : String
   , finishedProduct     : String
@@ -37,7 +37,7 @@ var ProductSchema = new Schema({
   , costStructure           : String
 
   , course              : { type: Schema.Types.ObjectId, ref: 'Course' }
-  , instructor          : { type: Schema.Types.ObjectId, ref: 'User', required: true }
+  , instructor          : { type: Schema.Types.ObjectId, ref: 'User' }
   , contributors        : [{ type: Schema.Types.ObjectId, ref: 'User' }]
   , updates             : [{ type: Schema.Types.ObjectId, ref: 'Update' }]
 })

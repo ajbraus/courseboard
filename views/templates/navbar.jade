@@ -10,7 +10,7 @@ nav.navbar
       a.navbar-brand(href='/welcome' ng-show="!currentUser") Course Board
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav
-        li(ng-show="currentUser.role == 'Instructor'")
+        li
           a(href="/") Home
       //- form.navbar-form.navbar-left(ng-submit="search(term)" style="z-index: 0;" ng-show='currentUser')
       //-   .input-group

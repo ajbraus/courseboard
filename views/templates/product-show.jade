@@ -1,14 +1,20 @@
 .container
   .row
     .col-sm-5
+      h3.text-danger(ng-hide="product.liveUrl") Draft Product
       .card 
         h3 {{product.name}}
-        p Collaborators: 
-          a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors") {{contributor.username}} 
-        p Advisor: 
-          a(href="users/{{product.instructor._id}}") {{product.instructor.fullname}}
         a(href="#" ng-click="join()" ng-show="!isContributor") Join Team
         a(href="" ng-click="leave(product)" ng-show="isContributor") Leave Product Team
+        br
+        b Collaborators: 
+        br
+        a(href="users/{{contributor._id}}" ng-repeat="contributor in product.contributors") {{contributor.username}} 
+        br
+        b Advisor: 
+        br
+        a(href="users/{{product.instructor._id}}") {{product.instructor.fullname}}
+        br
         p(ng-show="product.course") Course: 
           a(href="courses/{{product.course._id}}") {{product.course.title}}
 
@@ -18,11 +24,11 @@
             button.btn.btn-default.btn-block(ng-click='goToUrl(product.githubUrl)' ng-disabled="!product.githubUrl") #[i.ion.ion-social-github] GitHub Repo
           .btn-group
             button.btn.btn-warning.btn-block(ng-click='goToUrl(product.agileUrl)' ng-disabled="!product.agileUrl") #[i.ion.ion-android-checkbox-outline] Scrum Board
-          .btn-group
-            button.btn.btn-primary.btn-block(ng-click='goToUrl(product.liveUrl)' ng-disabled="!product.liveUrl") #[i.ion.ion-android-wifi] Live Site
         br
         p(ng-if="isContributor")
           a(href="/products-edit/{{product._id}}") Update Product Details and Links
+      a.btn.btn-primary.btn-lg.btn-block(href="/products-ship/{{product._id}}" ng-hide="product.liveUrl") Ship!
+      a.btn.btn-primary.btn-lg.btn-block(ng-click='goToUrl(product.liveUrl)' ng-show="product.liveUrl") #[i.ion.ion-android-wifi] Live Product
       .card
         h4 Product Basics
         p 

@@ -151,7 +151,7 @@ angular.module('courseboard')
     $http.get('/api/products/' + $routeParams.id).then(
       function (response) {
         $scope.product = response.data;
-        $scope.product.instructor = response.data.instructor._id
+        // $scope.product.instructor = response.data.instructor._id
       },
       function (response) {
         GlobalAlert.add('warning', response.data.message, 2000);
@@ -188,6 +188,7 @@ angular.module('courseboard')
           GlobalAlert.add('success', "Course updated", 2000);
         },
         function (response) {
+          console.log(response);
           GlobalAlert.add('warning', response.data.message, 2000);
         }
       );

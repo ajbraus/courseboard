@@ -87,6 +87,11 @@ angular.module('courseboard', [
         controller: 'ProductsEditCtrl'
       });
 
+      $routeProvider.when('/products-ship/:id', {
+        templateUrl: 'templates/product-ship',
+        controller: 'ProductsEditCtrl'
+      });
+
       $routeProvider.when('/products-plan/:id', {
         templateUrl: 'templates/product-plan',
         controller: 'ProductsEditCtrl'
@@ -103,7 +108,7 @@ angular.module('courseboard', [
         controller: 'PasswordEditCtrl',
         publicAccess: true
       });
-  
+
       $routeProvider.when('/password-new', {
         templateUrl: 'templates/password-new',
         controller: 'PasswordNewCtrl',

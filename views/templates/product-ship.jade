@@ -1,0 +1,10 @@
+.container
+  .row
+    .col-sm-8.col-sm-offset-2
+      legend Product Information
+      form(ng-submit="updateProduct()")
+        .form-group
+          label Live Site URL
+          input.form-control(type="url" ng-model='product.liveUrl')
+        .col-xs-12.text-right
+          button.btn.btn-primary Save Product
