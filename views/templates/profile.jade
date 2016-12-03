@@ -39,11 +39,18 @@
 
     .col-sm-4
       h4 Product Portfolio
-      a.btn.btn-block.btn-primary(href="/product-new") New Portfolio Product
-      .card(ng-repeat="product in user.products")  
+      .card(ng-repeat="product in user.products | filter: { liveUrl : '!!' }")  
         a.no-style(href="products/{{product._id}}")
           h3 {{product.name}}
           p {{product.problem}}
+      hr
+      a.btn.btn-block.btn-primary(href="/product-new") New Draft Product
+      .card(ng-repeat="product in user.products | filter: { liveUrl : '!!!' }")  
+        a.no-style(href="products/{{product._id}}")
+          h3 {{product.name}}
+          p {{product.problem}}
+          .text-right
+            b.text-danger Draft
 
 
       //- h4 Course Announcements

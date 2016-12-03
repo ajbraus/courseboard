@@ -35,7 +35,7 @@
             .form-group
               label Agile Board URL
               input.form-control(type="url" ng-model='product.agileUrl')
-          .col-sm-4
+          .col-sm-4(ng-show="product.liveUrl")
             .form-group
               label Live Site URL
               input.form-control(type="url" ng-model='product.liveUrl')
