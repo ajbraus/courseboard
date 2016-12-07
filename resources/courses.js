@@ -120,7 +120,9 @@ module.exports = function(app) {
 
       course.remove();
 
-      res.send("Successfully removed course: " + courseId);
+      console.log("Successfully removed course: " + courseId);
+      
+      res.send(courseId);
     })
   });
 
