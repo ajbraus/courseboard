@@ -115,7 +115,7 @@ module.exports = function(app) {
     console.log(req.body);
     Product.findById(req.body._id, function (err, product) {
       if (err) { return error; }
-      
+        
       if (!product) { return res.status(400).send({message: 'Product not found' }) }
 
       var shipping = false;
@@ -124,9 +124,7 @@ module.exports = function(app) {
         var shipping = true;
       }
 
-      product = req.body;
-
-      product.save(function (err, product) {
+      product.update(req.body, function (err, product) {
         if (err) { return error; }
 
         if (shipping) {
@@ -135,6 +133,7 @@ module.exports = function(app) {
           // email the collaborators (if there are any)
         }
       });
+      
       res.status(200).send(product);
     });
     // Product.findByIdAndUpdate(req.body._id, req.body, function (err, product) {
