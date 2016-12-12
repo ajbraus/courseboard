@@ -125,12 +125,11 @@ module.exports = function(app) {
       }
 
       product = req.body;
-      console.log(product);
-      product.save(function (err) {
+
+      product.save(function (err, product) {
         if (err) { return error; }
 
         if (shipping) {
-          console.log("TEST");
           // create "shipped" update
           // email the advisor (if there is one)
           // email the collaborators (if there are any)
