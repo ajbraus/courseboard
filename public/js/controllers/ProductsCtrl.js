@@ -170,6 +170,10 @@ angular.module('courseboard')
       $scope.instructors = response.data;
     });
 
+    $http.get('/api/current-courses').then(function(response) {
+      $scope.courses = response.data;
+    });
+
     $scope.dateOptions = {
        formatYear: 'yy',
        maxDate: new Date(2020, 5, 22),
