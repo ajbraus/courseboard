@@ -27,7 +27,7 @@
         br
         p(ng-if="isContributor")
           a(href="/products-edit/{{product._id}}") Update Product Details and Links
-      a.btn.btn-primary.btn-lg.btn-block(href="/products-ship/{{product._id}}" ng-hide="product.liveUrl") Ship!
+      a.btn.btn-primary.btn-lg.btn-block(href="/products-ship/{{product._id}}" ng-hide="product.liveUrl || !isContributor") Ship!
       a.btn.btn-primary.btn-lg.btn-block(ng-click='goToUrl(product.liveUrl)' ng-show="product.liveUrl") #[i.ion.ion-android-wifi] Live Product
       .card
         h4 Product Basics
