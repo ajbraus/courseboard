@@ -10,7 +10,6 @@ module.exports = function(app) {
 
   // CREATE FEEDBACK
   app.post('/api/user/:id/feedback', auth.ensureAuthenticated, function (req, res) {
-    console.log('hello')
     // create feedback
     var feedback = new Feedback(req.body);
     feedback.user = req.params.id;
@@ -24,56 +23,26 @@ module.exports = function(app) {
 
         // add feedback to embedded user.feedbacks 
         user.feedbacks.push(feedback)
+        user.save
 
-        // update user competencies 
-        user.competencies = req.body.competencies;
-
-        // save user
+        // SEND FEEDBACK TO STUDENT BY EMAIL IF INSTRUCTOR WROTE FEEDBACK
         user.save(function (err, user) {
           if (err) { return res.status(400).send(err) }
-
-          if (feedback.competencies.length > 0) {
-            var subject = "You Leveled Up!"  
-          } else {
-            var subject = "Feedback for you"
-          }
           
-          // SEND FEEDBACK TO STUDENT BY EMAIL
-          app.mailer.send('emails/feedback', {
-            to: user.email,
-            feedback: feedback,
-            subject: subject,
-            user: user
-          }, function (err) {
-            if (err) { console.log(err); return }
-          });
+          if (feedback.user != req.userId) {
+            app.mailer.send('emails/feedback', {
+              to: user.email,
+              feedback: feedback,
+              subject: "Feedback or Goal Created",
+              user: user
+            }, function (err) {
+              if (err) { console.log(err); return }
+            });
+          }
 
           res.send(feedback);
         });
       });
     });
   });
-
-  // UPDATE USER COMPETENCE
-  // app.put('/api/users/:id/competencies', auth.ensureAuthenticated, function (req, res) {
-  //   User.findById(req.params.id).exec(function (err, user) {
-  //     // FIND BY NAME
-  //     var competency = _.find(user.competencies, { 'name': req.body.name })
-  //     if (competency && req.body.level <= 5 && req.body.level >= 0) {
-  //       // UDPATE SUBDOCUMENT LEVEL
-  //       competency.level = req.body.level
-  //       user.save();
-  //       res.send(user);
-  //     }
-  //     else {
-  //       User.findById(req.userId).exec(function (err, currentUser) {
-  //         var competency = { name: req.body.name, instructor: currentUser._id, level: 1, kind: req.body.kind }
-  //         user.competencies.push(competency)
-  //         user.save();
-  //         res.send(user);
-  //       });
-  //     }
-  //   });
-  // })
-
 }

@@ -57,7 +57,7 @@
       //- div(ng-init="profile = true" ng-include="'templates/post'", ng-repeat="post in posts")
 
     .col-sm-4
-      h4 Recent Feedback
+      h4 Recent Goals & Feedback #[a(href="/feedback/new") New Goal/Feedback]
       .card
         div "{{user.feedbacks[0].body | limitTo:400 }}"
         .text-right
@@ -65,10 +65,7 @@
 
       hr(ng-show="user.feedbacks.length > 0 && user.feedbacks[0].body")
 
-      h4 Skills & Competencies
-      
-      
-      
+      h4 Skills & Competencies #[a(href="/competencies/edit") Update Competencies]
       .col-xs-12.legend-el.core CORE            
       h4.small-margin(ng-repeat="competency in user.competencies | filter: {kind: 'core'} | orderBy: ['kind', '-level']" 
          style="display:inline-block;")

@@ -1,6 +1,6 @@
 'use strict';
 
-/* COMPETENCE Controllers */
+/* Feedback Controllers */
 
 angular.module('courseboard')
   .controller('StudentsIndexCtrl', ['$scope', '$http', '$auth', 'Auth', 'GlobalAlert', function($scope, $http, $auth, Auth, GlobalAlert) {
@@ -10,42 +10,24 @@ angular.module('courseboard')
     })
   }])
 
-  .controller('FeedbackNewCtrl', ['$scope', '$http', '$auth', '$routeParams', '$location', 'Auth', 'Competencies', 'GlobalAlert', function($scope, $http, $auth, $routeParams, $location, Auth, Competencies, GlobalAlert) {
-    $scope.feedback = {
-      body:"",
-      competencies: []
+  .controller('FeedbackNewCtrl', ['$rootScope', '$scope', '$http', '$auth', '$routeParams', '$location', 'Auth', 'Competencies', 'GlobalAlert', function($rootScope, $scope, $http, $auth, $routeParams, $location, Auth, Competencies, GlobalAlert) {
+  
+    if ($routeParams.id) {
+      var userId = $routeParams.id;
+    } else {
+      var userId = $rootScope.currentUser._id;
     }
 
-    $http.get('/api/users/' + $routeParams.id).then(function (response) {
-      $scope.user = response.data;
-
-      //MASTER COMPETENCIES LIST LIVES IN SERVICES.JS
-      console.log(Competencies.all)
-      console.log($scope.user.competencies)
-      
-      $scope.competencies = Competencies.all      
-      _.each(Competencies.all, function (competency) { 
-        _.each($scope.user.competencies, function (userCompetency) {
-          // if their names match, replace it
-          if (competency.name == userCompetency.name) {
-            var index = _.findIndex($scope.competencies, competency);
-            $scope.competencies[index] = userCompetency;
-          }
-          // $scope.competencies = _.sortBy($scope.competencies, ['name']);
-        })
-      });
-    })
+    $scope.feedback = {
+      body:""
+    }
 
     $scope.createFeedback = function() {
-      // grab competencies with levels < 0
-      $scope.feedback.competencies = _.filter($scope.competencies, function (c) { return c.level > 0 })
-      console.log($scope.feedback.competencies);
-      // send body & competencies to POST /api/user/:id/feedback
       $http.post('/api/user/' + $scope.user.id + '/feedback', $scope.feedback).then(
         function (response) {
           $scope.feedback = {};
           $location.path('/');
-          GlobalAlert.add('success', "Feedback logged and sent", 2000);
+          GlobalAlert.add('success', "Goal or Feedback Created", 2000);
         },
         function (response) {
           console.log(response);
@@ -53,13 +35,4 @@ angular.module('courseboard')
         }
       );
     }
-
-    // $scope.updateCompetency = function(competencyName, level, kind) {
-    //   if (level >= 0 && level <= 5) {
-    //     $http.put('/api/users/' + $scope.user._id + '/competencies', { name: competencyName, level: level, kind: kind }).then(function (response) {
-    //       var competency = _.find($scope.competencies, { 'name': competencyName });
-    //       competency.level = level;
-    //     })        
-    //   }
-    // }
   }]);

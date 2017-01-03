@@ -1,11 +1,110 @@
-.row
-  .col-xs-4.col-sm-4.col-md-3
-    .row
-      .col-xs-4
-        .icon.ion-minus-circled(ng-click="competency.level > 0 ? competency.level = competency.level - 1 : ''")
-      .col-xs-4
-        {{competency.level}}
-      .col-xs-4
-        .icon.ion-plus-circled(ng-click="competency.level < 5 ? competency.level = competency.level + 1 : ''")
-  .col-xs-8.col-sm-8.col-md-9
-    {{competency.name}} 
+
+label {{competency.name}}
+br
+.form-group
+  label.radio-inline(ng-repeat="i in range(0,5)")
+    input(type='radio' ng-value="i" ng-model="competency.level")
+    span(ng-switch="i")
+      span(ng-switch-when="0") 0. Waiting
+      span(ng-switch-when="1") 1. Beginning
+      span(ng-switch-when="2") 3. Undertaking
+      span(ng-switch-when="3") 4. Approaching
+      span(ng-switch-when="4") 5. Overtaking
+      span(ng-switch-when="5") 6. Innovating
+
+div(ng-switch="competency.name")
+  div(ng-switch-when="Professionalism") 
+    ul
+      li Shows respect for oneself, all people, and all organizations in and outside of Make School
+      li Is timely in their arrival to meetings and does not no-call-no-show
+      li Follows proper personal hygiene
+      li Uses the appropriate language and behavior based on a situation’s formality or informality
+      li Keeps all promises
+      li Takes responsibility for their words and actions.
+  div(ng-switch-when='Teamwork')
+    ul
+      li Sets and keeps deadlines.
+      li Takes ownership of the success of their areas and tasks.
+      li Often overcommunicates and never undercommunicates and uses the proper channels.
+      li Is receptive to views that are not their own.
+      li Shows humility and can identify and respect the ways in which others are more skilled than they.
+      li Effectively escalates issues and risks.
+      li Exhibits empathy and can make socially intelligent decisions based on the thoughts and feelings of others.
+  div(ng-switch-when='Energy & Agility')
+    ul
+      li Is resourceful in solving problems.
+      li Is creative. Thinks laterally and presents out-of-the-box opportunities, ideas, and solutions
+      li Is quickly adaptable to changing conditions and environments
+      li Show initiative in starting new projects and new tasks
+      li Brings zest to their work, teams, and projects in the form of enthusiasm and energy
+      li Exhibits curiosity about many ideas, people, and topics
+  div(ng-switch-when='Leadership')
+    ul
+      li Displays confidence in their decisions and actions.
+      li Exhibits courage and takes educated risks.
+      li Show perseverance and grit by not giving up in the face of challenges and difficulties.
+      li Are self-regulated in their behavior, plans, and life.
+      li Can focus and accomplish a great deal.
+      li Can inform, persuade, and entertain when speaking publically.
+  div(ng-switch-when='Emotional Intelligence')
+    ul
+      li Is kind to all people and things.
+      li Often shows gratitude in the form of thanks, shout outs, and acknowledgements
+      li Has empathy for the suffering and difficulty of others and shows compassion for them
+      li Searches to understand themselves better and open to having ideas about themselves challenged
+  
+
+  div(ng-switch-when='Communication')
+    ul
+      li All communication is timely (24 hours for email, same day for slack)
+      li Communication follows the proper channel - announcements and action items on email, check-ins and clarifications on slack.
+      li Asks for feedback, take notes of feedback, and implements changes in their performance based on feedback.
+      li Effective public speaker (can inform, entertain, and persuade)
+      li Effective writer (can inform, entertain, and persuade)
+  div(ng-switch-when='Productivity')
+    ul
+      li Can effectively use a calendar to plan for themselves and coordinate with others
+      li Has a clear todo list and "source of truth"
+      li Uses effective task management with clear owners, timelines, and deliverables
+      li Effectively manages their work time and uses strategies like time blocking or pomodoros to work efficiently
+      li Exhibits proper work-life balance in the form of eating, sleeping, and exercising enough while accomplishing their tasks.
+  div(ng-switch-when='Product Management')
+    ul
+      li Does not overscope projects or phases of projects
+      li Is a master of Git and GitHub workflows
+      li Problem Solving, Resourcefulness, and Self-Reliance
+      li Utilizes resources at their disposal effectively (e.g. using class time effectively, taking notes, and asking for help)
+      li Is an effective solo programmer
+      li Is an effective pair programming
+  div(ng-switch-when='Code Craftsmanship')
+    ul
+      li Code is built using a language/framework that suits the project’s goals
+      li Code is DRY and modular
+      li Variable and method names make sense and create an elegant DSL
+      li Code is well commented
+      li Code is implemented at the proper level of abstraction
+      li If required, code has test coverage
+  div(ng-switch-when='CS Fundamentals')
+    ul
+      li Has mastered core algorithms and data structures
+      li Has mastered advanced algorithms and data structures
+      li Is familiar with the mathematics of CS
+      li Can use the tools for statistical analyse data and draw actionable conclusions
+      li Can employ strategies to problem solve and think critically
+
+  div(ng-switch-when='Product Dev')
+    ul
+      li Uses strategies like “out of the building” and user interviewing
+      li Focuses on validation of product-market fit over engineering
+      li Puts emphasis on good usability and design
+      li Follows an agile process
+      li Is in the habit of generating a business model for projects
+      li Can develop a growth plan for a product
+//- .col-xs-6.col-sm-3.col-lg-2
+//-   .row
+//-     .col-xs-4.no-padding
+//-       span.left.icon.ion-minus-circled(ng-click="competency.level > 0 ? competency.level = competency.level - 1 : ''")
+//-       span.center {{competency.level}}
+//-       span.right.icon.ion-plus-circled(ng-click="competency.level < 5 ? competency.level = competency.level + 1 : ''")
+//-     .col-xs-8
+//-       {{competency.name}} 

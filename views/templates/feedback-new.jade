@@ -1,33 +1,12 @@
 .container
   .row
-    .col-sm-10.col-sm-offset-1
-      .clearfix
-        .pull-left
-          a.no-style(href="users/{{user._id}}")
-            h3 Leave Feedback for {{user.fullname}} (#[a(href="users/{{user._id}}") {{user.username}}])
-            br
-      .row
-        .col-sm-6
-          legend Update Competencies
-          .card
-            h4 Character
-            ng-include(src="'templates/competency-selector'" ng-repeat="competency in competencies | filter: { kind: 'character' }")
-          .card
-            h4 Core
-            ng-include(src="'templates/competency-selector'" ng-repeat="competency in competencies | filter: { kind: 'core' }")
-          .card
-            h4 Elective
-            ng-include(src="'templates/competency-selector'" ng-repeat="competency in competencies | filter: { kind: 'elective' }")
-          .text-right
-            a(href="http://wiki.makeschool.com/mediawiki/index.php/Mastery_Levels", target="_blank") View Competency Rubrics
-
-        .col-sm-6
-          form(ng-submit="createFeedback()")
-            legend Give Feedback
-            .form-group
-              label Feedback 
-              .text-muted Please provide feedback using growth mindset language and include an improvement message.
-              textarea.form-control(rows="20" ng-model="feedback.body" required)
-            .text-right
-              button.btn.btn-warning(type="submit") Save Competencies & Feedback
-              .text-muted This will log the feedback and send an email to the student
+    .col-sm-6.col-sm-offset-3
+      form(ng-submit="createFeedback()")
+        legend Set Goals or Give Feedback
+        .form-group
+          label Feedback 
+          .text-muted Please provide feedback using growth mindset language and include an improvement message.
+          textarea.form-control(rows="20" ng-model="feedback.body" required)
+        .text-right
+          button.btn.btn-warning(type="submit") Save Competencies & Feedback
+          .text-muted This will log the feedback and send an email to the student

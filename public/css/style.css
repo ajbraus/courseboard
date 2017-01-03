@@ -395,3 +395,17 @@ dd {
   margin-top: 3px;
   margin-bottom: 3px;
 }
+
+.no-padding {
+  padding: 0;
+}
+
+.left {
+  padding-left:5px;
+}
+.center {
+  padding: 0 5px;
+}
+.right {
+  padding-right:5px;
+}

@@ -74,6 +74,7 @@ require('./resources/posts')(app);
 require('./resources/products')(app);
 require('./resources/updates')(app);
 require('./resources/feedbacks')(app);
+require('./resources/competencies')(app);
 
 // redirect all others to the index (HTML5 history)
 app.get('/*', resources.index);

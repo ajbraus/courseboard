@@ -131,6 +131,21 @@ angular.module('courseboard', [
         controller: 'FeedbackNewCtrl'
       });
 
+      $routeProvider.when('/feedback/new', {
+        templateUrl: 'templates/feedback-new',
+        controller: 'FeedbackNewCtrl'
+      });
+
+      $routeProvider.when('/competencies/edit', {
+        templateUrl: 'templates/competencies-edit',
+        controller: 'CompetenciesEditCtrl'
+      });
+
+      $routeProvider.when('/users/:id/competencies/edit', {
+        templateUrl: 'templates/competencies-edit',
+        controller: 'CompetenciesEditCtrl'
+      });
+
       $routeProvider.when('/instructor-dashboard', {
         templateUrl: 'templates/instructor-dashboard',
         controller: 'InstructorDashboardCtrl'

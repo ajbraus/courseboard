@@ -1,0 +1,76 @@
+.container
+  .row
+    .col-sm-12
+      .text-right
+        .btn.btn-primary(ng-click="updateCompetencies()") Update Competencies
+      legend Update Competencies for {{user.fullname}} (#[a(href="users/{{user._id}}") {{user.username}}])
+      h2 Character & Core Mastery Rubric
+      .row
+        .col-xs-2
+          h4 0. Waiting
+          p Exhibits fewer than 1/2 of the key characteristics of the competency without consistency. 
+        .col-xs-2
+          h4 1. Beginning
+          p Exhibits 1/2 of the key characteristics but without consistency. 
+        .col-xs-2
+          h4 2. Undertaking
+          p Exhibits 1/2 of the key characteristics consistently. 
+        .col-xs-2
+          h4 3. Approaching
+          p Exhibits more than half of the key characteristics consistently. 
+        .col-xs-2
+          h4 4. Overtaking
+          p Exhibits all the key characteristics consistently. 
+        .col-xs-2
+          h4 5. Innovating
+          p Innovates new ways to embody and express the competency. 
+      
+      h2 Core Competencies
+      .card
+        
+        ng-include(src="'templates/competency-selector'" ng-repeat="competency in competencies | filter: { kind: 'core' }")
+
+      h2 Character Competencies
+      .card
+        .row
+          .col-sm-12
+            ng-include(src="'templates/competency-selector'" ng-repeat="competency in competencies | filter: { kind: 'character' }")
+      
+      h2 Technical Mastery Rubric
+      .row
+        .col-xs-2
+          h4 0. Waiting
+          p Has never touched the technology
+        .col-xs-2
+          h4 1. Beginning
+          p Has done a “hello world” in the technology.
+          p Has completed one tutorial and read some of the documentation.
+          p Can answer basic architectural questions about the technology but not with depth.
+        .col-xs-2
+          h4 2. Untertaking
+          p Has built a tutorial project or simple app in the technology
+          p Has completed more than one tutorials and read the documentation and other articles and stackoverflow questions.
+          p Can answer basic architectural questions about the technology with some depth.
+        .col-xs-2
+          h4 3. Approaching
+          p Has built a project in the technology or used it in a project.
+          p Has completed more than one tutorial and read much of the documentation and has contributed to stackoverflow questions or answers about the technology.
+          p Can answer basic architectural questions about the technology with depth
+        .col-xs-2
+          h4 4. Overtaking
+          p Has built more than one project in the technology or used it in more than one project.
+          p Has helped others to master the technology
+          p Has written blog posts that refer to the technology and now it works or how to extend it
+          p Can answer advanced architectural questions about the technology
+        .col-xs-2
+          h4 5. Innovating
+          p Has built many projects in the technology or used it in many projects
+          p Has taught a class or written a tutorial on the technology.
+          p Has contributed to the actual technology or to related technologies
+          p Has built a stand-alone module or library that depends on or extends the technology
+      
+      h2 Technical Competencies
+      .card
+        ng-include(src="'templates/competency-selector'" ng-repeat="competency in competencies | filter: { kind: 'elective' }")
+      .text-right
+        .btn.btn-primary(ng-click="updateCompetencies()") Update Competencies

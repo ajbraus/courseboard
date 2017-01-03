@@ -31,18 +31,12 @@ angular.module('courseboard')
   }])
 
   .controller('ProfileCtrl', ['$scope', '$http', '$auth', '$location', 'Auth', 'GlobalAlert', function($scope, $http, $auth, $location, Auth, GlobalAlert) {
-
     if (!$auth.isAuthenticated()) {
       $location.path('/welcome')
     }
 
     $http.get('/api/me').then(function(response) {
       $scope.user = response.data;
-
-      // POSTS
-      // $http.get('/api/users/' + $scope.user._id + '/posts').then(function(response) {
-      //   $scope.posts = response.data;
-      // });
     });
 
   }])

@@ -29,7 +29,6 @@ angular.module('courseboard')
   }])
 
   .controller('CoursesNewCtrl', ['$scope', '$rootScope', '$http', 'GlobalAlert', '$location', function($scope, $rootScope, $http, GlobalAlert, $location) {
-    console.log($rootScope.currentUser)
     $scope.course = {
       duration: 0,
       instructor: $rootScope.currentUser.role == "Instructor" ? $rootScope.currentUser._id : null,

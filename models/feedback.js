@@ -7,7 +7,7 @@ var FeedbackSchema = new Schema({
     createdAt           : { type: Date }
   , updatedAt           : { type: Date }
     
-  , body                : { type: String, required: true }
+  , body                : { type: String }
   , competencies        : [Competency.schema]
 
   , instructor          : { type: Schema.Types.ObjectId, ref: 'User', required: true}
