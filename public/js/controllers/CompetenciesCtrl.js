@@ -46,7 +46,8 @@ angular.module('courseboard')
     $scope.updateCompetencies = function() {
       // grab competencies with levels < 0
       $scope.feedback.competencies = _.filter($scope.competencies, function (c) { return c.level > 0 })
-      
+
+      console.log($scope.feedback.competencies)
       // send body & competencies to POST /api/user/:id/feedback
       $http.put('/api/user/' + $scope.user.id + '/competencies', $scope.feedback).then(
         function (response) {
