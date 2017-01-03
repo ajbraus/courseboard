@@ -23,7 +23,7 @@ angular.module('courseboard')
     }
 
     $scope.createFeedback = function() {
-      $http.post('/api/user/' + $scope.user.id + '/feedback', $scope.feedback).then(
+      $http.post('/api/user/' + $rootScope.currentUser.id + '/feedback', $scope.feedback).then(
         function (response) {
           $scope.feedback = {};
           $location.path('/');

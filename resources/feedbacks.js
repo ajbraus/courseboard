@@ -22,7 +22,7 @@ module.exports = function(app) {
       User.findById(req.params.id, '+email').exec(function (err, user) {
 
         // add feedback to embedded user.feedbacks 
-        user.feedbacks.push(feedback)
+        user.feedbacks.unshift(feedback)
         user.save
 
         // SEND FEEDBACK TO STUDENT BY EMAIL IF INSTRUCTOR WROTE FEEDBACK
