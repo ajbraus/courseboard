@@ -37,7 +37,8 @@ angular.module('courseboard', [
 
       $routeProvider.when('/', {
         templateUrl: 'templates/profile',
-        controller: 'ProfileCtrl'
+        controller: 'ProfileCtrl',
+        publicAccess: true
       });
 
       $routeProvider.when('/course-catalog', {
