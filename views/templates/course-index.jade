@@ -3,6 +3,25 @@
     .col-xs-12
       h3 Course Catalog
       
+      h4 3rd Quarter
+      .card
+        table.table
+          tr
+            th Q
+            th Title
+            th Instructor(s)
+            th Week Days
+            th Time
+            th Participants
+          tr(ng-repeat="course in courses | filter: { quarter: 3} | orderBy: ['title']")
+            td {{course.quarter}}
+            td 
+              a(href="/courses/{{course._id}}") {{course.title}}
+            td {{course.instructor.fullname}} #[span(ng-show="course.coInstructor") {{", " + course.coInstructor.fullname}}]
+            td {{course.weekDays}}
+            td {{course.startTime}}
+            td {{course.students.length}}/26
+
       h4 2nd Quarter
       .card
         table.table
