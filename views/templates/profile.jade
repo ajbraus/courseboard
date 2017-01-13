@@ -4,20 +4,7 @@
       .clearfix
         .pull-left 
           h3 {{user.first}} {{user.last}} #[span.text-muted ({{user.username}})]
-        .pull-right
-          a.btn.btn-warning(href="users/{{user._id}}/feedback" ng-show="currentUser.role == 'Instructor'") Provide Feedback
-      
-      
-  //- .row
-  //-   .col-xs-12
-  //-     h4 Product Portfolio
-  //- .row    
-  //-   .col-sm-3(ng-repeat="product in user.products")  
-  //-     .card
-  //-       a.no-style(href="products/{{product._id}}")
-  //-         h3 {{product.name}}
-  //-         p {{product.problem}}
-
+          
   hr
   .row
     .col-sm-4
