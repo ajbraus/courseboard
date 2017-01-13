@@ -28,11 +28,6 @@ angular.module('courseboard', [
     }])
 
     .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
-      // HOME
-      // $routeProvider.when('/', {
-      //   templateUrl: 'templates/splash',
-      //   publicAccess: true
-      // });
 
       // COURSES
       $routeProvider.when('/welcome', {

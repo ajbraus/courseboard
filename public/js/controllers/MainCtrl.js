@@ -34,8 +34,6 @@ angular.module('courseboard')
 
     if ($auth.isAuthenticated()) {
       $scope.isAuthenticated();
-    } else {
-      $location.path('/welcome')
     }
 
     $scope.signup = function() {
