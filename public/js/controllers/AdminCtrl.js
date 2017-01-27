@@ -3,7 +3,7 @@
 /* ADMIN Controller */
 
 angular.module('courseboard')
-  .controller('AdminCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'GlobalAlert', function ($scope, $rootScope, $location, $auth, $http, GlobalAlert) {
+  .controller('AdminCtrl', ['$scope', '$rootScope', '$location', '$auth', '$http', 'Competencies', 'GlobalAlert', function ($scope, $rootScope, $location, $auth, $http, Competencies, GlobalAlert) {
     if (!$scope.currentUser.admin) {
       $location.path('/');
     } else {
