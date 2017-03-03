@@ -56,7 +56,7 @@ if (process.env.NODE_ENV === 'production') {
 } else if (process.env.NODE_ENV === 'development') {
   app.locals.baseUrl = 'http://localhost:1337'
 }
-
+`
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.set('view options', {

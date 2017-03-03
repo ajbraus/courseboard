@@ -27,6 +27,7 @@ module.exports = function(app) {
           });
   });
 
+  //CURRENT COURSES
   app.get('/api/current-courses', function (req, res) {
     // RETURN ALL CURRENT COURSES
     var d = new Date();
@@ -150,7 +151,6 @@ module.exports = function(app) {
 
           // SEND NOTIFICATION TO INSTRUCTOR
           User.findById(course.instructor, '+email').exec(function (err, instructor) {
-            console.log(instructor)
             app.mailer.send('emails/enroll-notification', {
               to: instructor.email,
               subject: 'New Student: ' + user.first + " " + user.last,

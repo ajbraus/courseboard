@@ -75,6 +75,10 @@
         option(value="pm") PM
 
 .form-group
+  label Prerequisites
+  textarea.form-control(type="text" ng-model="course.prerequisites" rows="4")
+  
+.form-group
   label Description
   textarea.form-control(type="text" ng-model="course.description" rows="10")
   
