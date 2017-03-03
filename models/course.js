@@ -7,13 +7,13 @@ function toTitle(v) {
 }
 
 var CourseSchema = new Schema({
-    createdAt     : type: Date
-  , updatedAt     : type: Date
-  , publishedAt   : type: Date
+    createdAt     : Date
+  , updatedAt     : Date
+  , publishedAt   : Date
 
   , title         : { type: String, required: true }
-  , description   : type: String
-  , prerequisites : type: String
+  , description   : String
+  , prerequisites : String
 
   , quarter       : String
   , weekDays      : String

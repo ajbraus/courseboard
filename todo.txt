@@ -1,3 +1,7 @@
+    - bug joining a product
+    - bug deleting products
+    - bug - what problem are you solving?
+
 Game that asks other people what level of competencey a student has
 
 PRODUCT PORTFOLIO
@@ -7,7 +11,6 @@ PRODUCT PORTFOLIO
 - blow in og tag values
 
 Instructor user-show should show the classes they teach and the products they are working on (not advising)
-
 
 
 Groups of 2, 3, 4, 5, split class in half
